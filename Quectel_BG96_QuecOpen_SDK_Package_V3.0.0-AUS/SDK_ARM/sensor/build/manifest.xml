@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>MDM_LTE_IOT_SW.SDK.1.0</name>
+    <build_id>MDM_LTE_IOT_SW.SDK.1.0-00003-NOOP_TEST-1</build_id>
+    <branch_point_revision/>
+    <revision>00003</revision>
+    <spin>1</spin>
+    <client>NOOP_TEST</client>
+  </image_tree>
+</config>

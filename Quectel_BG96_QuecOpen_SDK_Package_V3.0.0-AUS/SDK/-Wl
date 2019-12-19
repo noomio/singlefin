@@ -1,0 +1,2624 @@
+# Linker from Snapdragon LLVM ARM Compiler Version 4.0.3
+# Linker based on LLVM version: 4.0
+# Notable linker command/script options:
+# CPU Architecture Version: 
+# Target triple environment for the link: gnueabi
+# Maximum GP size: 8
+# Link type: Static
+# ABI Page Size: 0x4
+# CommandLine : C:\compile_tools\LLVM\4.0.3\bin\ld.qcld.exe -X --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /lib/ld-musl-arm.so.1 -o bin\quectel_demo_lwm2m.elf -lc++ -mno-unaligned-access -entry=0x43000000 quectel\example\build\txm_module_preamble_llvm.o -Tquectel\build\quectel_dam_demo.ld -Map -Wl -gc-sections quectel\example\build\example_lwm2m_ext.o quectel\example\build\quectel_uart_apis.o quectel\example\build\quectel_utils.o quectel\example\build\txm_module_preamble_llvm.o libs\azure_sdk.lib libs\azure_sdk_port.lib libs\diag_dam_lib.lib libs\qapi_psm_lib.lib libs\timer_dam_lib.lib libs\txm_lib.lib -LC:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib -LC:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\lib --start-group -lunwind -lc++ -lc++abi --end-group -LC:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal --start-group -lc -lclang_rt.builtins-armv7m --end-group -lm -lc 
+Archive member included because of file (symbol)
+libs\timer_dam_lib.lib(qapi_timer_user.o)
+		quectel\example\build\example_lwm2m_ext.o (qapi_Timer_Def)
+libs\txm_lib.lib(txm_module_thread_shell_entry.o)
+		quectel\example\build\example_lwm2m_ext.o (_txm_module_kernel_call_dispatcher)
+libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)
+		quectel\example\build\txm_module_preamble_llvm.o (_txm_module_callback_request_thread_entry)
+libs\txm_lib.lib(txm_module_system_call11.o)
+		quectel\example\build\example_lwm2m_ext.o (_txm_module_system_call11)
+libs\txm_lib.lib(txm_module_system_call12.o)
+		quectel\example\build\example_lwm2m_ext.o (_txm_module_system_call12)
+libs\txm_lib.lib(txm_module_system_call4.o)
+		quectel\example\build\example_lwm2m_ext.o (_txm_module_system_call4)
+libs\txm_lib.lib(txm_module_system_call5.o)
+		quectel\example\build\example_lwm2m_ext.o (_txm_module_system_call5)
+libs\txm_lib.lib(txm_module_system_call6.o)
+		quectel\example\build\example_lwm2m_ext.o (_txm_module_system_call6)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)
+		quectel\example\build\example_lwm2m_ext.o (vsnprintf)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__fwritex)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (vsnprintf_full)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__aeabi_memclr4)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o) (__aeabi_memcpy8)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)
+		quectel\example\build\example_lwm2m_ext.o (memcpy)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)
+		quectel\example\build\example_lwm2m_ext.o (memset)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (memchr)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)
+		quectel\example\build\example_lwm2m_ext.o (strcmp)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlcpy.o)
+		quectel\example\build\example_lwm2m_ext.o (strlcpy)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)
+		quectel\example\build\example_lwm2m_ext.o (strlen)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__errno_location)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (strerror)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o) (__lctrans)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (wctomb)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o) (__towrite)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__lockfile)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o) (wcrtomb)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o) (__stdio_exit_needed)
+C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o) (__ofl_lock)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_dcmp.S.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_dcmpeq)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_fcmp.S.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_fcmpge)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_ldivmod.S.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_ldivmod)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)
+		C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__aeabi_uldivmod)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(adddf3.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_dadd)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(addsf3.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_fadd)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_dcmp.S.obj) (__eqdf2)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_fcmp.S.obj) (__eqsf2)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdf3.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_ddiv)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divmoddi4.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_ldivmod.S.obj) (__divmoddi4)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfdi.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_d2lz)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfsi.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_d2iz)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfdi.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfdi.c.obj) (__fixunsdfdi)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfsi.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfdi.c.obj) (__aeabi_d2uiz)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatdidf.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_l2d)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatsidf.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_i2d)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatunsidf.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_ui2d)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(muldf3.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_dmul)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(subdf3.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_dsub)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(truncdfsf2.c.obj)
+		quectel\example\build\example_lwm2m_ext.o (__aeabi_d2f)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj) (__udivmoddi4)
+C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdi3.c.obj)
+		C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divmoddi4.c.obj) (__divdi3)
+
+Allocating common symbols
+Common symbol	size	file
+
+ext_obj_event	0x1	quectel\example\build\example_lwm2m_ext.o
+byte_pool_m2m	0x4	quectel\example\build\example_lwm2m_ext.o
+m2m_free_mem	0x1e000	quectel\example\build\example_lwm2m_ext.o
+m2m_signal_handle	0x4	quectel\example\build\example_lwm2m_ext.o
+m2m_thread_hdl	0x4	quectel\example\build\example_lwm2m_ext.o
+obj_inst_index_generic	0x4	quectel\example\build\example_lwm2m_ext.o
+obj_inst_index_presence	0x4	quectel\example\build\example_lwm2m_ext.o
+timer_client_stack	0x1000	libs\timer_dam_lib.lib(qapi_timer_user.o)
+timer_client_module_thread	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)
+timer_thread_state	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)
+timer_user_handle	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)
+_txm_module_entry_info	0x4	libs\txm_lib.lib(txm_module_thread_shell_entry.o)
+_txm_module_instance_ptr	0x4	libs\txm_lib.lib(txm_module_thread_shell_entry.o)
+_txm_module_kernel_call_dispatcher	0x4	libs\txm_lib.lib(txm_module_thread_shell_entry.o)
+
+Linker Script and memory map
+LOAD quectel\example\build\txm_module_preamble_llvm.o[]
+LOAD quectel\example\build\example_lwm2m_ext.o[]
+LOAD quectel\example\build\quectel_uart_apis.o[]
+LOAD quectel\example\build\quectel_utils.o[]
+SKIPPED quectel\example\build\txm_module_preamble_llvm.o (ELF)
+LOAD libs\timer_dam_lib.lib(qapi_timer_user.o) []
+LOAD libs\txm_lib.lib(txm_module_thread_shell_entry.o) []
+LOAD libs\txm_lib.lib(txm_module_callback_request_thread_entry.o) []
+LOAD libs\txm_lib.lib(txm_module_system_call11.o) []
+LOAD libs\txm_lib.lib(txm_module_system_call12.o) []
+LOAD libs\txm_lib.lib(txm_module_system_call4.o) []
+LOAD libs\txm_lib.lib(txm_module_system_call5.o) []
+LOAD libs\txm_lib.lib(txm_module_system_call6.o) []
+START GROUP
+END GROUP
+START GROUP
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlcpy.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_dcmp.S.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_fcmp.S.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_ldivmod.S.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(adddf3.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(addsf3.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdf3.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divmoddi4.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfdi.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfsi.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfdi.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfsi.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatdidf.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatsidf.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatunsidf.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(muldf3.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(subdf3.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(truncdfsf2.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj) []
+LOAD C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdi3.c.obj) []
+END GROUP
+
+Linker scripts used (including INCLUDE command)
+quectel\build\quectel_dam_demo.ld
+
+ER_RO	0x43000000	0x16898 # Offset: 0x60, LMA: 0x43000000
+	Image$$ER_RO$$Base(0x43000000) = .( 0x43000000 );
+*txm_module_preamble_llvm.o(.text .text.* )
+*txm_module_preamble_llvm.o(Init )
+Init	0x43000000	0x80	quectel\example\build\txm_module_preamble_llvm.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43000000		.CODE32
+	0x43000000		_txm_module_preamble
+*txm_module_preamble_llvm.o(.rodata .rodata.* )
+KEEP (*(.text .text.* ))
+.text	0x43000080	0xfeb4	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43000080		$a.0
+	0x43000080		m2m_uart_dbg_init
+	0x430001a8		$d.1
+	0x430001c4		m2m_uart_debug_print
+	0x430001c4		$a.2
+	0x4300026c		$d.3
+	0x43000274		$a.4
+	0x43000274		m2m_ext_obj_set_signal
+	0x43000328		$d.5
+	0x43000338		$a.6
+	0x43000338		ext_obj_task_init
+	0x430003b0		$d.7
+	0x430003bc		ext_obj_cmdq_init
+	0x430003bc		$a.8
+	0x430004f8		$d.9
+	0x43000518		$a.10
+	0x43000518		m2m_ext_obj_task_entry
+	0x43000744		$d.11
+	0x4300077c		notify_signal_cb
+	0x4300077c		$a.12
+	0x43000954		$d.13
+	0x43000980		ext_obj_get_cmd_buffer
+	0x43000980		$a.14
+	0x43000a60		$d.15
+	0x43000a74		$a.16
+	0x43000a74		ext_obj_enqueue_cmd
+	0x43000b08		$d.17
+	0x43000b18		$a.18
+	0x43000b18		start_ext_obs_notify_timer
+	0x43000b64		$d.19
+	0x43000b70		stop_ext_obs_notify_timer
+	0x43000b70		$a.20
+	0x43000ba0		$d.21
+	0x43000ba8		send_response_message
+	0x43000ba8		$a.22
+	0x43000c9c		ext_findInheritedWatcher
+	0x43000ec8		$d.23
+	0x43000ee0		$a.24
+	0x43000ee0		lwm2m_find_observed
+	0x43000f78		$d.25
+	0x43000f7c		lwm2m_find_observe_info
+	0x43000f7c		$a.26
+	0x43001054		$d.27
+	0x43001064		$a.28
+	0x43001064		lwm2m_object_add
+	0x430010d4		lwm2m_instance_add
+	0x43001144		lwm2m_resource_add
+	0x430011b4		lwm2m_object_remove
+	0x4300123c		lwm2m_object_find
+	0x43001268		lwm2m_resource_find
+	0x43001294		lwm2m_instance_remove
+	0x4300131c		lwm2m_instance_find
+	0x43001348		ext_object_read
+	0x430017a4		$d.29
+	0x430017dc		lwm2m_check_readable
+	0x430017dc		$a.30
+	0x43001830		lwm2m_data_new
+	0x43001898		$d.31
+	0x4300189c		read_data_ext
+	0x4300189c		$a.32
+	0x430019b4		$d.33
+	0x430019bc		$a.34
+	0x430019bc		lwm2m_data_free
+	0x43001ab8		$d.35
+	0x43001ac4		$a.36
+	0x43001ac4		check_writable
+	0x43001b1c		check_executable
+	0x43001b60		m2m_ext_obj_process_commands
+	0x43001cf8		$d.37
+	0x43001d2c		$a.38
+	0x43002344		$d.39
+	0x43002360		$a.40
+	0x430024a4		$d.41
+	0x430024d8		m2m_ext_read_obj
+	0x430024d8		$a.42
+	0x43002e50		$d.43
+	0x43002eac		m2m_ext_write_obj
+	0x43002eac		$a.44
+	0x43003464		$d.45
+	0x43003488		$a.46
+	0x430036ac		$d.47
+	0x43003718		ext_object_write_attr
+	0x43003718		$a.48
+	0x430037e0		$d.49
+	0x430037e8		disc_ext_obj
+	0x430037e8		$a.50
+	0x430041d4		$d.51
+	0x43004220		exec_ext_obj
+	0x43004220		$a.52
+	0x43004950		$d.53
+	0x430049a4		$a.54
+	0x430049a4		m2m_create_object_instance
+	0x43004d78		$d.55
+	0x43004db0		$a.56
+	0x43004db0		delete_object_instance
+	0x430053cc		$d.57
+	0x43005414		observe_ext_obj
+	0x43005414		$a.58
+	0x43005c2c		$d.59
+	0x43005c70		observe_cancel_ext_obj
+	0x43005c70		$a.60
+	0x43005d2c		$d.61
+	0x43005d34		ext_obj_handle_event
+	0x43005d34		$a.62
+	0x43005f44		$d.63
+	0x43005f6c		ext_obj_delete_all
+	0x43005f6c		$a.64
+	0x430061a8		$d.65
+	0x430061cc		$a.66
+	0x430061cc		m2m_ext_object_register
+	0x43006470		$d.67
+	0x430064a4		$a.68
+	0x430064a4		m2m_create_object
+	0x4300666c		$d.69
+	0x43006694		m2m_create_object_instance_app
+	0x43006694		$a.70
+	0x43006a44		$d.71
+	0x43006a88		$a.72
+	0x43006a88		m2m_delete_object_instance_app
+	0x43006ea0		$d.73
+	0x43006ef4		$a.74
+	0x43006ef4		m2m_ext_object_deregister
+	0x430071a4		$d.75
+	0x430071d4		$a.76
+	0x430071d4		m2m_ext_object_notify
+	0x430081c4		$d.77
+	0x430081dc		$a.78
+	0x430082cc		$d.79
+	0x430082d4		$a.80
+	0x43008434		$d.81
+	0x43008438		$a.82
+	0x43008584		$d.83
+	0x43008588		$a.84
+	0x43008754		$d.85
+	0x43008800		$a.86
+	0x43008800		m2m_ext_object_configclient
+	0x43008964		$d.87
+	0x43008980		payload_set_data_generic
+	0x43008980		$a.88
+	0x43008a14		$d.89
+	0x43008a38		$a.90
+	0x43008b08		$d.91
+	0x43008b18		$a.92
+	0x43008b18		lwm2m_data_encode_string
+	0x43008c28		$d.93
+	0x43008c34		$a.94
+	0x43008c34		lwm2m_data_encode_float
+	0x43008d14		$d.95
+	0x43008d24		$a.96
+	0x43008d24		lwm2m_data_encode_bool
+	0x43008da4		$d.97
+	0x43008dac		payload_set_data_presence
+	0x43008dac		$a.98
+	0x43008e40		$d.99
+	0x43008e58		$a.100
+	0x43008ee8		$d.101
+	0x43008ef8		$a.102
+	0x43008ef8		write_data_ext
+	0x4300919c		$d.103
+	0x430091a4		$a.104
+	0x430091a4		lwm2m_data_decode_float
+	0x43009440		$d.105
+	0x4300945c		$a.106
+	0x4300945c		lwm2m_data_decode_int
+	0x430095b0		$d.107
+	0x430095c0		exec_data_ext
+	0x430095c0		$a.108
+	0x430096a0		ext_observer_add_notify_to_pending_list
+	0x430099ac		$d.109
+	0x430099dc		discover_data_ext
+	0x430099dc		$a.110
+	0x43009b10		$d.111
+	0x43009b18		ext_obj_discover_serialize
+	0x43009b18		$a.112
+	0x4300a21c		$d.113
+	0x4300a238		observe_ext_handle_req
+	0x4300a238		$a.114
+	0x4300a460		$d.115
+	0x4300a480		$a.116
+	0x4300a480		lwm2m_get_observe_info
+	0x4300a684		$d.117
+	0x4300a6a0		$a.118
+	0x4300a6a0		observe_cancel_ext_handle_req
+	0x4300aacc		$d.119
+	0x4300ab14		$a.120
+	0x4300ab14		ext_object_set_observe_param
+	0x4300b154		$d.121
+	0x4300b174		$a.122
+	0x4300b174		object_check_readable
+	0x4300b2a8		$d.123
+	0x4300b2b8		$a.124
+	0x4300b2b8		object_check_numeric
+	0x4300b3e4		$d.125
+	0x4300b3f4		observe_find_by_uri
+	0x4300b3f4		$a.126
+	0x4300b5ac		$d.127
+	0x4300b5d8		lwm2m_find_attributes
+	0x4300b5d8		$a.128
+	0x4300b6a4		ext_serialize_attributes
+	0x4300bb2c		$d.129
+	0x4300bb3c		utils_intToText
+	0x4300bb3c		$a.130
+	0x4300bc4c		$d.131
+	0x4300bc54		$a.132
+	0x4300bc54		utils_floatToText
+	0x4300bf54		$d.133
+	0x4300bf5c		ext_serialize_link_data
+	0x4300bf5c		$a.134
+	0x4300c480		$d.135
+	0x4300c48c		m2m_ext_object_callback_app
+	0x4300c48c		$a.136
+	0x4300c84c		$d.137
+	0x4300c888		qapi_lwm2m_cb_uspace_dispatcher
+	0x4300c888		$a.138
+	0x4300c95c		$d.139
+	0x4300c960		$a.140
+	0x4300c960		qapi_Net_LWM2M_Free_Single_Instance_Info
+	0x4300ca0c		$d.141
+	0x4300ca10		$a.142
+	0x4300ca10		obj_create_generic_sensor
+	0x4300d264		$d.143
+	0x4300d2b8		lwm2m_ext_object_init
+	0x4300d2b8		$a.144
+	0x4300d5fc		$d.145
+	0x4300d644		$a.146
+	0x4300d644		lwm2m_create_ext_obj
+	0x4300d82c		$d.147
+	0x4300d858		$a.148
+	0x4300d858		lwm2m_create_ext_obj_inst
+	0x4300da58		$d.149
+	0x4300da84		$a.150
+	0x4300da84		lwm2m_delete_ext_obj_inst
+	0x4300dcc0		$d.151
+	0x4300dcec		lwm2m_ext_read
+	0x4300dcec		$a.152
+	0x4300dfc0		$d.153
+	0x4300dfd4		$a.154
+	0x4300e350		$d.155
+	0x4300e364		$a.156
+	0x4300e750		$d.157
+	0x4300e764		$a.158
+	0x4300ea1c		$d.159
+	0x4300eadc		$a.160
+	0x4300eadc		lwm2m_ext_write
+	0x4300ed94		$d.161
+	0x4300eda8		$a.162
+	0x4300f094		$d.163
+	0x4300f0f8		$a.164
+	0x4300f0f8		lwm2m_ext_exec
+	0x4300f3ec		$d.165
+	0x4300f428		lwm2m_display_template
+	0x4300f428		$a.166
+	0x4300fa7c		$d.167
+	0x4300fb2c		$a.168
+	0x4300fb2c		lwm2m_deinit_ext_obj
+	0x4300fd10		$d.169
+	0x4300fd3c		$a.170
+	0x4300fd3c		quectel_task_entry
+	0x4300ff0c		$d.171
+.text	0x4300ff34	0x4b4	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x4300ff34		$a.0
+	0x4300ff34		uart_init
+	0x43010070		$d.1
+	0x43010094		$a.2
+	0x43010094		uart_rx_cb
+	0x43010144		$d.3
+	0x4301014c		$a.4
+	0x4301014c		uart_tx_cb
+	0x430101b4		$d.5
+	0x430101bc		$a.6
+	0x430101bc		qapi_uart_tx_user_cb_dispatcher
+	0x430101dc		qapi_uart_rx_user_cb_dispatcher
+	0x430101fc		uart_print
+	0x43010288		$d.7
+	0x43010294		$a.8
+	0x43010294		uart_recv
+	0x43010320		$d.9
+	0x43010328		$a.10
+	0x43010328		qt_uart_dbg
+	0x430103e0		$d.11
+.text	0x430103e8	0x88	quectel\example\build\quectel_utils.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430103e8		$a.0
+	0x430103e8		quectel_format_log_msg
+	0x4301046c		$d.1
+.text.qapi_Timer_Get_Cbinfo	0x43010470	0x38	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010470		$t.0
+	0x43010471		qapi_Timer_Get_Cbinfo
+	0x430104a4		$d.1
+.text.timer_client_cb_handler	0x430104a8	0x28	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430104a8		$t.2
+	0x430104a9		timer_client_cb_handler
+.text.qapi_timer_user_init	0x430104d0	0xb4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430104d0		$t.3
+	0x430104d1		qapi_timer_user_init
+	0x43010560		$d.4
+.text.qapi_Timer_Def	0x43010584	0x54	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010584		$t.5
+	0x43010585		qapi_Timer_Def
+	0x430105cc		$d.6
+.text.qapi_Timer_Set	0x430105d8	0x38	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430105d8		$t.7
+	0x430105d9		qapi_Timer_Set
+	0x4301060c		$d.8
+.text.qapi_Timer_Get_Timer_Info	0x43010610	0x38	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010610		$t.9
+	0x43010611		qapi_Timer_Get_Timer_Info
+	0x43010644		$d.10
+.text.qapi_Timer_Sleep	0x43010648	0x38	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010648		$t.11
+	0x43010649		qapi_Timer_Sleep
+	0x4301067c		$d.12
+.text.qapi_Timer_Undef	0x43010680	0x34	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010680		$t.13
+	0x43010681		qapi_Timer_Undef
+	0x430106b0		$d.14
+.text.qapi_Timer_Stop	0x430106b4	0x34	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430106b4		$t.15
+	0x430106b5		qapi_Timer_Stop
+	0x430106e4		$d.16
+.text.qapi_time_get	0x430106e8	0x3c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430106e8		$t.17
+	0x430106e9		qapi_time_get
+	0x43010720		$d.18
+.text._txm_module_thread_shell_entry	0x43010724	0x94	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010724		$a.0
+	0x43010724		_txm_module_thread_shell_entry
+	0x430107ac		$d.1
+.text._txm_module_callback_request_thread_entry	0x430107b8	0x108	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430107b8		$a.0
+	0x430107b8		_txm_module_callback_request_thread_entry
+	0x43010810		$d.1
+	0x43010824		$a.2
+	0x430108b8		$d.3
+.text._txm_module_system_call11	0x430108c0	0x68	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430108c0		$a.0
+	0x430108c0		_txm_module_system_call11
+	0x43010924		$d.1
+.text._txm_module_system_call12	0x43010928	0x70	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010928		$a.0
+	0x43010928		_txm_module_system_call12
+	0x43010994		$d.1
+.text._txm_module_system_call4	0x43010998	0x2c	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010998		$a.0
+	0x43010998		_txm_module_system_call4
+	0x430109c0		$d.1
+.text._txm_module_system_call5	0x430109c4	0x34	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430109c4		$a.0
+	0x430109c4		_txm_module_system_call5
+	0x430109f4		$d.1
+.text._txm_module_system_call6	0x430109f8	0x3c	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430109f8		$a.0
+	0x430109f8		_txm_module_system_call6
+	0x43010a30		$d.1
+.text.vfprintf	0x43010a34	0xd6	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43010a34		$t
+	0x43010a35		vfprintf
+PADDING_ALIGNMENT	0x43010b0a	0x2	0x0
+.text.printf_core	0x43010b0c	0x6a8	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43010b0c		$t
+	0x43010b0d		printf_core
+	0x43010dbc		$d
+	0x43010dc4		$t
+	0x4301102c		$d
+	0x43011052		$t
+	0x43011190		$d
+.text.vsnprintf	0x430111b4	0x1a4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430111b4		$t
+	0x430111b5		vsnprintf
+	0x43011354		$d
+.text.fmt_u32	0x43011358	0x22	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011358		$t
+	0x43011359		fmt_u32
+.text.out	0x4301137a	0x14	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301137a		$t
+	0x4301137b		out
+.text.getint	0x4301138e	0x1e	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301138e		$t
+	0x4301138f		getint
+.text.pop_arg	0x430113ac	0x80	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430113ac		$t
+	0x430113ad		pop_arg
+	0x430113ba		$d
+	0x430113c4		$t
+.text.pad	0x4301142c	0x4e	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301142c		$t
+	0x4301142d		pad
+.text.__fwritex	0x4301147a	0x76	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301147a		$t
+	0x4301147b		__fwritex
+.text.fwrite	0x430114f0	0x58	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430114f0		$t
+	0x430114f1		fwrite
+	0x430114f1		fwrite_unlocked
+.text.vsnprintf_full	0x43011548	0x74	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011548		$t
+	0x43011549		vsnprintf_full
+	0x430115b4		$d
+.text.sn_write	0x430115bc	0x22	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430115bc		$t
+	0x430115bd		sn_write
+.text.__aeabi_memclr	0x430115de	0x8	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430115de		$t
+	0x430115df		__aeabi_memclr
+	0x430115df		__aeabi_memclr4
+	0x430115df		__aeabi_memclr8
+.text.__aeabi_memcpy	0x430115e6	0x4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430115e6		$t
+	0x430115e7		__aeabi_memcpy
+	0x430115e7		__aeabi_memcpy4
+	0x430115e7		__aeabi_memcpy8
+.text	0x430115ea	0x2ee	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430115ea		$t
+	0x430115eb		memcpy
+	0x4301162a		src_aligned
+	0x43011678		congruent_aligned32
+	0x43011678		cached_aligned32
+	0x4301168e		less_than_32_left
+	0x430116dc		non_congruent
+	0x43011758		loop16
+	0x430117b4		loop8
+	0x43011810		loop24
+	0x43011868		less_than_thirtytwo
+	0x43011892		partial_word_tail
+	0x430118ae		copy_last_3_and_return
+.text	0x430118d8	0x68	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430118d8		$t
+	0x430118d9		memset
+.text.memchr	0x43011940	0x5c	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011940		$t
+	0x43011941		memchr
+.text.strcmp	0x4301199c	0x14	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301199c		$t
+	0x4301199d		strcmp
+.text.strlcpy	0x430119b0	0x76	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430119b0		$t
+	0x430119b1		strlcpy
+.text.strlen	0x43011a26	0x34	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011a26		$t
+	0x43011a27		strlen
+.text.__errno_location	0x43011a5a	0x8	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011a5a		$t
+	0x43011a5b		__errno_location
+PADDING_ALIGNMENT	0x43011a62	0x2	0x0
+.text.__strerror_l	0x43011a64	0x3c	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011a64		$t
+	0x43011a65		__strerror_l
+	0x43011a65		strerror_l
+	0x43011a98		$d
+.text.strerror	0x43011aa0	0xc	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011aa0		$t
+	0x43011aa1		strerror
+.text.dummy	0x43011aac	0x2	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011aac		$t
+	0x43011aad		dummy
+	0x43011aad		__lctrans_impl
+.text.__lctrans	0x43011aae	0x4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011aae		$t
+	0x43011aaf		__lctrans
+.text.__lctrans_cur	0x43011ab2	0xe	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011ab2		$t
+	0x43011ab3		__lctrans_cur
+.text.wctomb	0x43011ac0	0xc	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011ac0		$t
+	0x43011ac1		wctomb
+.text.__towrite	0x43011acc	0x38	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011acc		$t
+	0x43011acd		__towrite
+.text.__towrite_needs_stdio_exit	0x43011b04	0x4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011b04		$t
+	0x43011b05		__towrite_needs_stdio_exit
+.text.__lockfile	0x43011b08	0x4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011b08		$t
+	0x43011b09		__lockfile
+.text.__unlockfile	0x43011b0c	0x2	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011b0c		$t
+	0x43011b0d		__unlockfile
+.text.wcrtomb	0x43011b0e	0xb0	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011b0e		$t
+	0x43011b0f		wcrtomb
+PADDING_ALIGNMENT	0x43011bbe	0x2	0x0
+.text.__stdio_exit	0x43011bc0	0x30	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011bc0		$t
+	0x43011bc1		__stdio_exit
+	0x43011bc1		__stdio_exit_needed
+	0x43011be8		$d
+.text.close_file	0x43011bf0	0x3c	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011bf0		$t
+	0x43011bf1		close_file
+.text.__ofl_lock	0x43011c2c	0x8	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011c2c		$t
+	0x43011c2d		__ofl_lock
+	0x43011c30		$d
+.text.__ofl_unlock	0x43011c34	0x2	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43011c34		$t
+	0x43011c35		__ofl_unlock
+PADDING_ALIGNMENT	0x43011c36	0x2	0x0
+.text	0x43011c38	0x62	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_dcmp.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011c38		$t.0
+	0x43011c39		__aeabi_dcmpeq
+	0x43011c4d		__aeabi_dcmplt
+	0x43011c61		__aeabi_dcmple
+	0x43011c75		__aeabi_dcmpge
+	0x43011c89		__aeabi_dcmpgt
+PADDING_ALIGNMENT	0x43011c9a	0x2	0x0
+.text	0x43011c9c	0x62	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_fcmp.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011c9c		$t.0
+	0x43011c9d		__aeabi_fcmpeq
+	0x43011cb1		__aeabi_fcmplt
+	0x43011cc5		__aeabi_fcmple
+	0x43011cd9		__aeabi_fcmpge
+	0x43011ced		__aeabi_fcmpgt
+PADDING_ALIGNMENT	0x43011cfe	0x2	0x0
+.text	0x43011d00	0x14	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_ldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011d00		$t.0
+	0x43011d01		__aeabi_ldivmod
+.text	0x43011d14	0x14	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011d14		$t.0
+	0x43011d15		__aeabi_uldivmod
+.text.__adddf3	0x43011d28	0x340	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(adddf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43011d28		$t.0
+	0x43011d29		__adddf3
+	0x43011d29		__aeabi_dadd
+	0x43012058		$d.1
+.text.fromRep	0x43012068	0x2	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(adddf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012068		$t.2
+	0x43012069		fromRep
+.text.normalize	0x4301206a	0x44	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(adddf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301206a		$t.3
+	0x4301206b		normalize
+.text.rep_clz	0x430120ae	0x10	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(adddf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430120ae		$t.4
+	0x430120af		rep_clz
+.text.__addsf3	0x430120c0	0x180	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(addsf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430120c0		$t.0
+	0x430120c1		__addsf3
+	0x430120c1		__aeabi_fadd
+	0x43012234		$d.1
+.text.fromRep	0x43012240	0x2	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(addsf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012240		$t.2
+	0x43012241		fromRep
+.text.normalize	0x43012242	0x14	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(addsf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012242		$t.3
+	0x43012243		normalize
+.text.__ledf2	0x43012258	0x74	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012258		$t.0
+	0x43012259		__cmpdf2
+	0x43012259		__ledf2
+	0x430122c8		$d.1
+.text.__gedf2	0x430122cc	0x7c	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430122cc		$t.2
+	0x430122cd		__gedf2
+	0x43012344		$d.3
+.text.__unorddf2	0x43012348	0x44	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012348		$t.4
+	0x43012349		__aeabi_dcmpun
+	0x43012349		__unorddf2
+	0x43012384		$d.5
+.text.__eqdf2	0x4301238c	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301238c		$t.6
+	0x4301238d		__eqdf2
+.text.__ltdf2	0x43012394	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012394		$t.7
+	0x43012395		__ltdf2
+.text.__nedf2	0x4301239c	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301239c		$t.8
+	0x4301239d		__nedf2
+.text.__gtdf2	0x430123a4	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparedf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430123a4		$t.9
+	0x430123a5		__gtdf2
+.text.__lesf2	0x430123ac	0x40	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430123ac		$t.0
+	0x430123ad		__cmpsf2
+	0x430123ad		__lesf2
+.text.__gesf2	0x430123ec	0x42	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430123ec		$t.1
+	0x430123ed		__gesf2
+.text.__unordsf2	0x4301242e	0x24	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301242e		$t.2
+	0x4301242f		__aeabi_fcmpun
+	0x4301242f		__unordsf2
+.text.__eqsf2	0x43012452	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012452		$t.3
+	0x43012453		__eqsf2
+.text.__ltsf2	0x4301245a	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301245a		$t.4
+	0x4301245b		__ltsf2
+.text.__nesf2	0x43012462	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012462		$t.5
+	0x43012463		__nesf2
+.text.__gtsf2	0x4301246a	0x8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(comparesf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301246a		$t.6
+	0x4301246b		__gtsf2
+.text.__divdf3	0x43012474	0x3b8	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012474		$t.0
+	0x43012475		__aeabi_ddiv
+	0x43012475		__divdf3
+	0x43012814		$d.1
+.text.fromRep	0x4301282c	0x2	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301282c		$t.2
+	0x4301282d		fromRep
+.text.normalize	0x4301282e	0x46	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301282e		$t.3
+	0x4301282f		normalize
+.text.__divmoddi4	0x43012874	0x2c	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012874		$t.0
+	0x43012875		__divmoddi4
+.text.__fixdfdi	0x430128a0	0x2e	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfdi.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430128a0		$t.0
+	0x430128a1		__aeabi_d2lz
+	0x430128a1		__fixdfdi
+.text.__fixdfsi	0x430128d0	0x68	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixdfsi.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430128d0		$t.0
+	0x430128d1		__aeabi_d2iz
+	0x430128d1		__fixdfsi
+	0x43012930		$d.1
+.text.__fixunsdfdi	0x43012938	0x58	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfdi.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012938		$t.0
+	0x43012939		__aeabi_d2ulz
+	0x43012939		__fixunsdfdi
+	0x43012988		$d.1
+.text.__fixunsdfsi	0x43012990	0x58	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(fixunsdfsi.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012990		$t.0
+	0x43012991		__aeabi_d2uiz
+	0x43012991		__fixunsdfsi
+	0x430129e4		$d.1
+.text.__floatdidf	0x430129e8	0x30	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatdidf.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430129e8		$t.0
+	0x430129e9		__aeabi_l2d
+	0x430129e9		__floatdidf
+	0x43012a0c		$d.1
+.text.__floatsidf	0x43012a18	0x68	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatsidf.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012a18		$t.0
+	0x43012a19		__aeabi_i2d
+	0x43012a19		__floatsidf
+	0x43012a7c		$d.1
+.text.__floatunsidf	0x43012a80	0x46	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(floatunsidf.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012a80		$t.0
+	0x43012a81		__aeabi_ui2d
+	0x43012a81		__floatunsidf
+.text.__muldf3	0x43012ac8	0x32c	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(muldf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012ac8		$t.0
+	0x43012ac9		__aeabi_dmul
+	0x43012ac9		__muldf3
+	0x43012de0		$d.1
+.text.normalize	0x43012df4	0x46	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(muldf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012df4		$t.2
+	0x43012df5		normalize
+.text.__subdf3	0x43012e3c	0xc	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(subdf3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012e3c		$t.0
+	0x43012e3d		__aeabi_dsub
+	0x43012e3d		__subdf3
+.text.__truncdfsf2	0x43012e48	0x130	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(truncdfsf2.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43012e48		$t.0
+	0x43012e49		__aeabi_d2f
+	0x43012e49		__truncdfsf2
+	0x43012f58		$d.1
+.text.__udivmoddi4	0x43012f78	0x1d4	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43012f78		$t.0
+	0x43012f79		__udivmoddi4
+.text.__divdi3	0x4301314c	0x46	C:\compile_tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(divdi3.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4301314c		$t.0
+	0x4301314d		__divdi3
+*(Init )
+*(.rodata .rodata.* )
+.rodata.str1.1	0x43013192	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013192		.L.str
+.rodata.str1.1	0x430131ba	0x8	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430131ba		.L.str.1
+.rodata.str1.1	0x430131c2	0x2e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430131c2		.L.str.2
+.rodata.str1.1	0x430131f0	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430131f0		.L.str.3
+.rodata.str1.1	0x43013218	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013218		.L.str.5
+.rodata.str1.1	0x43013231	0x14	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013231		.L.str.6
+.rodata.str1.1	0x43013245	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013245		.L.str.7
+.rodata.str1.1	0x4301325a	0x35	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301325a		.L.str.8
+.rodata.str1.1	0x4301328f	0x35	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301328f		.L.str.9
+.rodata.str1.1	0x430132c4	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430132c4		.L.str.11
+.rodata.str1.1	0x430132e1	0x2d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430132e1		.L.str.13
+.rodata.str1.1	0x4301330e	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301330e		.L.str.15
+.rodata.str1.1	0x43013325	0x12	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013325		.L.str.16
+.rodata.str1.1	0x43013337	0x11	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013337		.L.str.18
+.rodata.str1.1	0x43013348	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013348		.L.str.19
+.rodata.str1.1	0x43013362	0x21	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013362		.L.str.20
+.rodata.str1.1	0x43013383	0x30	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013383		.L.str.22
+.rodata.str1.1	0x430133b3	0x2e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430133b3		.L.str.23
+.rodata.str1.1	0x430133e1	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430133e1		.L__func__.ext_findInheritedWatcher
+.rodata.str1.1	0x430133fa	0x22	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430133fa		.L.str.24
+.rodata.str1.1	0x4301341c	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301341c		.L__func__.lwm2m_find_observe_info
+.rodata.str1.1	0x43013434	0x38	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013434		.L.str.26
+.rodata.str1.1	0x4301346c	0x21	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301346c		.L.str.27
+.rodata.str1.1	0x4301348d	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301348d		.L.str.29
+.rodata.str1.1	0x430134a4	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430134a4		.L.str.31
+.rodata.str1.1	0x430134bb	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430134bb		.L.str.33
+.rodata.str1.1	0x430134d0	0x13	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430134d0		.L.str.35
+.rodata.str1.1	0x430134e3	0x1e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430134e3		.L.str.37
+.rodata.str1.1	0x43013501	0x1e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013501		.L.str.38
+.rodata.str1.1	0x4301351f	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301351f		.L.str.40
+.rodata.str1.1	0x43013537	0x22	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013537		.L.str.42
+.rodata.str1.1	0x43013559	0x39	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013559		.L.str.44
+.rodata.str1.1	0x43013592	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013592		.L__func__.payload_set_data_generic
+.rodata.str1.1	0x430135ab	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430135ab		.L__func__.payload_set_data_presence
+.rodata.str1.1	0x430135c5	0x3a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430135c5		.L.str.45
+.rodata.str1.1	0x430135ff	0x46	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430135ff		.L.str.46
+.rodata.str1.1	0x43013645	0x42	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013645		.L.str.48
+.rodata.str1.1	0x43013687	0x1c	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013687		.L.str.50
+.rodata.str1.1	0x430136a3	0x24	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430136a3		.L.str.51
+.rodata.str1.1	0x430136c7	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430136c7		.L.str.53
+.rodata.str1.1	0x430136e2	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430136e2		.L.str.55
+.rodata.str1.1	0x430136f7	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430136f7		.L.str.57
+.rodata.str1.1	0x4301370e	0x1e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301370e		.L.str.59
+.rodata.str1.1	0x4301372c	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301372c		.L.str.61
+.rodata.str1.1	0x43013741	0x1c	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013741		.L.str.63
+.rodata.str1.1	0x4301375d	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301375d		.L.str.65
+.rodata.str1.1	0x43013777	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013777		.L.str.67
+.rodata.str1.1	0x43013790	0x23	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013790		.L.str.69
+.rodata.str1.1	0x430137b3	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430137b3		.L.str.72
+.rodata.str1.1	0x430137cc	0x23	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430137cc		.L.str.74
+.rodata.str1.1	0x430137ef	0xe	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430137ef		.L.str.77
+.rodata.str1.1	0x430137fd	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430137fd		.L.str.79
+.rodata.str1.1	0x43013816	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013816		.L.str.82
+.rodata.str1.1	0x4301382f	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301382f		.L.str.84
+.rodata.str1.1	0x43013848	0x38	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013848		.L.str.88
+.rodata.str1.1	0x43013880	0xd	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013880		.L.str.90
+.rodata.str1.1	0x4301388d	0x22	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301388d		.L.str.92
+.rodata.str1.1	0x430138af	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430138af		.L.str.95
+.rodata.str1.1	0x430138ca	0x20	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430138ca		.L.str.98
+.rodata.str1.1	0x430138ea	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430138ea		.L.str.100
+.rodata.str1.1	0x430138ff	0x12	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430138ff		.L.str.103
+.rodata.str1.1	0x43013911	0x1c	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013911		.L.str.105
+.rodata.str1.1	0x4301392d	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301392d		.L.str.107
+.rodata.str1.1	0x43013955	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013955		.L.str.109
+.rodata.str1.1	0x4301396a	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301396a		.L.str.117
+.rodata.str1.1	0x43013981	0x10	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013981		.L.str.120
+.rodata.str1.1	0x43013991	0x24	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013991		.L.str.122
+.rodata.str1.1	0x430139b5	0x20	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430139b5		.L.str.127
+.rodata.str1.1	0x430139d5	0x27	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430139d5		.L.str.130
+.rodata.str1.1	0x430139fc	0x25	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430139fc		.L.str.132
+.rodata.str1.1	0x43013a21	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013a21		.L.str.134
+.rodata.str1.1	0x43013a39	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013a39		.L__func__.observe_ext_handle_req
+.rodata.str1.1	0x43013a50	0x16	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013a50		.L.str.142
+.rodata.str1.1	0x43013a66	0x1e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013a66		.L__func__.observe_cancel_ext_handle_req
+.rodata.str1.1	0x43013a84	0x42	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013a84		.L.str.144
+.rodata.str1.1	0x43013ac6	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013ac6		.L.str.146
+.rodata.str1.1	0x43013adf	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013adf		.L.str.148
+.rodata.str1.1	0x43013afa	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013afa		.L.str.150
+.rodata.str1.1	0x43013b15	0x24	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013b15		.L.str.152
+.rodata.str1.1	0x43013b39	0x2f	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013b39		.L.str.160
+.rodata.str1.1	0x43013b68	0x16	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013b68		.L__func__.object_check_readable
+.rodata.str1.1	0x43013b7e	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013b7e		.L__func__.object_check_numeric
+.rodata.str1.1	0x43013b93	0x31	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013b93		.L.str.161
+.rodata.str1.1	0x43013bc4	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013bc4		.L.str.162
+.rodata.str1.1	0x43013be1	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013be1		.L.str.165
+.rodata.str1.1	0x43013bfb	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013bfb		.L__func__.ext_object_set_observe_param
+.rodata.str1.1	0x43013c18	0x59	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013c18		.L.str.168
+.rodata.str1.1	0x43013c71	0x14	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013c71		.L__func__.observe_find_by_uri
+.rodata.str1.1	0x43013c85	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013c85		.L.str.170
+.rodata.str1.1	0x43013ca2	0x1	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013ca2		.L.str.171
+.rodata.str1.1	0x43013ca3	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013ca3		.L.str.172
+.rodata.str1.1	0x43013ca7	0xe	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013ca7		.L.str.174
+.rodata.str1.1	0x43013cb5	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013cb5		.L.str.176
+.rodata.str1.1	0x43013ccf	0x6	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43013cd5	0x6	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43013cdb	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43013cdf	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43013ce3	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43013ce7	0x7	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43013cee	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013cee		.L.str.188
+.rodata.str1.1	0x43013d07	0x9	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013d07		.L.str.189
+.rodata.str1.1	0x43013d10	0x20	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013d10		.L.str.191
+.rodata.str1.1	0x43013d30	0x34	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013d30		.L.str.194
+.rodata.str1.1	0x43013d64	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013d64		.L.str.197
+.rodata.str1.1	0x43013d7f	0x27	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013d7f		.L.str.200
+.rodata.str1.1	0x43013da6	0x3e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013da6		.L.str.201
+.rodata.str1.1	0x43013de4	0x41	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013de4		.L.str.203
+.rodata.str1.1	0x43013e25	0x43	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013e25		.L.str.205
+.rodata.str1.1	0x43013e68	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013e68		.L.str.207
+.rodata.str1.1	0x43013e80	0x46	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013e80		.L.str.209
+.rodata.str1.1	0x43013ec6	0x44	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013ec6		.L.str.211
+.rodata.str1.1	0x43013f0a	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013f0a		.L.str.213
+.rodata.str1.1	0x43013f27	0x22	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013f27		.L.str.214
+.rodata.str1.1	0x43013f49	0x2f	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013f49		.L.str.216
+.rodata.str1.1	0x43013f78	0x29	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013f78		.L.str.218
+.rodata.str1.1	0x43013fa1	0x39	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013fa1		.L.str.220
+.rodata.str1.1	0x43013fda	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013fda		.L.str.221
+.rodata.str1.1	0x43013fef	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43013fef		.L.str.223
+.rodata.str1.1	0x43014007	0x12	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014007		.L.str.225
+.rodata.str1.1	0x43014019	0x1e	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014019		.L.str.227
+.rodata.str1.1	0x43014037	0x27	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014037		.L.str.229
+.rodata.str1.1	0x4301405e	0x29	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301405e		.L.str.231
+.rodata.str1.1	0x43014087	0x37	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014087		.L.str.233
+.rodata.str1.1	0x430140be	0x2a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430140be		.L.str.235
+.rodata.str1.1	0x430140e8	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430140e8		.L.str.238
+.rodata.str1.1	0x43014101	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014101		.L.str.240
+.rodata.str1.1	0x43014118	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014118		.L.str.242
+.rodata.str1.1	0x43014133	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014133		.L.str.244
+.rodata.str1.1	0x4301414b	0x26	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301414b		.L.str.256
+.rodata.str1.1	0x43014171	0x23	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014171		.L.str.270
+.rodata.str1.1	0x43014194	0xb	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014194		.L.str.274
+.rodata.str1.1	0x4301419f	0x2b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301419f		.L.str.275
+.rodata.str1.1	0x430141ca	0x21	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430141ca		.L.str.277
+.rodata.str1.1	0x430141eb	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430141eb		.L.str.280
+.rodata.str1.1	0x43014205	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014205		.L.str.292
+.rodata.str1.1	0x43014222	0x25	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014222		.L.str.293
+.rodata.str1.1	0x43014247	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014247		.L.str.295
+.rodata.str1.1	0x4301425f	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301425f		.L.str.297
+.rodata.str1.1	0x43014279	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014279		.L.str.299
+.rodata.str1.1	0x43014293	0x20	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014293		.L.str.301
+.rodata.str1.1	0x430142b3	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430142b3		.L.str.303
+.rodata.str1.1	0x430142ca	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430142ca		.L.str.305
+.rodata.str1.1	0x430142e3	0x19	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430142e3		.L.str.308
+.rodata.str1.1	0x430142fc	0x13	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430142fc		.L.str.315
+.rodata.str1.1	0x4301430f	0x13	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301430f		.L.str.356
+.rodata.str1.1	0x43014322	0x21	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014322		.L.str.360
+.rodata.str1.1	0x43014343	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014343		.L.str.362
+.rodata.str1.1	0x4301435b	0x23	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301435b		.L.str.376
+.rodata.str1.1	0x4301437e	0x1a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301437e		.L.str.378
+.rodata.str1.1	0x43014398	0x12	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014398		.L.str.380
+.rodata.str1.1	0x430143aa	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430143aa		.L.str.381
+.rodata.str1.1	0x430143c5	0x31	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430143c5		.L.str.383
+.rodata.str1.1	0x430143f6	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430143f6		.L.str.385
+.rodata.str1.1	0x43014413	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014413		.L.str.387
+.rodata.str1.1	0x4301443b	0x35	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301443b		.L.str.389
+.rodata.str1.1	0x43014470	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014470		.L.str.391
+.rodata.str1.1	0x43014498	0x49	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014498		.L.str.393
+.rodata.str1.1	0x430144e1	0x2c	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430144e1		.L.str.395
+.rodata.str1.1	0x4301450d	0x3d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301450d		.L.str.397
+.rodata.str1.1	0x4301454a	0x2c	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301454a		.L.str.399
+.rodata.str1.1	0x43014576	0x3d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014576		.L.str.401
+.rodata.str1.1	0x430145b3	0x2a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430145b3		.L.str.403
+.rodata.str1.1	0x430145dd	0x29	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430145dd		.L.str.405
+.rodata.str1.1	0x43014606	0x2a	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014606		.L.str.407
+.rodata.str1.1	0x43014630	0x29	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014630		.L.str.409
+.rodata.str1.1	0x43014659	0x34	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014659		.L.str.411
+.rodata.str1.1	0x4301468d	0x39	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301468d		.L.str.413
+.rodata.str1.1	0x430146c6	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430146c6		.L.str.415
+.rodata.str1.1	0x430146ee	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430146ee		.L.str.417
+.rodata.str1.1	0x43014716	0x26	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014716		.L.str.419
+.rodata.str1.1	0x4301473c	0x27	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301473c		.L.str.421
+.rodata.str1.1	0x43014763	0xf	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014763		.L.str.426
+.rodata.str1.1	0x43014772	0x28	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014772		.L.str.427
+.rodata.str1.1	0x4301479a	0x11	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301479a		.L.str.428
+.rodata.str1.1	0x430147ab	0x23	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430147ab		.L.str.429
+.rodata.str1.1	0x430147ce	0x15	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430147ce		.L.str.431
+.rodata.str1.1	0x430147e3	0x13	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430147e3		.L.str.432
+.rodata.str1.1	0x430147f6	0x16	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430147f6		.L.str.433
+.rodata.str1.1	0x4301480c	0x11	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301480c		.L.str.434
+.rodata.str1.1	0x4301481d	0x16	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301481d		.L.str.435
+.rodata.str1.1	0x43014833	0x1d	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014833		.L.str.436
+.rodata.str1.1	0x43014850	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014850		.L.str.438
+.rodata.str1.1	0x4301486b	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301486b		.L.str.439
+.rodata.str1.1	0x43014882	0xa	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43014882		.L.str.440
+.rodata.str1.1	0x4301488c	0x17	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4301488c		.L__func__.lwm2m_get_observe_info
+.rodata.str1.1	0x430148a3	0x16	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430148a3		.L__func__.lwm2m_unlink_observed
+.rodata.str1.1	0x430148b9	0x18	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430148b9		.L.str.443
+.rodata.str1.1	0x430148d1	0x1b	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430148d1		.L.str.445
+.rodata	0x430148ec	0x13bc	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC,4
+	0x430148ec		m2m_uart_dbg_init.xx_msg_const
+	0x430148fc		m2m_uart_dbg_init.xx_msg_const.4
+	0x4301490c		m2m_ext_obj_set_signal.xx_msg_const
+	0x4301491c		ext_obj_task_init.xx_msg_const
+	0x4301492c		m2m_ext_obj_task_entry.xx_msg_const
+	0x4301493c		notify_signal_cb.xx_msg_const
+	0x4301494c		notify_signal_cb.xx_msg_const.10
+	0x4301495c		notify_signal_cb.xx_msg_const.12
+	0x4301496c		notify_signal_cb.xx_msg_const.14
+	0x4301497c		ext_obj_cmdq_init.xx_msg_const
+	0x4301498c		ext_obj_cmdq_init.xx_msg_const.17
+	0x4301499c		ext_obj_get_cmd_buffer.xx_msg_const
+	0x430149ac		ext_obj_get_cmd_buffer.xx_msg_const.21
+	0x430149bc		ext_obj_enqueue_cmd.xx_msg_const
+	0x430149cc		ext_findInheritedWatcher.xx_msg_const
+	0x430149dc		ext_findInheritedWatcher.xx_msg_const.25
+	0x430149ec		lwm2m_find_observe_info.xx_msg_const
+	0x430149fc		ext_object_read.xx_msg_const
+	0x43014a0c		ext_object_read.xx_msg_const.28
+	0x43014a1c		ext_object_read.xx_msg_const.30
+	0x43014a2c		ext_object_read.xx_msg_const.32
+	0x43014a3c		ext_object_read.xx_msg_const.34
+	0x43014a4c		ext_object_read.xx_msg_const.36
+	0x43014a5c		m2m_ext_obj_process_commands.xx_msg_const
+	0x43014a6c		m2m_ext_obj_process_commands.xx_msg_const.39
+	0x43014a7c		m2m_ext_obj_process_commands.xx_msg_const.41
+	0x43014a8c		m2m_ext_obj_process_commands.xx_msg_const.43
+	0x43014a9c		payload_set_data_generic.xx_msg_const
+	0x43014aac		payload_set_data_presence.xx_msg_const
+	0x43014ac8		m2m_ext_object_configclient.xx_msg_const
+	0x43014ad8		m2m_ext_object_configclient.xx_msg_const.47
+	0x43014ae8		m2m_ext_object_configclient.xx_msg_const.49
+	0x43014af8		m2m_ext_object_notify.xx_msg_const
+	0x43014b08		m2m_ext_object_notify.xx_msg_const.52
+	0x43014b18		m2m_ext_object_notify.xx_msg_const.54
+	0x43014b28		m2m_ext_object_notify.xx_msg_const.56
+	0x43014b38		m2m_ext_object_notify.xx_msg_const.58
+	0x43014b48		m2m_ext_object_notify.xx_msg_const.60
+	0x43014b58		m2m_ext_object_notify.xx_msg_const.62
+	0x43014b68		m2m_ext_object_notify.xx_msg_const.64
+	0x43014b78		m2m_ext_object_notify.xx_msg_const.66
+	0x43014b88		m2m_ext_object_notify.xx_msg_const.68
+	0x43014b98		m2m_ext_object_notify.xx_msg_const.70
+	0x43014ba8		m2m_ext_object_notify.xx_msg_const.71
+	0x43014bb8		m2m_ext_object_notify.xx_msg_const.73
+	0x43014bc8		m2m_ext_object_notify.xx_msg_const.75
+	0x43014bd8		m2m_ext_object_notify.xx_msg_const.76
+	0x43014be8		m2m_ext_object_notify.xx_msg_const.78
+	0x43014bf8		m2m_ext_object_notify.xx_msg_const.80
+	0x43014c08		m2m_ext_object_notify.xx_msg_const.81
+	0x43014c18		m2m_ext_object_notify.xx_msg_const.83
+	0x43014c28		m2m_ext_object_notify.xx_msg_const.85
+	0x43014c38		m2m_ext_object_notify.xx_msg_const.86
+	0x43014c48		m2m_ext_object_notify.xx_msg_const.87
+	0x43014c58		m2m_ext_object_notify.xx_msg_const.89
+	0x43014c68		m2m_ext_object_notify.xx_msg_const.91
+	0x43014c78		m2m_ext_write_obj.xx_msg_const
+	0x43014c88		m2m_ext_write_obj.xx_msg_const.93
+	0x43014c98		m2m_ext_write_obj.xx_msg_const.94
+	0x43014ca8		m2m_ext_write_obj.xx_msg_const.96
+	0x43014cb8		m2m_ext_write_obj.xx_msg_const.97
+	0x43014cc8		m2m_ext_write_obj.xx_msg_const.99
+	0x43014cd8		m2m_ext_write_obj.xx_msg_const.101
+	0x43014ce8		m2m_ext_write_obj.xx_msg_const.102
+	0x43014cf8		m2m_ext_write_obj.xx_msg_const.104
+	0x43014d08		m2m_ext_write_obj.xx_msg_const.106
+	0x43014d18		m2m_ext_write_obj.xx_msg_const.108
+	0x43014d28		m2m_ext_write_obj.xx_msg_const.110
+	0x43014d38		m2m_ext_read_obj.xx_msg_const
+	0x43014d48		m2m_ext_read_obj.xx_msg_const.111
+	0x43014d58		m2m_ext_read_obj.xx_msg_const.112
+	0x43014d68		m2m_ext_read_obj.xx_msg_const.113
+	0x43014d78		m2m_ext_read_obj.xx_msg_const.114
+	0x43014d88		m2m_ext_read_obj.xx_msg_const.115
+	0x43014d98		m2m_ext_read_obj.xx_msg_const.116
+	0x43014da8		m2m_ext_read_obj.xx_msg_const.118
+	0x43014db8		m2m_ext_read_obj.xx_msg_const.119
+	0x43014dc8		m2m_ext_read_obj.xx_msg_const.121
+	0x43014dd8		exec_ext_obj.xx_msg_const
+	0x43014de8		exec_ext_obj.xx_msg_const.123
+	0x43014df8		exec_ext_obj.xx_msg_const.124
+	0x43014e08		exec_ext_obj.xx_msg_const.125
+	0x43014e18		exec_ext_obj.xx_msg_const.126
+	0x43014e28		exec_ext_obj.xx_msg_const.128
+	0x43014e38		exec_ext_obj.xx_msg_const.129
+	0x43014e48		exec_ext_obj.xx_msg_const.131
+	0x43014e58		exec_ext_obj.xx_msg_const.133
+	0x43014e88		disc_ext_obj.xx_msg_const
+	0x43014e98		disc_ext_obj.xx_msg_const.135
+	0x43014ea8		disc_ext_obj.xx_msg_const.136
+	0x43014eb8		disc_ext_obj.xx_msg_const.137
+	0x43014ec8		disc_ext_obj.xx_msg_const.138
+	0x43014ed8		disc_ext_obj.xx_msg_const.139
+	0x43014ee8		disc_ext_obj.xx_msg_const.140
+	0x43014ef8		disc_ext_obj.xx_msg_const.141
+	0x43014f08		observe_ext_handle_req.xx_msg_const
+	0x43014f18		observe_ext_handle_req.xx_msg_const.143
+	0x43014f28		observe_cancel_ext_handle_req.xx_msg_const
+	0x43014f38		observe_cancel_ext_handle_req.xx_msg_const.145
+	0x43014f48		observe_cancel_ext_handle_req.xx_msg_const.147
+	0x43014f58		observe_cancel_ext_handle_req.xx_msg_const.149
+	0x43014f68		observe_cancel_ext_handle_req.xx_msg_const.151
+	0x43014f78		observe_cancel_ext_handle_req.xx_msg_const.153
+	0x43014f88		observe_ext_obj.xx_msg_const
+	0x43014f98		observe_ext_obj.xx_msg_const.154
+	0x43014fa8		observe_ext_obj.xx_msg_const.155
+	0x43014fb8		observe_ext_obj.xx_msg_const.156
+	0x43014fc8		observe_ext_obj.xx_msg_const.157
+	0x43014fd8		observe_ext_obj.xx_msg_const.158
+	0x43014fe8		observe_ext_obj.xx_msg_const.159
+	0x43014ff8		observe_cancel_ext_obj.xx_msg_const
+	0x43015008		ext_object_write_attr.xx_msg_const
+	0x43015018		object_check_readable.xx_msg_const
+	0x43015028		object_check_numeric.xx_msg_const
+	0x43015038		ext_observer_add_notify_to_pending_list.xx_msg_const
+	0x43015048		ext_observer_add_notify_to_pending_list.xx_msg_const.163
+	0x43015058		ext_observer_add_notify_to_pending_list.xx_msg_const.164
+	0x43015068		ext_observer_add_notify_to_pending_list.xx_msg_const.166
+	0x43015078		ext_observer_add_notify_to_pending_list.xx_msg_const.167
+	0x43015088		ext_object_set_observe_param.xx_msg_const
+	0x43015098		ext_object_set_observe_param.xx_msg_const.169
+	0x430150a8		observe_find_by_uri.xx_msg_const
+	0x430150b8		observe_find_by_uri.xx_msg_const.173
+	0x430150c8		observe_find_by_uri.xx_msg_const.175
+	0x430150d8		ext_serialize_attributes.xx_msg_const
+	0x430150e8		ext_serialize_link_data.xx_msg_const
+	0x430150f8		ext_obj_discover_serialize.xx_msg_const
+	0x43015108		ext_obj_discover_serialize.xx_msg_const.190
+	0x43015118		m2m_ext_object_callback_app.xx_msg_const
+	0x43015128		m2m_ext_object_callback_app.xx_msg_const.192
+	0x43015138		m2m_ext_object_callback_app.xx_msg_const.193
+	0x43015148		m2m_ext_object_callback_app.xx_msg_const.195
+	0x43015158		m2m_ext_object_callback_app.xx_msg_const.196
+	0x43015168		m2m_ext_object_callback_app.xx_msg_const.198
+	0x43015178		m2m_ext_object_callback_app.xx_msg_const.199
+	0x43015188		m2m_ext_object_register.xx_msg_const
+	0x43015198		m2m_ext_object_register.xx_msg_const.202
+	0x430151a8		m2m_ext_object_register.xx_msg_const.204
+	0x430151b8		m2m_ext_object_register.xx_msg_const.206
+	0x430151c8		m2m_ext_object_deregister.xx_msg_const
+	0x430151d8		m2m_ext_object_deregister.xx_msg_const.208
+	0x430151e8		m2m_ext_object_deregister.xx_msg_const.210
+	0x430151f8		m2m_ext_object_deregister.xx_msg_const.212
+	0x43015208		m2m_create_object.xx_msg_const
+	0x43015218		m2m_create_object.xx_msg_const.215
+	0x43015228		m2m_create_object.xx_msg_const.217
+	0x43015238		m2m_create_object.xx_msg_const.219
+	0x43015248		m2m_create_object_instance_app.xx_msg_const
+	0x43015258		m2m_create_object_instance_app.xx_msg_const.222
+	0x43015268		m2m_create_object_instance_app.xx_msg_const.224
+	0x43015278		m2m_create_object_instance_app.xx_msg_const.226
+	0x43015288		m2m_create_object_instance_app.xx_msg_const.228
+	0x43015298		m2m_create_object_instance_app.xx_msg_const.230
+	0x430152a8		m2m_create_object_instance_app.xx_msg_const.232
+	0x430152b8		m2m_delete_object_instance_app.xx_msg_const
+	0x430152c8		m2m_delete_object_instance_app.xx_msg_const.234
+	0x430152d8		m2m_delete_object_instance_app.xx_msg_const.236
+	0x430152e8		m2m_delete_object_instance_app.xx_msg_const.237
+	0x430152f8		m2m_delete_object_instance_app.xx_msg_const.239
+	0x43015308		m2m_delete_object_instance_app.xx_msg_const.241
+	0x43015318		m2m_delete_object_instance_app.xx_msg_const.243
+	0x43015328		m2m_delete_object_instance_app.xx_msg_const.245
+	0x43015338		m2m_create_object_instance.xx_msg_const
+	0x43015348		m2m_create_object_instance.xx_msg_const.246
+	0x43015358		m2m_create_object_instance.xx_msg_const.247
+	0x43015368		m2m_create_object_instance.xx_msg_const.248
+	0x43015378		m2m_create_object_instance.xx_msg_const.249
+	0x43015388		delete_object_instance.xx_msg_const
+	0x43015398		delete_object_instance.xx_msg_const.251
+	0x430153a8		delete_object_instance.xx_msg_const.252
+	0x430153b8		delete_object_instance.xx_msg_const.253
+	0x430153c8		delete_object_instance.xx_msg_const.254
+	0x430153d8		delete_object_instance.xx_msg_const.255
+	0x430153e8		obj_create_generic_sensor.xx_msg_const
+	0x430153f8		obj_create_generic_sensor.xx_msg_const.257
+	0x43015408		obj_create_generic_sensor.xx_msg_const.258
+	0x43015418		obj_create_generic_sensor.xx_msg_const.259
+	0x43015428		obj_create_generic_sensor.xx_msg_const.260
+	0x43015438		obj_create_generic_sensor.xx_msg_const.261
+	0x43015448		obj_create_generic_sensor.xx_msg_const.263
+	0x43015458		obj_create_generic_sensor.xx_msg_const.264
+	0x43015468		obj_create_generic_sensor.xx_msg_const.265
+	0x43015478		obj_create_generic_sensor.xx_msg_const.266
+	0x43015488		obj_create_generic_sensor.xx_msg_const.267
+	0x43015498		obj_create_generic_sensor.xx_msg_const.268
+	0x430154a8		obj_create_generic_sensor.xx_msg_const.269
+	0x430154b8		ext_obj_delete_all.xx_msg_const
+	0x430154c8		ext_obj_delete_all.xx_msg_const.271
+	0x430154d8		ext_obj_handle_event.xx_msg_const
+	0x430154e8		ext_obj_handle_event.xx_msg_const.272
+	0x430154f8		ext_obj_handle_event.xx_msg_const.273
+	0x43015508		lwm2m_ext_object_init.xx_msg_const
+	0x43015518		lwm2m_ext_object_init.xx_msg_const.276
+	0x43015528		lwm2m_ext_object_init.xx_msg_const.278
+	0x43015538		lwm2m_ext_object_init.xx_msg_const.279
+	0x43015548		lwm2m_ext_object_init.xx_msg_const.281
+	0x43015558		lwm2m_ext_object_init.xx_msg_const.282
+	0x43015568		lwm2m_create_ext_obj.xx_msg_const
+	0x43015578		lwm2m_create_ext_obj.xx_msg_const.283
+	0x43015588		lwm2m_create_ext_obj.xx_msg_const.284
+	0x43015598		lwm2m_create_ext_obj.xx_msg_const.285
+	0x430155a8		lwm2m_create_ext_obj_inst.xx_msg_const
+	0x430155b8		lwm2m_create_ext_obj_inst.xx_msg_const.286
+	0x430155c8		lwm2m_create_ext_obj_inst.xx_msg_const.287
+	0x430155d8		lwm2m_create_ext_obj_inst.xx_msg_const.288
+	0x430155e8		lwm2m_delete_ext_obj_inst.xx_msg_const
+	0x430155f8		lwm2m_delete_ext_obj_inst.xx_msg_const.289
+	0x43015608		lwm2m_delete_ext_obj_inst.xx_msg_const.290
+	0x43015618		lwm2m_delete_ext_obj_inst.xx_msg_const.291
+	0x43015628		lwm2m_ext_read.xx_msg_const
+	0x43015638		lwm2m_ext_read.xx_msg_const.294
+	0x43015648		lwm2m_ext_read.xx_msg_const.296
+	0x43015658		lwm2m_ext_read.xx_msg_const.298
+	0x43015668		lwm2m_ext_read.xx_msg_const.300
+	0x43015678		lwm2m_ext_read.xx_msg_const.302
+	0x43015688		lwm2m_ext_read.xx_msg_const.304
+	0x43015698		lwm2m_ext_read.xx_msg_const.306
+	0x430156a8		lwm2m_ext_read.xx_msg_const.307
+	0x430156b8		lwm2m_ext_read.xx_msg_const.309
+	0x430156c8		lwm2m_ext_read.xx_msg_const.310
+	0x430156d8		lwm2m_ext_read.xx_msg_const.311
+	0x430156e8		lwm2m_ext_read.xx_msg_const.312
+	0x430156f8		lwm2m_ext_read.xx_msg_const.313
+	0x43015708		lwm2m_ext_read.xx_msg_const.314
+	0x43015718		lwm2m_ext_read.xx_msg_const.316
+	0x43015728		lwm2m_ext_read.xx_msg_const.317
+	0x43015738		lwm2m_ext_read.xx_msg_const.318
+	0x43015748		lwm2m_ext_read.xx_msg_const.319
+	0x43015758		lwm2m_ext_read.xx_msg_const.320
+	0x43015768		lwm2m_ext_read.xx_msg_const.321
+	0x43015778		lwm2m_ext_read.xx_msg_const.322
+	0x43015788		lwm2m_ext_read.xx_msg_const.323
+	0x43015798		lwm2m_ext_read.xx_msg_const.324
+	0x430157a8		lwm2m_ext_read.xx_msg_const.325
+	0x430157b8		lwm2m_ext_read.xx_msg_const.335
+	0x430157c8		lwm2m_ext_read.xx_msg_const.336
+	0x430157d8		lwm2m_ext_read.xx_msg_const.337
+	0x430157e8		lwm2m_ext_read.xx_msg_const.338
+	0x430157f8		lwm2m_ext_read.xx_msg_const.339
+	0x43015808		lwm2m_ext_read.xx_msg_const.340
+	0x43015818		lwm2m_ext_read.xx_msg_const.341
+	0x43015828		lwm2m_ext_read.xx_msg_const.342
+	0x43015838		lwm2m_ext_read.xx_msg_const.343
+	0x43015848		lwm2m_ext_read.xx_msg_const.344
+	0x43015858		lwm2m_ext_read.xx_msg_const.345
+	0x43015868		lwm2m_ext_write.xx_msg_const
+	0x43015878		lwm2m_ext_write.xx_msg_const.355
+	0x43015888		lwm2m_ext_write.xx_msg_const.357
+	0x43015898		lwm2m_ext_write.xx_msg_const.358
+	0x430158a8		lwm2m_ext_write.xx_msg_const.359
+	0x430158b8		lwm2m_ext_write.xx_msg_const.361
+	0x430158c8		lwm2m_ext_write.xx_msg_const.363
+	0x430158d8		lwm2m_ext_write.xx_msg_const.364
+	0x430158e8		lwm2m_ext_write.xx_msg_const.365
+	0x430158f8		lwm2m_ext_write.xx_msg_const.366
+	0x43015908		lwm2m_ext_write.xx_msg_const.367
+	0x43015918		lwm2m_ext_write.xx_msg_const.368
+	0x43015928		lwm2m_ext_write.xx_msg_const.369
+	0x43015938		lwm2m_ext_write.xx_msg_const.370
+	0x43015948		lwm2m_ext_write.xx_msg_const.371
+	0x43015958		lwm2m_ext_exec.xx_msg_const
+	0x43015968		lwm2m_ext_exec.xx_msg_const.372
+	0x43015978		lwm2m_ext_exec.xx_msg_const.373
+	0x43015988		lwm2m_ext_exec.xx_msg_const.374
+	0x43015998		lwm2m_ext_exec.xx_msg_const.375
+	0x430159a8		lwm2m_ext_exec.xx_msg_const.377
+	0x430159b8		lwm2m_ext_exec.xx_msg_const.379
+	0x430159c8		lwm2m_display_template.xx_msg_const
+	0x430159d8		lwm2m_display_template.xx_msg_const.382
+	0x430159e8		lwm2m_display_template.xx_msg_const.384
+	0x430159f8		lwm2m_display_template.xx_msg_const.386
+	0x43015a08		lwm2m_display_template.xx_msg_const.388
+	0x43015a18		lwm2m_display_template.xx_msg_const.390
+	0x43015a28		lwm2m_display_template.xx_msg_const.392
+	0x43015a38		lwm2m_display_template.xx_msg_const.394
+	0x43015a48		lwm2m_display_template.xx_msg_const.396
+	0x43015a58		lwm2m_display_template.xx_msg_const.398
+	0x43015a68		lwm2m_display_template.xx_msg_const.400
+	0x43015a78		lwm2m_display_template.xx_msg_const.402
+	0x43015a88		lwm2m_display_template.xx_msg_const.404
+	0x43015a98		lwm2m_display_template.xx_msg_const.406
+	0x43015aa8		lwm2m_display_template.xx_msg_const.408
+	0x43015ab8		lwm2m_display_template.xx_msg_const.410
+	0x43015ac8		lwm2m_display_template.xx_msg_const.412
+	0x43015ad8		lwm2m_display_template.xx_msg_const.414
+	0x43015ae8		lwm2m_display_template.xx_msg_const.416
+	0x43015af8		lwm2m_display_template.xx_msg_const.418
+	0x43015b08		lwm2m_display_template.xx_msg_const.420
+	0x43015b18		lwm2m_display_template.xx_msg_const.422
+	0x43015b28		lwm2m_deinit_ext_obj.xx_msg_const
+	0x43015b38		lwm2m_deinit_ext_obj.xx_msg_const.423
+	0x43015b48		lwm2m_deinit_ext_obj.xx_msg_const.424
+	0x43015b58		lwm2m_deinit_ext_obj.xx_msg_const.425
+	0x43015b68		quectel_task_entry.xx_msg_const
+	0x43015b78		quectel_task_entry.xx_msg_const.430
+	0x43015b88		ext_obj_mutex_init.xx_msg_const
+	0x43015b98		ext_obj_signal_init.xx_msg_const
+	0x43015ba8		ext_obj_signal_wait.xx_msg_const
+	0x43015bb8		ext_obj_signal_wait.xx_msg_const.437
+	0x43015bc8		lwm2m_data_free.xx_msg_const
+	0x43015bd8		ext_obj_dequeue_cmd.xx_msg_const
+	0x43015be8		lwm2m_data_encode_string.xx_msg_const
+	0x43015bf8		lwm2m_data_encode_float.xx_msg_const
+	0x43015c08		lwm2m_data_encode_float.xx_msg_const.441
+	0x43015c18		lwm2m_data_encode_bool.xx_msg_const
+	0x43015c28		lwm2m_data_decode_float.xx_msg_const
+	0x43015c38		lwm2m_data_decode_bool.xx_msg_const
+	0x43015c48		lwm2m_data_decode_int.xx_msg_const
+	0x43015c58		lwm2m_get_observe_info.xx_msg_const
+	0x43015c68		lwm2m_unlink_observed.xx_msg_const.442
+	0x43015c78		utils_intToText.xx_msg_const
+	0x43015c88		utils_floatToText.xx_msg_const
+	0x43015c98		uri_toString.xx_msg_const.446
+.rodata.str1.8	0x43015ca8	0x8	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,8
+	0x43015ca8		.L.str.262
+.rodata.cst16	0x43015cb0	0x10	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,2
+	0x43015cb0		.Llwm2m_ext_read.resList1
+.rodata.str1.1	0x43015cc0	0x22	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015cc0		.L.str
+.rodata.str1.1	0x43015ce2	0x29	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015ce2		.L.str.2
+.rodata.str1.1	0x43015d0b	0x26	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015d0b		.L.str.3
+.rodata.str1.1	0x43015d31	0x26	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015d31		.L.str.5
+.rodata.str1.1	0x43015d57	0x25	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015d57		.L.str.6
+.rodata.str1.1	0x43015d7c	0x3	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015d7c		.L.str.7
+.rodata.str1.1	0x43015d7f	0x1d	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015d7f		.L.str.8
+.rodata.str1.1	0x43015d9c	0x1a	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015d9c		.L.str.9
+PADDING_ALIGNMENT	0x43015db6	0x2	0x0
+.rodata	0x43015db8	0x60	quectel\example\build\quectel_uart_apis.o	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43015db8		uart_init.xx_msg_const
+	0x43015dc8		uart_init.xx_msg_const.4
+	0x43015dd8		uart_print.xx_msg_const
+	0x43015de8		uart_recv.xx_msg_const
+	0x43015df8		uart_rx_cb.xx_msg_const
+	0x43015e08		uart_tx_cb.xx_msg_const
+.rodata	0x43015e18	0x10	quectel\example\build\quectel_utils.o	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43015e18		quectel_format_log_msg.xx_msg_const
+.rodata.str1.1	0x43015e28	0x2d	quectel\example\build\quectel_utils.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015e28		.L.str
+.rodata.str1.1	0x43015e55	0x25	quectel\example\build\quectel_utils.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015e55		.L.str.1
+.rodata.str1.1	0x43015e7a	0x12	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43015e7a		.L.str
+.rodata.str1.1	0x43015e8c	0x7	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43015e93	0xa	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.states	0x43015e9d	0x1d0	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC,1
+	0x43015e9d		states
+.rodata.cst16	0x4301606d	0x10	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,1
+	0x4301606d		xdigits
+PADDING_ALIGNMENT	0x4301607d	0x3	0x0
+.rodata.str1.4	0x43016080	0x14	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,4
+	0x43016080		$d
+PADDING_ALIGNMENT	0x43016094	0x4	0x0
+.rodata..Lvsnprintf_full.f	0x43016098	0x90	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC,8
+	0x43016098		$d
+.rodata.str1.1	0x43016128	0x58	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43016128		errid
+.rodata.errmsg	0x43016180	0x70c	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC,1
+	0x43016180		errmsg
+	Image$$ER_RO$$Limit(0x43016898) = .( 0x43016898 );
+Image$$ER_RO$$Length(0x16898) = Image$$ER_RO$$Limit( 0x43016898 ) - Image$$ER_RO$$Base( 0x43000000 );
+
+ER_RW	0x43016898	0x24 # Offset: 0x168f8, LMA: 0x43016898
+	Image$$ER_RW$$Base(0x43016898) = .( 0x43016898 );
+KEEP (*(.data .data.* ))
+.data	0x43016898	0x1c	quectel\example\build\example_lwm2m_ext.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43016898		uart_conf
+.data.dummy_file	0x430168b4	0x4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x430168b4		dummy_file
+	0x430168b4		$d
+	0x430168b4		__stdin_used
+	0x430168b4		__stdout_used
+	0x430168b4		__stderr_used
+.data.ofl_head	0x430168b8	0x4	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x430168b8		ofl_head
+	0x430168b8		$d
+	Image$$ER_RW$$Limit(0x430168bc) = .( 0x430168bc );
+Image$$ER_RW$$Length(0x24) = Image$$ER_RW$$Limit( 0x430168bc ) - Image$$ER_RW$$Base( 0x43016898 );
+
+ER_ZI	0x430168c0	0x1f18c # Offset: 0x1691c, LMA: 0x430168c0
+	Image$$ER_ZI$$Base(0x430168c0) = .( 0x430168c0 );
+*(.bss* .bss.* .common COMMON )
+	0x430168c0	0x1	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430168c0		ext_obj_event
+PADDING_ALIGNMENT	0x430168c1	0x3	0x0
+	0x430168c4	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430168c4		byte_pool_m2m
+	0x430168c8	0x1e000	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430168c8		m2m_free_mem
+	0x430348c8	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430348c8		m2m_signal_handle
+	0x430348cc	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430348cc		m2m_thread_hdl
+	0x430348d0	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430348d0		obj_inst_index_generic
+	0x430348d4	0x4	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430348d4		obj_inst_index_presence
+	0x430348d8	0x1000	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430348d8		timer_client_stack
+	0x430358d8	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358d8		timer_client_module_thread
+	0x430358dc	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358dc		timer_thread_state
+	0x430358e0	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358e0		timer_user_handle
+	0x430358e4	0x4	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358e4		_txm_module_entry_info
+	0x430358e8	0x4	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358e8		_txm_module_instance_ptr
+	0x430358ec	0x4	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358ec		_txm_module_kernel_call_dispatcher
+.bss	0x430358f0	0x158	quectel\example\build\example_lwm2m_ext.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,16
+	0x430358f0		m2m_dss_handle
+	0x430358f4		m2m_obj_exist
+	0x430358f8		object_presence
+	0x430358fc		ext_multi_observed_list
+	0x43035900		ext_multi_pending_observed_list
+	0x43035904		app_reg_status
+	0x43035908		obs_notify_Timer
+	0x4303590c		lwm2m_client_in_sleep_state
+	0x43035910		ext_object_handler_app
+	0x43035914		object_generic
+	0x43035918		ext_observed_list
+	0x4303591c		ext_pending_observed_list
+	0x43035920		ext_object_clientconfig_data
+	0x43035930		obj_inst_created_generic
+	0x430359b0		obj_inst_created_presence
+	0x43035a30		uart_rx_buff
+	0x43035a34		uart_tx_buff
+	0x43035a38		ext_obj_cmdq
+	0x43035a3c		ext_obj_param
+.bss.qapi_timer_user_initialized	0x43035a48	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43035a48		qapi_timer_user_initialized
+	Image$$ER_ZI$$Limit(0x43035a4c) = .( 0x43035a4c );
+Image$$ER_ZI$$ZI$$Length(0x1f18c) = Image$$ER_ZI$$Limit( 0x43035a4c ) - Image$$ER_ZI$$Base( 0x430168c0 );
+
+.debug	0x0	0x0 # Offset: 0x0
+
+.line	0x0	0x0 # Offset: 0x0
+
+.debug_srcinfo	0x0	0x0 # Offset: 0x0
+
+.debug_sfnames	0x0	0x0 # Offset: 0x0
+
+.debug_aranges	0x0	0x0 # Offset: 0x0
+
+.debug_pubnames	0x1691c	0x359 # Offset: 0x1691c
+*(.debug_pubnames )
+.debug_pubnames	0x1691c	0x18a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16aa6	0xa2	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16b48	0x40	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16b88	0x30	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16bb8	0x30	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16be8	0x2f	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16c17	0x2f	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x16c46	0x2f	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_info	0x16c75	0x2cfe # Offset: 0x16c75
+*(.debug_info .gnu.linkonce.wi.* )
+.debug_info	0x16c75	0xb01	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_info	0x17776	0xcd5	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_info	0x1844b	0x1019	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_info	0x19464	0x136	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_info	0x1959a	0x145	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_info	0x196df	0xcd	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_info	0x197ac	0xdc	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_info	0x19888	0xeb	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_abbrev	0x19973	0x628 # Offset: 0x19973
+*(.debug_abbrev )
+.debug_abbrev	0x19973	0x19a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19b0d	0xe2	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19bef	0xeb	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19cda	0x8d	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19d67	0x8d	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19df4	0x8d	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19e81	0x8d	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x19f0e	0x8d	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_line	0x19f9b	0x1042 # Offset: 0x19f9b
+*(.debug_line )
+.debug_line	0x19f9b	0x4d4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_line	0x1a46f	0x1c2	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_line	0x1a631	0x27c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_line	0x1a8ad	0x174	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_line	0x1aa21	0x175	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_line	0x1ab96	0x16c	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_line	0x1ad02	0x16d	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_line	0x1ae6f	0x16e	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_frame	0x1afdd	0x26c # Offset: 0x1afdd
+*(.debug_frame )
+.debug_frame	0x1afdd	0x134	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b111	0x2c	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b13d	0x3c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b179	0x2c	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b1a5	0x2c	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b1d1	0x28	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b1f9	0x28	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,4
+.debug_frame	0x1b221	0x28	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,4
+
+.debug_str	0x1b249	0x2c69 # Offset: 0x1b249
+*(.debug_str )
+.debug_str	0x1b249	0x3c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x0		
+.debug_str	0x1b285	0x8b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x3c		
+.debug_str	0x1b310	0x66	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc7		
+.debug_str	0x1b376	0x1c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x12d		
+.debug_str	0x1b392	0xd	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x149		
+.debug_str	0x1b39f	0x9	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x156		
+.debug_str	0x1b3a8	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x15f		
+.debug_str	0x1b3b6	0x13	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x16d		
+.debug_str	0x1b3c9	0x13	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x180		
+.debug_str	0x1b3dc	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x193		
+.debug_str	0x1b3f0	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1a7		
+.debug_str	0x1b405	0x18	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1bc		
+.debug_str	0x1b41d	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1d4		
+.debug_str	0x1b432	0x12	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1e9		
+.debug_str	0x1b444	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1fb		
+.debug_str	0x1b45e	0x1f	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x215		
+.debug_str	0x1b47d	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x234		
+.debug_str	0x1b498	0xd	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x24f		
+.debug_str	0x1b4a5	0x12	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x25c		
+.debug_str	0x1b4b7	0x6	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x26e		
+.debug_str	0x1b4bd	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x274		
+.debug_str	0x1b4d1	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x288		
+.debug_str	0x1b4e5	0x16	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x29c		
+.debug_str	0x1b4fb	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2b2		
+.debug_str	0x1b50f	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2c6		
+.debug_str	0x1b524	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2db		
+.debug_str	0x1b539	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2f0		
+.debug_str	0x1b552	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x309		
+.debug_str	0x1b567	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x31e		
+.debug_str	0x1b580	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x337		
+.debug_str	0x1b58f	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x346		
+.debug_str	0x1b594	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x34b		
+.debug_str	0x1b599	0x13	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x350		
+.debug_str	0x1b5ac	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x363		
+.debug_str	0x1b5b1	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x368		
+.debug_str	0x1b5c1	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x378		
+.debug_str	0x1b5db	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x392		
+.debug_str	0x1b5f0	0x1c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x3a7		
+.debug_str	0x1b60c	0x18	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x3c3		
+.debug_str	0x1b624	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x3db		
+.debug_str	0x1b634	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x3eb		
+.debug_str	0x1b64e	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x405		
+.debug_str	0x1b65e	0x22	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x415		
+.debug_str	0x1b680	0x26	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x437		
+.debug_str	0x1b6a6	0x23	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x45d		
+.debug_str	0x1b6c9	0x20	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x480		
+.debug_str	0x1b6e9	0x1e	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x4a0		
+.debug_str	0x1b707	0x22	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x4be		
+.debug_str	0x1b729	0x1c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x4e0		
+.debug_str	0x1b745	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x4fc		
+.debug_str	0x1b75e	0x12	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x515		
+.debug_str	0x1b770	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x527		
+.debug_str	0x1b78a	0x20	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x541		
+.debug_str	0x1b7aa	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x561		
+.debug_str	0x1b7c3	0x1d	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x57a		
+.debug_str	0x1b7e0	0x17	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x597		
+.debug_str	0x1b7f7	0x22	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x5ae		
+.debug_str	0x1b819	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x5d0		
+.debug_str	0x1b832	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x5e9		
+.debug_str	0x1b84b	0x17	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x602		
+.debug_str	0x1b862	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x619		
+.debug_str	0x1b87d	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x634		
+.debug_str	0x1b892	0x1e	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x649		
+.debug_str	0x1b8b0	0x20	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x667		
+.debug_str	0x1b8d0	0x23	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x687		
+.debug_str	0x1b8f3	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x6aa		
+.debug_str	0x1b90e	0x1d	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x6c5		
+.debug_str	0x1b92b	0x18	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x6e2		
+.debug_str	0x1b943	0x21	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x6fa		
+.debug_str	0x1b964	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x71b		
+.debug_str	0x1b97f	0x1c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x736		
+.debug_str	0x1b99b	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x752		
+.debug_str	0x1b9b6	0xc	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x76d		
+.debug_str	0x1b9c2	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x779		
+.debug_str	0x1b9d0	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x787		
+.debug_str	0x1b9e9	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x7a0		
+.debug_str	0x1b9f8	0x11	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x7af		
+.debug_str	0x1ba09	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x7c0		
+.debug_str	0x1ba24	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x7db		
+.debug_str	0x1ba3d	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x7f4		
+.debug_str	0x1ba56	0x16	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x80d		
+.debug_str	0x1ba6c	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x823		
+.debug_str	0x1ba86	0x22	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x83d		
+.debug_str	0x1baa8	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x85f		
+.debug_str	0x1babc	0x18	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x873		
+.debug_str	0x1bad4	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x88b		
+.debug_str	0x1bae4	0x1c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x89b		
+.debug_str	0x1bb00	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x8b7		
+.debug_str	0x1bb04	0x9	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x8bb		
+.debug_str	0x1bb0d	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x8c4		
+.debug_str	0x1bb22	0x17	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x8d9		
+.debug_str	0x1bb39	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x8f0		
+.debug_str	0x1bb53	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x90a		
+.debug_str	0x1bb68	0x11	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x91f		
+.debug_str	0x1bb79	0xa	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x930		
+.debug_str	0x1bb83	0x13	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x93a		
+.debug_str	0x1bb96	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x94d		
+.debug_str	0x1bba4	0x6	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x95b		
+.debug_str	0x1bbaa	0x12	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x961		
+.debug_str	0x1bbbc	0x13	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x973		
+.debug_str	0x1bbcf	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x986		
+.debug_str	0x1bbe9	0x21	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x9a0		
+.debug_str	0x1bc0a	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x9c1		
+.debug_str	0x1bc23	0x1f	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x9da		
+.debug_str	0x1bc42	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x9f9		
+.debug_str	0x1bc57	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa0e		
+.debug_str	0x1bc6c	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa23		
+.debug_str	0x1bc81	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa38		
+.debug_str	0x1bc95	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa4c		
+.debug_str	0x1bca9	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa60		
+.debug_str	0x1bcbe	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa75		
+.debug_str	0x1bcd2	0x21	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xa89		
+.debug_str	0x1bcf3	0x25	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xaaa		
+.debug_str	0x1bd18	0x26	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xacf		
+.debug_str	0x1bd3e	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xaf5		
+.debug_str	0x1bd58	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb0f		
+.debug_str	0x1bd68	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb1f		
+.debug_str	0x1bd78	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb2f		
+.debug_str	0x1bd87	0x11	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb3e		
+.debug_str	0x1bd98	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb4f		
+.debug_str	0x1bd9c	0x8	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb53		
+.debug_str	0x1bda4	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb5b		
+.debug_str	0x1bdb2	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb69		
+.debug_str	0x1bdc2	0x16	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb79		
+.debug_str	0x1bdd8	0x18	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xb8f		
+.debug_str	0x1bdf0	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xba7		
+.debug_str	0x1be05	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xbbc		
+.debug_str	0x1be14	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xbcb		
+.debug_str	0x1be23	0x1a	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xbda		
+.debug_str	0x1be3d	0x11	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xbf4		
+.debug_str	0x1be4e	0x11	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc05		
+.debug_str	0x1be5f	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc16		
+.debug_str	0x1be6f	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc26		
+.debug_str	0x1be7d	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc34		
+.debug_str	0x1be8b	0x9	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc42		
+.debug_str	0x1be94	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc4b		
+.debug_str	0x1be99	0x18	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc50		
+.debug_str	0x1beb1	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc68		
+.debug_str	0x1beb5	0xd	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc6c		
+.debug_str	0x1bec2	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc79		
+.debug_str	0x1bed6	0xb	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc8d		
+.debug_str	0x1bee1	0xb	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xc98		
+.debug_str	0x1beec	0x8	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xca3		
+.debug_str	0x1bef4	0x8	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xcab		
+.debug_str	0x1befc	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xcb3		
+.debug_str	0x1bf10	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xcc7		
+.debug_str	0x1bf1e	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xcd5		
+.debug_str	0x1bf2d	0x19	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xce4		
+.debug_str	0x1bf46	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xcfd		
+.debug_str	0x1bf4b	0x9	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd02		
+.debug_str	0x1bf54	0x7	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd0b		
+.debug_str	0x1bf5b	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd12		
+.debug_str	0x1bf60	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd17		
+.debug_str	0x1bf75	0x16	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd2c		
+.debug_str	0x1bf8b	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd42		
+.debug_str	0x1bf9f	0xb	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd56		
+.debug_str	0x1bfaa	0x15	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd61		
+.debug_str	0x1bfbf	0x1b	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd76		
+.debug_str	0x1bfda	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xd91		
+.debug_str	0x1bfe9	0x8	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xda0		
+.debug_str	0x1bff1	0xe	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xda8		
+.debug_str	0x1bfff	0x14	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xdb6		
+.debug_str	0x1c013	0x8	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xdca		
+.debug_str	0x1c01b	0xb	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xdd2		
+.debug_str	0x1c026	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xddd		
+.debug_str	0x1c035	0xb	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xdec		
+.debug_str	0x1c040	0xa	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xdf7		
+.debug_str	0x1c04a	0xc	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe01		
+.debug_str	0x1c056	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe0d		
+.debug_str	0x1c05b	0xf	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe12		
+.debug_str	0x1c06a	0x9	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe21		
+.debug_str	0x1c073	0x6	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe2a		
+.debug_str	0x1c079	0x4	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe30		
+.debug_str	0x1c07d	0x5	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe34		
+.debug_str	0x1c082	0x7	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe39		
+.debug_str	0x1c089	0x7	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe40		
+.debug_str	0x1c090	0xc	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe47		
+.debug_str	0x1c09c	0x16	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe53		
+.debug_str	0x1c0b2	0x10	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe69		
+.debug_str	0x1c0c2	0xa9	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xe79		
+.debug_str	0x1c16b	0x17	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf22		
+.debug_str	0x1c182	0x24	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf39		
+.debug_str	0x1c1a6	0x24	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf5d		
+.debug_str	0x1c1ca	0x17	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf81		
+.debug_str	0x1c1e1	0x19	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf98		
+.debug_str	0x1c1fa	0x1a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xfb1		
+.debug_str	0x1c214	0x23	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xfcb		
+.debug_str	0x1c237	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xfee		
+.debug_str	0x1c25f	0x29	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1016		
+.debug_str	0x1c288	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x103f		
+.debug_str	0x1c2a7	0x1d	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x105e		
+.debug_str	0x1c2c4	0x1e	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x107b		
+.debug_str	0x1c2e2	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1099		
+.debug_str	0x1c30a	0x29	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x10c1		
+.debug_str	0x1c333	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x10ea		
+.debug_str	0x1c352	0x1d	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1109		
+.debug_str	0x1c36f	0x2d	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1126		
+.debug_str	0x1c39c	0x1e	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1153		
+.debug_str	0x1c3ba	0x24	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1171		
+.debug_str	0x1c3de	0x33	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1195		
+.debug_str	0x1c411	0x31	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x11c8		
+.debug_str	0x1c442	0x31	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x11f9		
+.debug_str	0x1c473	0x2f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x122a		
+.debug_str	0x1c4a2	0x21	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1259		
+.debug_str	0x1c4c3	0x17	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x127a		
+.debug_str	0x1c4da	0x22	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1291		
+.debug_str	0x1c4fc	0x22	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x12b3		
+.debug_str	0x1c51e	0x22	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x12d5		
+.debug_str	0x1c540	0x2a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x12f7		
+.debug_str	0x1c56a	0x23	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1321		
+.debug_str	0x1c58d	0x29	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1344		
+.debug_str	0x1c5b6	0x23	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x136d		
+.debug_str	0x1c5d9	0x22	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1390		
+.debug_str	0x1c5fb	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x13b2		
+.debug_str	0x1c623	0x2a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x13da		
+.debug_str	0x1c64d	0x26	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1404		
+.debug_str	0x1c673	0x26	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x142a		
+.debug_str	0x1c699	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1450		
+.debug_str	0x1c6c1	0x1e	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1478		
+.debug_str	0x1c6df	0x1e	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1496		
+.debug_str	0x1c6fd	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x14b4		
+.debug_str	0x1c71c	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x14d3		
+.debug_str	0x1c73b	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x14f2		
+.debug_str	0x1c75a	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1511		
+.debug_str	0x1c779	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1530		
+.debug_str	0x1c798	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x154f		
+.debug_str	0x1c7b7	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x156e		
+.debug_str	0x1c7d6	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x158d		
+.debug_str	0x1c7f5	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x15ac		
+.debug_str	0x1c814	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x15cb		
+.debug_str	0x1c833	0x21	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x15ea		
+.debug_str	0x1c854	0x20	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x160b		
+.debug_str	0x1c874	0x20	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x162b		
+.debug_str	0x1c894	0x20	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x164b		
+.debug_str	0x1c8b4	0x20	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x166b		
+.debug_str	0x1c8d4	0x1d	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x168b		
+.debug_str	0x1c8f1	0x1b	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x16a8		
+.debug_str	0x1c90c	0x14	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x16c3		
+.debug_str	0x1c920	0x29	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x16d7		
+.debug_str	0x1c949	0x27	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1700		
+.debug_str	0x1c970	0x26	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1727		
+.debug_str	0x1c996	0x32	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x174d		
+.debug_str	0x1c9c8	0x26	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x177f		
+.debug_str	0x1c9ee	0x2c	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x17a5		
+.debug_str	0x1ca1a	0x2b	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x17d1		
+.debug_str	0x1ca45	0xc	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x17fc		
+.debug_str	0x1ca51	0xe	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1808		
+.debug_str	0x1ca5f	0x16	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1816		
+.debug_str	0x1ca75	0x12	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x182c		
+.debug_str	0x1ca87	0x12	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x183e		
+.debug_str	0x1ca99	0x1b	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1850		
+.debug_str	0x1cab4	0xf	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x186b		
+.debug_str	0x1cac3	0xd	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x187a		
+.debug_str	0x1cad0	0xe	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1887		
+.debug_str	0x1cade	0xf	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1895		
+.debug_str	0x1caed	0x19	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x18a4		
+.debug_str	0x1cb06	0x19	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x18bd		
+.debug_str	0x1cb1f	0x16	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x18d6		
+.debug_str	0x1cb35	0x1a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x18ec		
+.debug_str	0x1cb4f	0x10	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1906		
+.debug_str	0x1cb5f	0x9	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1916		
+.debug_str	0x1cb68	0x30	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x191f		
+.debug_str	0x1cb98	0x2a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x194f		
+.debug_str	0x1cbc2	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1979		
+.debug_str	0x1cbea	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x19a1		
+.debug_str	0x1cc12	0x26	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x19c9		
+.debug_str	0x1cc38	0x2a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x19ef		
+.debug_str	0x1cc62	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1a19		
+.debug_str	0x1cc8a	0x28	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1a41		
+.debug_str	0x1ccb2	0x25	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1a69		
+.debug_str	0x1ccd7	0x19	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1a8e		
+.debug_str	0x1ccf0	0x18	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1aa7		
+.debug_str	0x1cd08	0x1e	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1abf		
+.debug_str	0x1cd26	0x1e	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1add		
+.debug_str	0x1cd44	0x15	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1afb		
+.debug_str	0x1cd59	0x14	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1b10		
+.debug_str	0x1cd6d	0x25	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1b24		
+.debug_str	0x1cd92	0x2c	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1b49		
+.debug_str	0x1cdbe	0x21	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1b75		
+.debug_str	0x1cddf	0x25	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1b96		
+.debug_str	0x1ce04	0x17	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1bbb		
+.debug_str	0x1ce1b	0x23	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1bd2		
+.debug_str	0x1ce3e	0x26	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1bf5		
+.debug_str	0x1ce64	0x20	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1c1b		
+.debug_str	0x1ce84	0x24	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1c3b		
+.debug_str	0x1cea8	0x1b	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1c5f		
+.debug_str	0x1cec3	0x14	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1c7a		
+.debug_str	0x1ced7	0x2f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1c8e		
+.debug_str	0x1cf06	0x2f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1cbd		
+.debug_str	0x1cf35	0x23	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1cec		
+.debug_str	0x1cf58	0x27	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1d0f		
+.debug_str	0x1cf7f	0x29	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1d36		
+.debug_str	0x1cfa8	0x2a	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1d5f		
+.debug_str	0x1cfd2	0x35	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1d89		
+.debug_str	0x1d007	0x34	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1dbe		
+.debug_str	0x1d03b	0x35	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1df2		
+.debug_str	0x1d070	0x34	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1e27		
+.debug_str	0x1d0a4	0x24	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1e5b		
+.debug_str	0x1d0c8	0x1d	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1e7f		
+.debug_str	0x1d0e5	0x19	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1e9c		
+.debug_str	0x1d0fe	0x23	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1eb5		
+.debug_str	0x1d121	0xa	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1ed8		
+.debug_str	0x1d12b	0x1f	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1ee2		
+.debug_str	0x1d14a	0xb	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1f01		
+.debug_str	0x1d155	0xc	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1f0c		
+.debug_str	0x1d161	0xb4	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1f18		
+.debug_str	0x1d215	0x18	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1fcc		
+.debug_str	0x1d22d	0x1a	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1fe4		
+.debug_str	0x1d247	0x1d	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x1ffe		
+.debug_str	0x1d264	0x22	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x201b		
+.debug_str	0x1d286	0x25	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x203d		
+.debug_str	0x1d2ab	0x25	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2062		
+.debug_str	0x1d2d0	0x22	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2087		
+.debug_str	0x1d2f2	0x26	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x20a9		
+.debug_str	0x1d318	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x20cf		
+.debug_str	0x1d33b	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x20f2		
+.debug_str	0x1d357	0x15	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x210e		
+.debug_str	0x1d36c	0x10	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2123		
+.debug_str	0x1d37c	0x12	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2133		
+.debug_str	0x1d38e	0x13	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2145		
+.debug_str	0x1d3a1	0x1d	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2158		
+.debug_str	0x1d3be	0x1d	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2175		
+.debug_str	0x1d3db	0x1a	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2192		
+.debug_str	0x1d3f5	0x1e	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x21ac		
+.debug_str	0x1d413	0x14	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x21ca		
+.debug_str	0x1d427	0xd	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x21de		
+.debug_str	0x1d434	0x18	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x21eb		
+.debug_str	0x1d44c	0x2a	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2203		
+.debug_str	0x1d476	0x3	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x222d		
+.debug_str	0x1d479	0x7	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2230		
+.debug_str	0x1d480	0xf	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2237		
+.debug_str	0x1d48f	0x19	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2246		
+.debug_str	0x1d4a8	0x12	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x225f		
+.debug_str	0x1d4ba	0xe	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2271		
+.debug_str	0x1d4c8	0xf	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x227f		
+.debug_str	0x1d4d7	0x11	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x228e		
+.debug_str	0x1d4e8	0x24	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x229f		
+.debug_str	0x1d50c	0x1a	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x22c3		
+.debug_str	0x1d526	0x22	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x22dd		
+.debug_str	0x1d548	0x1e	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x22ff		
+.debug_str	0x1d566	0x25	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x231d		
+.debug_str	0x1d58b	0x24	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2342		
+.debug_str	0x1d5af	0x22	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2366		
+.debug_str	0x1d5d1	0x29	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2388		
+.debug_str	0x1d5fa	0x19	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x23b1		
+.debug_str	0x1d613	0x1f	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x23ca		
+.debug_str	0x1d632	0x17	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x23e9		
+.debug_str	0x1d649	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2400		
+.debug_str	0x1d665	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x241c		
+.debug_str	0x1d681	0x19	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2438		
+.debug_str	0x1d69a	0x1d	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2451		
+.debug_str	0x1d6b7	0x21	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x246e		
+.debug_str	0x1d6d8	0x25	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x248f		
+.debug_str	0x1d6fd	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x24b4		
+.debug_str	0x1d719	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x24d0		
+.debug_str	0x1d735	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x24ec		
+.debug_str	0x1d751	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2508		
+.debug_str	0x1d76d	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2524		
+.debug_str	0x1d789	0x1c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2540		
+.debug_str	0x1d7a5	0x1b	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x255c		
+.debug_str	0x1d7c0	0x14	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2577		
+.debug_str	0x1d7d4	0x30	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x258b		
+.debug_str	0x1d804	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x25bb		
+.debug_str	0x1d827	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x25de		
+.debug_str	0x1d84a	0x20	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2601		
+.debug_str	0x1d86a	0x29	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2621		
+.debug_str	0x1d893	0x25	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x264a		
+.debug_str	0x1d8b8	0x25	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x266f		
+.debug_str	0x1d8dd	0x28	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2694		
+.debug_str	0x1d905	0x2c	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x26bc		
+.debug_str	0x1d931	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x26e8		
+.debug_str	0x1d954	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x270b		
+.debug_str	0x1d977	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x272e		
+.debug_str	0x1d99a	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2751		
+.debug_str	0x1d9bd	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2774		
+.debug_str	0x1d9e0	0x23	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2797		
+.debug_str	0x1da03	0x22	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x27ba		
+.debug_str	0x1da25	0x1b	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x27dc		
+.debug_str	0x1da40	0x12	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x27f7		
+.debug_str	0x1da52	0x15	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2809		
+.debug_str	0x1da67	0x12	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x281e		
+.debug_str	0x1da79	0xa4	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2830		
+.debug_str	0x1db1d	0x1a	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x28d4		
+.debug_str	0x1db37	0x11	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x28ee		
+.debug_str	0x1db48	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x28ff		
+.debug_str	0x1db50	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2907		
+.debug_str	0x1db58	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x290f		
+.debug_str	0x1db60	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2917		
+.debug_str	0x1db68	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x291f		
+.debug_str	0x1db70	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2927		
+.debug_str	0x1db78	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x292f		
+.debug_str	0x1db80	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2937		
+.debug_str	0x1db88	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x293f		
+.debug_str	0x1db90	0x8	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2947		
+.debug_str	0x1db98	0x9	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x294f		
+.debug_str	0x1dba1	0x9	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2958		
+.debug_str	0x1dbaa	0xd	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2961		
+.debug_str	0x1dbb7	0xa4	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x296e		
+.debug_str	0x1dc5b	0x1a	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2a12		
+.debug_str	0x1dc75	0x9	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2a2c		
+.debug_str	0x1dc7e	0xa3	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2a35		
+.debug_str	0x1dd21	0x19	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2ad8		
+.debug_str	0x1dd3a	0xa3	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2af1		
+.debug_str	0x1dddd	0x19	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2b94		
+.debug_str	0x1ddf6	0xa3	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2bad		
+.debug_str	0x1de99	0x19	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2c50		
+
+.debug_loc	0x1deb2	0x76d # Offset: 0x1deb2
+*(.debug_loc )
+.debug_loc	0x1deb2	0x30c	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e1be	0x3c	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e1fa	0x75	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e26f	0x103	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e372	0x118	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e48a	0x73	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e4fd	0x87	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_loc	0x1e584	0x9b	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_macinfo	0x1e61f	0x8 # Offset: 0x1e61f
+*(.debug_macinfo )
+.debug_macinfo	0x1e61f	0x1	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e620	0x1	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e621	0x1	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e622	0x1	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e623	0x1	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e624	0x1	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e625	0x1	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0x1e626	0x1	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_weaknames	0x1e627	0x0 # Offset: 0x1e627
+
+.debug_funcnames	0x1e627	0x0 # Offset: 0x1e627
+
+.debug_typenames	0x1e627	0x0 # Offset: 0x1e627
+
+.debug_varnames	0x1e627	0x0 # Offset: 0x1e627
+
+.debug_pubtypes	0x1e627	0x82a # Offset: 0x1e627
+*(.debug_pubtypes )
+.debug_pubtypes	0x1e627	0x2bb	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1e8e2	0x1e2	libs\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1eac4	0x293	libs\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1ed57	0x32	libs\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1ed89	0x32	libs\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1edbb	0x32	libs\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1eded	0x32	libs\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0x1ee1f	0x32	libs\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,,1
+
+.debug_ranges	0x1ee51	0x58 # Offset: 0x1ee51
+*(.debug_ranges )
+.debug_ranges	0x1ee51	0x58	libs\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,,1
+
+.gnu.attributes	0x0	0x0 # Offset: 0x1eea9, LMA: 0x0
+
+.note.gnu.arm.ident	0x0	0x0 # Offset: 0x1eea9, LMA: 0x0
+
+.ARM.attributes	0x1eea9	0x10 # Offset: 0x1eea9
+
+.comment	0x1eeb9	0x65 # Offset: 0x1eeb9
+.comment	0x1eeb9	0x1	C:\compile_tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.comment	0x1eef6	0x28	Linker Version	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+
+.note.GNU-stack	0x1ef1e	0x0 # Offset: 0x1ef1e
+
+/DISCARD/	0x75	0x0 # Offset: 0x1ef1e, LMA: 0x0
+
+.shstrtab	0x1ef1e	0xcc # Offset: 0x1ef1e
+
+.symtab	0x1efec	0x78e0 # Offset: 0x1efec
+
+.strtab	0x268cc	0x62e3 # Offset: 0x268cc

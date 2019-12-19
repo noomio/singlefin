@@ -1,0 +1,18 @@
+# The application will parse this configuration file
+# and will execute the commands with the associated parameters from this file.
+# The possible commands are:
+#   T <minInterval> <minDistance> <numberOfFixes> <timeout>
+#   B <minInterval> <minDistance> <numberOfBatches> <timeout>
+#   G <breachTypeMask> <responsiveness> <dwellTime> <latitude> <longitude> <radius> <numberOfBreaches> <timeout>
+#   S <powerLevel>
+#   D <numberOfFixes> <timeout>
+# If timeout is 0 then no timeout is assumed
+# The configuration file can have any number of these commands in any order.
+# Any line that starts with the character # in the configuration file is ignored.
+
+#D 2 76
+#s 0
+#G 3 20 15 37.3568 -121.9786 100.55 1 67
+T 1000 0 2 80
+#
+#b 1000 1 1 75

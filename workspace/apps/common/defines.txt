@@ -1,0 +1,7 @@
+#Compiler defines
+
+-DTX_MALLOC_MEM_SIZE=32
+Use this to increase the heap size when compiling the malloc.o. Currently set to 32K
+
+-DTX_USER_DEBUG_OPT 0
+To enable user debug options add a file user_debug_opt.h in your project to create your own debug flags.

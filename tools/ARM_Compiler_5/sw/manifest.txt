@@ -1,0 +1,6 @@
+Component: ARM Compiler 5.05 update 1 (build 106)
+Tool: armar [4d0efa]
+Tool: armasm [4d0efa]
+Tool: armcc [4d0efa]
+Tool: armlink [4d0efa]
+Tool: fromelf [4d0efa]
