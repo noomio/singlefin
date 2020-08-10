@@ -47,7 +47,10 @@ LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
 PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
 LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
 CXX = "$(LLVM)/bin/clang++.exe"
-CXX_FLAGS = -target armv7m-none-musleabi -fuse-ld=qcld -lc++ -Wl,-mno-unaligned-access -fuse-baremetal-sysroot -fno-use-baremetal-crt
+CXX_FLAGS = -target armv7m-none-musleabi \
+			-fuse-ld=qcld \
+			-lc++ \
+			-Wl,-mno-unaligned-access -fuse-baremetal-sysroot -fno-use-baremetal-crt
 AR = 
 CC =  "$(LLVM)/bin/clang.exe"
 else
@@ -117,7 +120,7 @@ pre-build:
 blinky.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross LLVM C++ Linker'
-	$(CXX) -d -o  $(OUTPUT_BIN)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o -Wl,$(COMMON_OBJS) $(PRINTF) $(MALLOC) -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(OUTPUT_BIN)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
+	$(CXX) -d -o  $(OUTPUT_BIN)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(COMMON_OBJS) $(PRINTF) $(MALLOC) -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(OUTPUT_BIN)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
 	@echo 'Finished building target: $@'
 	@echo ' '
 
