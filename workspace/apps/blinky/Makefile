@@ -39,7 +39,7 @@ endif
 
 
 ifeq ($(OS),Windows_NT)
-SDK_PATH_ROOT = ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.0-AUS/SDK
+SDK_PATH_ROOT = ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK
 TOOL_PATH_ROOT = ../../../tools
 TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
 LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
@@ -82,7 +82,7 @@ DAM_CFLAGS = 	-marm \
 				-Wbuiltin-macro-redefined
 
 DAM_INC_BASE = $(SDK_PATH_ROOT)/include
-DAM_LIB_PATH = $(SDK_PATH_ROOT)/libs
+DAM_LIB_PATH = $(SDK_PATH_ROOT)/libs/llvm
 DAM_LD_PATH = ./ldscripts
 
 DAM_RO_BASE=0x43000000
