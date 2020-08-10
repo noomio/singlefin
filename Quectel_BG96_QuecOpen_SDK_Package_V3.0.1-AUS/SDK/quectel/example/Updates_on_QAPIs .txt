@@ -1,0 +1,16 @@
+The following QAPIs is deprecated in TX3.0£º
+qapi_Device_Info_Init
+qapi_Device_Info_Get
+qapi_Device_Info_Release
+qapi_Device_Info_Set_Callback
+qapi_Device_Info_Reset
+
+Please use these QAPIs instead£º
+qapi_Device_Info_Init_v2
+qapi_Device_Info_Get_v2
+qapi_Device_Info_Release_v2
+qapi_Device_Info_Set_Callback_v2
+qapi_Device_Info_Reset_v2
+
+Some LwM2M QAPIs were also updated to v2 and the original version can be used until now. 
+But we strongly encourage to use v2 QAPIs instead, which include some data type fix.

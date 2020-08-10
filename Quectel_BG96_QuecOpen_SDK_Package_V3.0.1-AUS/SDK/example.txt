@@ -1,0 +1,33 @@
+adc        -__EXAMPLE_ADC__
+analog_spi -__EXAMPLE_ANALOGSPI__
+atc_pipe   -__EXAMPLE_ATC_PIPE__
+atc_sms    -__EXAMPLE_ATC_SMS__
+atfwd      -__EXAMPLE_ATFWD__
+dam_fota   -__EXAMPLE_DAM_FOTA__
+device_info-__EXAMPLE_DEVICE_INFO__
+dns_client -__EXAMPLE_DNSCLIENT__
+file       -__EXAMPLE_FILE__
+ftp_client -__EXAMPLE_FTPCLIENT__
+gpio       -__EXAMPLE_GPIO__
+gpio_int   -__EXAMPLE_GPIO_INT__
+gps        -__EXAMPLE_GPS__
+http       -__EXAMPLE_HTTP__
+i2c        -__EXAMPLE_I2C__
+lwm2m      -__EXAMPLE_LWM2M_EXT__
+mqtt       -__EXAMPLE_MQTT__
+ping       -__EXAMPLE_PING__
+psm        -__EXAMPLE_PSM__
+qt_adc     -__EXAMPLE_QT_ADC__
+qt_gps     -__EXAMPLE_QT_GPS__
+rtc        -__EXAMPLE_RTC__
+spi        -__EXAMPLE_SPI__
+ssl        -__EXAMPLE_SSL__
+task_create-__EXAMPLE_TASK_CREATE__
+tcp_client -__EXAMPLE_TCPCLIENT__
+tcp_server -__EXAMPLE_TCPSERVER__
+time       -__EXAMPLE_TIME__
+timer      -__EXAMPLE_TIMER__
+uart       -__EXAMPLE_UART__
+udp_client -__EXAMPLE_UDPCLIENT__
+udp_server -__EXAMPLE_UDPSERVER__
+usb_func   -__EXAMPLE_USB_FUNCTION__
