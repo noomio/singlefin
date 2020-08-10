@@ -1,0 +1,29 @@
+####################          Quectel BG96/BG36 SDK Package (V3.0-AUS) For QuecOpen Solution        ####################
+====================================================================================================================
+Version     :  Quectel_BG96_QuecOpen_SDK_Package_V3.0.0-AUS
+When        :  2018-5-2
+Who         :  Hyman Ding
+Match Kernel:  BG96
+ChangeLists :  Initial
+====================================================================================================================
+Version     :  Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS
+When        :  2019-12-5
+Who         :  Hyman Ding
+Match Kernel:  
+ChangeLists :  A. Optimize SDK Package framework.
+			   B. Integrate llvm and arm build scripts.
+			   C. Update relevant QAPIs to v2.
+               D. Add example of UDP client & UDP server.
+			   E. Add build script for Linux environment.
+			   F. Optimization for example of atc_sms.
+			   G. Optimization for example of device_info.
+			   H. Optimization for example of http.
+			   I. Optimization for example of i2c.
+			   J. Optimization for example of qt_gps.
+			   K. Optimization for example of tcp_client
+			   L. Optimization for example of tcp_server.
+			   M. Update the header files.
+			   N. Add example of disable USB function.
+               O. Add example of support analog SPI function.
+			   P. udpate the QAPI header files.
+====================================================================================================================
