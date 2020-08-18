@@ -139,7 +139,7 @@ pre-build:
 
 common: $(COMMON_SRC) 
 	@echo 'Building target: $@'
-	$(CC) $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -B$(OBJ_DIR) -Iinc -Isrc -I$(COMMON_INC) $(DAM_INCPATHS) $(COMMON_SRC) -c 
+	$(CC) $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I"$(COMMON_INC)" $(DAM_INCPATHS) $(COMMON_SRC) -c 
 	@echo 'Finished building target: $@'
 	@echo ' '
 
