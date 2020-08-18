@@ -1,3 +1,4 @@
 *.o
-ldscripts/*
+**/ldscripts/*_pp.S
+**/ldscripts/*.o
 bin/*
