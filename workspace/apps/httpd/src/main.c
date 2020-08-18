@@ -27,7 +27,7 @@ int main(void)
 	}
 
 	httpd_t *httpd_ctx = httpd_new(DSS_NET_IP,9999);
-	dss_ctx_t *dss_ctx = dss_new("m2m.permaconn2.net",NULL,NULL);
+	dss_ctx_t *dss_ctx = dss_new("telstra.internet",NULL,NULL);
 	dss_set_notify(dss_ctx,httpd_ctx);
 	dss_start(dss_ctx);
 
