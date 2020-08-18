@@ -5,11 +5,14 @@
  *      Author: Nikolas Karakotas
  */
 
-#ifndef TX_DEBUG_OPT_H_
-#define TX_DEBUG_OPT_H_
+#ifndef TX_USER_DEBUG_OPT_H
+#define TX_USER_DEBUG_OPT_H
 
 #include <debug.h>
 
+#undef MALLOC_DBG
+#undef ITF_DBG
+#undef DSS_DBG
 
 #ifndef TX_DBG_TYPES_ON
 #define TX_DBG_TYPES_ON               TX_DBG_ON
@@ -21,4 +24,4 @@
 
 #define TX_DBG			(TX_DBG_ON)
 
-#endif /* CORE_DEBUG_OPT_H_ */
+#endif /* TX_USER_DEBUG_OPT_H */

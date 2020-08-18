@@ -1,5 +1,4 @@
 
--include ../makefile.init
 
 RM := rm.exe -rf
 
@@ -95,32 +94,59 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
 
 OUTPUT_BIN = ./bin
 
+
 MALLOC = -Wl,--wrap,malloc \
 		 -Wl,--wrap,free \
 		 -Wl,--wrap,realloc \
 		 -Wl,--wrap,calloc
 
 PRINTF = -Wl,--wrap,printf \
+		 -Wl,--wrap,puts \
+	#	 -Wl,--wrap,snprintf \
+	#	 -Wl,--wrap,sprintf \
+	#	 -Wl,--wrap,vsnprintf
+
+GETX = -Wl,--wrap,getchar \
+	   -Wl,--wrap,gets	
+
+
+USER_OPTS = -DTX_DEBUG -DTX_USER_DEBUG_OPT=\"../../blinky/inc/user_debug_opt.h\" -DTX_MALLOC_MEM_SIZE=512
 
 COMMON_INC = "../common/inc"
-USER_OPTS := -DTX_DEBUG
+
+COMMON_SRC = ../common/src/retarget.c \
+../common/src/malloc.c \
+../common/src/stubs.c \
+
+COMMON_OBJS :=./retarget.o \
+./malloc.o \
+./stubs.o \
+
+
 
 # All Target
-all: pre-build blinky.elf blinky.bin
+all: pre-build common blinky.elf blinky.bin
 
 # Tool invocations
+
 
 
 pre-build:
 	@echo 'Preamble LLVM...'
 	$(CC) -E $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm.S > $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S
 	$(CC) -c $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S -o $(DAM_LD_PATH)/txm_module_preamble_llvm.o
-	
 
-blinky.elf: $(OBJS) $(USER_OBJS)
+
+common: $(COMMON_SRC) 
 	@echo 'Building target: $@'
+	$(CC) $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -B$(OBJ_DIR) -Iinc -Isrc -I$(COMMON_INC) $(DAM_INCPATHS) $(COMMON_SRC) -c 
+	@echo 'Finished building target: $@'
+	@echo ' '
+
+
+blinky.elf: $(OBJS)
 	@echo 'Invoking: Cross LLVM C++ Linker'
-	$(CXX) -d -o  $(OUTPUT_BIN)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(COMMON_OBJS) $(PRINTF) $(MALLOC) -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(OUTPUT_BIN)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
+	$(CXX) -d -o  $(OUTPUT_BIN)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(GETX) $(PRINTF) $(MALLOC)  -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(OUTPUT_BIN)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(COMMON_OBJS) $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -134,8 +160,6 @@ blinky.bin:
 	@echo 'Building target: $@'
 	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(OUTPUT_BIN)/$(patsubst '%.bin','%.elf','$@') --output $(OUTPUT_BIN)/$@
 
-.PHONY: all clean dependents
+.PHONY: all clean 
 .SECONDARY:
 
-
--include ../makefile.targets

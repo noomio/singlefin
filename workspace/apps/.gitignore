@@ -1,3 +1,3 @@
-blinky/src/*.o
+*.o
 ldscripts/*
 bin/*

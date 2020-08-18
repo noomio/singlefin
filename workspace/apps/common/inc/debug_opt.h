@@ -9,7 +9,7 @@
 #define TX_DEBUG_OPT_H_
 
 #ifdef TX_USER_DEBUG_OPT
-#include "user_debug_opt.h"
+#include TX_USER_DEBUG_OPT
 #endif
 
 #ifndef MALLOC_DBG
