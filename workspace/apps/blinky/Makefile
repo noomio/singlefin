@@ -153,7 +153,7 @@ blinky.elf: $(OBJS)
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(ARCHIVES)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS) $(DAM_LD_PATH)/*.o $(DAM_LD_PATH)/*_pp.S
+	-$(RM) $(OBJS)$(ARCHIVES)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS) $(COMMON_OBJS) $(DAM_LD_PATH)/*.o $(DAM_LD_PATH)/*_pp.S
 	-@echo ' '
 
 blinky.bin:
