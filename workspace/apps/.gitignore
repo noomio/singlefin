@@ -2,3 +2,4 @@
 **/ldscripts/*_pp.S
 **/ldscripts/*.o
 **/bin/*
+**/*.o
