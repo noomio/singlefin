@@ -1,4 +1,4 @@
 *.o
 **/ldscripts/*_pp.S
 **/ldscripts/*.o
-bin/*
+**/bin/*
