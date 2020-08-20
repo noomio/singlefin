@@ -52,13 +52,13 @@ CXX_FLAGS = -target armv7m-none-musleabi \
 			-Wl,-mno-unaligned-access -fuse-baremetal-sysroot -fno-use-baremetal-crt
 AR = 
 CC =  "$(LLVM)/bin/clang.exe"
+CLI_TOOL = "$(TOOL_PATH_ROOT)/cli-user-app-load.ps1"
 else
 SDK_PATH_ROOT =
 LLVM = 
 CXX = $(LLVM)
 AR = $(LLVM)
 CC =  $(LLVM)
-CLI_TOOL = $(TOOL_PATH_ROOT)/cli-user-app-load.ps1 
 endif
 
 DAM_COPTIONS = 	-DQAPI_TXM_MODULE \
@@ -132,7 +132,7 @@ all: pre-build common blinky.elf blinky.bin
 
 load:
 	@echo 'Loading to target...' 
-	$(CLI_TOOL) -BinPath '.\bin' -BinFile $(TARGET_NAME).bin -ResetTarget $True
+	powershell -command $(CLI_TOOL) -BinPath "${CURDIR}/bin" -BinFile "$(TARGET_NAME).bin" -ResetTarget $$True
 
 pre-build:
 	@echo 'Preamble LLVM...'
