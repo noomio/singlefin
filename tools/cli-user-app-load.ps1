@@ -1,14 +1,17 @@
- param (
-    #[Parameter(Mandatory=$true)][string]$FileName = "blinky.bin",
-    [string]$BinFile = $(throw "BinFile parameter is required."),
-    [string]$BinPath = $(throw "BinPath parameter is required."),
-    [string]$IniFile = "oem_app_path.ini",
-    [Int]$Timeout = 60,
-    [Int]$Ack = 0,
-    [string]$ComPort = "",
-    [bool]$ResetTarget=$false
- )
+# Author: Nikolas Karakotas
+param (
+	#[Parameter(Mandatory=$true)][string]$FileName = "blinky.bin",
+	[string]$BinFile = $(throw "BinFile parameter is required."),
+	[string]$BinPath = $(throw "BinPath parameter is required."),
+	[string]$IniFile = "oem_app_path.ini",
+	[Int]$Timeout = 60,
+	[Int]$Ack = 0,
+	[string]$ComPort = "",
+	[bool]$ResetTarget=$false
+)
 
+
+# .\cli-user-app-load.ps1 -BinPath '..\workspace\apps\blinky\bin' -BinFile blinky.bin -ResetTarget $True
 
 function Send {
 	param($port, $command, $file, $binary=$false, $commandonly=$false)
@@ -116,7 +119,11 @@ if($serial_port.Count -eq 1){
 			if($ResetTarget){
 				Write-Host 'Reseting Target...'
 				$port.WriteLine($at_cmd_reset)
-				start-sleep -m 250
+				$port.ReadLine()
+				$port.DiscardOutBuffer()
+				$port.DiscardInBuffer()
+				$port.Dispose() 
+				$port.Close()
 				exit 0
 			}
 			
@@ -127,7 +134,7 @@ if($serial_port.Count -eq 1){
 	        	exit 1
     	}finally{
 
-    		$port.close()
+    		$port.Close()
     	}
     }
 
