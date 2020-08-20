@@ -58,6 +58,7 @@ LLVM =
 CXX = $(LLVM)
 AR = $(LLVM)
 CC =  $(LLVM)
+CLI_TOOL = $(TOOL_PATH_ROOT)/cli-user-app-load.ps1 
 endif
 
 DAM_COPTIONS = 	-DQAPI_TXM_MODULE \
@@ -122,14 +123,16 @@ COMMON_OBJS :=./retarget.o \
 ./malloc.o \
 ./stubs.o \
 
-
+TARGET_NAME = blinky
 
 # All Target
 all: pre-build common blinky.elf blinky.bin
 
 # Tool invocations
 
-
+load:
+	@echo 'Loading to target...' 
+	$(CLI_TOOL) -BinPath '.\bin' -BinFile $(TARGET_NAME).bin -ResetTarget $True
 
 pre-build:
 	@echo 'Preamble LLVM...'
@@ -144,7 +147,7 @@ common: $(COMMON_SRC)
 	@echo ' '
 
 
-blinky.elf: $(OBJS)
+$(TARGET_NAME).elf: $(OBJS)
 	@echo 'Invoking: Cross LLVM C++ Linker'
 	$(CXX) -d -o  $(OUTPUT_BIN)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(GETX) $(PRINTF) $(MALLOC)  -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(OUTPUT_BIN)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(COMMON_OBJS) $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
 	@echo 'Finished building target: $@'
@@ -156,7 +159,7 @@ clean:
 	-$(RM) $(OBJS)$(ARCHIVES)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS) $(COMMON_OBJS) $(DAM_LD_PATH)/*.o $(DAM_LD_PATH)/*_pp.S
 	-@echo ' '
 
-blinky.bin:
+$(TARGET_NAME).bin:
 	@echo 'Building target: $@'
 	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(OUTPUT_BIN)/$(patsubst '%.bin','%.elf','$@') --output $(OUTPUT_BIN)/$@
 
