@@ -5,7 +5,8 @@
     [string]$IniFile = "oem_app_path.ini",
     [Int]$Timeout = 60,
     [Int]$Ack = 0,
-    [string]$ComPort = ""
+    [string]$ComPort = "",
+    [bool]$ResetTarget=$false
  )
 
 
@@ -15,12 +16,12 @@ function Send {
 	$port.WriteLine($command)
 	start-sleep -m 250
 	$resp = $port.ReadExisting()
-	Write-Output $resp
+	Write-Host $resp
 
 
 	if($resp -match 'CONNECT' -and $commandonly -eq $false ){
-		Write-Output 'Received CONNECT'
-		Write-Output 'Uploading File...'
+		Write-Host 'Received CONNECT'
+		Write-Host 'Uploading File...'
 		if($binary){
 			$Start = 0
 			$Length = 0
@@ -44,14 +45,14 @@ function Send {
 
 
 		$resp = $port.ReadLine()
-		Write-Output $resp
+		Write-Host $resp
 		$resp = $port.ReadLine()
-		Write-Output $resp
+		Write-Host $resp
 		$resp = $port.ReadLine()
-		Write-Output $resp
+		Write-Host $resp
 
 		if($resp -match 'OK'){
-			Write-Output 'Upload completed!'
+			Write-Host 'Upload completed!'
 			return $true
 		}else{
 			return $false
@@ -88,6 +89,8 @@ $at_cmd_file_delete = 'AT+QFDEL=' + '"' +$datatxbinfile + '"' + "`r"
 $at_cmd_ini_upload = 'AT+QFUPL=' + '"' +$datatxinifile + '"' + ',' + $inifilesize + ',' + $Timeout + ',' + $Ack + "`r"
 $at_cmd_ini_delete = 'AT+QFDEL=' + '"' +$datatxinifile + '"' + "`r"
 
+$at_cmd_reset = "AT+CFUN=1,1`r"
+
 
 if($serial_port.Count -eq 1){
 	if($serial_port[0] -match '(COM\d+)'){
@@ -109,12 +112,19 @@ if($serial_port.Count -eq 1){
 				$resp = Send -Port $port -Command $at_cmd_ini_delete -File $fileini -CommandOnly $true
 				$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
 			}
+
+			if($ResetTarget){
+				Write-Host 'Reseting Target...'
+				$port.WriteLine($at_cmd_reset)
+				start-sleep -m 250
+				exit 0
+			}
 			
 		}catch [System.Exception]{
         	Write-Error ("Failed to connect : " + $_)
 	        $error[0] | Format-List -Force
 	        if ($port -ne $null) { $port.Close() }
-	        exit 1
+	        	exit 1
     	}finally{
 
     		$port.close()
