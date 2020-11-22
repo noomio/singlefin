@@ -2,37 +2,6 @@
 
 RM := rm.exe -rf
 
-# All of the sources participating in the build are defined here
--include sources.mk
--include subdir.mk
--include objects.mk
-
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(strip $(CC_DEPS)),)
--include $(CC_DEPS)
-endif
-ifneq ($(strip $(C++_DEPS)),)
--include $(C++_DEPS)
-endif
-ifneq ($(strip $(C_UPPER_DEPS)),)
--include $(C_UPPER_DEPS)
-endif
-ifneq ($(strip $(CXX_DEPS)),)
--include $(CXX_DEPS)
-endif
-ifneq ($(strip $(ASM_DEPS)),)
--include $(ASM_DEPS)
-endif
-ifneq ($(strip $(S_UPPER_DEPS)),)
--include $(S_UPPER_DEPS)
-endif
-ifneq ($(strip $(C_DEPS)),)
--include $(C_DEPS)
-endif
-ifneq ($(strip $(CPP_DEPS)),)
--include $(CPP_DEPS)
-endif
-endif
 
 ifeq ($(OS),Windows_NT)
 SDK_PATH_ROOT = ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK
@@ -154,7 +123,14 @@ common: $(COMMON_SRC)
 $(TARGET_NAME): $(BUILDDIR)/$(TARGET_NAME).elf
 $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	@echo 'Invoking: Cross LLVM C++ Linker'
-	$(CXX) -d -o $@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(GETX) $(PRINTF) $(MALLOC)  -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(COMMON_OBJS) $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
+	$(CXX) -d -o $@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) \
+	$(DAM_LD_PATH)/txm_module_preamble_llvm.o \
+	$(GETX) $(PRINTF) $(MALLOC)  \
+	-Wl,-T $(DAM_LD_PATH)/sections.ld \
+	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
+	-Wl,-gc-sections \
+	$(COMMON_OBJS) $(OBJS) \
+	$(DAM_LIB_PATH)/*.lib -lm -lc -lonnx
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -162,7 +138,7 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 $(BUILDDIR)/%.o:%.c
 	@$(MKDIR) -p $(dir $@)
 	@echo 'Building target: $@'
-	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) $(INCDIR) $(DAM_INCPATHS) $^ 
+	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) $(DAM_INCPATHS) $^ 
 	@echo 'Finished building target: $@'
 	@echo ' '
 
