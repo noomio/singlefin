@@ -79,7 +79,7 @@ GETX = -Wl,--wrap,getchar \
 	   -Wl,--wrap,gets	
 
 
-USER_OPTS = -DTX_DEBUG -DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" -DTX_MALLOC_MEM_SIZE=512
+USER_OPTS = -DTX_DEBUG -DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" -DTX_MALLOC_MEM_SIZE=512*3
 
 COMMON_INC = "../common/inc"
 

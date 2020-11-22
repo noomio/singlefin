@@ -5618,7 +5618,7 @@ PADDING_ALIGNMENT	0x430c854c	0x4	0x0
 	Image$$ER_RW$$Limit(0x430c85f4) = .( 0x430c85f4 );
 Image$$ER_RW$$Length(0x35c) = Image$$ER_RW$$Limit( 0x430c85f4 ) - Image$$ER_RW$$Base( 0x430c8298 );
 
-ER_ZI	0x430c85f8	0xa1af0 # Offset: 0xc8654, LMA: 0x430c85f8
+ER_ZI	0x430c85f8	0x1a1af0 # Offset: 0xc8654, LMA: 0x430c85f8
 	Image$$ER_ZI$$Base(0x430c85f8) = .( 0x430c85f8 );
 *(.bss* .bss.* .common COMMON )
 	0x430c85f8	0x20000	./retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
@@ -5653,11 +5653,11 @@ ER_ZI	0x430c85f8	0xa1af0 # Offset: 0xc8654, LMA: 0x430c85f8
 	0x430ea0a0		__libc
 .bss	0x430ea0e0	0x4	./retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
 	0x430ea0e0		handle
-.bss	0x430ea0e4	0x80004	./malloc.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
+.bss	0x430ea0e4	0x180004	./malloc.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
 	0x430ea0e4		byte_malloc_mem_pool
 	0x430ea0e8		mem
-	Image$$ER_ZI$$Limit(0x4316a0e8) = .( 0x4316a0e8 );
-Image$$ER_ZI$$ZI$$Length(0xa1af0) = Image$$ER_ZI$$Limit( 0x4316a0e8 ) - Image$$ER_ZI$$Base( 0x430c85f8 );
+	Image$$ER_ZI$$Limit(0x4326a0e8) = .( 0x4326a0e8 );
+Image$$ER_ZI$$ZI$$Length(0x1a1af0) = Image$$ER_ZI$$Limit( 0x4326a0e8 ) - Image$$ER_ZI$$Base( 0x430c85f8 );
 
 .debug	0x0	0x0 # Offset: 0x0
 
