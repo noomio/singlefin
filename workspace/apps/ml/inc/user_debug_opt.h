@@ -10,7 +10,7 @@
 
 #include <debug.h>
 
-#undef MALLOC_DBG
+//#undef MALLOC_DBG
 #undef ITF_DBG
 #undef DSS_DBG
 

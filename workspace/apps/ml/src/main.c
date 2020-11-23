@@ -1,5 +1,5 @@
 #include <onnx.h>
-
+#include <qapi_timer.h>
 
 static const unsigned char mnist_onnx[] = {
 	0x08, 0x03, 0x12, 0x04, 0x43, 0x4e, 0x54, 0x4b, 0x1a, 0x05, 0x32, 0x2e,
@@ -2246,10 +2246,22 @@ int main(int argc, char * argv[])
 	struct onnx_tensor_t * input;
 	struct onnx_tensor_t * output;
 
+	puts("ONNX example\r\n");
+
+	printf("sizeof(mnist_onnx)=%u\r\n",sizeof(mnist_onnx));
+
+
 	/*
 	 * Alloc onnx context from buffer
 	 */
 	ctx = onnx_context_alloc(mnist_onnx, sizeof(mnist_onnx), NULL, 0);
+	
+	if(ctx)
+		puts("ONNX ctx allocated\r\n");
+	else
+		puts("ONNX ctx not allocated\r\n");
+
+
 	if(ctx)
 	{
 		/*
@@ -2290,5 +2302,10 @@ int main(int argc, char * argv[])
 		 */
 		onnx_context_free(ctx);
 	}
-	return 0;
+
+	for(;;){
+		
+		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
+
+	}
 }
