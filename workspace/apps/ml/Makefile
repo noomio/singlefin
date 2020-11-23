@@ -11,7 +11,6 @@ ifeq ($(OS),Windows_NT)
 	CXX = "$(LLVM)/bin/clang++.exe"
 	CXX_FLAGS = -target armv7m-none-musleabi \
 				-fuse-ld=qcld \
-				-lc++ \
 				-Wl,-mno-unaligned-access -fuse-baremetal-sysroot -fno-use-baremetal-crt
 	AR = 
 	CC =  "$(LLVM)/bin/clang.exe"
@@ -38,8 +37,8 @@ DAM_COPTIONS = 	-DQAPI_TXM_MODULE \
 
 DAM_CFLAGS = 	-marm \
 				-target armv7m-none-musleabi \
-				-mfloat-abi=softfp \
-				-mfpu=none \
+				-mfloat-abi=hard \
+				-mfpu=vfpv3-d16 \
 				-mcpu=cortex-a7 \
 				-mno-unaligned-access  \
 				-fms-extensions \
@@ -75,12 +74,16 @@ GETX = -Wl,--wrap,getchar \
 TARGET_NAME = ml
 BUILDDIR = out
 
-USER_OPTS = -DTX_DEBUG -DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" -DTX_MALLOC_MEM_SIZE=1024
+USER_OPTS = -DTX_DEBUG \
+			-DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" \
+			-DTX_MALLOC_MEM_SIZE=512 \
+			-DMALLOC_FREE_INLINE
 
 COMMON_INC = ../common/inc
 
 COMMON_SRC = common/src/retarget.c \
 common/src/malloc.c \
+common/src/memalign.c \
 common/src/stubs.c \
 
 
@@ -112,7 +115,7 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
 	-Wl,-gc-sections \
 	$(OBJS) \
-	$(DAM_LIB_PATH)/*.lib -lm -lc -lonnx
+	$(DAM_LIB_PATH)/*.lib -lm -lonnx
 	@echo 'Finished building target: $@'
 	@echo ' '
 

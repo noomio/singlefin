@@ -733,6 +733,7 @@ static struct onnx_tensor_t * onnx_tensor_alloc_from_value_info(Onnx__ValueInfoP
 		if(ndim > 0)
 		{
 			dims = malloc(sizeof(int) * ndim);
+			puts("malloc(sizeof(int) * ndim);\r\n");
 			if(dims)
 			{
 				for(i = 0; i < ndim; i++)
@@ -751,6 +752,7 @@ static struct onnx_tensor_t * onnx_tensor_alloc_from_value_info(Onnx__ValueInfoP
 				}
 			}
 		}
+		puts("t = onnx_tensor_alloc(v->name, type, dims, ndim);\r\n");
 		t = onnx_tensor_alloc(v->name, type, dims, ndim);
 		if(dims)
 			free(dims);
@@ -1145,6 +1147,7 @@ struct onnx_context_t * onnx_context_alloc(const void * buf, size_t len, struct 
 	}
 
 	ctx->map = hmap_alloc(0);
+	puts("hmap_alloc\r\n");
 	if(!ctx->map)
 	{
 		if(ctx->rctx)
@@ -1159,25 +1162,29 @@ struct onnx_context_t * onnx_context_alloc(const void * buf, size_t len, struct 
 			free(ctx);
 		return NULL;
 	}
-
+	puts("ctx->model->graph->n_input;\r\n");
 	for(i = 0; i < ctx->model->graph->n_input; i++)
 	{
 		v = ctx->model->graph->input[i];
 		if(!onnx_tensor_search(ctx, v->name))
 		{
+			puts("!onnx_tensor_search(ctx, v->name)\r\n");
 			t = onnx_tensor_alloc_from_value_info(v);
+			puts("t = onnx_tensor_alloc_from_value_info(v);\r\n");
 			if(t)
 			{
 				for(j = 0; j < ctx->model->graph->n_initializer; j++)
 				{
+					puts("strcmp(ctx->model->graph->initializer[j]->name, t->name) == 0\r\n");
 					if(strcmp(ctx->model->graph->initializer[j]->name, t->name) == 0)
 						onnx_tensor_copy_from_tensor_proto(t, ctx->model->graph->initializer[j]);
 				}
+				puts("hmap_add(ctx->map, t->name, t);\r\n");
 				hmap_add(ctx->map, t->name, t);
 			}
 		}
 	}
-
+	puts("ctx->model->graph->n_output;\r\n");
 	for(i = 0; i < ctx->model->graph->n_output; i++)
 	{
 		v = ctx->model->graph->output[i];
@@ -1188,7 +1195,7 @@ struct onnx_context_t * onnx_context_alloc(const void * buf, size_t len, struct 
 				hmap_add(ctx->map, t->name, t);
 		}
 	}
-
+	puts("ctx->model->graph->n_value_info;\r\n");
 	for(i = 0; i < ctx->model->graph->n_value_info; i++)
 	{
 		v = ctx->model->graph->value_info[i];
@@ -1199,7 +1206,7 @@ struct onnx_context_t * onnx_context_alloc(const void * buf, size_t len, struct 
 				hmap_add(ctx->map, t->name, t);
 		}
 	}
-
+	puts("ctx->model->graph->n_node;\r\n");
 	for(i = 0; i < ctx->model->graph->n_node; i++)
 	{
 		for(j = 0; j < ctx->model->graph->node[i]->n_output; j++)
@@ -1213,7 +1220,7 @@ struct onnx_context_t * onnx_context_alloc(const void * buf, size_t len, struct 
 			}
 		}
 	}
-
+puts("ctx->model->graph->n_node; 2\r\n");
 	for(i = 0; i < ctx->model->graph->n_node; i++)
 	{
 		for(j = 0; j < ctx->model->graph->node[i]->n_input; j++)
@@ -1261,14 +1268,14 @@ struct onnx_context_t * onnx_context_alloc(const void * buf, size_t len, struct 
 			}
 		}
 	}
-
+puts("ctx->rlen;\r\n");
 	for(i = 0; i < ctx->rlen; i++)
 	{
 		ctx->r[i] = r[i];
 		if(r[i] && r[i]->create)
 			ctx->rctx[i] = r[i]->create();
 	}
-
+puts("ctx->rlen; 2\r\n");
 	for(i = 0; i < ctx->nlen; i++)
 	{
 		n = &ctx->nodes[i];
@@ -1508,11 +1515,13 @@ struct onnx_tensor_t * onnx_tensor_alloc(const char * name, enum onnx_tensor_typ
 		return NULL;
 
 	t = malloc(sizeof(struct onnx_tensor_t));
+	puts("t = malloc(sizeof(struct onnx_tensor_t));\r\n");
 	if(!t)
 		return NULL;
 	memset(t, 0, sizeof(struct onnx_tensor_t));
-
+	puts("t->name = strdup(name);\r\n");
 	t->name = strdup(name);
+	puts("onnx_tensor_reinit(t, type, dims, ndim);\r\n");
 	onnx_tensor_reinit(t, type, dims, ndim);
 	return t;
 }
@@ -1642,6 +1651,7 @@ void onnx_tensor_reinit(struct onnx_tensor_t * t, enum onnx_tensor_type_t type, 
 		t->type = type;
 		if(t->type != ONNX_TENSOR_TYPE_UNDEFINED)
 		{
+			puts("ONNX_TENSOR_TYPE_UNDEFINED\r\n");
 			if((ndim > 0) && dims)
 			{
 				for(i = 0; i < ndim; i++)
@@ -1663,7 +1673,9 @@ void onnx_tensor_reinit(struct onnx_tensor_t * t, enum onnx_tensor_type_t type, 
 					sz = onnx_tensor_type_sizeof(t->type);
 					if(sz > 0)
 					{
+						puts("t->datas = memalign(512, n * sz);\r\n");
 						t->datas = memalign(512, n * sz);
+						puts("if(t->datas)\r\n");
 						if(t->datas)
 						{
 							memset(t->datas, 0, n * sz);
@@ -1690,7 +1702,9 @@ void onnx_tensor_reinit(struct onnx_tensor_t * t, enum onnx_tensor_type_t type, 
 				sz = onnx_tensor_type_sizeof(t->type);
 				if(sz > 0)
 				{
+					puts("t->datas = memalign(512, n * sz);\r\n");
 					t->datas = memalign(512, sz);
+					puts("t->datas\r\n");
 					if(t->datas)
 					{
 						memset(t->datas, 0, sz);
@@ -2147,6 +2161,7 @@ void onnx_run(struct onnx_context_t * ctx)
 
 	if(ctx)
 	{
+
 		for(i = 0; i < ctx->nlen; i++)
 		{
 			n = &ctx->nodes[i];

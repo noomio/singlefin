@@ -34,14 +34,15 @@ typedef struct malloc_size{
 
 */
 
-static TX_BYTE_POOL *byte_malloc_mem_pool;
+TX_BYTE_POOL *byte_malloc_mem_pool;
 
 #ifndef TX_MALLOC_MEM_SIZE
 #define TX_MALLOC_MEM_SIZE 32
 #endif
 
+
 #define MALLOC_BYTE_POOL_SIZE 1024*TX_MALLOC_MEM_SIZE 
-static UCHAR mem[MALLOC_BYTE_POOL_SIZE];
+UCHAR malloc_mem[MALLOC_BYTE_POOL_SIZE];
 
 UINT memscpy
 (
@@ -66,7 +67,7 @@ qapi_Status_t malloc_byte_pool_init(void)
 	TX_ASSERT("malloc_byte_pool_init\r\n",ret == TX_SUCCESS);
 
 	/* Create byte_pool_dam */
-	ret = tx_byte_pool_create(byte_malloc_mem_pool, "malloc mem", mem, MALLOC_BYTE_POOL_SIZE);
+	ret = tx_byte_pool_create(byte_malloc_mem_pool, "malloc mem", malloc_mem, MALLOC_BYTE_POOL_SIZE);
 	TX_ASSERT("tx_byte_pool_create\r\n", ret == TX_SUCCESS);
 
 
@@ -94,6 +95,13 @@ void *__wrap_malloc(size_t size)
 		return NULL;
 	}
 
+#ifdef MALLOC_FREE_INLINE
+	uint32_t status = tx_byte_allocate(byte_malloc_mem_pool, (VOID **)&ptr, size, TX_NO_WAIT);
+	TX_ERROR(("malloc fail!\r\nMALLOC_BYTE_POOL_SIZE=%u\r\n",MALLOC_BYTE_POOL_SIZE), (status == TX_SUCCESS) , return NULL );
+
+	if(NULL != ptr)  
+		memset(ptr, 0, size);
+#else
 	uint32_t status = tx_byte_allocate(byte_malloc_mem_pool, (VOID **)&ptr, sizeof(malloc_size_t) + size, TX_NO_WAIT);
 
 	TX_ERROR(("malloc fail\r\nMALLOC_BYTE_POOL_SIZE=%u\r\n",MALLOC_BYTE_POOL_SIZE), (status == TX_SUCCESS) , return NULL );
@@ -107,7 +115,7 @@ void *__wrap_malloc(size_t size)
 		head->size = size;
 		ptr += sizeof(malloc_size_t);
 	}
-
+#endif
 
 	return ptr;
 }
@@ -121,11 +129,18 @@ void __wrap_free(void *ptr)
     	return;
   	}
 
+#ifdef MALLOC_FREE_INLINE
+  	status = tx_byte_release(ptr);  
+  	TX_ASSERT("free fail\r\n",status == TX_SUCCESS);
+#else
 	malloc_size_t *header = MALLOC_HEAD(ptr);
-	TX_ASSERT("header->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
-	TX_ASSERT("header->addr != ptr\r\n",header->addr == (uint32_t)ptr);
+	TX_ASSERT("free header->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
+	TX_ASSERT("free header->addr != ptr\r\n",header->addr == (uint32_t)ptr);
   	status = tx_byte_release(header);  
+  	TX_ASSERT("free header->addr != ptr\r\n",status == TX_SUCCESS);
   	header = NULL;
+#endif
+
   	ptr = NULL;
 }
 
@@ -140,6 +155,7 @@ void* __wrap_realloc (void* ptr, size_t size){
     
 	void *new = NULL;
 
+#ifndef MALLOC_FREE_INLINE
     if (!ptr) {
 		if(size == 0){
 			free(ptr);
@@ -162,14 +178,15 @@ void* __wrap_realloc (void* ptr, size_t size){
 			return NULL;
 
 		malloc_size_t *header = MALLOC_HEAD(ptr);
-		TX_ASSERT("header->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
-		TX_ASSERT("header->addr != ptr\r\n",header->addr == (uint32_t)ptr);
+		TX_ASSERT("realloc header->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
+		TX_ASSERT("realloc header->addr != ptr\r\n",header->addr == (uint32_t)ptr);
 		memcpy(new, ptr,header->size); 
 		header = MALLOC_HEAD(new);
-		TX_ASSERT("headernew->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
+		TX_ASSERT("realloc headernew->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
 		free(ptr);
 		ptr = NULL;
     }
+#endif
 
     return new;
 

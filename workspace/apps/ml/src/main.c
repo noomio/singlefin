@@ -2240,68 +2240,246 @@ static const float input_3[] = {
 	 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
 };
 
-int main(int argc, char * argv[])
+
+unsigned char __model_onnx[] = {
+	0x08, 0x03, 0x12, 0x0c, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2d,
+	0x74, 0x65, 0x73, 0x74, 0x3a, 0x42, 0x0a, 0x12, 0x0a, 0x01, 0x78, 0x12,
+	0x01, 0x79, 0x1a, 0x04, 0x74, 0x65, 0x73, 0x74, 0x22, 0x04, 0x53, 0x69,
+	0x67, 0x6e, 0x12, 0x0a, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x53, 0x69,
+	0x67, 0x6e, 0x5a, 0x0f, 0x0a, 0x01, 0x78, 0x12, 0x0a, 0x0a, 0x08, 0x08,
+	0x01, 0x12, 0x04, 0x0a, 0x02, 0x08, 0x07, 0x62, 0x0f, 0x0a, 0x01, 0x79,
+	0x12, 0x0a, 0x0a, 0x08, 0x08, 0x01, 0x12, 0x04, 0x0a, 0x02, 0x08, 0x07,
+	0x42, 0x02, 0x10, 0x09
+};
+unsigned int __model_onnx_len = 88;
+
+
+#include <txm_module.h>
+#include <onnx.h>
+
+struct profiler_t
 {
-	struct onnx_context_t * ctx;
-	struct onnx_tensor_t * input;
-	struct onnx_tensor_t * output;
+	uint64_t begin;
+	uint64_t end;
+	uint64_t elapsed;
+	uint64_t count;
+};
 
-	puts("ONNX example\r\n");
+static inline uint64_t time_get(void)
+{
+	//struct timeval time;
 
-	printf("sizeof(mnist_onnx)=%u\r\n",sizeof(mnist_onnx));
+	//gettimeofday(&time, 0);
+	//return (uint64_t)(time.tv_sec * 1000000000ULL + time.tv_usec * 1000);
+	return tx_time_get();
+}
 
+static struct hmap_t * profiler_alloc(int size)
+{
+	return hmap_alloc(size);
+}
 
-	/*
-	 * Alloc onnx context from buffer
-	 */
-	ctx = onnx_context_alloc(mnist_onnx, sizeof(mnist_onnx), NULL, 0);
-	
-	if(ctx)
-		puts("ONNX ctx allocated\r\n");
-	else
-		puts("ONNX ctx not allocated\r\n");
+static void hmap_entry_callback(struct hmap_entry_t * e)
+{
+	if(e && e->value)
+		free(e->value);
+}
 
+static void profiler_free(struct hmap_t * m)
+{
+	hmap_free(m, hmap_entry_callback);
+}
+
+static struct profiler_t * profiler_search(struct hmap_t * m, const char * name)
+{
+	struct profiler_t * p = NULL;
+
+	if(m && name)
+	{
+		p = hmap_search(m, name);
+		if(!p)
+		{
+			p = malloc(sizeof(struct profiler_t));
+			if(p)
+			{
+				p->begin = 0;
+				p->end = 0;
+				p->elapsed = 0;
+				p->count = 0;
+				hmap_add(m, name, p);
+			}
+		}
+	}
+	return p;
+}
+
+static inline void profiler_begin(struct profiler_t * p)
+{
+	if(p)
+		p->begin = time_get();
+}
+
+static inline void profiler_end(struct profiler_t * p)
+{
+	if(p)
+	{
+		p->end = time_get();
+		p->elapsed += p->end - p->begin;
+		p->count++;
+	}
+}
+
+static void profiler_dump(struct hmap_t * m)
+{
+	struct hmap_entry_t * e;
+	struct profiler_t * p;
+
+	if(m)
+	{
+		puts("Profiler analysis:\r\n");
+		hmap_sort(m);
+		hmap_for_each_entry(e, m)
+		{
+			p = (struct profiler_t *)e->value;
+		    printf("%-32s %ld %12.3f(us)\r\n", e->key, p->count, (p->count > 0) ? ((double)p->elapsed / 1000.0f) / (double)p->count : 0);
+		}
+	}
+}
+
+static void onnx_run_benchmark(struct onnx_context_t * ctx, int count)
+{
+	struct onnx_node_t * n;
+	struct hmap_t * m;
+	struct profiler_t * p;
+	char name[256];
+	int len, i;
 
 	if(ctx)
 	{
-		/*
-		 * Dump onnx context
-		 */
-		onnx_context_dump(ctx, 0);
-
-		/*
-		 * Get input tensor by name
-		 */
-		input = onnx_tensor_search(ctx, "Input3");
-
-		/*
-		 * Get output tensor by name
-		 */
-		output = onnx_tensor_search(ctx, "Plus214_Output_0");
-
-		/*
-		 * Fill some data to input tensor
-		 */
-		onnx_tensor_apply(input, (void *)input_3, sizeof(input_3));
-
-		/*
-		 * Dump input tensor
-		 */
-		onnx_tensor_dump(input, 1);
-
-		/* Run inference */
-		onnx_run(ctx);
-
-		/*
-		 * Dump output tensor
-		 */
-		onnx_tensor_dump(output, 1);
-
-		/*
-		 * Free onnx context
-		 */
-		onnx_context_free(ctx);
+		m = profiler_alloc(0);
+		if(m){
+			while(count-- > 0)
+			{
+				for(i = 0; i < ctx->nlen; i++)
+				{
+					n = &ctx->nodes[i];
+					len = sprintf(name, "%s-%d", n->proto->op_type, n->opset);
+					len += sprintf(name + len, "%*s", 24 - len, n->r->name);
+					p = profiler_search(m, name);
+					profiler_begin(p);
+					if(n->reshape(n))
+						n->operator(n);
+					profiler_end(p);
+				}
+			}
+			profiler_dump(m);
+			profiler_free(m);
+		}
 	}
+}
+
+#define  LINEBUF_SIZE       256
+
+int main(int argc, char * argv[])
+{
+	struct onnx_context_t * ctx = NULL;
+	struct onnx_tensor_t * input;
+	struct onnx_tensor_t * output;
+
+	char *buffer = (char *) malloc(LINEBUF_SIZE);
+
+	int retval = 0;
+	int rc;
+	int got_eof = 0;
+
+	while (!got_eof) {
+		size_t idx = 0;
+
+		puts("\n$> ");
+
+		for (;;) {
+			int c = getchar();
+			putchar(c);
+
+			if (c == EOF) {
+				got_eof = 1;
+				break;
+			} else if (c == '\n' || c == '\r') {
+				break;
+			} else if (idx >= LINEBUF_SIZE) {
+				//fprintf(stderr, "line too long\n");
+				//fflush(stderr);
+				//retval = -1;
+				break;
+			} else {
+				buffer[idx++] = (char) c;
+			}
+		}
+
+		if(strcmp(buffer,"run") == 0){
+
+			/*
+			 * Alloc onnx context from buffer
+			 */
+			ctx = onnx_context_alloc(mnist_onnx, sizeof(mnist_onnx), NULL, 0);
+			
+			if(ctx){
+				/*
+				 * Dump onnx context
+				 */
+				//onnx_context_dump(ctx, 0);
+
+				/*
+				 * Get input tensor by name
+				 */
+				input = onnx_tensor_search(ctx, "Input3");
+
+				/*
+				 * Get output tensor by name
+				 */
+				output = onnx_tensor_search(ctx, "Plus214_Output_0");
+
+				/*
+				 * Fill some data to input tensor
+				 */
+				onnx_tensor_apply(input, (void *)input_3, sizeof(input_3));
+
+				/*
+				 * Dump input tensor
+				 */
+				//onnx_tensor_dump(input, 0);
+
+				/* Run inference */
+				onnx_run(ctx);
+
+				/*
+				 * Dump output tensor
+				 */
+				//onnx_tensor_dump(output, 0);
+
+				/*
+				 * Free onnx context
+				 */
+				onnx_context_free(ctx);
+
+			}
+
+		}else if(strcmp(buffer,"b") == 0){
+
+			int count = 1;
+			ctx = onnx_context_alloc(__model_onnx, __model_onnx_len, NULL, 0);
+			if(ctx)
+			{
+				onnx_context_dump(ctx, 0);
+				onnx_run_benchmark(ctx, count);
+				onnx_context_free(ctx);
+			}
+		}
+
+	}
+
+
+	
 
 	for(;;){
 		

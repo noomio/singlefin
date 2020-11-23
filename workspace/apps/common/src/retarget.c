@@ -78,7 +78,7 @@ char tracef_thread_mem[TRACEF_THREAD_BYTE_POOL_SIZE];
 static void tracef_thread(ULONG param);
 
 #ifndef TX_TRACEF_STR_BUFF_SIZE
-#define TX_TRACEF_STR_BUFF_SIZE 2048
+#define TX_TRACEF_STR_BUFF_SIZE 2048*1
 #elif TX_TRACEF_STR_BUFF_SIZE < 128
 #error "TX_TRACEF_STR_BUFF_SIZE < 128"
 #endif
@@ -162,7 +162,7 @@ static void tracef_thread(ULONG param){
 	 			msg.str = NULL;
  			}
 
- 			//tx_thread_relinquish();
+ 			tx_thread_relinquish();
  		}
 
 	}
@@ -206,6 +206,7 @@ int __wrap_puts(const char *s){
 			strncpy((char*)msg.str,s,msg.len); 
 			msg.str[TX_TRACEF_STR_BUFF_SIZE-1] = '\0';
 			tx_queue_send(tracef_msg_queue,&msg,TX_NO_WAIT);
+			tx_thread_sleep(1);
 		}
 
 		len -= msg.len;
@@ -235,7 +236,8 @@ int __wrap_printf(const char *format, ...){
 		msg.len = vsnprintf( (char*)msg.str, (size_t)TX_TRACEF_STR_BUFF_SIZE, format, ap );
 		va_end( ap );
 
-		tx_queue_send(tracef_msg_queue,&msg,TX_NO_WAIT);
+		tx_queue_send(tracef_msg_queue,&msg,100);
+		tx_thread_sleep(1);
 	}
 
 
