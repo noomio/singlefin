@@ -2341,7 +2341,10 @@ static void profiler_dump(struct hmap_t * m)
 		hmap_for_each_entry(e, m)
 		{
 			p = (struct profiler_t *)e->value;
-		    printf("%-32s %lld %.3f(us)\r\n", e->key, p->count, (p->count > 0) ? ((double)p->elapsed / 1000.0f) / (double)p->count : 0);
+		    printf("%-32s %llu %llu(ticks)\r\n", 
+		    	e->key, 
+		    	p->count, 
+		    	(p->count > 0) ? (p->elapsed) / p->count : 0);
 		}
 	}
 }
@@ -2393,6 +2396,7 @@ int main(int argc, char * argv[])
 	int got_eof = 0;
 	size_t idx = 0;
 
+
 	while (!got_eof) {
 		
 		idx=0;
@@ -2426,7 +2430,7 @@ int main(int argc, char * argv[])
 			 * Alloc onnx context from buffer
 			 */
 			ctx = onnx_context_alloc(mnist_onnx, sizeof(mnist_onnx), NULL, 0);
-			printf("%p\r\n",ctx);
+
 			
 			if(ctx){
 				/*
@@ -2460,7 +2464,7 @@ int main(int argc, char * argv[])
 				/*
 				 * Dump output tensor
 				 */
-				onnx_tensor_dump(output, 0);
+				onnx_tensor_dump(output, 1);
 
 				/*
 				 * Free onnx context
@@ -2472,10 +2476,9 @@ int main(int argc, char * argv[])
 		}else if(strcmp(terminal_input,"benchmark") == 0){
 
 			ctx = onnx_context_alloc(__model_onnx, __model_onnx_len, NULL, 0);
-			printf("%p\r\n",ctx);
+
 			if(ctx)
 			{
-				onnx_context_dump(ctx, 0);
 				onnx_run_benchmark(ctx, 1);
 				onnx_context_free(ctx);
 			}

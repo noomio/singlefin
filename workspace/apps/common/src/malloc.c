@@ -197,10 +197,12 @@ void* __wrap_realloc (void* ptr, size_t size){
 
 }
 
+/*
+* Ignore alignment 
+*/
 void *memalign(size_t align, size_t len)
 {
-	void* ptr;
-	ptr = malloc(len);
+	void* ptr = malloc(len);
 	return ptr;
 }
 
