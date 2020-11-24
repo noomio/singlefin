@@ -19,6 +19,7 @@ extern int main(void);
 extern qapi_Status_t malloc_byte_pool_init(void);
 static void init_debug(void);
 
+extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
 
  __attribute__ ((noreturn)) int task_main_entry(void){
 
@@ -72,7 +73,7 @@ TX_THREAD* tracef_thread_handle;
 void *tracef_thread_stack;
 #define TRACEF_THREAD_STACK_SIZE			2*1024
 TX_BYTE_POOL *tracef_thread_byte_pool;
-#define TRACEF_THREAD_BYTE_POOL_SIZE		6*1024
+#define TRACEF_THREAD_BYTE_POOL_SIZE		4*1024
 char tracef_thread_mem[TRACEF_THREAD_BYTE_POOL_SIZE];
 
 static void tracef_thread(ULONG param);
@@ -183,6 +184,10 @@ int putchar(int character){
 		return -1;
 }
 
+int _putchar(int character){
+	return putchar(character);
+}
+
 int __wrap_puts(const char *s){
 
 	tracef_msg_t msg;
@@ -204,7 +209,7 @@ int __wrap_puts(const char *s){
 			if(len > TX_TRACEF_STR_BUFF_SIZE)
 				msg.len = TX_TRACEF_STR_BUFF_SIZE-1;
 			strncpy((char*)msg.str,s,msg.len); 
-			msg.str[TX_TRACEF_STR_BUFF_SIZE-1] = '\0';
+			msg.str[TX_TRACEF_STR_BUFF_SIZE] = '\0';
 			tx_queue_send(tracef_msg_queue,&msg,TX_NO_WAIT);
 			tx_thread_sleep(1);
 		}
@@ -233,10 +238,10 @@ int __wrap_printf(const char *format, ...){
 	if(tx_block_allocate(pool, (VOID **) &msg.str,TX_WAIT_FOREVER) == TX_SUCCESS){
 		msg.str[0] = '\0';
 		va_start( ap, format );
-		msg.len = vsnprintf( (char*)msg.str, (size_t)TX_TRACEF_STR_BUFF_SIZE, format, ap );
+		msg.len = vsnprintf_( (char*)msg.str, (size_t)TX_TRACEF_STR_BUFF_SIZE, format, ap );
 		va_end( ap );
 
-		tx_queue_send(tracef_msg_queue,&msg,100);
+		tx_queue_send(tracef_msg_queue,&msg,TX_WAIT_FOREVER);
 		tx_thread_sleep(1);
 	}
 

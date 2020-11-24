@@ -42,7 +42,11 @@ TX_BYTE_POOL *byte_malloc_mem_pool;
 
 
 #define MALLOC_BYTE_POOL_SIZE 1024*TX_MALLOC_MEM_SIZE 
-UCHAR malloc_mem[MALLOC_BYTE_POOL_SIZE];
+/* 
+*	In libc's malloc(x), the function is said to return 
+*  	a pointer to a memory region of at least x bytes and the pointer is aligned to 8 bytes
+*/
+UCHAR mem_heap[MALLOC_BYTE_POOL_SIZE] __attribute__ ((aligned (8)));
 
 UINT memscpy
 (
@@ -67,7 +71,7 @@ qapi_Status_t malloc_byte_pool_init(void)
 	TX_ASSERT("malloc_byte_pool_init\r\n",ret == TX_SUCCESS);
 
 	/* Create byte_pool_dam */
-	ret = tx_byte_pool_create(byte_malloc_mem_pool, "malloc mem", malloc_mem, MALLOC_BYTE_POOL_SIZE);
+	ret = tx_byte_pool_create(byte_malloc_mem_pool, "malloc mem", mem_heap, MALLOC_BYTE_POOL_SIZE);
 	TX_ASSERT("tx_byte_pool_create\r\n", ret == TX_SUCCESS);
 
 
@@ -85,6 +89,7 @@ TX_BYTE_POOL *malloc_get_pool(void){
 // p = realloc(NULL,p,8);
 // header = MALLOC_HEAD(p);
 // printf("Realloc -> p=%p,signature=%x,pref=0x%x,size=%u,%x\r\n",p,header->signature,header->addr,header->size,*(uint32_t*)p);
+
 
 void *__wrap_malloc(size_t size)
 {
@@ -192,5 +197,10 @@ void* __wrap_realloc (void* ptr, size_t size){
 
 }
 
-
+void *memalign(size_t align, size_t len)
+{
+	void* ptr;
+	ptr = malloc(len);
+	return ptr;
+}
 
