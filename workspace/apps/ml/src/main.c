@@ -2477,8 +2477,7 @@ int main(int argc, char * argv[])
 
 			ctx = onnx_context_alloc(__model_onnx, __model_onnx_len, NULL, 0);
 
-			if(ctx)
-			{
+			if(ctx){
 				onnx_run_benchmark(ctx, 1);
 				onnx_context_free(ctx);
 			}

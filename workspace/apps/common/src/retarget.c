@@ -12,7 +12,7 @@
 
 #define DEBUG_PORT	QAPI_UART_PORT_002_E
 
-TX_SEMAPHORE *out_tx_sem, *in_tx_sem;
+TX_SEMAPHORE *out_tx_mutex, *out_tx_done_sem, *in_tx_sem;
 TX_BLOCK_POOL *pool;
 
 extern int main(void);
@@ -36,12 +36,12 @@ static void uart_rx_cb(uint32_t num_bytes, void *cb_data){
 
 
 static void uart_tx_cb(uint32_t num_bytes, void *cb_data){
-	tx_semaphore_ceiling_put(out_tx_sem,1);
+	tx_semaphore_ceiling_put(out_tx_done_sem,1);
 };
 
 static qapi_UART_Handle_t handle = NULL;
 
-
+#if 0
 /*
 	QUEUE
 */
@@ -58,7 +58,7 @@ typedef struct tracef_msg{
 
 #define TRACEF_MSG_SIZE sizeof(tracef_msg_t) // 1 word, 32 bits
 #ifndef TX_TRACEF_MSG_NUM
-#define TX_TRACEF_MSG_NUM 64
+#define TX_TRACEF_MSG_NUM 128
 #elif TX_TRACEF_MSG_NUM < 32
 #error "TX_TRACEF_MSG_NUM < 32"
 #endif
@@ -71,19 +71,21 @@ unsigned char tracef_msg_mem[TRACEF_MSG_SIZE*TX_TRACEF_MSG_NUM];
 */
 TX_THREAD* tracef_thread_handle; 
 void *tracef_thread_stack;
-#define TRACEF_THREAD_STACK_SIZE			2*1024
+#define TRACEF_THREAD_STACK_SIZE			1*1024
 TX_BYTE_POOL *tracef_thread_byte_pool;
 #define TRACEF_THREAD_BYTE_POOL_SIZE		4*1024
 char tracef_thread_mem[TRACEF_THREAD_BYTE_POOL_SIZE];
 
 static void tracef_thread(ULONG param);
-
-#ifndef TX_TRACEF_STR_BUFF_SIZE
-#define TX_TRACEF_STR_BUFF_SIZE 2048*1
-#elif TX_TRACEF_STR_BUFF_SIZE < 128
-#error "TX_TRACEF_STR_BUFF_SIZE < 128"
 #endif
-unsigned char pool_mem[TX_TRACEF_STR_BUFF_SIZE*TX_TRACEF_MSG_NUM];
+
+
+#ifndef TX_PRINTF_LEN
+#define TX_PRINTF_LEN 512
+#elif TX_PRINTF_LEN < 128
+#error "TX_PRINTF_LEN < 128"
+#endif
+
 
 uint8_t stdin_buf[128]; // Buffer size. Must be >= 4 and a multiple of 4.
 
@@ -106,21 +108,22 @@ static void init_debug(void){
 
 		qapi_UART_Receive (handle, stdin_buf, sizeof(stdin_buf), NULL); // queue as per doc
 
-		txm_module_object_allocate(&out_tx_sem, sizeof(TX_SEMAPHORE));
-		tx_semaphore_create(out_tx_sem,"stdout_sem", 0);
+		txm_module_object_allocate(&out_tx_mutex, sizeof(TX_MUTEX));
+		tx_mutex_create(out_tx_mutex,"stdout_sem", TX_NO_INHERIT);
+
+		txm_module_object_allocate(&out_tx_done_sem, sizeof(TX_SEMAPHORE));
+		tx_semaphore_create(out_tx_done_sem,"out_tx_done_sem", 1);
 
 		txm_module_object_allocate(&in_tx_sem, sizeof(TX_SEMAPHORE));
 		tx_semaphore_create(in_tx_sem,"stdin_sem", 0);
-
-		txm_module_object_allocate(&pool, sizeof(TX_BLOCK_POOL));
-	 	tx_block_pool_create(pool, "my_pool_name",TX_TRACEF_STR_BUFF_SIZE, (VOID *)pool_mem, sizeof(pool_mem));
-
+#if 0
 		txm_module_object_allocate(&tracef_msg_queue, sizeof(TX_QUEUE));
 		tx_queue_create(tracef_msg_queue, "tracef_msg_mem",TRACEF_MSG_SIZE, tracef_msg_mem, sizeof(tracef_msg_mem));
 
 		txm_module_object_allocate(&tracef_thread_byte_pool, sizeof(TX_BYTE_POOL));
 		tx_byte_pool_create(tracef_thread_byte_pool, "tracef_byte_pool", tracef_thread_mem, TRACEF_THREAD_BYTE_POOL_SIZE);
-		 	
+
+
 	 	tx_byte_allocate(tracef_thread_byte_pool, (VOID **) &tracef_thread_stack, TRACEF_THREAD_STACK_SIZE, TX_NO_WAIT);		
 		txm_module_object_allocate(&tracef_thread_handle, sizeof(TX_THREAD));
 		tx_thread_create(tracef_thread_handle,
@@ -129,17 +132,18 @@ static void init_debug(void){
 						   	(ULONG)0,
 						   	tracef_thread_stack,
 						   	TRACEF_THREAD_STACK_SIZE,
-						   	160,
-						   	160,
+						   	250,
+						   	0,
 						   	TX_NO_TIME_SLICE,
 						   	TX_AUTO_START
 		);
-
+#endif
 
 	}
  
 }
 
+#if 0
 /*
  This method only works when printf is called from 
  kernel copy to user space using *_Pass_Pool_Ptr
@@ -150,38 +154,45 @@ static void tracef_thread(ULONG param){
 	for(;;){
 
 		tracef_msg_t msg;
+	 	
+	 	msg.str = NULL;
 
 		if(tx_queue_receive(tracef_msg_queue, &msg, TX_WAIT_FOREVER) == TX_SUCCESS){	
  			
  			if(msg.str){
-	 			if(qapi_UART_Transmit(handle, msg.str, msg.len, NULL) == QAPI_OK)
-	 				tx_semaphore_get(out_tx_sem,TX_WAIT_FOREVER);
+ 			
+ 				tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
+	 			if(qapi_UART_Transmit(handle, msg.str, msg.len, NULL) == TX_SUCCESS)
+	 				tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 	 			
 	 			if(msg.type == STR_ALLOC)
-	 				tx_block_release((VOID *) msg.str);
+	 				free(msg.str);
 
-	 			msg.str = NULL;
+	 			tx_mutex_put(out_tx_mutex);
+
  			}
 
- 			tx_thread_relinquish();
  		}
 
 	}
 
 }
-
+#endif
 
 
 int putchar(int character){
+	
 	if(!handle)
 		return 0;
 
-	if(qapi_UART_Transmit(handle, &character, 1, NULL) == QAPI_OK){	// puts removes the new line!
-		tx_semaphore_get(out_tx_sem,TX_WAIT_FOREVER);
-		return character;
-	}
-	else
-		return -1;
+	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
+
+	if(qapi_UART_Transmit(handle, &character, 1, NULL) == TX_SUCCESS)	// puts removes the new line!
+		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
+	
+	tx_mutex_put(out_tx_mutex);
+
+	return character;
 }
 
 int _putchar(int character){
@@ -190,31 +201,19 @@ int _putchar(int character){
 
 int __wrap_puts(const char *s){
 
-	tracef_msg_t msg;
-	int len = 0;
 	
 	if(!handle)
 		return 0;
 
-	if(s)
-		len = msg.len = strlen(s);
-	else
-		return -1;
+	if(s){
 
-	msg.type = STR_ALLOC;
-	msg.str = NULL;
-	
-	while(len){
-		if(tx_block_allocate(pool, (VOID **) &msg.str,TX_WAIT_FOREVER) == TX_SUCCESS){
-			if(len > TX_TRACEF_STR_BUFF_SIZE)
-				msg.len = TX_TRACEF_STR_BUFF_SIZE-1;
-			strncpy((char*)msg.str,s,msg.len); 
-			msg.str[TX_TRACEF_STR_BUFF_SIZE] = '\0';
-			tx_queue_send(tracef_msg_queue,&msg,TX_NO_WAIT);
-			tx_thread_sleep(1);
-		}
+		tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
 
-		len -= msg.len;
+		if(qapi_UART_Transmit(handle, s, strlen(s), NULL) == TX_SUCCESS)
+			tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
+
+		tx_mutex_put(out_tx_mutex);
+
 	}
 
 	return 0;
@@ -227,26 +226,25 @@ int __wrap_puts(const char *s){
 int __wrap_printf(const char *format, ...){
 
 	va_list ap;
-	tracef_msg_t msg;
+	int len;
 
 	if(!handle)
 		return 0;
 
-	msg.type = STR_ALLOC;
-	msg.str = NULL;
+	char* str = calloc(1,TX_PRINTF_LEN);
 	
-	if(tx_block_allocate(pool, (VOID **) &msg.str,TX_WAIT_FOREVER) == TX_SUCCESS){
-		msg.str[0] = '\0';
-		va_start( ap, format );
-		msg.len = vsnprintf_( (char*)msg.str, (size_t)TX_TRACEF_STR_BUFF_SIZE, format, ap );
-		va_end( ap );
+	va_start( ap, format );
+	len = vsnprintf_( str, (size_t)TX_PRINTF_LEN, format, ap );
+	va_end( ap );
+	
+	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
+	
+	if(qapi_UART_Transmit(handle, str, len, NULL) == TX_SUCCESS)
+		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 
-		tx_queue_send(tracef_msg_queue,&msg,TX_WAIT_FOREVER);
-		tx_thread_sleep(1);
-	}
+	tx_mutex_put(out_tx_mutex);
 
-
-	return msg.len;
+	return len;
 
 }
 
@@ -268,3 +266,29 @@ int __wrap_getchar(void){
 
 	return (int)stdin_buf[0];
 }
+
+/*
+
+	Tests
+
+	for(uint32_t i = 0; i < 0xFFFF; i++){
+		puts("\r\nputs:\r\n");
+		puts("The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog");
+	}
+
+
+	for(uint32_t i = 0; i < 0xFFFF; i++){
+		puts("\r\nprintf:\r\n");
+		printf("%s","The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog \
+			The quick brown fox jumps over the lazy dog");
+	}
+
+*/
