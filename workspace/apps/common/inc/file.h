@@ -1,6 +1,12 @@
 #ifndef FILE_H_
 #define FILE_H_
 
+<#include <qapi_fs_types.h>
+
+#undef PATH_MAX
+#define PATH_MAX QAPI_FS_NAME_MAX
+
+
 int *fopen(const char *path, const char *mode);
 int fclose(int *fd);
 int fseek(int *fd, long offset, int whence);
