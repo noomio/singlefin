@@ -1,8 +1,8 @@
 RM := rm.exe -rf
 
 ifeq ($(OS),Windows_NT)
-	SDK_PATH_ROOT = ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK
-	TOOL_PATH_ROOT = ../../../tools
+	SDK_PATH_ROOT = ../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK
+	TOOL_PATH_ROOT = ../../../../../tools
 	TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
 	LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
 	LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
@@ -47,7 +47,7 @@ DAM_CFLAGS = 	-marm \
 
 DAM_INC_BASE = $(SDK_PATH_ROOT)/include
 DAM_LIB_PATH = $(SDK_PATH_ROOT)/libs/llvm
-DAM_LD_PATH = ./ldscripts
+DAM_LD_PATH = ../../ldscripts
 
 DAM_RO_BASE=0x43000000
 
@@ -75,10 +75,10 @@ TARGET_NAME = ml
 BUILDDIR = out
 
 USER_OPTS = -DTX_DEBUG \
-			-DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" \
+			-DTX_USER_DEBUG_OPT=\"../../../ml/inc/user_debug_opt.h\" \
 			-DTX_MALLOC_MEM_SIZE=512 
 
-COMMON_INC = ../common/inc
+COMMON_INC = ../../../common/inc
 
 COMMON_SRC = common/src/retarget.c \
 common/src/malloc.c \
@@ -87,7 +87,9 @@ common/src/printf.c \
 common/src/file.c
 
 
-SRCS = src/main.c 
+SRCS = main.c 
+INCDIR = ../../
+LIBS := ../../
 
 OBJS += $(COMMON_SRC:%.c=$(BUILDDIR)/%.o)
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
@@ -115,22 +117,23 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
 	-Wl,-gc-sections \
 	$(OBJS) \
+	-L $(LIBS) \
 	$(DAM_LIB_PATH)/*.lib -lm -lonnx
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 
-$(BUILDDIR)/%.o:../%.c
+$(BUILDDIR)/%.o:../../../%.c
 	@$(MKDIR) -p $(dir $@)
 	@echo 'Building target: $@'
-	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
+	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. -I$(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 $(BUILDDIR)/%.o:%.c
 	@$(MKDIR) -p $(dir $@)
 	@echo 'Building target: $@'
-	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
+	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. -I$(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -148,4 +151,4 @@ $(TARGET_NAME).bin:
 
 export CLI_TOOL TARGET_NAME BUILDDIR
 
-include Makefile.tools
+include ../../Makefile.tools
