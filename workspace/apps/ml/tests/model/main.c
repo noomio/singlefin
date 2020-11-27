@@ -164,6 +164,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 
 	if(ctx)
 	{
+
 		data_set_index = 0;
 		while(1)
 		{
@@ -208,6 +209,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 			printf("%*s\r\n", 100 + 12 - 6 - len, ((ninput + noutput == okay) && (okay > 0)) ? "\033[42;37m[OKAY]\033[0m" : "\033[41;37m[FAIL]\033[0m");
 			data_set_index++;
 		}
+		printf("ninput=%d,noutput=%d,okay=%d\r\n",ninput,noutput,okay );
 		onnx_context_free(ctx);
 	}
 	else
