@@ -207,7 +207,6 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 			len = printf("[%s](test_data_set_%d)", path, data_set_index);
 			printf("%*s\r\n", 100 + 12 - 6 - len, ((ninput + noutput == okay) && (okay > 0)) ? "\033[42;37m[OKAY]\033[0m" : "\033[41;37m[FAIL]\033[0m");
 			data_set_index++;
-			break;
 		}
 		onnx_context_free(ctx);
 	}
@@ -273,6 +272,7 @@ int main(int argc, char * argv[])
 	struct dirent * d;
 	struct stat st;
 	char path[PATH_MAX];
+	char tmp[PATH_MAX];
 	DIR * dir;
 
 	setlocale(LC_ALL, "C");	
@@ -285,25 +285,26 @@ int main(int argc, char * argv[])
 				m = hmap_alloc(0);
 				if((dir = opendir(path)) != NULL)
 				{
-					printf("opendir=%s\r\n",path );
 					while((d = readdir(dir)) != NULL)
 					{
-						printf("readdir=%s\r\n",d->d_name );
-						if((lstat(d->d_name, &st) == 0) && S_ISDIR(st.st_mode))
+						sprintf(tmp,"%s/%s",path,d->d_name);
+						if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode))
 						{
+
 							if(strcmp(".", d->d_name) == 0)
 								continue;
 							if(strcmp("..", d->d_name) == 0)
 								continue;
-							hmap_add(m, d->d_name, NULL);
+							hmap_add(m, tmp, NULL);
 						}
+
 					}
 					closedir(dir);
 				}
 				hmap_sort(m);
 				hmap_for_each_entry(e, m)
 				{
-					//testcase(e->key, NULL, 0);
+					testcase(e->key, NULL, 0);
 				}
 				hmap_free(m, NULL);
 			}
