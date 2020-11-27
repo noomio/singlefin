@@ -1,5 +1,6 @@
 #include <qapi_fs.h>
-#include  <sys/stat.h>
+#include <sys/stat.h>
+#include <dirent.h>
 
 int *fopen(const char *path, const char *mode){
 
@@ -132,4 +133,48 @@ size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 	}else
 		return 0;
 
+}
+
+ DIR *opendir(const char *name){
+ 	qapi_FS_Iter_Handle_t dir_handle = malloc(sizeof(qapi_FS_Iter_Handle_t));
+
+	if(qapi_FS_Iter_Open ( name, &dir_handle ) == QAPI_OK){
+		return (DIR*)dir_handle;
+	}else
+ 		return NULL;
+ }
+
+ struct dirent *readdir(DIR *dirp){
+ 	static struct dirent d;
+ 	struct qapi_FS_Iter_Entry_s iter_entry;
+ 	qapi_FS_Iter_Handle_t dir_handle;
+
+ 	if(dirp){
+ 		dir_handle = (qapi_FS_Iter_Handle_t)dirp;
+ 		if(qapi_FS_Iter_Next (dir_handle,&iter_entry) == QAPI_OK){
+			if(iter_entry.file_Path[0]){
+				strncpy(d.d_name,iter_entry.file_Path,256);
+				return &d;
+			}else
+				return NULL;
+ 		}else
+ 			return NULL;
+ 	}else
+ 		return NULL;
+
+ }
+
+int closedir(DIR *dirp){
+	qapi_FS_Iter_Handle_t dir_handle;
+
+	if(dirp){
+		dir_handle = (qapi_FS_Iter_Handle_t)dirp;
+		if(qapi_FS_Iter_Close (dir_handle) == QAPI_OK){
+			free(&dir_handle);
+			return 0;
+		}
+		else
+			return -1;
+	}else
+		return -1;
 }

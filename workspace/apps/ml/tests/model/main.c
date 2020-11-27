@@ -8,7 +8,11 @@
 #include <libgen.h>
 #include <sys/stat.h>
 #include <onnx.h>
+#include <locale.h>
 
+
+#undef PATH_MAX
+#define PATH_MAX 128
 
 #define STDIO_IN_MAX 256
 
@@ -164,14 +168,14 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 		while(1)
 		{
 			sprintf(data_set_path, "%s/test_data_set_%d", path, data_set_index);
-			//if((lstat(data_set_path, &st) != 0) || !S_ISDIR(st.st_mode))
-			//	break;
+			if((lstat(data_set_path, &st) != 0) || !S_ISDIR(st.st_mode))
+				break;
 			ninput = 0;
 			noutput = 0;
 			okay = 0;
 			while(1)
 			{
-				sprintf(tmp, "%s/input_%d.pb", path, ninput);
+				sprintf(tmp, "%s/input_%d.pb", data_set_path, ninput);
 				if((lstat(tmp, &st) != 0) || !S_ISREG(st.st_mode))
 					break;
 				if(ninput > ctx->model->graph->n_input)
@@ -187,7 +191,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 			onnx_run(ctx);
 			while(1)
 			{
-				sprintf(tmp, "%s/output_%d.pb", path, noutput);
+				sprintf(tmp, "%s/output_%d.pb", data_set_path, noutput);
 				if((lstat(tmp, &st) != 0) || !S_ISREG(st.st_mode))
 					break;
 				if(noutput > ctx->model->graph->n_output)
@@ -264,12 +268,45 @@ static char *cli_input(char *in, size_t size){
 int main(int argc, char * argv[])
 {
 
+	struct hmap_t * m;
+	struct hmap_entry_t * e;
+	struct dirent * d;
+	struct stat st;
 	char path[PATH_MAX];
+	DIR * dir;
+
+	setlocale(LC_ALL, "C");	
 
 	for(;;){
 
 		if(cli_input(path,STDIO_IN_MAX)){
-			testcase(path, NULL, 0);
+			if((lstat(path, &st) == 0) && S_ISDIR(st.st_mode))
+			{
+				m = hmap_alloc(0);
+				if((dir = opendir(path)) != NULL)
+				{
+					printf("opendir=%s\r\n",path );
+					while((d = readdir(dir)) != NULL)
+					{
+						printf("readdir=%s\r\n",d->d_name );
+						if((lstat(d->d_name, &st) == 0) && S_ISDIR(st.st_mode))
+						{
+							if(strcmp(".", d->d_name) == 0)
+								continue;
+							if(strcmp("..", d->d_name) == 0)
+								continue;
+							hmap_add(m, d->d_name, NULL);
+						}
+					}
+					closedir(dir);
+				}
+				hmap_sort(m);
+				hmap_for_each_entry(e, m)
+				{
+					//testcase(e->key, NULL, 0);
+				}
+				hmap_free(m, NULL);
+			}
 		}
 
 	}
