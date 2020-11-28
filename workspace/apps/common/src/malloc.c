@@ -13,10 +13,10 @@
 
 
 typedef struct malloc_size{
-	uint32_t signature;
 	uint32_t addr;
-	size_t size;
-} malloc_size_t;
+	uint16_t signature;
+	uint16_t size;
+} malloc_size_t __attribute__((packed));
 
 #define MALLOC_HEAD(P) (malloc_size_t*)(P - sizeof(malloc_size_t))
 
@@ -46,7 +46,7 @@ TX_BYTE_POOL *byte_malloc_mem_pool;
 *	In libc's malloc(x), the function is said to return 
 *  	a pointer to a memory region of at least x bytes and the pointer is aligned to 8 bytes
 */
-UCHAR mem_heap[MALLOC_BYTE_POOL_SIZE] __attribute__ ((aligned (8)));
+UCHAR mem_heap[MALLOC_BYTE_POOL_SIZE];
 
 UINT memscpy
 (
@@ -100,10 +100,11 @@ void *__wrap_malloc(size_t size)
 		return NULL;
 	}
 
+	size *= 2;
+
 #ifdef MALLOC_FREE_INLINE
 	uint32_t status = tx_byte_allocate(byte_malloc_mem_pool, (VOID **)&ptr, size, TX_NO_WAIT);
 	TX_ERROR(("malloc fail!\r\nMALLOC_BYTE_POOL_SIZE=%u\r\n",MALLOC_BYTE_POOL_SIZE), (status == TX_SUCCESS) , return NULL );
-
 	if(NULL != ptr)  
 		memset(ptr, 0, size);
 #else
@@ -114,7 +115,7 @@ void *__wrap_malloc(size_t size)
 	if(NULL != ptr)  {
 		memset(ptr, 0, sizeof(malloc_size_t) + size);
 		malloc_size_t *head = ptr;
-		head->signature = 0xdeadbeef;
+		head->signature = 0xbeef;
 		void *addr = (void*)(ptr + sizeof(malloc_size_t));
 		head->addr = (uint32_t)addr;
 		head->size = size;
@@ -139,7 +140,7 @@ void __wrap_free(void *ptr)
   	TX_ASSERT("free fail\r\n",status == TX_SUCCESS);
 #else
 	malloc_size_t *header = MALLOC_HEAD(ptr);
-	TX_ASSERT("free header->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
+	TX_ASSERT("free header->signature != 0xbeef\r\n",header->signature == 0xbeef);
 	TX_ASSERT("free header->addr != ptr\r\n",header->addr == (uint32_t)ptr);
   	status = tx_byte_release(header);  
   	TX_ASSERT("free header->addr != ptr\r\n",status == TX_SUCCESS);
@@ -150,6 +151,7 @@ void __wrap_free(void *ptr)
 }
 
 void *__wrap_calloc (size_t num, size_t size){
+	size *= 2;
 	void *ptr = malloc(size*num);
 	if(ptr)
 		memset(ptr, 0, size*num);
@@ -183,11 +185,11 @@ void* __wrap_realloc (void* ptr, size_t size){
 			return NULL;
 
 		malloc_size_t *header = MALLOC_HEAD(ptr);
-		TX_ASSERT("realloc header->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
+		TX_ASSERT("realloc header->signature != 0xbeef\r\n",header->signature == 0xbeef);
 		TX_ASSERT("realloc header->addr != ptr\r\n",header->addr == (uint32_t)ptr);
 		memcpy(new, ptr,header->size); 
 		header = MALLOC_HEAD(new);
-		TX_ASSERT("realloc headernew->signature != 0xdeadbeef\r\n",header->signature == 0xdeadbeef);
+		TX_ASSERT("realloc headernew->signature != 0xbeef\r\n",header->signature == 0xbeef);
 		free(ptr);
 		ptr = NULL;
     }

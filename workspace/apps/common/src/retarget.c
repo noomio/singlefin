@@ -87,7 +87,8 @@ static void tracef_thread(ULONG param);
 #endif
 
 
-uint8_t stdin_buf[128]; // Buffer size. Must be >= 4 and a multiple of 4.
+char stdin_buf[128]; // Buffer size. Must be >= 4 and a multiple of 4.
+char stdout_buf[TX_PRINTF_LEN];
 
 static void init_debug(void){
 
@@ -242,7 +243,9 @@ int __wrap_printf(const char *format, ...){
 	if(qapi_UART_Transmit(handle, str, len, NULL) == TX_SUCCESS)
 		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 
+	free(str);
 	tx_mutex_put(out_tx_mutex);
+
 
 	return len;
 

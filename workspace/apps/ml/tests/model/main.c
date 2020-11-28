@@ -23,18 +23,28 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 	int result = 0;
 	size_t i;
 
-	if(!a || !b)
+	if(!a || !b){
+		puts("!a || !b\r\n");
 		return 0;
-	if(a->type != b->type)
+	}
+	if(a->type != b->type){
+		puts("a->type != b->type\r\n");
 		return 0;
-	if(a->ndim != b->ndim)
+	}
+	if(a->ndim != b->ndim){
+		puts("a->ndim != b->ndim\r\n");
 		return 0;
-	if(a->ndata != b->ndata)
+	}
+	if(a->ndata != b->ndata){
+		puts("a->ndata != b->ndata\r\n");
 		return 0;
+	}
 	if(a->ndim > 0)
 	{
-		if(memcmp(a->dims, b->dims, sizeof(int) * a->ndim) != 0)
+		if(memcmp(a->dims, b->dims, sizeof(int) * a->ndim) != 0){
+			puts("memcmp(a->dims, b->dims, sizeof(int) * a->ndim) != 0\r\n");
 			return 0;
+		}
 	}
 	switch(a->type)
 	{
@@ -47,8 +57,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 	case ONNX_TENSOR_TYPE_UINT16:
 	case ONNX_TENSOR_TYPE_UINT32:
 	case ONNX_TENSOR_TYPE_UINT64:
-		if(memcmp(a->datas, b->datas, a->ndata * onnx_tensor_type_sizeof(a->type)) == 0)
+		if(memcmp(a->datas, b->datas, a->ndata * onnx_tensor_type_sizeof(a->type)) == 0){
+			puts("ONNX_TENSOR_TYPE_BOOL...\r\n");
 			result = 1;
+		}
 		break;
 	case ONNX_TENSOR_TYPE_BFLOAT16:
 		{
@@ -56,8 +68,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			uint16_t * q = (uint16_t *)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabsf(bfloat16_to_float32(p[i]) - bfloat16_to_float32(q[i])) > FLOAT_EPSILON)
+				if(fabsf(bfloat16_to_float32(p[i]) - bfloat16_to_float32(q[i])) > FLOAT_EPSILON){
+					puts("ONNX_TENSOR_TYPE_BFLOAT16\r\n");
 					break;
+				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -69,8 +83,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			uint16_t * q = (uint16_t *)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabsf(float16_to_float32(p[i]) - float16_to_float32(q[i])) > FLOAT_EPSILON)
+				if(fabsf(float16_to_float32(p[i]) - float16_to_float32(q[i])) > FLOAT_EPSILON){
+					puts("ONNX_TENSOR_TYPE_FLOAT16\r\n");
 					break;
+				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -80,10 +96,16 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 		{
 			float * p = (float *)a->datas;
 			float * q = (float *)b->datas;
+			//printf("a:%s, b:%s\r\n", a->name,b->name);
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON)
+				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON){
+					//printf("!ONNX_TENSOR_TYPE_FLOAT32,fabs=%f,p=%f,q=%f\r\n",fabsf(p[i] - q[i]),*p,*q);
 					break;
+				}else{
+					//printf("fabs=%f,p=%f,q=%f\r\n",fabsf(p[i] - q[i]),*p,*q);
+
+				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -95,8 +117,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			double * q = (double *)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabs(p[i] - q[i]) > FLOAT_EPSILON)
+				if(fabs(p[i] - q[i]) > FLOAT_EPSILON){
+					puts("ONNX_TENSOR_TYPE_FLOAT64\r\n");
 					break;
+				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -108,8 +132,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			float * q = (float *)b->datas;
 			for(i = 0; i < a->ndata * 2; i++)
 			{
-				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON)
+				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON){
+					puts("ONNX_TENSOR_TYPE_COMPLEX64\r\n");
 					break;
+				}
 			}
 			if(i == a->ndata * 2)
 				result = 1;
@@ -121,8 +147,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			double * q = (double *)b->datas;
 			for(i = 0; i < a->ndata * 2; i++)
 			{
-				if(fabs(p[i] - q[i]) > FLOAT_EPSILON)
+				if(fabs(p[i] - q[i]) > FLOAT_EPSILON){
+					puts("ONNX_TENSOR_TYPE_COMPLEX128\r\n");
 					break;
+				}
 			}
 			if(i == a->ndata * 2)
 				result = 1;
@@ -134,8 +162,10 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			char ** q = (char **)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(p[i] && q[i] && (strcmp(p[i], q[i]) != 0))
+				if(p[i] && q[i] && (strcmp(p[i], q[i]) != 0)){
+					puts("ONNX_TENSOR_TYPE_STRING\r\n");
 					break;
+				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -164,7 +194,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 
 	if(ctx)
 	{
-
+		//onnx_context_dump(ctx,0);
 		data_set_index = 0;
 		while(1)
 		{
@@ -184,6 +214,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 				t = onnx_tensor_search(ctx, ctx->model->graph->input[ninput]->name);
 				o = onnx_tensor_alloc_from_file(tmp);
 				onnx_tensor_apply(t, o->datas, o->ndata * onnx_tensor_type_sizeof(o->type));
+				onnx_tensor_dump(t, 0);
 				onnx_tensor_free(o);
 				okay++;
 				ninput++;
@@ -199,6 +230,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 					break;
 				t = onnx_tensor_search(ctx, ctx->model->graph->output[noutput]->name);
 				o = onnx_tensor_alloc_from_file(tmp);
+				onnx_tensor_dump(o, 0);
 				if(onnx_tensor_equal(t, o))
 					okay++;
 				onnx_tensor_free(o);
@@ -209,7 +241,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 			printf("%*s\r\n", 100 + 12 - 6 - len, ((ninput + noutput == okay) && (okay > 0)) ? "\033[42;37m[OKAY]\033[0m" : "\033[41;37m[FAIL]\033[0m");
 			data_set_index++;
 		}
-		printf("ninput=%d,noutput=%d,okay=%d\r\n",ninput,noutput,okay );
+
 		onnx_context_free(ctx);
 	}
 	else
@@ -266,6 +298,8 @@ static char *cli_input(char *in, size_t size){
 
 }
 
+
+
 int main(int argc, char * argv[])
 {
 
@@ -278,6 +312,19 @@ int main(int argc, char * argv[])
 	DIR * dir;
 
 	setlocale(LC_ALL, "C");	
+
+#if 0
+	void *p1 = malloc(1);
+	void *p2 = malloc(1);
+	double num = DBL_MAX;
+	memcpy(p1,&num,sizeof(double));
+	memcpy(p2,&num,sizeof(double));
+	printf("p1=%p,p1=%f,p2=%p,p2=%f\n",p1,*(double*)p1,p2,*(double*)p2 );
+	free(p1);
+	free(p2);
+	printf("mem.heap[0]:%p\n",&mem.heap[0] );
+	printf("mem.heap[1]:%p\n",&mem.heap[1] );
+#endif
 
 	for(;;){
 
