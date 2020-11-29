@@ -76,8 +76,8 @@ BUILDDIR = out
 
 USER_OPTS = -DTX_DEBUG \
 			-DTX_USER_DEBUG_OPT=\"../../../ml/inc/user_debug_opt.h\" \
-			-DTX_MALLOC_MEM_SIZE=512 \
-			
+			-DTX_MALLOC_MEM_SIZE=512 
+
 COMMON_INC = ../../../common/inc
 
 COMMON_SRC = common/src/retarget.c \

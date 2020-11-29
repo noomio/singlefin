@@ -88,7 +88,7 @@ static void tracef_thread(ULONG param);
 
 
 char stdin_buf[128]; // Buffer size. Must be >= 4 and a multiple of 4.
-char stdout_buf[TX_PRINTF_LEN];
+
 
 static void init_debug(void){
 
@@ -228,22 +228,21 @@ int __wrap_printf(const char *format, ...){
 
 	va_list ap;
 	int len;
+	static char stdout_buf[TX_PRINTF_LEN];
 
 	if(!handle)
 		return 0;
 
-	char* str = calloc(1,TX_PRINTF_LEN);
-	
+		
 	va_start( ap, format );
-	len = vsnprintf_( str, (size_t)TX_PRINTF_LEN, format, ap );
+	len = vsnprintf_( stdout_buf, (size_t)TX_PRINTF_LEN, format, ap );
 	va_end( ap );
 	
 	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
 	
-	if(qapi_UART_Transmit(handle, str, len, NULL) == TX_SUCCESS)
+	if(qapi_UART_Transmit(handle, stdout_buf, len, NULL) == TX_SUCCESS)
 		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 
-	free(str);
 	tx_mutex_put(out_tx_mutex);
 
 

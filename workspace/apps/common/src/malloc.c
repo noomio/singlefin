@@ -71,7 +71,7 @@ qapi_Status_t malloc_byte_pool_init(void)
 	TX_ASSERT("malloc_byte_pool_init\r\n",ret == TX_SUCCESS);
 
 	/* Create byte_pool_dam */
-	ret = tx_byte_pool_create(byte_malloc_mem_pool, "malloc mem", mem_heap, MALLOC_BYTE_POOL_SIZE);
+	ret = tx_byte_pool_create(byte_malloc_mem_pool, "memheap", mem_heap, MALLOC_BYTE_POOL_SIZE);
 	TX_ASSERT("tx_byte_pool_create\r\n", ret == TX_SUCCESS);
 
 

@@ -2,6 +2,8 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
+extern int printf(const char *format, ...);
+
 int *fopen(const char *path, const char *mode){
 
 	uint32_t flags;
@@ -22,8 +24,10 @@ int *fopen(const char *path, const char *mode){
 		return NULL;
 
 	int *fd = malloc(1);
-	if(qapi_FS_Open ( path, flags, fd) == QAPI_OK)
+	*fd = -1;
+	if(qapi_FS_Open ( path, flags, fd) == QAPI_OK){
 		return fd;
+	}
 	else{
 		free(fd);
 		return NULL;
@@ -33,7 +37,7 @@ int *fopen(const char *path, const char *mode){
 
 int fclose(int *fd){
 	if(fd){
-		if(qapi_FS_Close(fd) == QAPI_OK){
+		if(qapi_FS_Close(*fd) == QAPI_OK){
 			free(fd);
 			return 0;
 		}else
@@ -53,10 +57,11 @@ int fseek(int *fd, long offset, int whence){
 	else if(whence == 2)
 		whence_flags = QAPI_FS_SEEK_END_E;
 
-	if(qapi_FS_Seek ( fd, (qapi_FS_Offset_t)offset, whence_flags, &actual_offset ) == QAPI_OK){
+	if(qapi_FS_Seek ( *fd, (qapi_FS_Offset_t)offset, whence_flags, &actual_offset ) == QAPI_OK){
 		return 0;
-	}else
+	}else{
 		return -1;
+	}
 }
 
 /*
@@ -66,8 +71,9 @@ long ftell(int *fd){
 	struct qapi_FS_Stat_Type_s finfo;
 	if(qapi_FS_Stat_With_Handle(*fd,&finfo) == QAPI_OK){
 		return finfo.st_size;
-	}else
+	}else{
 		return -1;
+	}
 }
 
 int fstat(int fd, struct stat *statbuf){
@@ -91,8 +97,9 @@ int fstat(int fd, struct stat *statbuf){
 		statbuf->st_ino = st.st_ino;
 		return 0;
 	}
-	else
+	else{
 		return -1;
+	}
 }
   
 int lstat(const char *pathname, struct stat *statbuf){
@@ -116,8 +123,9 @@ int lstat(const char *pathname, struct stat *statbuf){
 		statbuf->st_ino = st.st_ino;
 		return 0;
 	}
-	else
+	else{
 		return -1;
+	}
 }
 
 size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
@@ -128,8 +136,9 @@ size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 	if(ptr && fd){	
 		if( qapi_FS_Read (*fd, ptr, nmemb, &read_bytes) == QAPI_OK){			
 			return read_bytes;
-		}else
+		}else{
 			return 0;		
+		}
 	}else
 		return 0;
 
@@ -140,8 +149,9 @@ size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 
 	if(qapi_FS_Iter_Open ( name, &dir_handle ) == QAPI_OK){
 		return (DIR*)dir_handle;
-	}else
+	}else{
  		return NULL;
+	}
  }
 
  struct dirent *readdir(DIR *dirp){
@@ -157,8 +167,9 @@ size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 				return &d;
 			}else
 				return NULL;
- 		}else
+ 		}else{
  			return NULL;
+ 		}
  	}else
  		return NULL;
 
@@ -173,8 +184,9 @@ int closedir(DIR *dirp){
 			free(&dir_handle);
 			return 0;
 		}
-		else
+		else{
 			return -1;
+		}
 	}else
 		return -1;
 }

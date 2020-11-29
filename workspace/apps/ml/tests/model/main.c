@@ -9,7 +9,8 @@
 #include <sys/stat.h>
 #include <onnx.h>
 #include <locale.h>
-
+#include <qapi_timer.h>
+#include "txm_module.h"
 
 #undef PATH_MAX
 #define PATH_MAX 128
@@ -24,27 +25,21 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 	size_t i;
 
 	if(!a || !b){
-		puts("!a || !b\r\n");
 		return 0;
 	}
 	if(a->type != b->type){
-		puts("a->type != b->type\r\n");
 		return 0;
 	}
 	if(a->ndim != b->ndim){
-		puts("a->ndim != b->ndim\r\n");
 		return 0;
 	}
 	if(a->ndata != b->ndata){
-		puts("a->ndata != b->ndata\r\n");
 		return 0;
 	}
 	if(a->ndim > 0)
 	{
-		if(memcmp(a->dims, b->dims, sizeof(int) * a->ndim) != 0){
-			puts("memcmp(a->dims, b->dims, sizeof(int) * a->ndim) != 0\r\n");
+		if(memcmp(a->dims, b->dims, sizeof(int) * a->ndim) != 0)
 			return 0;
-		}
 	}
 	switch(a->type)
 	{
@@ -57,10 +52,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 	case ONNX_TENSOR_TYPE_UINT16:
 	case ONNX_TENSOR_TYPE_UINT32:
 	case ONNX_TENSOR_TYPE_UINT64:
-		if(memcmp(a->datas, b->datas, a->ndata * onnx_tensor_type_sizeof(a->type)) == 0){
-			puts("ONNX_TENSOR_TYPE_BOOL...\r\n");
+		if(memcmp(a->datas, b->datas, a->ndata * onnx_tensor_type_sizeof(a->type)) == 0)
 			result = 1;
-		}
 		break;
 	case ONNX_TENSOR_TYPE_BFLOAT16:
 		{
@@ -68,10 +61,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			uint16_t * q = (uint16_t *)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabsf(bfloat16_to_float32(p[i]) - bfloat16_to_float32(q[i])) > FLOAT_EPSILON){
-					puts("ONNX_TENSOR_TYPE_BFLOAT16\r\n");
+				if(fabsf(bfloat16_to_float32(p[i]) - bfloat16_to_float32(q[i])) > FLOAT_EPSILON)
 					break;
-				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -83,10 +74,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			uint16_t * q = (uint16_t *)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabsf(float16_to_float32(p[i]) - float16_to_float32(q[i])) > FLOAT_EPSILON){
-					puts("ONNX_TENSOR_TYPE_FLOAT16\r\n");
+				if(fabsf(float16_to_float32(p[i]) - float16_to_float32(q[i])) > FLOAT_EPSILON)
 					break;
-				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -99,13 +88,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			//printf("a:%s, b:%s\r\n", a->name,b->name);
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON){
-					//printf("!ONNX_TENSOR_TYPE_FLOAT32,fabs=%f,p=%f,q=%f\r\n",fabsf(p[i] - q[i]),*p,*q);
+				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON)
 					break;
-				}else{
-					//printf("fabs=%f,p=%f,q=%f\r\n",fabsf(p[i] - q[i]),*p,*q);
-
-				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -117,10 +101,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			double * q = (double *)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(fabs(p[i] - q[i]) > FLOAT_EPSILON){
-					puts("ONNX_TENSOR_TYPE_FLOAT64\r\n");
+				if(fabs(p[i] - q[i]) > FLOAT_EPSILON)
 					break;
-				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -132,10 +114,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			float * q = (float *)b->datas;
 			for(i = 0; i < a->ndata * 2; i++)
 			{
-				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON){
-					puts("ONNX_TENSOR_TYPE_COMPLEX64\r\n");
+				if(fabsf(p[i] - q[i]) > FLOAT_EPSILON)
 					break;
-				}
 			}
 			if(i == a->ndata * 2)
 				result = 1;
@@ -147,10 +127,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			double * q = (double *)b->datas;
 			for(i = 0; i < a->ndata * 2; i++)
 			{
-				if(fabs(p[i] - q[i]) > FLOAT_EPSILON){
-					puts("ONNX_TENSOR_TYPE_COMPLEX128\r\n");
+				if(fabs(p[i] - q[i]) > FLOAT_EPSILON)
 					break;
-				}
 			}
 			if(i == a->ndata * 2)
 				result = 1;
@@ -162,10 +140,8 @@ static int onnx_tensor_equal(struct onnx_tensor_t * a, struct onnx_tensor_t * b)
 			char ** q = (char **)b->datas;
 			for(i = 0; i < a->ndata; i++)
 			{
-				if(p[i] && q[i] && (strcmp(p[i], q[i]) != 0)){
-					puts("ONNX_TENSOR_TYPE_STRING\r\n");
+				if(p[i] && q[i] && (strcmp(p[i], q[i]) != 0))
 					break;
-				}
 			}
 			if(i == a->ndata)
 				result = 1;
@@ -246,7 +222,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 	}
 	else
 	{
-		len = printf("[%s]", path);
+		len = printf("[%s]:[%p]", path,ctx);
 		printf("%*s\r\n", 100 + 12 - 6 - len, "\033[41;37m[FAIL]\033[0m");
 	}
 }
@@ -298,7 +274,23 @@ static char *cli_input(char *in, size_t size){
 
 }
 
-
+extern TX_BYTE_POOL *malloc_get_pool(void);
+void meminfo_dump(void){
+	ULONG available;
+	ULONG fragments;
+	TX_THREAD *first_suspended;
+	ULONG suspended_count;
+	TX_BYTE_POOL *next_pool;
+	UINT status;
+	/* Retrieve information about the previously created
+	block pool "my_pool." */
+	tx_byte_pool_info_get(malloc_get_pool(), 
+		"memheap",
+		&available, &fragments,&first_suspended, &suspended_count,
+		&next_pool);
+	printf("Available:\t\t%lu\nFragments:\t\t%lu\nFirst Suspended:\t%p\nSuspended Count:\t%lu\nNext Pool:\t\t%p\n", 
+		available,fragments,first_suspended,suspended_count,next_pool);
+}
 
 int main(int argc, char * argv[])
 {
@@ -307,7 +299,7 @@ int main(int argc, char * argv[])
 	struct hmap_entry_t * e;
 	struct dirent * d;
 	struct stat st;
-	char path[PATH_MAX];
+	char in[PATH_MAX];
 	char tmp[PATH_MAX];
 	DIR * dir;
 
@@ -328,15 +320,18 @@ int main(int argc, char * argv[])
 
 	for(;;){
 
-		if(cli_input(path,STDIO_IN_MAX)){
-			if((lstat(path, &st) == 0) && S_ISDIR(st.st_mode))
+		if(cli_input(in,STDIO_IN_MAX)){
+			if(strcmp(in,"meminfo") == 0){
+				meminfo_dump();
+			}
+			else if((lstat(in, &st) == 0) && S_ISDIR(st.st_mode))
 			{
 				m = hmap_alloc(0);
-				if((dir = opendir(path)) != NULL)
+				if((dir = opendir(in)) != NULL)
 				{
 					while((d = readdir(dir)) != NULL)
 					{
-						sprintf(tmp,"%s/%s",path,d->d_name);
+						sprintf(tmp,"%s/%s",in,d->d_name);
 						if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode))
 						{
 
@@ -351,11 +346,21 @@ int main(int argc, char * argv[])
 					closedir(dir);
 				}
 				hmap_sort(m);
-				hmap_for_each_entry(e, m)
-				{
-					testcase(e->key, NULL, 0);
+
+				while(1){
+					hmap_for_each_entry(e, m)
+					{
+						testcase(e->key, NULL, 0);
+					}
+					meminfo_dump();
+					qapi_Timer_Sleep(100, QAPI_TIMER_UNIT_MSEC, true);
+					void *p = malloc(1);
+					printf("%p\r\n", p);
+					free(p);
 				}
-				hmap_free(m, NULL);
+				//hmap_free(m, NULL);
+					
+
 			}
 		}
 
