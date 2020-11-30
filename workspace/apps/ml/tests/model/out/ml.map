@@ -19,7 +19,7 @@ Archive member included because of file (symbol)
 ../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)
 		out/common/src/retarget.o (_txm_module_system_call5)
 ../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)
-		out/main.o (_txm_module_system_call7)
+		out/common/src/cli.o (_txm_module_system_call7)
 C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)
 		out/main.o (setlocale)
 C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
@@ -208,7 +208,7 @@ END GROUP
 Linker scripts used (including INCLUDE command)
 ../../ldscripts/sections.ld
 
-ER_RO	0x43000000	0x45fc # Offset: 0x60, LMA: 0x43000000
+ER_RO	0x43000000	0x4640 # Offset: 0x60, LMA: 0x43000000
 	Image$$ER_RO$$Base(0x43000000) = .( 0x43000000 );
 *txm_module_preamble_llvm.o(.text .text.* )
 *txm_module_preamble_llvm.o(Init )
@@ -343,477 +343,478 @@ KEEP (*(.text .text.* ))
 	0x43002500		$d.11
 	0x43002508		$a.12
 	0x43002508		closedir
-.text	0x43002574	0x254	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text	0x43002574	0x308	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43002574		$a.0
 	0x43002574		cli_free
 	0x43002594		cli_new
-	0x430025ec		$d.1
-	0x430025f8		$a.2
-	0x430025f8		cli_cmd_cli
-	0x43002660		$d.3
-	0x43002670		$a.4
-	0x43002670		cli_input
-	0x430027b8		$d.5
-.text	0x430027c8	0x9c	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430027c8		$a.0
-	0x430027c8		meminfo_dump
-	0x43002830		$d.1
-	0x43002838		$a.2
-	0x43002838		main
-	0x43002860		$d.3
-.text._txm_module_thread_shell_entry	0x43002864	0x94	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002864		$a.0
-	0x43002864		_txm_module_thread_shell_entry
-	0x430028ec		$d.1
-.text._txm_module_callback_request_thread_entry	0x430028f8	0x108	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430028f8		$a.0
-	0x430028f8		_txm_module_callback_request_thread_entry
-	0x43002950		$d.1
-	0x43002964		$a.2
-	0x430029f8		$d.3
-.text._txm_module_system_call12	0x43002a00	0x70	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002a00		$a.0
-	0x43002a00		_txm_module_system_call12
-	0x43002a6c		$d.1
-.text._txm_module_system_call4	0x43002a70	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002a70		$a.0
-	0x43002a70		_txm_module_system_call4
-	0x43002a98		$d.1
-.text._txm_module_system_call5	0x43002a9c	0x34	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002a9c		$a.0
-	0x43002a9c		_txm_module_system_call5
-	0x43002acc		$d.1
-.text._txm_module_system_call7	0x43002ad0	0x44	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002ad0		$a.0
-	0x43002ad0		_txm_module_system_call7
+	0x430025fc		$d.1
+	0x43002608		$a.2
+	0x43002608		cli_cmd_cli
+	0x43002670		$d.3
+	0x43002680		$a.4
+	0x43002680		cli_cmd_meminfo
+	0x43002730		$d.5
+	0x43002744		$a.6
+	0x43002744		cli_input
+	0x43002870		$d.7
+.text	0x4300287c	0x2c	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x4300287c		$a.0
+	0x4300287c		main
+	0x430028a4		$d.1
+.text._txm_module_thread_shell_entry	0x430028a8	0x94	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430028a8		$a.0
+	0x430028a8		_txm_module_thread_shell_entry
+	0x43002930		$d.1
+.text._txm_module_callback_request_thread_entry	0x4300293c	0x108	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x4300293c		$a.0
+	0x4300293c		_txm_module_callback_request_thread_entry
+	0x43002994		$d.1
+	0x430029a8		$a.2
+	0x43002a3c		$d.3
+.text._txm_module_system_call12	0x43002a44	0x70	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002a44		$a.0
+	0x43002a44		_txm_module_system_call12
+	0x43002ab0		$d.1
+.text._txm_module_system_call4	0x43002ab4	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002ab4		$a.0
+	0x43002ab4		_txm_module_system_call4
+	0x43002adc		$d.1
+.text._txm_module_system_call5	0x43002ae0	0x34	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002ae0		$a.0
+	0x43002ae0		_txm_module_system_call5
 	0x43002b10		$d.1
-.text.setlocale	0x43002b14	0xe8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002b14		$t
-	0x43002b15		setlocale
-	0x43002bec		$d
-.text.setlocale_one_unlocked	0x43002bfc	0x34	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002bfc		$t
-	0x43002bfd		setlocale_one_unlocked
-	0x43002c28		$d
-.text.__getopt_msg	0x43002c30	0x64	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002c30		$t
-	0x43002c31		__getopt_msg
-	0x43002c90		$d
-.text.getopt	0x43002c94	0x174	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002c94		$t
-	0x43002c95		getopt
-	0x43002c95		__posix_getopt
-	0x43002df0		$d
-.text.mbtowc	0x43002e08	0xcc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002e08		$t
-	0x43002e09		mbtowc
-	0x43002ed0		$d
-.text.flockfile	0x43002ed4	0x28	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43002ed4		$t
-	0x43002ed5		flockfile
-.text.fputs	0x43002efc	0x26	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43002efc		$t
-	0x43002efd		fputs
-	0x43002efd		fputs_unlocked
-.text.__do_orphaned_stdio_locks	0x43002f22	0x1e	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43002f22		$t
-	0x43002f23		__do_orphaned_stdio_locks
-.text.__unlist_locked_file	0x43002f40	0x26	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text._txm_module_system_call7	0x43002b14	0x44	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002b14		$a.0
+	0x43002b14		_txm_module_system_call7
+	0x43002b54		$d.1
+.text.setlocale	0x43002b58	0xe8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002b58		$t
+	0x43002b59		setlocale
+	0x43002c30		$d
+.text.setlocale_one_unlocked	0x43002c40	0x34	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002c40		$t
+	0x43002c41		setlocale_one_unlocked
+	0x43002c6c		$d
+.text.__getopt_msg	0x43002c74	0x64	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002c74		$t
+	0x43002c75		__getopt_msg
+	0x43002cd4		$d
+.text.getopt	0x43002cd8	0x174	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002cd8		$t
+	0x43002cd9		getopt
+	0x43002cd9		__posix_getopt
+	0x43002e34		$d
+.text.mbtowc	0x43002e4c	0xcc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002e4c		$t
+	0x43002e4d		mbtowc
+	0x43002f14		$d
+.text.flockfile	0x43002f18	0x28	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43002f18		$t
+	0x43002f19		flockfile
+.text.fputs	0x43002f40	0x26	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43002f40		$t
-	0x43002f41		__unlist_locked_file
-PADDING_ALIGNMENT	0x43002f66	0x2	0x0
-.text.ftrylockfile	0x43002f68	0x80	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43002f68		$t
-	0x43002f69		ftrylockfile
-	0x43002fe4		$d
-.text.funlockfile	0x43002fe8	0x24	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43002fe8		$t
-	0x43002fe9		funlockfile
-.text.__fwritex	0x4300300c	0x76	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300300c		$t
-	0x4300300d		__fwritex
-.text.fwrite	0x43003082	0x58	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003082		$t
-	0x43003083		fwrite
-	0x43003083		fwrite_unlocked
-.text.putc	0x430030da	0x68	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430030da		$t
-	0x430030db		putc
-	0x430030db		_IO_putc
-.text	0x43003142	0x2ee	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003142		$t
-	0x43003143		memcpy
-	0x43003182		src_aligned
-	0x430031d0		congruent_aligned32
-	0x430031d0		cached_aligned32
-	0x430031e6		less_than_32_left
-	0x43003234		non_congruent
-	0x430032b0		loop16
-	0x4300330c		loop8
-	0x43003368		loop24
-	0x430033c0		less_than_thirtytwo
-	0x430033ea		partial_word_tail
-	0x43003406		copy_last_3_and_return
-.text	0x43003430	0x68	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003430		$t
-	0x43003431		memset
-.text.__strchrnul	0x43003498	0x5c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003498		$t
-	0x43003499		__strchrnul
-	0x43003499		strchrnul
-.text.strcmp	0x430034f4	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430034f4		$t
-	0x430034f5		strcmp
-.text.__strdup	0x43003508	0x22	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strdup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003508		$t
-	0x43003509		__strdup
-	0x43003509		strdup
-.text.strlen	0x4300352a	0x34	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300352a		$t
-	0x4300352b		strlen
-.text.strncpy	0x4300355e	0xc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300355e		$t
-	0x4300355f		strncpy
-PADDING_ALIGNMENT	0x4300356a	0x2	0x0
-.text.strtok	0x4300356c	0x50	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x4300356c		$t
-	0x4300356d		strtok
-	0x430035b8		$d
-.text.__lock	0x430035bc	0x38	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430035bc		$t
-	0x430035bd		__lock
-	0x430035f0		$d
-.text.__unlock	0x430035f4	0x32	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430035f4		$t
-	0x430035f5		__unlock
-.text.__syscall3	0x43003626	0xa	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003626		$t
-	0x43003627		__syscall3
-.text.__wait	0x43003630	0x64	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003630		$t
-	0x43003631		__wait
-.text.__syscall4	0x43003694	0xa	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003694		$t
-	0x43003695		__syscall4
-.text.a_fetch_add	0x4300369e	0x18	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300369e		$t
-	0x4300369f		a_fetch_add
-.text.__errno_location	0x430036b6	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430036b6		$t
-	0x430036b7		__errno_location
-.text.dummy	0x430036be	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430036be		$t
-	0x430036bf		dummy
-.text.__lctrans	0x430036c0	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430036c0		$t
-	0x430036c1		__lctrans
-.text.__lctrans_cur	0x430036c4	0xe	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430036c4		$t
-	0x430036c5		__lctrans_cur
-.text.__lctrans_impl	0x430036d2	0x1e	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430036d2		$t
-	0x430036d3		__lctrans_impl
-.text.__get_locale	0x430036f0	0x1e8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430036f0		$t
-	0x430036f1		__get_locale
-	0x430038b4		$d
-.text.dummy	0x430038d8	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430038d8		$t
-	0x430038d9		dummy
-	0x430038d9		__vm_wait
-.text.__munmap	0x430038da	0x1a	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430038da		$t
-	0x430038db		__munmap
-	0x430038db		munmap
-.text.__overflow	0x430038f4	0x54	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430038f4		$t
-	0x430038f5		__overflow
-.text.__towrite	0x43003948	0x38	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003948		$t
-	0x43003949		__towrite
-.text.__towrite_needs_stdio_exit	0x43003980	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003980		$t
-	0x43003981		__towrite_needs_stdio_exit
-.text.__lockfile	0x43003984	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003984		$t
-	0x43003985		__lockfile
-.text.__unlockfile	0x43003988	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003988		$t
-	0x43003989		__unlockfile
-.text.dummy	0x4300398a	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300398a		$t
-	0x4300398b		dummy
-	0x4300398b		__aio_close
-.text.__stdio_close	0x4300398c	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43002f41		fputs
+	0x43002f41		fputs_unlocked
+.text.__do_orphaned_stdio_locks	0x43002f66	0x1e	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43002f66		$t
+	0x43002f67		__do_orphaned_stdio_locks
+.text.__unlist_locked_file	0x43002f84	0x26	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43002f84		$t
+	0x43002f85		__unlist_locked_file
+PADDING_ALIGNMENT	0x43002faa	0x2	0x0
+.text.ftrylockfile	0x43002fac	0x80	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43002fac		$t
+	0x43002fad		ftrylockfile
+	0x43003028		$d
+.text.funlockfile	0x4300302c	0x24	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300302c		$t
+	0x4300302d		funlockfile
+.text.__fwritex	0x43003050	0x76	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003050		$t
+	0x43003051		__fwritex
+.text.fwrite	0x430030c6	0x58	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430030c6		$t
+	0x430030c7		fwrite
+	0x430030c7		fwrite_unlocked
+.text.putc	0x4300311e	0x68	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300311e		$t
+	0x4300311f		putc
+	0x4300311f		_IO_putc
+.text	0x43003186	0x2ee	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003186		$t
+	0x43003187		memcpy
+	0x430031c6		src_aligned
+	0x43003214		congruent_aligned32
+	0x43003214		cached_aligned32
+	0x4300322a		less_than_32_left
+	0x43003278		non_congruent
+	0x430032f4		loop16
+	0x43003350		loop8
+	0x430033ac		loop24
+	0x43003404		less_than_thirtytwo
+	0x4300342e		partial_word_tail
+	0x4300344a		copy_last_3_and_return
+.text	0x43003474	0x68	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003474		$t
+	0x43003475		memset
+.text.__strchrnul	0x430034dc	0x5c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430034dc		$t
+	0x430034dd		__strchrnul
+	0x430034dd		strchrnul
+.text.strcmp	0x43003538	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003538		$t
+	0x43003539		strcmp
+.text.__strdup	0x4300354c	0x22	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strdup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300354c		$t
+	0x4300354d		__strdup
+	0x4300354d		strdup
+.text.strlen	0x4300356e	0x34	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300356e		$t
+	0x4300356f		strlen
+.text.strncpy	0x430035a2	0xc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430035a2		$t
+	0x430035a3		strncpy
+PADDING_ALIGNMENT	0x430035ae	0x2	0x0
+.text.strtok	0x430035b0	0x50	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430035b0		$t
+	0x430035b1		strtok
+	0x430035fc		$d
+.text.__lock	0x43003600	0x38	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003600		$t
+	0x43003601		__lock
+	0x43003634		$d
+.text.__unlock	0x43003638	0x32	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003638		$t
+	0x43003639		__unlock
+.text.__syscall3	0x4300366a	0xa	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300366a		$t
+	0x4300366b		__syscall3
+.text.__wait	0x43003674	0x64	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003674		$t
+	0x43003675		__wait
+.text.__syscall4	0x430036d8	0xa	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430036d8		$t
+	0x430036d9		__syscall4
+.text.a_fetch_add	0x430036e2	0x18	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430036e2		$t
+	0x430036e3		a_fetch_add
+.text.__errno_location	0x430036fa	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430036fa		$t
+	0x430036fb		__errno_location
+.text.dummy	0x43003702	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003702		$t
+	0x43003703		dummy
+.text.__lctrans	0x43003704	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003704		$t
+	0x43003705		__lctrans
+.text.__lctrans_cur	0x43003708	0xe	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003708		$t
+	0x43003709		__lctrans_cur
+.text.__lctrans_impl	0x43003716	0x1e	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003716		$t
+	0x43003717		__lctrans_impl
+.text.__get_locale	0x43003734	0x1e8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003734		$t
+	0x43003735		__get_locale
+	0x430038f8		$d
+.text.dummy	0x4300391c	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300391c		$t
+	0x4300391d		dummy
+	0x4300391d		__vm_wait
+.text.__munmap	0x4300391e	0x1a	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300391e		$t
+	0x4300391f		__munmap
+	0x4300391f		munmap
+.text.__overflow	0x43003938	0x54	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003938		$t
+	0x43003939		__overflow
+.text.__towrite	0x4300398c	0x38	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300398c		$t
-	0x4300398d		__stdio_close
-.text.__stdio_seek	0x430039a0	0x72	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430039a0		$t
-	0x430039a1		__stdio_seek
-.text.__stdio_write	0x43003a12	0xfe	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003a12		$t
-	0x43003a13		__stdio_write
-.text.__stpncpy	0x43003b10	0x68	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003b10		$t
-	0x43003b11		__stpncpy
-	0x43003b11		stpncpy
-.text.strcspn	0x43003b78	0x6a	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003b78		$t
-	0x43003b79		strcspn
-.text.strspn	0x43003be2	0x74	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003be2		$t
-	0x43003be3		strspn
-PADDING_ALIGNMENT	0x43003c56	0x2	0x0
-.text.__map_file	0x43003c58	0x58	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003c58		$t
-	0x43003c59		__map_file
-	0x43003cac		$d
-.text.getenv	0x43003cb0	0x5c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003cb0		$t
-	0x43003cb1		getenv
-	0x43003d08		$d
-.text.__syscall_ret	0x43003d0c	0x20	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003d0c		$t
-	0x43003d0d		__syscall_ret
-	0x43003d28		$d
-.text.__mo_lookup	0x43003d2c	0xd8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003d2c		$t
-	0x43003d2d		__mo_lookup
-	0x43003e00		$d
-.text.dummy	0x43003e04	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003e04		$t
-	0x43003e05		dummy
-PADDING_ALIGNMENT	0x43003e06	0x2	0x0
-.text.__mmap	0x43003e08	0x60	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003e08		$t
-	0x43003e09		__mmap
-	0x43003e09		mmap
-	0x43003e09		mmap64
-	0x43003e64		$d
-.text.__stdio_exit	0x43003e68	0x30	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003e68		$t
-	0x43003e69		__stdio_exit
-	0x43003e69		__stdio_exit_needed
-	0x43003e90		$d
-.text.close_file	0x43003e98	0x3c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003e98		$t
-	0x43003e99		close_file
-.text.__ofl_lock	0x43003ed4	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003ed4		$t
-	0x43003ed5		__ofl_lock
-	0x43003ed8		$d
-.text.__ofl_unlock	0x43003edc	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300398d		__towrite
+.text.__towrite_needs_stdio_exit	0x430039c4	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430039c4		$t
+	0x430039c5		__towrite_needs_stdio_exit
+.text.__lockfile	0x430039c8	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430039c8		$t
+	0x430039c9		__lockfile
+.text.__unlockfile	0x430039cc	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430039cc		$t
+	0x430039cd		__unlockfile
+.text.dummy	0x430039ce	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430039ce		$t
+	0x430039cf		dummy
+	0x430039cf		__aio_close
+.text.__stdio_close	0x430039d0	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430039d0		$t
+	0x430039d1		__stdio_close
+.text.__stdio_seek	0x430039e4	0x72	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430039e4		$t
+	0x430039e5		__stdio_seek
+.text.__stdio_write	0x43003a56	0xfe	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003a56		$t
+	0x43003a57		__stdio_write
+.text.__stpncpy	0x43003b54	0x68	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003b54		$t
+	0x43003b55		__stpncpy
+	0x43003b55		stpncpy
+.text.strcspn	0x43003bbc	0x6a	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003bbc		$t
+	0x43003bbd		strcspn
+.text.strspn	0x43003c26	0x74	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003c26		$t
+	0x43003c27		strspn
+PADDING_ALIGNMENT	0x43003c9a	0x2	0x0
+.text.__map_file	0x43003c9c	0x58	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003c9c		$t
+	0x43003c9d		__map_file
+	0x43003cf0		$d
+.text.getenv	0x43003cf4	0x5c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003cf4		$t
+	0x43003cf5		getenv
+	0x43003d4c		$d
+.text.__syscall_ret	0x43003d50	0x20	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003d50		$t
+	0x43003d51		__syscall_ret
+	0x43003d6c		$d
+.text.__mo_lookup	0x43003d70	0xd8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003d70		$t
+	0x43003d71		__mo_lookup
+	0x43003e44		$d
+.text.dummy	0x43003e48	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003e48		$t
+	0x43003e49		dummy
+PADDING_ALIGNMENT	0x43003e4a	0x2	0x0
+.text.__mmap	0x43003e4c	0x60	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003e4c		$t
+	0x43003e4d		__mmap
+	0x43003e4d		mmap
+	0x43003e4d		mmap64
+	0x43003ea8		$d
+.text.__stdio_exit	0x43003eac	0x30	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003eac		$t
+	0x43003ead		__stdio_exit
+	0x43003ead		__stdio_exit_needed
+	0x43003ed4		$d
+.text.close_file	0x43003edc	0x3c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43003edc		$t
-	0x43003edd		__ofl_unlock
-.text.__aeabi_memclr	0x43003ede	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003ede		$t
-	0x43003edf		__aeabi_memclr
-	0x43003edf		__aeabi_memclr4
-	0x43003edf		__aeabi_memclr8
-.text.strchr	0x43003ee6	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003ee6		$t
-	0x43003ee7		strchr
-.text.strncmp	0x43003efa	0x28	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003efa		$t
-	0x43003efb		strncmp
-PADDING_ALIGNMENT	0x43003f22	0x2	0x0
-.text	0x43003f24	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003f24		$t.0
-	0x43003f25		__aeabi_uldivmod
-.text.__udivmoddi4	0x43003f38	0x1d4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003f38		$t.0
-	0x43003f39		__udivmoddi4
+	0x43003edd		close_file
+.text.__ofl_lock	0x43003f18	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003f18		$t
+	0x43003f19		__ofl_lock
+	0x43003f1c		$d
+.text.__ofl_unlock	0x43003f20	0x2	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003f20		$t
+	0x43003f21		__ofl_unlock
+.text.__aeabi_memclr	0x43003f22	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003f22		$t
+	0x43003f23		__aeabi_memclr
+	0x43003f23		__aeabi_memclr4
+	0x43003f23		__aeabi_memclr8
+.text.strchr	0x43003f2a	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003f2a		$t
+	0x43003f2b		strchr
+.text.strncmp	0x43003f3e	0x28	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003f3e		$t
+	0x43003f3f		strncmp
+PADDING_ALIGNMENT	0x43003f66	0x2	0x0
+.text	0x43003f68	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003f68		$t.0
+	0x43003f69		__aeabi_uldivmod
+.text.__udivmoddi4	0x43003f7c	0x1d4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003f7c		$t.0
+	0x43003f7d		__udivmoddi4
 *(Init )
 *(.rodata .rodata.* )
-.rodata.str1.1	0x4300410c	0xb	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300410c		.L.str
-.rodata.str1.1	0x43004117	0x10	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004117		.L.str.1
-.rodata.str1.1	0x43004127	0xa	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004127		.L.str.2
-.rodata.str1.1	0x43004131	0x8	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004131		.L.str.1
-.rodata.str1.1	0x43004139	0x28	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004139		.L.str.3
-PADDING_ALIGNMENT	0x43004161	0xf	0x0
-.rodata.str1.16	0x43004170	0x1d6	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,16
-	0x43004170		.Lstr
-	0x430041b0		.Lstr.9
-	0x430041f0		.Lstr.10
-	0x43004230		.Lstr.12
-	0x43004270		.Lstr.13
-	0x430042c0		.Lstr.14
-	0x43004300		.Lstr.15
-.rodata.str1.1	0x43004346	0x7	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004346		.L.str
-.rodata.str1.1	0x4300434d	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300434d		.L.str.1
-.rodata.str1.1	0x43004351	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004351		.L.str.2
-.rodata.str1.1	0x43004356	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004356		.L.str.3
-.rodata.str1.1	0x4300435b	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300435b		.L.str.4
-PADDING_ALIGNMENT	0x4300435f	0x1	0x0
-.rodata	0x43004360	0x50	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC,8
-	0x43004360		_ftoa.pow10
-.rodata.str1.1	0x430043b0	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043b0		.L.str
-.rodata.str1.1	0x430043b2	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043b2		.L.str.1
-.rodata.str1.1	0x430043b5	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043b5		.L.str.2
-.rodata.str1.1	0x430043b8	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043b8		.L.str.3
-.rodata.str1.1	0x430043ba	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043ba		.L.str.4
-.rodata.str1.1	0x430043bd	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043bd		.L.str.5
-.rodata.str1.1	0x430043bf	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043bf		.L.str.6
-.rodata.str1.1	0x430043c2	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043c2		.L.str
-.rodata.str1.1	0x430043c6	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043c6		.L.str.1
-.rodata.str1.1	0x430043c8	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043c8		.L.str.2
-.rodata.str1.1	0x430043cd	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043cd		.L.str.3
-.rodata.str1.1	0x430043cf	0x7	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043cf		.L.str.4
-.rodata.str1.1	0x430043d6	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043d6		.L.str.5
-.rodata.str1.1	0x430043d9	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043d9		.L.str.6
-.rodata.str1.1	0x430043de	0xa	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043de		.L.str.7
-.rodata.str1.1	0x430043e8	0x59	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430043e8		.L.str.1
-.rodata.str1.1	0x43004441	0x2	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004441		.L.str.2
-PADDING_ALIGNMENT	0x43004443	0x1	0x0
-.rodata.cst16	0x43004444	0x10	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
-	0x43004444		$d
-.rodata.str1.1	0x43004454	0x18	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300446c	0x20	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.stderr	0x4300448c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x4300448c		$d
-	0x4300448c		stderr
-.rodata.str1.1	0x43004490	0x7	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x43004497	0x5	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300449c	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x430044a4	0x6	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x430044aa	0xd	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.envvars	0x430044b7	0x48	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC,1
-	0x430044b7		envvars
-PADDING_ALIGNMENT	0x430044ff	0x1	0x0
-.rodata.__fsmu8	0x43004500	0xcc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x43004500		$d
-	0x43004500		__fsmu8
-.rodata.empty_mo	0x430045cc	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x430045cc		empty_mo
-	0x430045cc		$d
-.rodata.__c_dot_utf8	0x430045e0	0x1c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x430045e0		$d
-	0x430045e0		__c_dot_utf8
-	Image$$ER_RO$$Limit(0x430045fc) = .( 0x430045fc );
-Image$$ER_RO$$Length(0x45fc) = Image$$ER_RO$$Limit( 0x430045fc ) - Image$$ER_RO$$Base( 0x43000000 );
-
-ER_RW	0x43004600	0x150 # Offset: 0x4660, LMA: 0x43004600
-	Image$$ER_RW$$Base(0x43004600) = .( 0x43004600 );
-KEEP (*(.data .data.* ))
-.data	0x43004600	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004600		CLI_CMD_CLI
-PADDING_ALIGNMENT	0x43004604	0xc	0x0
-.data..L_MergedGlobals	0x43004610	0x70	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,16
+.rodata.str1.1	0x43004150	0xb	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004150		.L.str
+.rodata.str1.1	0x4300415b	0x10	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300415b		.L.str.1
+.rodata.str1.1	0x4300416b	0xa	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300416b		.L.str.2
+.rodata.str1.1	0x43004175	0x8	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004175		.L.str.1
+.rodata.str1.1	0x4300417d	0x28	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300417d		.L.str.3
+PADDING_ALIGNMENT	0x430041a5	0xb	0x0
+.rodata.str1.16	0x430041b0	0x1d6	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,16
+	0x430041b0		.Lstr
+	0x430041f0		.Lstr.9
+	0x43004230		.Lstr.10
+	0x43004270		.Lstr.12
+	0x430042b0		.Lstr.13
+	0x43004300		.Lstr.14
+	0x43004340		.Lstr.15
+.rodata.str1.1	0x43004386	0x7	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004386		.L.str
+.rodata.str1.1	0x4300438d	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300438d		.L.str.1
+.rodata.str1.1	0x43004391	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004391		.L.str.2
+.rodata.str1.1	0x43004396	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004396		.L.str.3
+.rodata.str1.1	0x4300439b	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300439b		.L.str.4
+PADDING_ALIGNMENT	0x4300439f	0x1	0x0
+.rodata	0x430043a0	0x50	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC,8
+	0x430043a0		_ftoa.pow10
+.rodata.str1.1	0x430043f0	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043f0		.L.str
+.rodata.str1.1	0x430043f2	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043f2		.L.str.1
+.rodata.str1.1	0x430043f5	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043f5		.L.str.2
+.rodata.str1.1	0x430043f8	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043f8		.L.str.3
+.rodata.str1.1	0x430043fa	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043fa		.L.str.4
+.rodata.str1.1	0x430043fd	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043fd		.L.str.5
+.rodata.str1.1	0x430043ff	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430043ff		.L.str.6
+.rodata.str1.1	0x43004402	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004402		.L.str
+.rodata.str1.1	0x43004406	0x8	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004406		.L.str.1
+.rodata.str1.1	0x4300440e	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300440e		.L.str.2
+.rodata.str1.1	0x43004413	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004413		.L.str.3
+.rodata.str1.1	0x43004415	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004415		.L.str.4
+.rodata.str1.1	0x43004418	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004418		.L.str.5
+.rodata.str1.1	0x4300441d	0xa	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300441d		.L.str.6
+.rodata.str1.1	0x43004427	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004427		.L.str.7
+.rodata.str1.1	0x4300442b	0x59	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300442b		.L.str.9
+.rodata.str1.1	0x43004484	0x2	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004484		.L.str
+PADDING_ALIGNMENT	0x43004486	0x2	0x0
+.rodata.cst16	0x43004488	0x10	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
+	0x43004488		$d
+.rodata.str1.1	0x43004498	0x18	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430044b0	0x20	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.stderr	0x430044d0	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x430044d0		$d
+	0x430044d0		stderr
+.rodata.str1.1	0x430044d4	0x7	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430044db	0x5	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430044e0	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430044e8	0x6	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430044ee	0xd	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.envvars	0x430044fb	0x48	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC,1
+	0x430044fb		envvars
+PADDING_ALIGNMENT	0x43004543	0x1	0x0
+.rodata.__fsmu8	0x43004544	0xcc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43004544		$d
+	0x43004544		__fsmu8
+.rodata.empty_mo	0x43004610	0x14	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43004610		empty_mo
 	0x43004610		$d
-	0x43004610		setlocale.lock
-	0x43004618		buf
-.data..L_MergedGlobals	0x43004680	0xc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004680		$d
-	0x43004680		optind
-	0x43004684		opterr
-	0x43004688		optreset
-	0x43004688		__optreset
-PADDING_ALIGNMENT	0x4300468c	0x4	0x0
-.data.f	0x43004690	0x90	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
-	0x43004690		f
-	0x43004690		$d
-.data.__stderr_used	0x43004720	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004720		$d
-	0x43004720		__stderr_used
-.data.buf	0x43004724	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
-	0x43004724		buf
-	0x43004724		$d
-.data.strtok.p	0x4300472c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x4300472c		strtok.p
-	0x4300472c		$d
-.data.__progname	0x43004730	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004730		$d
-	0x43004730		__progname
-	0x43004730		program_invocation_short_name
-.data.__progname_full	0x43004734	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004734		$d
-	0x43004734		__progname_full
-	0x43004734		program_invocation_name
-.data..L_MergedGlobals	0x43004738	0xc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004738		$d
-	0x43004738		__get_locale.loc_head
-	0x4300473c		__get_locale.lock
-.data.dummy_file	0x43004744	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004744		dummy_file
-	0x43004744		$d
-	0x43004744		__stdin_used
-	0x43004744		__stdout_used
-.data.ofl_head	0x43004748	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43004748		ofl_head
-	0x43004748		$d
-.data.__environ	0x4300474c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
-	0x4300474c		$d
-	0x4300474c		__environ
-	0x4300474c		___environ
-	0x4300474c		_environ
-	0x4300474c		environ
-	Image$$ER_RW$$Limit(0x43004750) = .( 0x43004750 );
-Image$$ER_RW$$Length(0x150) = Image$$ER_RW$$Limit( 0x43004750 ) - Image$$ER_RW$$Base( 0x43004600 );
+.rodata.__c_dot_utf8	0x43004624	0x1c	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43004624		$d
+	0x43004624		__c_dot_utf8
+	Image$$ER_RO$$Limit(0x43004640) = .( 0x43004640 );
+Image$$ER_RO$$Length(0x4640) = Image$$ER_RO$$Limit( 0x43004640 ) - Image$$ER_RO$$Base( 0x43000000 );
 
-ER_ZI	0x43004750	0x80408 # Offset: 0x47b0, LMA: 0x43004750
-	Image$$ER_ZI$$Base(0x43004750) = .( 0x43004750 );
+ER_RW	0x43004640	0x150 # Offset: 0x46a0, LMA: 0x43004640
+	Image$$ER_RW$$Base(0x43004640) = .( 0x43004640 );
+KEEP (*(.data .data.* ))
+.data	0x43004640	0x8	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004640		CLI_CMD_CLI
+	0x43004644		CLI_CMD_MEMINFO
+PADDING_ALIGNMENT	0x43004648	0x8	0x0
+.data..L_MergedGlobals	0x43004650	0x70	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,16
+	0x43004650		$d
+	0x43004650		setlocale.lock
+	0x43004658		buf
+.data..L_MergedGlobals	0x430046c0	0xc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x430046c0		$d
+	0x430046c0		optind
+	0x430046c4		opterr
+	0x430046c8		optreset
+	0x430046c8		__optreset
+PADDING_ALIGNMENT	0x430046cc	0x4	0x0
+.data.f	0x430046d0	0x90	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+	0x430046d0		f
+	0x430046d0		$d
+.data.__stderr_used	0x43004760	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004760		$d
+	0x43004760		__stderr_used
+.data.buf	0x43004764	0x8	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
+	0x43004764		buf
+	0x43004764		$d
+.data.strtok.p	0x4300476c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x4300476c		strtok.p
+	0x4300476c		$d
+.data.__progname	0x43004770	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004770		$d
+	0x43004770		__progname
+	0x43004770		program_invocation_short_name
+.data.__progname_full	0x43004774	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004774		$d
+	0x43004774		__progname_full
+	0x43004774		program_invocation_name
+.data..L_MergedGlobals	0x43004778	0xc	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004778		$d
+	0x43004778		__get_locale.loc_head
+	0x4300477c		__get_locale.lock
+.data.dummy_file	0x43004784	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004784		dummy_file
+	0x43004784		$d
+	0x43004784		__stdin_used
+	0x43004784		__stdout_used
+.data.ofl_head	0x43004788	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43004788		ofl_head
+	0x43004788		$d
+.data.__environ	0x4300478c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x4300478c		$d
+	0x4300478c		__environ
+	0x4300478c		___environ
+	0x4300478c		_environ
+	0x4300478c		environ
+	Image$$ER_RW$$Limit(0x43004790) = .( 0x43004790 );
+Image$$ER_RW$$Length(0x150) = Image$$ER_RW$$Limit( 0x43004790 ) - Image$$ER_RW$$Base( 0x43004640 );
+
+ER_ZI	0x43004790	0x80408 # Offset: 0x47f0, LMA: 0x43004790
+	Image$$ER_ZI$$Base(0x43004790) = .( 0x43004790 );
 *(.bss* .bss.* .common COMMON )
-	0x43004750	0x80	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x43004750		stdin_buf
-	0x430047d0	0x4	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430047d0		in_tx_sem
-	0x430047d4	0x4	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430047d4		out_tx_done_sem
-	0x430047d8	0x4	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430047d8		out_tx_mutex
-	0x430047dc	0x80000	out/common/src/malloc.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430047dc		mem_heap
-	0x430847dc	0x4	out/common/src/malloc.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430847dc		byte_malloc_mem_pool
-	0x430847e0	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430847e0		_txm_module_entry_info
-	0x430847e4	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430847e4		_txm_module_instance_ptr
-	0x430847e8	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430847e8		_txm_module_kernel_call_dispatcher
-	0x430847ec	0x40	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x430847ec		__libc
-	0x4308482c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x4308482c		__optpos
-	0x43084830	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x43084830		optarg
-	0x43084834	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x43084834		optopt
-.bss	0x43084838	0x204	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
-	0x43084838		handle
-	0x4308483c		__wrap_printf.stdout_buf
-PADDING_ALIGNMENT	0x43084a3c	0x4	0x0
-.bss	0x43084a40	0x118	out/common/src/file.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
-	0x43084a40		readdir.d
-	Image$$ER_ZI$$Limit(0x43084b58) = .( 0x43084b58 );
-Image$$ER_ZI$$ZI$$Length(0x80408) = Image$$ER_ZI$$Limit( 0x43084b58 ) - Image$$ER_ZI$$Base( 0x43004750 );
+	0x43004790	0x80	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43004790		stdin_buf
+	0x43004810	0x4	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43004810		in_tx_sem
+	0x43004814	0x4	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43004814		out_tx_done_sem
+	0x43004818	0x4	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43004818		out_tx_mutex
+	0x4300481c	0x80000	out/common/src/malloc.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x4300481c		mem_heap
+	0x4308481c	0x4	out/common/src/malloc.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x4308481c		byte_malloc_mem_pool
+	0x43084820	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43084820		_txm_module_entry_info
+	0x43084824	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43084824		_txm_module_instance_ptr
+	0x43084828	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43084828		_txm_module_kernel_call_dispatcher
+	0x4308482c	0x40	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x4308482c		__libc
+	0x4308486c	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x4308486c		__optpos
+	0x43084870	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43084870		optarg
+	0x43084874	0x4	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43084874		optopt
+.bss	0x43084878	0x204	out/common/src/retarget.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,4
+	0x43084878		handle
+	0x4308487c		__wrap_printf.stdout_buf
+PADDING_ALIGNMENT	0x43084a7c	0x4	0x0
+.bss	0x43084a80	0x118	out/common/src/file.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43084a80		readdir.d
+	Image$$ER_ZI$$Limit(0x43084b98) = .( 0x43084b98 );
+Image$$ER_ZI$$ZI$$Length(0x80408) = Image$$ER_ZI$$Limit( 0x43084b98 ) - Image$$ER_ZI$$Base( 0x43004790 );
 
 .debug	0x0	0x0 # Offset: 0x0
 
@@ -825,720 +826,720 @@ Image$$ER_ZI$$ZI$$Length(0x80408) = Image$$ER_ZI$$Limit( 0x43084b58 ) - Image$$E
 
 .debug_aranges	0x0	0x0 # Offset: 0x0
 
-.debug_pubnames	0x47b0	0x19f # Offset: 0x47b0
+.debug_pubnames	0x47f0	0x19f # Offset: 0x47f0
 *(.debug_pubnames )
-.debug_pubnames	0x47b0	0xa2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_pubnames	0x4852	0x40	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_pubnames	0x4892	0x30	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_pubnames	0x48c2	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_pubnames	0x48f1	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_pubnames	0x4920	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x47f0	0xa2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x4892	0x40	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x48d2	0x30	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x4902	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x4931	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_pubnames	0x4960	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_info	0x494f	0x20d6 # Offset: 0x494f
+.debug_info	0x498f	0x20d6 # Offset: 0x498f
 *(.debug_info .gnu.linkonce.wi.* )
-.debug_info	0x494f	0xcd5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_info	0x5624	0x1019	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_info	0x663d	0x145	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_info	0x6782	0xcd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_info	0x684f	0xdc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_info	0x692b	0xfa	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_info	0x498f	0xcd5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_info	0x5664	0x1019	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_info	0x667d	0x145	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_info	0x67c2	0xcd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_info	0x688f	0xdc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_info	0x696b	0xfa	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_abbrev	0x6a25	0x401 # Offset: 0x6a25
+.debug_abbrev	0x6a65	0x401 # Offset: 0x6a65
 *(.debug_abbrev )
-.debug_abbrev	0x6a25	0xe2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_abbrev	0x6b07	0xeb	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_abbrev	0x6bf2	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_abbrev	0x6c7f	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_abbrev	0x6d0c	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_abbrev	0x6d99	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x6a65	0xe2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x6b47	0xeb	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x6c32	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x6cbf	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x6d4c	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_abbrev	0x6dd9	0x8d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_line	0x6e26	0x9fb # Offset: 0x6e26
+.debug_line	0x6e66	0x9fb # Offset: 0x6e66
 *(.debug_line )
-.debug_line	0x6e26	0x1c2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_line	0x6fe8	0x27c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_line	0x7264	0x175	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_line	0x73d9	0x16c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_line	0x7545	0x16d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_line	0x76b2	0x16f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_line	0x6e66	0x1c2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_line	0x7028	0x27c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_line	0x72a4	0x175	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_line	0x7419	0x16c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_line	0x7585	0x16d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_line	0x76f2	0x16f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_frame	0x7821	0x10c # Offset: 0x7821
+.debug_frame	0x7861	0x10c # Offset: 0x7861
 *(.debug_frame )
-.debug_frame	0x7821	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,4
-.debug_frame	0x784d	0x3c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,4
-.debug_frame	0x7889	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,4
-.debug_frame	0x78b5	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,4
-.debug_frame	0x78dd	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,4
-.debug_frame	0x7905	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,4
+.debug_frame	0x7861	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,4
+.debug_frame	0x788d	0x3c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,4
+.debug_frame	0x78c9	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,4
+.debug_frame	0x78f5	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,4
+.debug_frame	0x791d	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,4
+.debug_frame	0x7945	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,4
 
-.debug_str	0x792d	0x24cc # Offset: 0x792d
+.debug_str	0x796d	0x24cc # Offset: 0x796d
 *(.debug_str )
-.debug_str	0x792d	0x3c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x796d	0x3c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x0		
-.debug_str	0x7969	0xa9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x79a9	0xa9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x3c		
-.debug_str	0x7a12	0x66	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7a52	0x66	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xe5		
-.debug_str	0x7a78	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7ab8	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x14b		
-.debug_str	0x7a8f	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7acf	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x162		
-.debug_str	0x7ab3	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7af3	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x186		
-.debug_str	0x7ac0	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b00	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x193		
-.debug_str	0x7ad2	0x6	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b12	0x6	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a5		
-.debug_str	0x7ad8	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b18	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1ab		
-.debug_str	0x7aec	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b2c	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1bf		
-.debug_str	0x7b00	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b40	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d3		
-.debug_str	0x7b16	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b56	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e9		
-.debug_str	0x7b2a	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b6a	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1fd		
-.debug_str	0x7b3f	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b7f	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x212		
-.debug_str	0x7b54	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7b94	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x227		
-.debug_str	0x7b6d	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7bad	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x240		
-.debug_str	0x7b82	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7bc2	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x255		
-.debug_str	0x7b9b	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7bdb	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x26e		
-.debug_str	0x7baa	0x5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7bea	0x5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x27d		
-.debug_str	0x7baf	0x5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7bef	0x5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x282		
-.debug_str	0x7bb4	0x13	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7bf4	0x13	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x287		
-.debug_str	0x7bc7	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c07	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x29a		
-.debug_str	0x7bd4	0x5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c14	0x5	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2a7		
-.debug_str	0x7bd9	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c19	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2ac		
-.debug_str	0x7be9	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c29	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2bc		
-.debug_str	0x7c03	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c43	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2d6		
-.debug_str	0x7c18	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c58	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2eb		
-.debug_str	0x7c34	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c74	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x307		
-.debug_str	0x7c4c	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c8c	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x31f		
-.debug_str	0x7c5c	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7c9c	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x32f		
-.debug_str	0x7c76	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7cb6	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x349		
-.debug_str	0x7c86	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7cc6	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x359		
-.debug_str	0x7ca8	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7ce8	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x37b		
-.debug_str	0x7cce	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7d0e	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x3a1		
-.debug_str	0x7cf1	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7d31	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x3c4		
-.debug_str	0x7d11	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7d51	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x3e4		
-.debug_str	0x7d2f	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7d6f	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x402		
-.debug_str	0x7d51	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7d91	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x424		
-.debug_str	0x7d6d	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7dad	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x440		
-.debug_str	0x7d86	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7dc6	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x459		
-.debug_str	0x7d98	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7dd8	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x46b		
-.debug_str	0x7db2	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7df2	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x485		
-.debug_str	0x7dd2	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7e12	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x4a5		
-.debug_str	0x7deb	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7e2b	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x4be		
-.debug_str	0x7e08	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7e48	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x4db		
-.debug_str	0x7e1f	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7e5f	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x4f2		
-.debug_str	0x7e41	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7e81	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x514		
-.debug_str	0x7e5a	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7e9a	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x52d		
-.debug_str	0x7e73	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7eb3	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x546		
-.debug_str	0x7e8a	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7eca	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x55d		
-.debug_str	0x7ea5	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7ee5	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x578		
-.debug_str	0x7eba	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7efa	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x58d		
-.debug_str	0x7ed8	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7f18	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x5ab		
-.debug_str	0x7ef8	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7f38	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x5cb		
-.debug_str	0x7f1b	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7f5b	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x5ee		
-.debug_str	0x7f36	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7f76	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x609		
-.debug_str	0x7f53	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7f93	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x626		
-.debug_str	0x7f6b	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7fab	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x63e		
-.debug_str	0x7f8c	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7fcc	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x65f		
-.debug_str	0x7fa7	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x7fe7	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x67a		
-.debug_str	0x7fc3	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8003	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x696		
-.debug_str	0x7fde	0xc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x801e	0xc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x6b1		
-.debug_str	0x7fea	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x802a	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x6bd		
-.debug_str	0x7ff8	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8038	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x6cb		
-.debug_str	0x8011	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8051	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x6e4		
-.debug_str	0x8020	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8060	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x6f3		
-.debug_str	0x8031	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8071	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x704		
-.debug_str	0x804c	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x808c	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x71f		
-.debug_str	0x8065	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x80a5	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x738		
-.debug_str	0x807e	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x80be	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x751		
-.debug_str	0x8094	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x80d4	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x767		
-.debug_str	0x80ae	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x80ee	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x781		
-.debug_str	0x80d0	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8110	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x7a3		
-.debug_str	0x80e4	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8124	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x7b7		
-.debug_str	0x80fc	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x813c	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x7cf		
-.debug_str	0x810c	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x814c	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x7df		
-.debug_str	0x8128	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8168	0x4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x7fb		
-.debug_str	0x812c	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x816c	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x7ff		
-.debug_str	0x8135	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8175	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x808		
-.debug_str	0x814a	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x818a	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x81d		
-.debug_str	0x8161	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x81a1	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x834		
-.debug_str	0x817b	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x81bb	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x84e		
-.debug_str	0x8190	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x81d0	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x863		
-.debug_str	0x81a1	0xa	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x81e1	0xa	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x874		
-.debug_str	0x81ab	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x81eb	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x87e		
-.debug_str	0x81cf	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x820f	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x8a2		
-.debug_str	0x81e6	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8226	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x8b9		
-.debug_str	0x81ff	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x823f	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x8d2		
-.debug_str	0x8219	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8259	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x8ec		
-.debug_str	0x823c	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x827c	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x90f		
-.debug_str	0x8264	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x82a4	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x937		
-.debug_str	0x828d	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x82cd	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x960		
-.debug_str	0x82ac	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x82ec	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x97f		
-.debug_str	0x82c9	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8309	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x99c		
-.debug_str	0x82e7	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8327	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x9ba		
-.debug_str	0x830f	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x834f	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x9e2		
-.debug_str	0x8338	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8378	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xa0b		
-.debug_str	0x8357	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8397	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xa2a		
-.debug_str	0x8374	0x2d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x83b4	0x2d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xa47		
-.debug_str	0x83a1	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x83e1	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xa74		
-.debug_str	0x83bf	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x83ff	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xa92		
-.debug_str	0x83e3	0x33	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8423	0x33	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xab6		
-.debug_str	0x8416	0x31	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8456	0x31	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xae9		
-.debug_str	0x8447	0x31	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8487	0x31	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xb1a		
-.debug_str	0x8478	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x84b8	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xb4b		
-.debug_str	0x84a7	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x84e7	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xb7a		
-.debug_str	0x84c8	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8508	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xb9b		
-.debug_str	0x84df	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x851f	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xbb2		
-.debug_str	0x8501	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8541	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xbd4		
-.debug_str	0x8523	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8563	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xbf6		
-.debug_str	0x8545	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8585	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xc18		
-.debug_str	0x856f	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x85af	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xc42		
-.debug_str	0x8592	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x85d2	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xc65		
-.debug_str	0x85bb	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x85fb	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xc8e		
-.debug_str	0x85de	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x861e	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xcb1		
-.debug_str	0x8600	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8640	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xcd3		
-.debug_str	0x8628	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8668	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xcfb		
-.debug_str	0x8652	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8692	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xd25		
-.debug_str	0x8678	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x86b8	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xd4b		
-.debug_str	0x869e	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x86de	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xd71		
-.debug_str	0x86c6	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8706	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xd99		
-.debug_str	0x86e4	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8724	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xdb7		
-.debug_str	0x8702	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8742	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xdd5		
-.debug_str	0x8721	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8761	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xdf4		
-.debug_str	0x8740	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8780	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xe13		
-.debug_str	0x875f	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x879f	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xe32		
-.debug_str	0x877e	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x87be	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xe51		
-.debug_str	0x879d	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x87dd	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xe70		
-.debug_str	0x87bc	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x87fc	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xe8f		
-.debug_str	0x87db	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x881b	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xeae		
-.debug_str	0x87fa	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x883a	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xecd		
-.debug_str	0x8819	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8859	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xeec		
-.debug_str	0x8838	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8878	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xf0b		
-.debug_str	0x8859	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0xf2c		
-.debug_str	0x8879	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0xf4c		
 .debug_str	0x8899	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0xf6c		
+	0xf2c		
 .debug_str	0x88b9	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf4c		
+.debug_str	0x88d9	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0xf6c		
+.debug_str	0x88f9	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xf8c		
-.debug_str	0x88d9	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8919	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xfac		
-.debug_str	0x88f6	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8936	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xfc9		
-.debug_str	0x8911	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8951	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xfe4		
-.debug_str	0x8925	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8965	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0xff8		
-.debug_str	0x894e	0x27	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x898e	0x27	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1021		
-.debug_str	0x8975	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x89b5	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1048		
-.debug_str	0x899b	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x89db	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x106e		
-.debug_str	0x89cd	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8a0d	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x10a0		
-.debug_str	0x89f3	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8a33	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x10c6		
-.debug_str	0x8a1f	0x2b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8a5f	0x2b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x10f2		
-.debug_str	0x8a4a	0xc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8a8a	0xc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x111d		
-.debug_str	0x8a56	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8a96	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1129		
-.debug_str	0x8a64	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8aa4	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1137		
-.debug_str	0x8a7a	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8aba	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x114d		
-.debug_str	0x8a8c	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8acc	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x115f		
-.debug_str	0x8a9e	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8ade	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1171		
-.debug_str	0x8ab9	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8af9	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x118c		
-.debug_str	0x8ac8	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b08	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x119b		
-.debug_str	0x8ad5	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b15	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x11a8		
-.debug_str	0x8ae3	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b23	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x11b6		
-.debug_str	0x8af2	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b32	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x11c5		
-.debug_str	0x8b0b	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b4b	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x11de		
-.debug_str	0x8b24	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b64	0x16	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x11f7		
-.debug_str	0x8b3a	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b7a	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x120d		
-.debug_str	0x8b54	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8b94	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1227		
-.debug_str	0x8b64	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8ba4	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1237		
-.debug_str	0x8b6d	0x30	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8bad	0x30	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1240		
-.debug_str	0x8b9d	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8bdd	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1270		
-.debug_str	0x8bc7	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8c07	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x129a		
-.debug_str	0x8bef	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8c2f	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x12c2		
-.debug_str	0x8c17	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8c57	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x12ea		
-.debug_str	0x8c3d	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8c7d	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1310		
-.debug_str	0x8c67	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8ca7	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x133a		
-.debug_str	0x8c8f	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8ccf	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1362		
-.debug_str	0x8cb7	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8cf7	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x138a		
-.debug_str	0x8cdc	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8d1c	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x13af		
-.debug_str	0x8cf5	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8d35	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x13c8		
-.debug_str	0x8d0d	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8d4d	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x13e0		
-.debug_str	0x8d2b	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8d6b	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x13fe		
-.debug_str	0x8d49	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8d89	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x141c		
-.debug_str	0x8d5e	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8d9e	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1431		
-.debug_str	0x8d72	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8db2	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1445		
-.debug_str	0x8d97	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8dd7	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x146a		
-.debug_str	0x8dc3	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8e03	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1496		
-.debug_str	0x8de4	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8e24	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x14b7		
-.debug_str	0x8e09	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8e49	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x14dc		
-.debug_str	0x8e20	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8e60	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x14f3		
-.debug_str	0x8e43	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8e83	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1516		
-.debug_str	0x8e69	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8ea9	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x153c		
-.debug_str	0x8e89	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8ec9	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x155c		
-.debug_str	0x8ead	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8eed	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1580		
-.debug_str	0x8ec8	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8f08	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x159b		
-.debug_str	0x8edc	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8f1c	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x15af		
-.debug_str	0x8f0b	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8f4b	0x2f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x15de		
-.debug_str	0x8f3a	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8f7a	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x160d		
-.debug_str	0x8f5d	0x27	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8f9d	0x27	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1630		
-.debug_str	0x8f84	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8fc4	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1657		
-.debug_str	0x8fad	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x8fed	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1680		
-.debug_str	0x8fd7	0x35	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9017	0x35	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x16aa		
-.debug_str	0x900c	0x34	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x904c	0x34	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x16df		
-.debug_str	0x9040	0x35	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9080	0x35	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1713		
-.debug_str	0x9075	0x34	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x90b5	0x34	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1748		
-.debug_str	0x90a9	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x90e9	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x177c		
-.debug_str	0x90cd	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x910d	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x17a0		
-.debug_str	0x90ea	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x912a	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x17bd		
-.debug_str	0x9103	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9143	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x17d6		
-.debug_str	0x9126	0xa	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9166	0xa	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x17f9		
-.debug_str	0x9130	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9170	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1803		
-.debug_str	0x914f	0xb	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x918f	0xb	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1822		
-.debug_str	0x915a	0xc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x919a	0xc	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x182d		
-.debug_str	0x9166	0xb4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x91a6	0xb4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1839		
-.debug_str	0x921a	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x925a	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x18ed		
-.debug_str	0x9232	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9272	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1905		
-.debug_str	0x924c	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x928c	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x191f		
-.debug_str	0x9269	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x92a9	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x193c		
-.debug_str	0x928b	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x92cb	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x195e		
-.debug_str	0x92b0	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x92f0	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1983		
-.debug_str	0x92d5	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9315	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x19a8		
-.debug_str	0x92f7	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9337	0x26	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x19ca		
-.debug_str	0x931d	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x935d	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x19f0		
-.debug_str	0x9340	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9380	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a13		
-.debug_str	0x935c	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x939c	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a2f		
-.debug_str	0x9371	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x93b1	0x10	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a44		
-.debug_str	0x9381	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x93c1	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a54		
-.debug_str	0x9393	0x13	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x93d3	0x13	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a66		
-.debug_str	0x93a6	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x93e6	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a79		
-.debug_str	0x93c3	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9403	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1a96		
-.debug_str	0x93e0	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9420	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1ab3		
-.debug_str	0x93fa	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x943a	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1acd		
-.debug_str	0x9418	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9458	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1aeb		
-.debug_str	0x942c	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x946c	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1aff		
-.debug_str	0x9439	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9479	0x18	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b0c		
-.debug_str	0x9451	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9491	0x2a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b24		
-.debug_str	0x947b	0x3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x94bb	0x3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b4e		
-.debug_str	0x947e	0x7	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x94be	0x7	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b51		
-.debug_str	0x9485	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x94c5	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b58		
-.debug_str	0x9494	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x94d4	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b67		
-.debug_str	0x94ad	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x94ed	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b80		
-.debug_str	0x94bf	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x94ff	0xe	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1b92		
-.debug_str	0x94cd	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x950d	0xf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1ba0		
-.debug_str	0x94dc	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x951c	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1baf		
-.debug_str	0x94ed	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x952d	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1bc0		
-.debug_str	0x9511	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9551	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1be4		
-.debug_str	0x952b	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x956b	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1bfe		
-.debug_str	0x954d	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x958d	0x1e	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1c20		
-.debug_str	0x956b	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x95ab	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1c3e		
-.debug_str	0x9590	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x95d0	0x24	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1c63		
-.debug_str	0x95b4	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x95f4	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1c87		
-.debug_str	0x95d6	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9616	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1ca9		
-.debug_str	0x95ff	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x963f	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1cd2		
-.debug_str	0x9618	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9658	0x1f	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1ceb		
-.debug_str	0x9637	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9677	0x17	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d0a		
-.debug_str	0x964e	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x968e	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d21		
-.debug_str	0x966a	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x96aa	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d3d		
-.debug_str	0x9686	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x96c6	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d59		
-.debug_str	0x969f	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x96df	0x1d	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d72		
-.debug_str	0x96bc	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x96fc	0x21	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1d8f		
-.debug_str	0x96dd	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x971d	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1db0		
-.debug_str	0x9702	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9742	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1dd5		
-.debug_str	0x971e	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x975e	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1df1		
-.debug_str	0x973a	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x977a	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e0d		
-.debug_str	0x9756	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9796	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e29		
-.debug_str	0x9772	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x97b2	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e45		
-.debug_str	0x978e	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x97ce	0x1c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e61		
-.debug_str	0x97aa	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x97ea	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e7d		
-.debug_str	0x97c5	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9805	0x14	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1e98		
-.debug_str	0x97d9	0x30	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9819	0x30	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1eac		
-.debug_str	0x9809	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9849	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1edc		
-.debug_str	0x982c	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x986c	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1eff		
-.debug_str	0x984f	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x988f	0x20	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1f22		
-.debug_str	0x986f	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x98af	0x29	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1f42		
-.debug_str	0x9898	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x98d8	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1f6b		
-.debug_str	0x98bd	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x98fd	0x25	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1f90		
-.debug_str	0x98e2	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9922	0x28	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1fb5		
-.debug_str	0x990a	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x994a	0x2c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x1fdd		
-.debug_str	0x9936	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9976	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2009		
-.debug_str	0x9959	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9999	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x202c		
-.debug_str	0x997c	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x99bc	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x204f		
-.debug_str	0x999f	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x99df	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2072		
-.debug_str	0x99c2	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9a02	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2095		
-.debug_str	0x99e5	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9a25	0x23	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x20b8		
-.debug_str	0x9a08	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9a48	0x22	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x20db		
-.debug_str	0x9a2a	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9a6a	0x1b	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x20fd		
-.debug_str	0x9a45	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9a85	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2118		
-.debug_str	0x9a57	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9a97	0x15	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x212a		
-.debug_str	0x9a6c	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9aac	0x12	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x213f		
-.debug_str	0x9a7e	0xa4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9abe	0xa4	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2151		
-.debug_str	0x9b22	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9b62	0x1a	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x21f5		
-.debug_str	0x9b3c	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9b7c	0x11	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x220f		
-.debug_str	0x9b4d	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2220		
-.debug_str	0x9b55	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2228		
-.debug_str	0x9b5d	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2230		
-.debug_str	0x9b65	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2238		
-.debug_str	0x9b6d	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2240		
-.debug_str	0x9b75	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2248		
-.debug_str	0x9b7d	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2250		
-.debug_str	0x9b85	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2258		
 .debug_str	0x9b8d	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-	0x2260		
+	0x2220		
 .debug_str	0x9b95	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2228		
+.debug_str	0x9b9d	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2230		
+.debug_str	0x9ba5	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2238		
+.debug_str	0x9bad	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2240		
+.debug_str	0x9bb5	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2248		
+.debug_str	0x9bbd	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2250		
+.debug_str	0x9bc5	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2258		
+.debug_str	0x9bcd	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+	0x2260		
+.debug_str	0x9bd5	0x8	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2268		
-.debug_str	0x9b9d	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9bdd	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2270		
-.debug_str	0x9ba6	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9be6	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2279		
-.debug_str	0x9baf	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9bef	0x9	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2282		
-.debug_str	0x9bb8	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9bf8	0xd	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x228b		
-.debug_str	0x9bc5	0xa3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9c05	0xa3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2298		
-.debug_str	0x9c68	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9ca8	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x233b		
-.debug_str	0x9c81	0xa3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9cc1	0xa3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2354		
-.debug_str	0x9d24	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9d64	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x23f7		
-.debug_str	0x9d3d	0xa3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9d7d	0xa3	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x2410		
-.debug_str	0x9de0	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.debug_str	0x9e20	0x19	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 	0x24b3		
 
-.debug_loc	0x9df9	0x372 # Offset: 0x9df9
+.debug_loc	0x9e39	0x372 # Offset: 0x9e39
 *(.debug_loc )
-.debug_loc	0x9df9	0x3c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_loc	0x9e35	0x75	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_loc	0x9eaa	0x118	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_loc	0x9fc2	0x73	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_loc	0xa035	0x87	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_loc	0xa0bc	0xaf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_loc	0x9e39	0x3c	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_loc	0x9e75	0x75	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_loc	0x9eea	0x118	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_loc	0xa002	0x73	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_loc	0xa075	0x87	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_loc	0xa0fc	0xaf	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_macinfo	0xa16b	0x6 # Offset: 0xa16b
+.debug_macinfo	0xa1ab	0x6 # Offset: 0xa1ab
 *(.debug_macinfo )
-.debug_macinfo	0xa16b	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_macinfo	0xa16c	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_macinfo	0xa16d	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_macinfo	0xa16e	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_macinfo	0xa16f	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_macinfo	0xa170	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0xa1ab	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0xa1ac	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0xa1ad	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0xa1ae	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0xa1af	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_macinfo	0xa1b0	0x1	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_weaknames	0xa171	0x0 # Offset: 0xa171
+.debug_weaknames	0xa1b1	0x0 # Offset: 0xa1b1
 
-.debug_funcnames	0xa171	0x0 # Offset: 0xa171
+.debug_funcnames	0xa1b1	0x0 # Offset: 0xa1b1
 
-.debug_typenames	0xa171	0x0 # Offset: 0xa171
+.debug_typenames	0xa1b1	0x0 # Offset: 0xa1b1
 
-.debug_varnames	0xa171	0x0 # Offset: 0xa171
+.debug_varnames	0xa1b1	0x0 # Offset: 0xa1b1
 
-.debug_pubtypes	0xa171	0x53d # Offset: 0xa171
+.debug_pubtypes	0xa1b1	0x53d # Offset: 0xa1b1
 *(.debug_pubtypes )
-.debug_pubtypes	0xa171	0x1e2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
-.debug_pubtypes	0xa353	0x293	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
-.debug_pubtypes	0xa5e6	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
-.debug_pubtypes	0xa618	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
-.debug_pubtypes	0xa64a	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
-.debug_pubtypes	0xa67c	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0xa1b1	0x1e2	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0xa393	0x293	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0xa626	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0xa658	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0xa68a	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,,1
+.debug_pubtypes	0xa6bc	0x32	../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,,1
 
-.debug_ranges	0xa6ae	0x0 # Offset: 0xa6ae
+.debug_ranges	0xa6ee	0x0 # Offset: 0xa6ee
 *(.debug_ranges )
 
-.gnu.attributes	0x0	0x0 # Offset: 0xa6ae, LMA: 0x0
+.gnu.attributes	0x0	0x0 # Offset: 0xa6ee, LMA: 0x0
 
-.note.gnu.arm.ident	0x0	0x0 # Offset: 0xa6ae, LMA: 0x0
+.note.gnu.arm.ident	0x0	0x0 # Offset: 0xa6ee, LMA: 0x0
 
-.ARM.attributes	0xa6ae	0x10 # Offset: 0xa6ae
+.ARM.attributes	0xa6ee	0x10 # Offset: 0xa6ee
 
-.comment	0xa6be	0x65 # Offset: 0xa6be
-.comment	0xa6be	0x1	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
-.comment	0xa6fb	0x28	Linker Version	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.comment	0xa6fe	0x65 # Offset: 0xa6fe
+.comment	0xa6fe	0x1	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.comment	0xa73b	0x28	Linker Version	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 
-.note.GNU-stack	0xa723	0x0 # Offset: 0xa723
+.note.GNU-stack	0xa763	0x0 # Offset: 0xa763
 
-/DISCARD/	0x75	0x0 # Offset: 0xa723, LMA: 0x0
+/DISCARD/	0x75	0x0 # Offset: 0xa763, LMA: 0x0
 
-.shstrtab	0xa723	0xbe # Offset: 0xa723
+.shstrtab	0xa763	0xbe # Offset: 0xa763
 
-.symtab	0xa7e4	0x4160 # Offset: 0xa7e4
+.symtab	0xa824	0x4170 # Offset: 0xa824
 
-.strtab	0xe944	0x1a1c # Offset: 0xe944
+.strtab	0xe994	0x1a2f # Offset: 0xe994

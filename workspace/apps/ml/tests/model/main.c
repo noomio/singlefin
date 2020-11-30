@@ -10,7 +10,7 @@
 #include <onnx.h>
 #include <locale.h>
 #include <qapi_timer.h>
-#include "txm_module.h"
+
 #include "cli.h"
 
 #undef PATH_MAX
@@ -229,24 +229,7 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 
 
 
-extern TX_BYTE_POOL *malloc_get_pool(void);
 
-void meminfo_dump(void){
-	ULONG available;
-	ULONG fragments;
-	TX_THREAD *first_suspended;
-	ULONG suspended_count;
-	TX_BYTE_POOL *next_pool;
-	UINT status;
-	/* Retrieve information about the previously created
-	block pool "my_pool." */
-	tx_byte_pool_info_get(malloc_get_pool(), 
-		"memheap",
-		&available, &fragments,&first_suspended, &suspended_count,
-		&next_pool);
-	printf("Available:\t\t%lu\nFragments:\t\t%lu\nFirst Suspended:\t%p\nSuspended Count:\t%lu\nNext Pool:\t\t%p\n", 
-		available,fragments,first_suspended,suspended_count,next_pool);
-}
 
 int main(int argc, char * argv[])
 {
