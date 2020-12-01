@@ -230,16 +230,59 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 
 static int cli_cmd_onnx(int args, char *argv[]){
 	int opt;
-	while((opt=getopt(args, argv, ":t")) != EOF){
+	char *f = NULL;
+	while((opt=getopt(args, argv, "f:")) != -1){
     	switch(opt) {
-			case 't':
-				printf("onnx=%s\r\n", optarg);
-			break;
+			case 'f':
+				f = strdup(optarg);
+				break;
 			default:
-				return -1;
 				break;
     	}
     }
+
+	struct hmap_t * m;
+	struct hmap_entry_t * e;
+	struct dirent * d;
+	struct stat st;
+	char tmp[PATH_MAX];
+	DIR * dir;
+
+
+	if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
+		m = hmap_alloc(0);
+		if((dir = opendir(f)) != NULL)
+		{
+			while((d = readdir(dir)) != NULL)
+			{
+				sprintf(tmp,"%s/%s",f,d->d_name);
+				if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode))
+				{
+
+					if(strcmp(".", d->d_name) == 0)
+						continue;
+					if(strcmp("..", d->d_name) == 0)
+						continue;
+					hmap_add(m, tmp, NULL);
+				}
+
+			}
+			closedir(dir);
+		}
+		
+		hmap_sort(m);
+		hmap_for_each_entry(e, m)
+		{
+			testcase(e->key, NULL, 0);
+		}
+
+		hmap_free(m, NULL);
+			
+
+	}
+
+	free(f);
+
 
 	return 0;
 
@@ -250,62 +293,14 @@ static int cli_cmd_onnx(int args, char *argv[]){
 int main(int argc, char * argv[])
 {
 
-	struct hmap_t * m;
-	struct hmap_entry_t * e;
-	struct dirent * d;
-	struct stat st;
-	char in[PATH_MAX];
-	char tmp[PATH_MAX];
-	DIR * dir;
-
 	setlocale(LC_ALL, "C");	
 
 	cli_t *cli = cli_new();
-
+	cli_register(cli,"onnx",cli_cmd_onnx);
 
 	for(;;){
 
-		if(cli_input(cli)){
-
-			cli_register(cli,"onnx",cli_cmd_onnx);
-			#if 0
-			if((lstat(in, &st) == 0) && S_ISDIR(st.st_mode))
-			{
-				m = hmap_alloc(0);
-				if((dir = opendir(in)) != NULL)
-				{
-					while((d = readdir(dir)) != NULL)
-					{
-						sprintf(tmp,"%s/%s",in,d->d_name);
-						if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode))
-						{
-
-							if(strcmp(".", d->d_name) == 0)
-								continue;
-							if(strcmp("..", d->d_name) == 0)
-								continue;
-							hmap_add(m, tmp, NULL);
-						}
-
-					}
-					closedir(dir);
-				}
-				hmap_sort(m);
-
-				while(1){
-					hmap_for_each_entry(e, m)
-					{
-						testcase(e->key, NULL, 0);
-					}
-					meminfo_dump();
-					qapi_Timer_Sleep(100, QAPI_TIMER_UNIT_USEC, true);
-				}
-				hmap_free(m, NULL);
-					
-
-			}
-			#endif
-		}
+		cli_input(cli);
 
 	}
 

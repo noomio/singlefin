@@ -20,17 +20,18 @@ const char *CLI_CMD_MEMINFO = "meminfo";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
-	while((opt=getopt(args, argv, ":h")) != EOF){
+	while((opt=getopt(args, argv, "h")) != -1){
     	switch(opt) {
-			case 'h':
+    		default:
 				printf("%s\r\n", optarg);
 				puts("Usage: \r\n");
 			break;
-			default:
-				return -1;
-				break;
     	}
     }
+
+	printf("%s\r\n", optarg);
+	puts("Usage: \r\n");  	
+
 
 	return 0;
 
@@ -170,7 +171,8 @@ char *cli_input(cli_t *ctx){
 		}
 
 		cli_cmd_t *cmd = ctx->cmd;
-		optind = 0;
+		optind = 1;
+		opterr = 0;
 
 		while(cmd){
 			if(argv[0] && strcmp(cmd->name,argv[0]) == 0 )

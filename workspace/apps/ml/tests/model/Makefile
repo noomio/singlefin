@@ -64,6 +64,7 @@ MALLOC = -Wl,--wrap,malloc \
 
 PRINTF = -Wl,--wrap,printf \
 		 -Wl,--wrap,puts \
+		 -Wl,--wrap,fprintf \
 	#	 -Wl,--wrap,snprintf \
 	#	 -Wl,--wrap,sprintf \
 	#	 -Wl,--wrap,vsnprintf

@@ -269,6 +269,12 @@ int __wrap_getchar(void){
 	return (int)stdin_buf[0];
 }
 
+int __wrap_fprintf(FILE *stream, const char *format, ...){
+	puts("error\r\n");
+	return 0;
+}
+
+
 /*
 
 	Tests
