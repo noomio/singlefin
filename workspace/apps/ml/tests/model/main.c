@@ -228,6 +228,22 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 }
 
 
+static int cli_cmd_onnx(int args, char *argv[]){
+	int opt;
+	while((opt=getopt(args, argv, ":t")) != EOF){
+    	switch(opt) {
+			case 't':
+				printf("onnx=%s\r\n", optarg);
+			break;
+			default:
+				return -1;
+				break;
+    	}
+    }
+
+	return 0;
+
+}
 
 
 
@@ -246,27 +262,14 @@ int main(int argc, char * argv[])
 
 	cli_t *cli = cli_new();
 
-#if 0
-	void *p1 = malloc(1);
-	void *p2 = malloc(1);
-	double num = DBL_MAX;
-	memcpy(p1,&num,sizeof(double));
-	memcpy(p2,&num,sizeof(double));
-	printf("p1=%p,p1=%f,p2=%p,p2=%f\n",p1,*(double*)p1,p2,*(double*)p2 );
-	free(p1);
-	free(p2);
-	printf("mem.heap[0]:%p\n",&mem.heap[0] );
-	printf("mem.heap[1]:%p\n",&mem.heap[1] );
-#endif
 
 	for(;;){
 
 		if(cli_input(cli)){
+
+			cli_register(cli,"onnx",cli_cmd_onnx);
 			#if 0
-			if(strcmp(in,"meminfo") == 0){
-				meminfo_dump();
-			}
-			else if((lstat(in, &st) == 0) && S_ISDIR(st.st_mode))
+			if((lstat(in, &st) == 0) && S_ISDIR(st.st_mode))
 			{
 				m = hmap_alloc(0);
 				if((dir = opendir(in)) != NULL)
