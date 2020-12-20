@@ -64,6 +64,7 @@ MALLOC = -Wl,--wrap,malloc \
 
 PRINTF = -Wl,--wrap,printf \
 		 -Wl,--wrap,puts \
+		 -Wl,--wrap,fprintf \
 	#	 -Wl,--wrap,snprintf \
 	#	 -Wl,--wrap,sprintf \
 	#	 -Wl,--wrap,vsnprintf
@@ -84,7 +85,8 @@ COMMON_SRC = common/src/retarget.c \
 common/src/malloc.c \
 common/src/stubs.c \
 common/src/printf.c \
-common/src/file.c
+common/src/file.c \
+common/src/cli.c
 
 
 SRCS = main.c 

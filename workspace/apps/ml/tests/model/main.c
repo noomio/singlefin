@@ -10,12 +10,12 @@
 #include <onnx.h>
 #include <locale.h>
 #include <qapi_timer.h>
-#include "txm_module.h"
+
+#include "cli.h"
 
 #undef PATH_MAX
 #define PATH_MAX 128
 
-#define STDIO_IN_MAX 256
 
 #define FLOAT_EPSILON		(1e-3)
 
@@ -228,141 +228,79 @@ static void testcase(const char * path, struct onnx_resolver_t ** r, int rlen)
 }
 
 
-
-static void cli_free(char *in){
-	free(in);
-}
-static char *cli_new(size_t size){
-	return (char *) malloc(size);
-}
-
-static char *cli_input(char *in, size_t size){
-
-	int retval = 0;
-	int rc;
-	int got_eof = 0;
-	size_t idx = 0;
-
-	puts("\n$> ");
-	memset((void*)in,0,size);
-	
-	while (!got_eof) {
-
-		for (;;) {
-			int c = getchar();
-			putchar(c);
-
-			if (c == EOF) {
-				got_eof = 1;
+static int cli_cmd_onnx(int args, char *argv[]){
+	int opt;
+	char *f = NULL;
+	while((opt=getopt(args, argv, "f:")) != -1){
+    	switch(opt) {
+			case 'f':
+				f = strdup(optarg);
 				break;
-			} else if (c == '\n' || c == '\r') {
-				got_eof = 1;
+			default:
 				break;
-			} else if (idx >= size) {
-				//fprintf(stderr, "line too long\n");
-				//fflush(stderr);
-				//retval = -1;
-				break;
-			} else {
-				in[idx++] = (char) c;
-			}
-		}
-
-	}
-
-	return in;
-
-}
-
-extern TX_BYTE_POOL *malloc_get_pool(void);
-void meminfo_dump(void){
-	ULONG available;
-	ULONG fragments;
-	TX_THREAD *first_suspended;
-	ULONG suspended_count;
-	TX_BYTE_POOL *next_pool;
-	UINT status;
-	/* Retrieve information about the previously created
-	block pool "my_pool." */
-	tx_byte_pool_info_get(malloc_get_pool(), 
-		"memheap",
-		&available, &fragments,&first_suspended, &suspended_count,
-		&next_pool);
-	printf("Available:\t\t%lu\nFragments:\t\t%lu\nFirst Suspended:\t%p\nSuspended Count:\t%lu\nNext Pool:\t\t%p\n", 
-		available,fragments,first_suspended,suspended_count,next_pool);
-}
-
-int main(int argc, char * argv[])
-{
+    	}
+    }
 
 	struct hmap_t * m;
 	struct hmap_entry_t * e;
 	struct dirent * d;
 	struct stat st;
-	char in[PATH_MAX];
 	char tmp[PATH_MAX];
 	DIR * dir;
 
+
+	if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
+		m = hmap_alloc(0);
+		if((dir = opendir(f)) != NULL)
+		{
+			while((d = readdir(dir)) != NULL)
+			{
+				sprintf(tmp,"%s/%s",f,d->d_name);
+				if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode))
+				{
+
+					if(strcmp(".", d->d_name) == 0)
+						continue;
+					if(strcmp("..", d->d_name) == 0)
+						continue;
+					hmap_add(m, tmp, NULL);
+				}
+
+			}
+			closedir(dir);
+		}
+		
+		hmap_sort(m);
+		hmap_for_each_entry(e, m)
+		{
+			testcase(e->key, NULL, 0);
+		}
+
+		hmap_free(m, NULL);
+			
+
+	}
+
+	free(f);
+
+
+	return 0;
+
+}
+
+
+
+int main(int argc, char * argv[])
+{
+
 	setlocale(LC_ALL, "C");	
 
-#if 0
-	void *p1 = malloc(1);
-	void *p2 = malloc(1);
-	double num = DBL_MAX;
-	memcpy(p1,&num,sizeof(double));
-	memcpy(p2,&num,sizeof(double));
-	printf("p1=%p,p1=%f,p2=%p,p2=%f\n",p1,*(double*)p1,p2,*(double*)p2 );
-	free(p1);
-	free(p2);
-	printf("mem.heap[0]:%p\n",&mem.heap[0] );
-	printf("mem.heap[1]:%p\n",&mem.heap[1] );
-#endif
+	cli_t *cli = cli_new();
+	cli_register(cli,"onnx",cli_cmd_onnx);
 
 	for(;;){
 
-		if(cli_input(in,STDIO_IN_MAX)){
-			if(strcmp(in,"meminfo") == 0){
-				meminfo_dump();
-			}
-			else if((lstat(in, &st) == 0) && S_ISDIR(st.st_mode))
-			{
-				m = hmap_alloc(0);
-				if((dir = opendir(in)) != NULL)
-				{
-					while((d = readdir(dir)) != NULL)
-					{
-						sprintf(tmp,"%s/%s",in,d->d_name);
-						if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode))
-						{
-
-							if(strcmp(".", d->d_name) == 0)
-								continue;
-							if(strcmp("..", d->d_name) == 0)
-								continue;
-							hmap_add(m, tmp, NULL);
-						}
-
-					}
-					closedir(dir);
-				}
-				hmap_sort(m);
-
-				while(1){
-					hmap_for_each_entry(e, m)
-					{
-						testcase(e->key, NULL, 0);
-					}
-					meminfo_dump();
-					qapi_Timer_Sleep(100, QAPI_TIMER_UNIT_MSEC, true);
-					void *p = malloc(1);
-					printf("%p\r\n", p);
-					free(p);
-				}
-				//hmap_free(m, NULL);
-					
-
-			}
-		}
+		cli_input(cli);
 
 	}
 
