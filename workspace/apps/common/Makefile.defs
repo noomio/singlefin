@@ -1,0 +1,15 @@
+MALLOC = -Wl,--wrap,malloc \
+		 -Wl,--wrap,free \
+		 -Wl,--wrap,realloc \
+		 -Wl,--wrap,calloc
+
+PRINTF = -Wl,--wrap,printf \
+		 -Wl,--wrap,puts \
+	#	 -Wl,--wrap,snprintf \
+	#	 -Wl,--wrap,sprintf \
+	#	 -Wl,--wrap,vsnprintf
+
+GETX = -Wl,--wrap,getchar \
+	   -Wl,--wrap,gets	
+
+WRITE = -Wl,--wrap,write 

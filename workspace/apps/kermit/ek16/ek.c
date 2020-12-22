@@ -48,6 +48,9 @@
 #include <errno.h>
 #endif /* __linux */
 
+#include <ctype.h>
+#include <stdlib.h>
+
 /*
   Sample prototypes for i/o functions.
   The functions are defined in a platform-specific i/o module.
@@ -88,7 +91,7 @@ char * xname = "ek";			/* Default program name */
 
 int xargc;				/* Global argument count */
 int nfils = 0;				/* Number of files in file list */
-int action = 0;				/* Send or Receive */
+int action = A_RECV;				/* Send or Receive */
 int xmode = 0;				/* File-transfer mode */
 int ftype = 1;				/* Global file type 0=text 1=binary*/
 int keep = 0;				/* Keep incompletely received files */
@@ -290,7 +293,7 @@ doarg(char c) {				/* Command-line option parser */
 }
 
 void
-main(int argc, char ** argv) {
+ek(int argc, char ** argv) {
     int status, rx_len, i, x;
     char c;
     UCHAR *inbuf;

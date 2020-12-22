@@ -274,6 +274,21 @@ int __wrap_fprintf(FILE *stream, const char *format, ...){
 	return 0;
 }
 
+ssize_t __wrap_write(int fildes, const void *buf, size_t nbytes){
+
+	// We only have stdio
+	if(!handle)
+		return 0;
+
+	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
+
+	if(qapi_UART_Transmit(handle, buf, nbytes, NULL) == TX_SUCCESS)	
+		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
+	
+	tx_mutex_put(out_tx_mutex);
+
+}
+
 
 /*
 

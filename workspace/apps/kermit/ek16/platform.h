@@ -10,3 +10,5 @@
 #ifndef OBUFLEN
 #define OBUFLEN  8192                   /* File output buffer size */
 #endif /* OBUFLEN */
+
+#define F_CTRLC

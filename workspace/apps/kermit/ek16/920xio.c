@@ -143,7 +143,7 @@ int
 pktmode(short on) {
     if (ttyfd < 0)                      /* Device must be open */
       return(0);
-    system(on ? "stty raw -echo" : "stty sane"); /* Crude but effective */
+    //system(on ? "stty raw -echo" : "stty sane"); /* Crude but effective */
     return(1);
 }
 
