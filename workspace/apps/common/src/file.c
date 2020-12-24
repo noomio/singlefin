@@ -1,10 +1,13 @@
 #include <qapi_fs.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <unistd.h>
+#include <stdio.h>
 
 extern int printf(const char *format, ...);
 
-int *fopen(const char *path, const char *mode){
+// change to FILE
+FILE *fopen(const char *path, const char *mode){
 
 	uint32_t flags;
 
@@ -23,22 +26,22 @@ int *fopen(const char *path, const char *mode){
 	else
 		return NULL;
 
-	int *fd = malloc(1);
-	*fd = -1;
-	if(qapi_FS_Open ( path, flags, fd) == QAPI_OK){
-		return fd;
+	FILE *fp = malloc(sizeof(FILE *));
+	if(qapi_FS_Open ( path, flags, (int*)fp) == QAPI_OK){
+		return fp;
 	}
 	else{
-		free(fd);
+		free(fp);
 		return NULL;
 	}
 
 }
 
-int fclose(int *fd){
-	if(fd){
-		if(qapi_FS_Close(*fd) == QAPI_OK){
-			free(fd);
+// change to FILE
+int fclose(FILE *fp){
+	if(fp){
+		if(qapi_FS_Close((int**)fp) == QAPI_OK){
+			free(fp);
 			return 0;
 		}else
 			return '\0';
@@ -46,7 +49,8 @@ int fclose(int *fd){
 		return '\0';
 }
 
-int fseek(int *fd, long offset, int whence){
+// change to FILE
+int fseek(FILE *fp, long offset, int whence){
 	int whence_flags;
 	qapi_FS_Offset_t actual_offset;
 
@@ -57,7 +61,7 @@ int fseek(int *fd, long offset, int whence){
 	else if(whence == 2)
 		whence_flags = QAPI_FS_SEEK_END_E;
 
-	if(qapi_FS_Seek ( *fd, (qapi_FS_Offset_t)offset, whence_flags, &actual_offset ) == QAPI_OK){
+	if(qapi_FS_Seek ( (int**)fp, (qapi_FS_Offset_t)offset, whence_flags, &actual_offset ) == QAPI_OK){
 		return 0;
 	}else{
 		return -1;
@@ -67,9 +71,9 @@ int fseek(int *fd, long offset, int whence){
 /*
 *	Just return file size as theres no way knowing from current position with QAPI
 */
-long ftell(int *fd){
+long ftell(FILE *fp){
 	struct qapi_FS_Stat_Type_s finfo;
-	if(qapi_FS_Stat_With_Handle(*fd,&finfo) == QAPI_OK){
+	if(qapi_FS_Stat_With_Handle((int**)fp,&finfo) == QAPI_OK){
 		return finfo.st_size;
 	}else{
 		return -1;
@@ -128,13 +132,14 @@ int lstat(const char *pathname, struct stat *statbuf){
 	}
 }
 
-size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
+// change to FILE
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *fp){
 
 	struct qapi_FS_Stat_Type_s finfo;
 	uint32_t read_bytes = 0;
 
-	if(ptr && fd){	
-		if( qapi_FS_Read (*fd, ptr, nmemb, &read_bytes) == QAPI_OK){			
+	if(ptr && fp){	
+		if( qapi_FS_Read ((int**)fp, ptr, nmemb, &read_bytes) == QAPI_OK){			
 			return read_bytes;
 		}else{
 			return 0;		
@@ -144,7 +149,20 @@ size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 
 }
 
- DIR *opendir(const char *name){
+
+size_t __wrap_fwrite(const void *ptr, size_t size, size_t nmemb, FILE *fp){
+	uint32_t written_bytes = -1;
+	if(ptr && fp){
+		qapi_FS_Write ((int**)fp, ptr,nmemb,&written_bytes);
+	}
+
+	return written_bytes;
+
+}
+
+
+
+DIR *opendir(const char *name){
  	qapi_FS_Iter_Handle_t dir_handle = malloc(sizeof(qapi_FS_Iter_Handle_t));
 
 	if(qapi_FS_Iter_Open ( name, &dir_handle ) == QAPI_OK){
@@ -190,3 +208,52 @@ int closedir(DIR *dirp){
 	}else
 		return -1;
 }
+
+
+int rmdir (const char *filename){
+	if(qapi_FS_Rm_Dir(filename) == QAPI_OK)
+		return 0;
+	else
+		return -1;
+}
+
+int unlink (const char *filename){
+	if(qapi_FS_Unlink(filename) == QAPI_OK)
+		return 0;
+	else
+		return -1;
+}
+
+/*
+
+The return value is 0 if the access is permitted, and -1 otherwise. 
+(In other words, treated as a predicate function, access returns true if the requested access is denied.)
+
+These macros are defined in the header file unistd.h for use as the how argument to the access function. 
+The values are integer constants.
+
+Macro: int R_OK
+Flag meaning test for read permission.
+
+Macro: int W_OK
+Flag meaning test for write permission.
+
+Macro: int X_OK
+Flag meaning test for execute/search permission.
+
+Macro: int F_OK
+Flag meaning test for existence of the file.
+
+EACCES The access specified by how is denied.
+ENOENT The file doesn’t exist.
+EROFS Write permission was requested for a file on a read-only file system.
+
+*/
+int access (const char *filename, int how){
+
+	return 0;
+
+}
+
+
+

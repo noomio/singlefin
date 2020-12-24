@@ -1,0 +1,7 @@
+Install Visual Studio 2015
+Install under Programming Languages:
+ 	Visual C++ 
+	Common Tools 
+	MFC Libraries
+
+Cd into VC/Tools and run the bat:

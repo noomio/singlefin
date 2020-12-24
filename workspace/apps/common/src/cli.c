@@ -63,6 +63,7 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 					available,fragments,first_suspended,suspended_count,next_pool);
 			break;
 			default:
+				// usage
 				return -1;
 				break;
     	}
@@ -134,11 +135,11 @@ char *cli_input(cli_t *ctx){
 	char *str;
 	char *argv[STDIO_CMD_ARGS_MAX];
 
-	memset(argv,0,STDIO_CMD_ARGS_MAX);
-	memset(ctx->in,0,STDIO_IN_MAX);
+	memset(argv,NULL,STDIO_CMD_ARGS_MAX);
+	memset(ctx->in,'\0',STDIO_IN_MAX);
 	str = ctx->in;
 
-	puts("\n$> ");
+	puts("\r\n$> ");
 	
 	while (!got_eof) {
 
@@ -146,7 +147,8 @@ char *cli_input(cli_t *ctx){
 			int c = getchar();
 			putchar(c);
 
-			if (c == EOF || ctx->in >= (ctx->in+STDIO_IN_MAX)) {
+			if (c == EOF || str >= (ctx->in+STDIO_IN_MAX)) {
+				ctx->in[STDIO_IN_MAX-1] = '\0';
 				got_eof = 1;
 				break;
 			} else if (c == '\n' || c == '\r') {
@@ -162,12 +164,12 @@ char *cli_input(cli_t *ctx){
 
 	if(ctx->in){
 
-		char *token = strtok(ctx->in, " ");
+		char *token = strchr(ctx->in, ' ');
 
 		while( token != NULL ) {
 			argv[args] = strdup(token);
 			args++;
-		  	token = strtok(NULL, " ");
+		  	token = strchr(ctx->in, ' ');
 		}
 
 		cli_cmd_t *cmd = ctx->cmd;
@@ -175,7 +177,7 @@ char *cli_input(cli_t *ctx){
 		opterr = 0;
 
 		while(cmd){
-			if(argv[0] && strcmp(cmd->name,argv[0]) == 0 )
+			if(args && argv[0] && strcmp(cmd->name,argv[0]) == 0 )
 				cmd->callback(args, argv);
 			cmd = cmd->next;
 
