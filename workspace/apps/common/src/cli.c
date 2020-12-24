@@ -186,6 +186,12 @@ cli_t *cli_new(void){
 	ls->callback = cli_cmd_ls;
 	ls->next = NULL;
 
+	cli_cmd_t *cat = malloc(sizeof(cli_cmd_t));
+	cat->name = (char*)CLI_CMD_CAT;
+	cat->callback = cli_cmd_cat;
+	cat->next = NULL;
+
+	ls->next = cat;
 	meminfo->next = ls; 
 	ctx->cmds->next = meminfo; 
 
@@ -237,7 +243,6 @@ char *cli_input(cli_t *ctx){
 
 		for (;;) {
 			int c = getchar();
-			putchar(c);
 
 			if (c == EOF || str >= (ctx->in+STDIO_IN_MAX)) {
 				ctx->in[STDIO_IN_MAX-1] = '\0';
@@ -247,12 +252,17 @@ char *cli_input(cli_t *ctx){
 				got_eof = 1;
 				break;
 			} else if(c == '\b'){ // backspace
-				*(str--) = '\0';
+				if(str > ctx->in){
+					putchar(c);
+					str--;
+					*(str) = '\0';
+				}
 			}else if(c == 0x1b){ // CTRL+C
 				return NULL;
 			}
 			else {
 				*(str++) = (char)c;
+				putchar(c);
 			}
 		}
 
@@ -261,6 +271,7 @@ char *cli_input(cli_t *ctx){
 
 	if(ctx->in){
 
+		puts("\r\n");
 		char *token = strtok(ctx->in, " ");
 
 		while( token != NULL ) {
