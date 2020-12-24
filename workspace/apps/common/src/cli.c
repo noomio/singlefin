@@ -138,7 +138,7 @@ char *cli_input(cli_t *ctx){
 	memset(ctx->in,0,STDIO_IN_MAX);
 	str = ctx->in;
 
-	puts("\n$> ");
+	puts("\r\n$> ");
 	
 	while (!got_eof) {
 

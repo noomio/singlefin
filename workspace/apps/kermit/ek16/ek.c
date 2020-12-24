@@ -50,6 +50,7 @@
 
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*
   Sample prototypes for i/o functions.
@@ -79,6 +80,7 @@ ULONG fileinfo(struct k_data *, UCHAR *, UCHAR *, int, short *, short);
 extern UCHAR o_buf[];                   /* Must be defined in io.c */
 extern UCHAR i_buf[];                   /* Must be defined in io.c */
 extern int errno;
+extern char path[];                     /* Must be defined in io.c */
 
 /* Data global to this module */
 
@@ -116,6 +118,8 @@ doexit(int status) {
     //exit(status);                       /* Exit with indicated status */
 }
 
+
+
 void
 usage() {
     printf("E-Kermit %s\r\n",VERSION);
@@ -125,15 +129,14 @@ usage() {
 #ifndef RECVONLY
     puts(" -s <files>   Send files\r\n");
 #endif /* RECVONLY */
-    puts(" -p [neoms]   Parity: none, even, odd, mark, space\r\n");
+   // puts(" -p [neoms]   Parity: none, even, odd, mark, space\r\n");
+    puts(" -p <path>    Directory path to place the received file (default: /ufs/)\r\n");
 #ifdef F_CRC
     puts(" -b [123]     Block check type: 1, 2, or 3\r\n");
 #endif /* F_CRC */
     puts(" -k           Keep incompletely received files\r\n");
     puts(" -B           Force binary mode\r\n");
     puts(" -T           Force text mode\r\n");
-    puts(" -R           Remote mode (vs local)\r\n");
-    puts(" -L           Local mode (vs remote)\r\n");
 #ifdef DEBUG
     puts(" -E <number>  Simulated error rate (0-100)\r\n");
     puts(" -d           Create debug.log\r\n");
@@ -160,7 +163,7 @@ doarg(char c) {				/* Command-line option parser */
     int x;				/* Parses one option with its arg(s) */
     char *xp, *s;
     struct stat statbuf;
-    action = 0;      
+ 
     xp = *xargv+1;			/* Pointer for bundled args */
 
     while (c) {
@@ -244,23 +247,23 @@ doarg(char c) {				/* Command-line option parser */
 	    ftype = TEXT;
 	    break;
 
-	  case 'R':			/* Tell Kermit it's in remote mode */
-	    remote = 1;
-	    break;
+	  //case 'R':			/* Tell Kermit it's in remote mode */
+	  //  remote = 1;
+	  //  break;
 
-	  case 'L':			/* Tell Kermit it's in local mode */
-	    remote = 0;
-	    break;
+	  //case 'L':			/* Tell Kermit it's in local mode */
+	  //  remote = 0;
+	  //  break;
 
-	  case 'k':			/* Keep incompletely received files */
-	    keep = 1;
-	    break;
+	  //case 'k':			/* Keep incompletely received files */
+	  //  keep = 1;
+	  //  break;
 
     case 'h':
     case '?':
     // skip as checked later with 0 action
       break;
-
+#if 0
 	  case 'p':			/* Parity */
 	    if (*(xp+1))
 	      fatal("Invalid argument bundling",(char *)0,(char *)0);
@@ -276,6 +279,15 @@ doarg(char c) {				/* Command-line option parser */
 	      default:  fatal("Invalid parity '", *xargv, "'");
 	    }
 	    break;
+#endif
+      case 'p':
+      if (*(xp+1))
+        fatal("Invalid argument bundling",(char *)0,(char *)0);
+      *xargv++, xargc--;
+      if ((xargc < 1) || (**xargv == '-'))
+        fatal("Missing parity",(char *)0,(char *)0);
+      snprintf(path,48,"%s", *xargv);
+      break;
 
 #ifdef DEBUG
 	  case 'd':
@@ -299,13 +311,17 @@ void ek(int argc, char ** argv) {
     char c;
     UCHAR *inbuf;
     short r_slot;
+    const char *default_path ="/ufs";
 
     parity = PAR_NONE;                  /* NONE*/
     status = X_OK;                      /* Initial kermit status */
 
+    action = 0;      
     xargc = argc;
     xargv = argv;
     xname = argv[0];
+
+    path[0] = '\0';
 
     while (--xargc > 0) {		/* Loop through command-line words */
 	xargv++;
@@ -322,6 +338,7 @@ void ek(int argc, char ** argv) {
       return;
     }
 
+
 #ifdef DEBUG
     debug(DB_LOG,"SIMULATED ERROR RATE:",0,errorrate);
     if (errorrate) srand(seed);		/* Init random error generator */
@@ -335,6 +352,11 @@ void ek(int argc, char ** argv) {
       doexit(FAILURE);
     if (db)				/* Open debug log if requested */
       debug(DB_OPN,"debug.log",0,0);
+
+    if(strlen(path) == 0)
+      sprintf(path,"%s",default_path);
+    puts("\r\n");
+    puts(path);
 
     debug(DB_MSG,"Initializing...",0,0);
 
@@ -377,6 +399,8 @@ void ek(int argc, char ** argv) {
 /* Initialize Kermit protocol */
 
     status = kermit(K_INIT, &k, 0, 0, "", &r);
+
+    printf("\r\nE-Kermit: %s\r\n",k.version);
 
 #ifdef DEBUG
     debug(DB_LOG,"init status:",0,status);

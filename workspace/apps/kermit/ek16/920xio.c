@@ -67,11 +67,19 @@ static int ttyfd;		/* File descriptors */
 static FILE * ifile = (FILE *)0;	/* and pointers */
 static FILE * ofile = (FILE *)0;
 
+char path[48]; // path
+char filepath[48*2];
+
+/* suppress warnings */
+extern int unlink (const char *filename);
+extern ssize_t write(int fildes, const void *buf, size_t nbytes);
+
 /* Debugging */
 
 #ifdef DEBUG
 static FILE * dp = (FILE *)0;		/* Debug log */
 static int xdebug = 0;			/* Debugging on/off */
+
 
 void
 dodebug(int fc, UCHAR * label, UCHAR * sval, long nval) {
@@ -271,7 +279,7 @@ readpkt(struct k_data * k, UCHAR *p, int len, int fc) {
     while (1) {
         x = getchar();                  /* Replace this with real i/o */
         c = (k->parity) ? x & 0x7f : x & 0xff; /* Strip parity */
-      
+
 #ifdef F_CTRLC
 	/* In remote mode only: three consecutive ^C's to quit */
         if (k->remote && c == (UCHAR) 3) {
@@ -350,9 +358,12 @@ tx_data(struct k_data * k, UCHAR *p, int n) {
 int
 openfile(struct k_data * k, UCHAR * s, int mode) {
 
+  sprintf(filepath,"%s/%s",path,s);
+  s = (UCHAR*)filepath;
+
     switch (mode) {
       case 1:				/* Read */
-	if (!(ifile = fopen(s,"r"))) {
+	if (!(ifile = fopen((char*)s,"r"))) {
 	    debug(DB_LOG,"openfile read error",s,0);
 	    return(X_ERROR);
 	}
@@ -364,7 +375,7 @@ openfile(struct k_data * k, UCHAR * s, int mode) {
 	return(X_OK);
 
       case 2:				/* Write (create) */
-        ofile = fopen(s,"w+");
+        ofile = fopen((char*)s,"w+");
 	if (ofile < 0) {
 	    debug(DB_LOG,"openfile write error",s,0);
 	    return(X_ERROR);
@@ -418,6 +429,9 @@ fileinfo(struct k_data * k,
     struct stat statbuf;
     struct tm * timestamp, * localtime();
 
+  sprintf(filepath,"%s/%s",path,filename);
+  filename = (UCHAR*)filepath;
+
 #ifdef F_SCAN
     FILE * fp;				/* File scan pointer */
     char inbuf[SCANBUF];		/* and buffer */
@@ -428,10 +442,10 @@ fileinfo(struct k_data * k,
     buf[0] = '\0';
     if (buflen < 18)
       return(X_ERROR);
-    if (lstat(filename,&statbuf) < 0)
+    if (lstat((char*)filename,&statbuf) < 0)
       return(X_ERROR);
     timestamp = localtime(&(statbuf.st_mtime));
-    sprintf(buf,"%04d%02d%02d %02d:%02d:%02d",
+    sprintf((char*)buf,"%04d%02d%02d %02d:%02d:%02d",
 	    timestamp->tm_year + 1900,
             timestamp->tm_mon + 1,
             timestamp->tm_mday,
@@ -452,7 +466,7 @@ fileinfo(struct k_data * k,
 */
     if (!mode) {			/* File type determination requested */
 	int isbinary = 1;
-	fp = fopen(filename,"r");	/* Open the file for scanning */
+	fp = fopen((char*)filename,"r");	/* Open the file for scanning */
 	if (fp) {
 	    int n = 0, count = 0;
 	    char c, * p;
@@ -604,7 +618,7 @@ closefile(struct k_data * k, UCHAR c, int mode) {
 		   (c == 'D')) {	/* This file was incomplete */
 	    if (k->filename) {
 		debug(DB_LOG,"deleting incomplete",k->filename,0);
-		unlink(k->filename);	/* Delete it. */
+		unlink((char*)k->filename);	/* Delete it. */
 	    }
 	}
 	break;
