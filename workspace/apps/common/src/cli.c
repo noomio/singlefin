@@ -93,7 +93,18 @@ static int cli_cmd_ls(int args, char *argv[]){
 		if((lstat(root, &st) == 0) && S_ISDIR(st.st_mode)){
 			if((dir = opendir(root)) != NULL){
 				while((d = readdir(dir)) != NULL){
-					printf(tmp,"%s/%s\r\n",root,d->d_name);
+					printf("%s\r\n",d->d_name);
+				}
+				closedir(dir);
+			}			
+
+		}
+	}else if(args == 2){
+		f = argv[1];
+		if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
+			if((dir = opendir(f)) != NULL){
+				while((d = readdir(dir)) != NULL){
+					printf("%s\r\n",d->d_name);
 				}
 				closedir(dir);
 			}			
@@ -120,22 +131,23 @@ cli_t *cli_new(void){
 	ctx->cmd = malloc(sizeof(cli_cmd_t));
 	ctx->cmd->name = (char*)CLI_CMD_HELP;
 	ctx->cmd->callback = cli_cmd_help;
+	ctx->cmd->next = NULL;
 
 	cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
 	meminfo->name = (char*)CLI_CMD_MEMINFO;
 	meminfo->callback = cli_cmd_meminfo;
-	
-	ctx->cmd->next = meminfo; // head->help->next->memifno
+	meminfo->next = NULL;
 
 	cli_cmd_t *ls = malloc(sizeof(cli_cmd_t));
 	ls->name = (char*)CLI_CMD_LS;
 	ls->callback = cli_cmd_ls;
 	ls->next = NULL;
 
-	meminfo->next = ls; // memifno->next->ls
+	meminfo->next = ls; 
+	ctx->cmd->next = meminfo; 
 
 	ctx->in = calloc(1,STDIO_IN_MAX);
-	
+
 	return ctx;
 }
 
@@ -201,12 +213,12 @@ char *cli_input(cli_t *ctx){
 
 	if(ctx->in){
 
-		char *token = strchr(ctx->in, ' ');
+		char *token = strtok(ctx->in, " ");
 
 		while( token != NULL ) {
 			argv[args] = strdup(token);
 			args++;
-		  	token = strchr(ctx->in, ' ');
+		  	token = strtok(NULL, " ");
 		}
 
 		cli_cmd_t *cmd = ctx->cmd;
