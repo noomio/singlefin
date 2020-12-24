@@ -23,6 +23,7 @@
 const char *CLI_CMD_HELP = "help";
 const char *CLI_CMD_MEMINFO = "meminfo";
 const char *CLI_CMD_LS = "ls";
+const char *CLI_CMD_CAT = "cat";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
@@ -108,6 +109,48 @@ static int cli_cmd_ls(int args, char *argv[]){
 				}
 				closedir(dir);
 			}			
+
+		}
+	}
+
+	return 0;
+
+}
+
+static int cli_cmd_cat(int args, char *argv[]){
+	FILE * fp;
+	char *filename;
+	void * buf;
+	size_t l, len, rlen=0;
+	struct stat st;
+
+	if(args <= 1 || (args == 2 && strcmp(argv[1],"-h") == 0) ){
+		// usage
+	    puts("Usage: cat <file>\r\n");
+	}
+	else if(args == 2){
+		filename = argv[1];
+		if((lstat(filename, &st) == 0) && S_ISREG(st.st_mode)){
+			fp = fopen(filename, "r");
+			if(fp)
+			{
+				fseek(fp, 0L, SEEK_END);
+				l = ftell(fp);
+				fseek(fp, 0L, SEEK_SET);
+				if(l > 0)
+				{
+					buf = malloc(256);
+					if(buf)
+					{
+						for(len = 0; len < l; len += rlen){
+							rlen = fread(buf + len, 1, l - len, fp);
+							write(0,buf,rlen);
+						}
+						free(buf);
+					}
+				}
+				fclose(fp);
+			}	
 
 		}
 	}
