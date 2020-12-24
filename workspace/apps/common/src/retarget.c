@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "qapi_uart.h"
 #include "txm_module.h"
+#include <locale.h>
 
 #define DEBUG_PORT	QAPI_UART_PORT_002_E
 
@@ -20,7 +21,7 @@ static void init_debug(void);
 extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
 
  __attribute__ ((noreturn)) int task_main_entry(void){
-
+	setlocale(LC_ALL, "C");	
 	init_debug();
 	malloc_byte_pool_init();
 	main();

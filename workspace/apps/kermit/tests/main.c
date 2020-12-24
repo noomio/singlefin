@@ -42,7 +42,6 @@ static int cli_cmd_ek(int args, char *argv[]){
 int main(int argc, char * argv[])
 {
 
-	setlocale(LC_ALL, "C");	
 
 	cli_t *cli = cli_new();
 	cli_register(cli,"ek",cli_cmd_ek);

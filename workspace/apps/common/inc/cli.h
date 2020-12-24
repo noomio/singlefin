@@ -22,7 +22,7 @@ typedef	struct cli_cmd{
 
 typedef struct cli{
 	char *in;
-	cli_cmd_t *cmd;
+	cli_cmd_t *cmds;
 } cli_t;
 
 

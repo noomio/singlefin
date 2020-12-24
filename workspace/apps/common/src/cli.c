@@ -128,10 +128,10 @@ cli_t *cli_new(void){
 
 	cli_t *ctx = malloc(sizeof(cli_t));
 	
-	ctx->cmd = malloc(sizeof(cli_cmd_t));
-	ctx->cmd->name = (char*)CLI_CMD_HELP;
-	ctx->cmd->callback = cli_cmd_help;
-	ctx->cmd->next = NULL;
+	ctx->cmds = malloc(sizeof(cli_cmd_t));
+	ctx->cmds->name = (char*)CLI_CMD_HELP;
+	ctx->cmds->callback = cli_cmd_help;
+	ctx->cmds->next = NULL;
 
 	cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
 	meminfo->name = (char*)CLI_CMD_MEMINFO;
@@ -144,7 +144,7 @@ cli_t *cli_new(void){
 	ls->next = NULL;
 
 	meminfo->next = ls; 
-	ctx->cmd->next = meminfo; 
+	ctx->cmds->next = meminfo; 
 
 	ctx->in = calloc(1,STDIO_IN_MAX);
 
@@ -157,7 +157,7 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func){
 
 	if(name && func && ctx){
 
-		iter = ctx->cmd;
+		iter = ctx->cmds;
 		while(iter->next != NULL){
 			if(strcmp(iter->name,name) == 0 )
 				return 1;
@@ -188,7 +188,7 @@ char *cli_input(cli_t *ctx){
 	memset(ctx->in,'\0',STDIO_IN_MAX);
 	str = ctx->in;
 
-	puts("\r\n$> ");
+	puts("\r\n>> ");
 	
 	while (!got_eof) {
 
@@ -203,7 +203,12 @@ char *cli_input(cli_t *ctx){
 			} else if (c == '\n' || c == '\r') {
 				got_eof = 1;
 				break;
-			} else {
+			} else if(c == '\b'){ // backspace
+				*(str--) = '\0';
+			}else if(c == 0x1b){ // CTRL+C
+				return NULL;
+			}
+			else {
 				*(str++) = (char)c;
 			}
 		}
@@ -221,7 +226,7 @@ char *cli_input(cli_t *ctx){
 		  	token = strtok(NULL, " ");
 		}
 
-		cli_cmd_t *cmd = ctx->cmd;
+		cli_cmd_t *cmd = ctx->cmds;
 		optind = 1;
 		opterr = 0;
 
