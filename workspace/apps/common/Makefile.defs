@@ -12,4 +12,5 @@ PRINTF = -Wl,--wrap,printf \
 GETX = -Wl,--wrap,getchar \
 	   -Wl,--wrap,gets	
 
-WRITE = -Wl,--wrap,write 
+WRITE = -Wl,--wrap,write
+FWRITE = -Wl,--wrap,fwrite 

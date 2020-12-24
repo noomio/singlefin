@@ -146,11 +146,13 @@ char *cli_input(cli_t *ctx){
 			int c = getchar();
 			putchar(c);
 
-			if (c == EOF || ctx->in >= (ctx->in+STDIO_IN_MAX)) {
+			if (c == EOF || str >= (ctx->in+STDIO_IN_MAX)) {
+				ctx->in[STDIO_IN_MAX-1] = '\0';
 				got_eof = 1;
 				break;
 			} else if (c == '\n' || c == '\r') {
 				got_eof = 1;
+				*(str+1) = '\0';
 				break;
 			} else {
 				*(str++) = (char)c;

@@ -63,8 +63,9 @@ UCHAR i_buf[IBUFLEN+8];			/* File output buffer */
   This is just one of many possible implmentation choices, invisible to the
   Kermit protocol module.
 */
-static int ttyfd, ofile = -1;		/* File descriptors */
+static int ttyfd;		/* File descriptors */
 static FILE * ifile = (FILE *)0;	/* and pointers */
+static FILE * ofile = (FILE *)0;
 
 /* Debugging */
 
@@ -270,7 +271,7 @@ readpkt(struct k_data * k, UCHAR *p, int len, int fc) {
     while (1) {
         x = getchar();                  /* Replace this with real i/o */
         c = (k->parity) ? x & 0x7f : x & 0xff; /* Strip parity */
-
+      
 #ifdef F_CTRLC
 	/* In remote mode only: three consecutive ^C's to quit */
         if (k->remote && c == (UCHAR) 3) {
@@ -363,7 +364,7 @@ openfile(struct k_data * k, UCHAR * s, int mode) {
 	return(X_OK);
 
       case 2:				/* Write (create) */
-        ofile = creat(s,0644);
+        ofile = fopen(s,"w+");
 	if (ofile < 0) {
 	    debug(DB_LOG,"openfile write error",s,0);
 	    return(X_ERROR);
@@ -373,7 +374,7 @@ openfile(struct k_data * k, UCHAR * s, int mode) {
 
 #ifdef COMMENT
       case 3:				/* Append (not used) */
-        ofile = open(s,O_WRONLY|O_APPEND);
+        ofile = fopen(s,"a");
 	if (ofile < 0) {
 	    debug(DB_LOG,"openfile append error",s,0);
 	    return(X_ERROR);
@@ -427,7 +428,7 @@ fileinfo(struct k_data * k,
     buf[0] = '\0';
     if (buflen < 18)
       return(X_ERROR);
-    if (stat(filename,&statbuf) < 0)
+    if (lstat(filename,&statbuf) < 0)
       return(X_ERROR);
     timestamp = localtime(&(statbuf.st_mtime));
     sprintf(buf,"%04d%02d%02d %02d:%02d:%02d",
@@ -550,7 +551,7 @@ writefile(struct k_data * k, UCHAR * s, int n) {
     debug(DB_LOG,"writefile binary",0,k->binary);
 
     if (k->binary) {			/* Binary mode, just write it */
-	if (write(ofile,s,n) != n)
+	if (fwrite(s,0,n,ofile) != n)
 	  rc = X_ERROR;
     } else {				/* Text mode, skip CRs */
 	UCHAR * p, * q;
@@ -560,7 +561,7 @@ writefile(struct k_data * k, UCHAR * s, int n) {
 	while (1) {
 	    for (p = q, i = 0; ((*p) && (*p != (UCHAR)13)); p++, i++) ;
 	    if (i > 0)
-	      if (write(ofile,q,i) != i)
+	      if (fwrite(q,0,i,ofile) != i)
 		rc = X_ERROR;
 	    if (!*p) break;
 	    q = p+1;
@@ -597,7 +598,7 @@ closefile(struct k_data * k, UCHAR c, int mode) {
 	  break;			/* do nothing but succeed */
 	debug(DB_LOG,"closefile (output) name",k->filename,0);
 	debug(DB_LOG,"closefile (output) keep",0,k->ikeep);
-	if (close(ofile) < 0) {		/* Try to close */
+	if (fclose(ofile) < 0) {		/* Try to close */
 	    rc = X_ERROR;
 	} else if ((k->ikeep == 0) &&	/* Don't keep incomplete files */
 		   (c == 'D')) {	/* This file was incomplete */

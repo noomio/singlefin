@@ -15,7 +15,10 @@
 #undef PATH_MAX
 #define PATH_MAX 128
 
-static int cli_cmd_kermit(int args, char *argv[]){
+extern void ek(int argc, char ** argv);
+
+static int cli_cmd_ek(int args, char *argv[]){
+	#if 0
 	int opt;
 	char *f = NULL;
 	while((opt=getopt(args, argv, "f:")) != -1){
@@ -29,7 +32,8 @@ static int cli_cmd_kermit(int args, char *argv[]){
     }
 
 	free(f);
-
+#endif
+	ek(args,argv);
 
 	return 0;
 
@@ -41,7 +45,7 @@ int main(int argc, char * argv[])
 	setlocale(LC_ALL, "C");	
 
 	cli_t *cli = cli_new();
-	cli_register(cli,"kermit",cli_cmd_kermit);
+	cli_register(cli,"ek",cli_cmd_ek);
 
 	for(;;){
 

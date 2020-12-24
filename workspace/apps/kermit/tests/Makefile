@@ -77,7 +77,9 @@ common/src/malloc.c \
 common/src/stubs.c \
 common/src/printf.c \
 common/src/file.c \
-common/src/cli.c 
+common/src/cli.c \
+common/src/time.c \
+
 
 LIBS = ../ek16
 
@@ -104,13 +106,14 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	@echo 'Invoking: Cross LLVM C++ Linker'
 	$(CXX) -d -o $@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) \
 	$(DAM_LD_PATH)/txm_module_preamble_llvm.o \
-	$(GETX) $(PRINTF) $(MALLOC)  \
+	$(GETX) $(PRINTF) $(MALLOC) $(WRITE) $(FWRITE) \
+	$(OBJS) \
 	-Wl,-T $(DAM_LD_PATH)/sections.ld \
 	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
 	-Wl,-gc-sections \
-	$(OBJS) \
 	-L $(LIBS) \
-	$(DAM_LIB_PATH)/*.lib -lm -lek
+	$(DAM_LIB_PATH)/*.lib \
+	-lek
 	@echo 'Finished building target: $@'
 	@echo ' '
 

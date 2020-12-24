@@ -18,9 +18,9 @@ OC			:= $(CROSS_COMPILE)objcopy
 OD			:= $(CROSS_COMPILE)objdump
 RM			:= rm -fr
 
-ASFLAGS		:= -Wall -O3 
-CFLAGS		:= 
-CXXFLAGS	:= -Wall -O3 
+ASFLAGS		:= -Wall -Os 
+CFLAGS		:= -Wall -Os
+CXXFLAGS	:= -Wall -Os 
 INCDIRS		:= -I$(LLVM)/armv7m-none-eabi/libc/include
 
 OBJS= ek.o kermit.o 920xio.o 
@@ -56,11 +56,11 @@ gcc:
 
 llvmminro.lib:
 	make "CC=$(CC)" "CC2=$(CC)"  "CPPFLAGS=$(INCDIRS)" \
-	"CFLAGS=-DMINSIZE -DOBUFLEN=256 -DFN_MAX=16 -DRECVONLY -DNODEBUG -O2" libek.a
+	"CFLAGS=-DFN_MAX=16 -DRECVONLY -DNODEBUG -Os" libek.a
 
 llvmminro:
 	make "CC=$(CC)" "CC2=$(CC)"  "CPPFLAGS=$(INCDIRS)" \
-	"CFLAGS=-DMINSIZE -DOBUFLEN=256 -DFN_MAX=16 -DRECVONLY -DNODEBUG -O2" ek
+	"CFLAGS=-DFN_MAX=16 -DRECVONLY -DNODEBUG -Os" ek
 
 #Ditto but no debugging.
 gccnd:

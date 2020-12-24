@@ -1,9 +1,11 @@
 #include <qapi_fs.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <unistd.h>
 
 extern int printf(const char *format, ...);
 
+// change to FILE
 int *fopen(const char *path, const char *mode){
 
 	uint32_t flags;
@@ -35,6 +37,7 @@ int *fopen(const char *path, const char *mode){
 
 }
 
+// change to FILE
 int fclose(int *fd){
 	if(fd){
 		if(qapi_FS_Close(*fd) == QAPI_OK){
@@ -46,6 +49,7 @@ int fclose(int *fd){
 		return '\0';
 }
 
+// change to FILE
 int fseek(int *fd, long offset, int whence){
 	int whence_flags;
 	qapi_FS_Offset_t actual_offset;
@@ -128,6 +132,7 @@ int lstat(const char *pathname, struct stat *statbuf){
 	}
 }
 
+// change to FILE
 size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 
 	struct qapi_FS_Stat_Type_s finfo;
@@ -144,7 +149,20 @@ size_t fread(void *ptr, size_t size, size_t nmemb, int *fd){
 
 }
 
- DIR *opendir(const char *name){
+// change to FILE
+size_t __wrap_fwrite(const void *ptr, size_t size, size_t nmemb, int *fd){
+	uint32_t written_bytes = -1;
+	if(ptr && fd){
+		qapi_FS_Write (*fd, ptr,nmemb,&written_bytes);
+	}
+
+	return written_bytes;
+
+}
+
+
+
+DIR *opendir(const char *name){
  	qapi_FS_Iter_Handle_t dir_handle = malloc(sizeof(qapi_FS_Iter_Handle_t));
 
 	if(qapi_FS_Iter_Open ( name, &dir_handle ) == QAPI_OK){
@@ -190,3 +208,52 @@ int closedir(DIR *dirp){
 	}else
 		return -1;
 }
+
+
+int rmdir (const char *filename){
+	if(qapi_FS_Rm_Dir(filename) == QAPI_OK)
+		return 0;
+	else
+		return -1;
+}
+
+int unlink (const char *filename){
+	if(qapi_FS_Unlink(filename) == QAPI_OK)
+		return 0;
+	else
+		return -1;
+}
+
+/*
+
+The return value is 0 if the access is permitted, and -1 otherwise. 
+(In other words, treated as a predicate function, access returns true if the requested access is denied.)
+
+These macros are defined in the header file unistd.h for use as the how argument to the access function. 
+The values are integer constants.
+
+Macro: int R_OK
+Flag meaning test for read permission.
+
+Macro: int W_OK
+Flag meaning test for write permission.
+
+Macro: int X_OK
+Flag meaning test for execute/search permission.
+
+Macro: int F_OK
+Flag meaning test for existence of the file.
+
+EACCES The access specified by how is denied.
+ENOENT The file doesn’t exist.
+EROFS Write permission was requested for a file on a read-only file system.
+
+*/
+int access (const char *filename, int how){
+
+	return 0;
+
+}
+
+
+

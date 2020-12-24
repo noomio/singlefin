@@ -91,13 +91,13 @@ char * xname = "ek";			/* Default program name */
 
 int xargc;				/* Global argument count */
 int nfils = 0;				/* Number of files in file list */
-int action = A_RECV;				/* Send or Receive */
+int action = 0;				/* Send or Receive */
 int xmode = 0;				/* File-transfer mode */
 int ftype = 1;				/* Global file type 0=text 1=binary*/
 int keep = 0;				/* Keep incompletely received files */
 int db = 0;				/* Debugging */
 short fmode = -1;			/* Transfer mode for this file */
-int parity = 0;				/* Parity */
+int parity = P_PARITY;				/* Parity */
 #ifdef F_CRC
 int check = 3;				/* Block check */
 #else
@@ -111,46 +111,46 @@ int seed = 1234;			/* Random number generator seed */
 
 void
 doexit(int status) {
-    devrestore();                       /* Restore device */
-    devclose();                         /* Close device */
-    exit(status);                       /* Exit with indicated status */
+    //devrestore();                       /* Restore device */
+    //devclose();                         /* Close device */
+    //exit(status);                       /* Exit with indicated status */
 }
 
 void
 usage() {
-    fprintf(stderr,"E-Kermit %s\n",VERSION);
-    fprintf(stderr,"Usage: %s <options>\n",xname);
-    fprintf(stderr,"Options:\n");
-    fprintf(stderr," -r           Receive files\n");
+    printf("E-Kermit %s\r\n",VERSION);
+    printf("Usage: %s <options>\r\n",xname);
+    puts("Options:\r\n");
+    puts(" -r           Receive files\r\n");
 #ifndef RECVONLY
-    fprintf(stderr," -s <files>   Send files\n");
+    puts(" -s <files>   Send files\r\n");
 #endif /* RECVONLY */
-    fprintf(stderr," -p [neoms]   Parity: none, even, odd, mark, space\n");
+    puts(" -p [neoms]   Parity: none, even, odd, mark, space\r\n");
 #ifdef F_CRC
-    fprintf(stderr," -b [123]     Block check type: 1, 2, or 3\n");
+    puts(" -b [123]     Block check type: 1, 2, or 3\r\n");
 #endif /* F_CRC */
-    fprintf(stderr," -k           Keep incompletely received files\n");
-    fprintf(stderr," -B           Force binary mode\n");
-    fprintf(stderr," -T           Force text mode\n");
-    fprintf(stderr," -R           Remote mode (vs local)\n");
-    fprintf(stderr," -L           Local mode (vs remote)\n");
+    puts(" -k           Keep incompletely received files\r\n");
+    puts(" -B           Force binary mode\r\n");
+    puts(" -T           Force text mode\r\n");
+    puts(" -R           Remote mode (vs local)\r\n");
+    puts(" -L           Local mode (vs remote)\r\n");
 #ifdef DEBUG
-    fprintf(stderr," -E <number>  Simulated error rate (0-100)\n");
-    fprintf(stderr," -d           Create debug.log\n");
+    puts(" -E <number>  Simulated error rate (0-100)\r\n");
+    puts(" -d           Create debug.log\r\n");
 #endif /* DEBUG */
-    fprintf(stderr," -h           Help (this message)\n");
-    doexit(FAILURE);
+    puts(" -h           Help (this message)\r\n");
+    //doexit(FAILURE);
 }
 
 void
 fatal(char *msg1, char *msg2, char *msg3) { /* Not to be called except */
-    if (msg1) {				    /* from this module */
-	fprintf(stderr,"%s: %s",xname,msg1);
-	if (msg2) fprintf(stderr,"%s",msg2);
-	if (msg3) fprintf(stderr,"%s",msg3);
-	fprintf(stderr,"\n");
-    }
-    doexit(FAILURE);
+  if (msg1) {				    /* from this module */
+	 printf("%s: %s",xname,msg1);
+	 if (msg2) printf("%s",msg2);
+	 if (msg3) printf("%s",msg3);
+	 puts("\r\n");
+  }
+  doexit(FAILURE);
 }
 
 /* Simple user interface for testing */
@@ -160,8 +160,9 @@ doarg(char c) {				/* Command-line option parser */
     int x;				/* Parses one option with its arg(s) */
     char *xp, *s;
     struct stat statbuf;
-
+    action = 0;      
     xp = *xargv+1;			/* Pointer for bundled args */
+
     while (c) {
 #ifdef DEBUG
 	if (errorrate) seed += (int)c;
@@ -189,7 +190,7 @@ doarg(char c) {				/* Command-line option parser */
 		if (**xargv == '-')
 		  break;
 		errno = 0;
-		x = stat(s,&statbuf);
+		x = lstat(s,&statbuf);
 		if (x < 0)
 		  fatal("File '",s,"' not found");
 		if (access(s,4) < 0)
@@ -233,10 +234,6 @@ doarg(char c) {				/* Command-line option parser */
 	    }
 	    break;
 
-	  case 'h':			/* Help */
-	  case '?':
-	    usage();
-
 	  case 'B':			/* Force binary file transfer */
 	    xmode = 1;			/* So no automatic switching */
 	    ftype = BINARY;
@@ -258,6 +255,11 @@ doarg(char c) {				/* Command-line option parser */
 	  case 'k':			/* Keep incompletely received files */
 	    keep = 1;
 	    break;
+
+    case 'h':
+    case '?':
+    // skip as checked later with 0 action
+      break;
 
 	  case 'p':			/* Parity */
 	    if (*(xp+1))
@@ -292,14 +294,13 @@ doarg(char c) {				/* Command-line option parser */
     return(action);
 }
 
-void
-ek(int argc, char ** argv) {
+void ek(int argc, char ** argv) {
     int status, rx_len, i, x;
     char c;
     UCHAR *inbuf;
     short r_slot;
 
-    parity = P_PARITY;                  /* Set this to desired parity */
+    parity = PAR_NONE;                  /* NONE*/
     status = X_OK;                      /* Initial kermit status */
 
     xargc = argc;
@@ -316,8 +317,10 @@ ek(int argc, char ** argv) {
 	    fatal("Malformed command-line option: '",*xargv,"'");
 	}
     }
-    if (!action)			/* Nothing to do, give usage message */
+    if (!action){			/* Nothing to do, give usage message */
       usage();
+      return;
+    }
 
 #ifdef DEBUG
     debug(DB_LOG,"SIMULATED ERROR RATE:",0,errorrate);
@@ -374,6 +377,7 @@ ek(int argc, char ** argv) {
 /* Initialize Kermit protocol */
 
     status = kermit(K_INIT, &k, 0, 0, "", &r);
+
 #ifdef DEBUG
     debug(DB_LOG,"init status:",0,status);
     debug(DB_LOG,"version:",k.version,0);
@@ -403,6 +407,8 @@ ek(int argc, char ** argv) {
   here and check again.
 */
         inbuf = getrslot(&k,&r_slot);	/* Allocate a window slot */
+        if(!inbuf)
+          fatal("inbuf == null",0,0);
         rx_len = k.rxd(&k,inbuf,P_PKTLEN); /* Try to read a packet */
         debug(DB_PKT,"main packet",&(k.ipktbuf[0][r_slot]),rx_len);
 /*
@@ -414,7 +420,7 @@ ek(int argc, char ** argv) {
         if (rx_len < 1) {               /* No data was read */
             freerslot(&k,r_slot);	/* So free the window slot */
             if (rx_len < 0)             /* If there was a fatal error */
-              doexit(FAILURE);          /* give up */
+              return;          /* give up */
 
 	    /* This would be another place to dispatch to another task */
 	    /* while waiting for a Kermit packet to show up. */
@@ -423,26 +429,29 @@ ek(int argc, char ** argv) {
         /* Handle the input */
 
         switch (status = kermit(K_RUN, &k, r_slot, rx_len, "", &r)) {
-	  case X_OK:
-#ifdef DEBUG
-/*
-  This shows how, after each packet, you get the protocol state, file name,
-  date, size, and bytes transferred so far.  These can be used in a
-  file-transfer progress display, log, etc.
-*/
-	    debug(DB_LOG,"NAME",r.filename ? (char *)r.filename : "(NULL)",0);
-	    debug(DB_LOG,"DATE",r.filedate ? (char *)r.filedate : "(NULL)",0);
-	    debug(DB_LOG,"SIZE",0,r.filesize);
-	    debug(DB_LOG,"STATE",0,r.status);
-	    debug(DB_LOG,"SOFAR",0,r.sofar);
-#endif /* DEBUG */
-	    /* Maybe do other brief tasks here... */
-	    continue;			/* Keep looping */
-	  case X_DONE:
-	    break;			/* Finished */
-	  case X_ERROR:
-	    doexit(FAILURE);		/* Failed */
-	}
+          	  case X_OK:
+                #ifdef DEBUG
+                /*
+                This shows how, after each packet, you get the protocol state, file name,
+                date, size, and bytes transferred so far.  These can be used in a
+                file-transfer progress display, log, etc.
+                */
+                debug(DB_LOG,"NAME",r.filename ? (char *)r.filename : "(NULL)",0);
+                debug(DB_LOG,"DATE",r.filedate ? (char *)r.filedate : "(NULL)",0);
+                debug(DB_LOG,"SIZE",0,r.filesize);
+                debug(DB_LOG,"STATE",0,r.status);
+                debug(DB_LOG,"SOFAR",0,r.sofar);
+                #endif /* DEBUG */
+          	    /* Maybe do other brief tasks here... */
+          	    continue;			/* Keep looping */
+          	  case X_DONE:
+          	    break;			/* Finished */
+          	  case X_ERROR:
+          	    return;
+          	}
     }
+
     doexit(SUCCESS);
+
+    return;
 }
