@@ -12,11 +12,17 @@
 #include <getopt.h>
 #include <ctype.h>
 #include <txm_module.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/stat.h>
 #include "cli.h"
+
+#undef PATH_MAX
+#define PATH_MAX 128
 
 const char *CLI_CMD_HELP = "help";
 const char *CLI_CMD_MEMINFO = "meminfo";
-
+const char *CLI_CMD_LS = "ls";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
@@ -74,6 +80,43 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 }
 
 
+static int cli_cmd_ls(int args, char *argv[]){
+	char *f = NULL;
+	const char *root= "/";
+	char tmp[PATH_MAX];
+	DIR * dir;
+	struct dirent * d;
+	struct stat st;
+
+	if(args <= 1){
+		/* Always do root when empty */
+		if((lstat(root, &st) == 0) && S_ISDIR(st.st_mode)){
+			if((dir = opendir(root)) != NULL){
+				while((d = readdir(dir)) != NULL){
+					printf("%s\r\n",d->d_name);
+				}
+				closedir(dir);
+			}			
+
+		}
+	}else if(args == 2){
+		f = argv[1];
+		if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
+			if((dir = opendir(f)) != NULL){
+				while((d = readdir(dir)) != NULL){
+					printf("%s\r\n",d->d_name);
+				}
+				closedir(dir);
+			}			
+
+		}
+	}
+
+	return 0;
+
+}
+
+
 void cli_free(cli_t *ctx){
 	free(ctx->in);
 //TODO	free(cli->cmd);
@@ -82,7 +125,6 @@ void cli_free(cli_t *ctx){
 
 cli_t *cli_new(void){
 
-	cli_cmd_t *cmd;
 
 	cli_t *ctx = malloc(sizeof(cli_t));
 	
@@ -91,14 +133,21 @@ cli_t *cli_new(void){
 	ctx->cmd->callback = cli_cmd_help;
 	ctx->cmd->next = NULL;
 
-	cmd = malloc(sizeof(cli_cmd_t));
-	cmd->name = (char*)CLI_CMD_MEMINFO;
-	cmd->callback = cli_cmd_meminfo;
-	cmd->next = NULL;
+	cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
+	meminfo->name = (char*)CLI_CMD_MEMINFO;
+	meminfo->callback = cli_cmd_meminfo;
+	meminfo->next = NULL;
 
-	ctx->cmd->next = cmd;
+	cli_cmd_t *ls = malloc(sizeof(cli_cmd_t));
+	ls->name = (char*)CLI_CMD_LS;
+	ls->callback = cli_cmd_ls;
+	ls->next = NULL;
+
+	meminfo->next = ls; 
+	ctx->cmd->next = meminfo; 
 
 	ctx->in = calloc(1,STDIO_IN_MAX);
+
 	return ctx;
 }
 
@@ -135,7 +184,7 @@ char *cli_input(cli_t *ctx){
 	char *str;
 	char *argv[STDIO_CMD_ARGS_MAX];
 
-	memset(argv,NULL,STDIO_CMD_ARGS_MAX);
+	memset(argv,0,STDIO_CMD_ARGS_MAX);
 	memset(ctx->in,'\0',STDIO_IN_MAX);
 	str = ctx->in;
 
@@ -164,12 +213,12 @@ char *cli_input(cli_t *ctx){
 
 	if(ctx->in){
 
-		char *token = strchr(ctx->in, ' ');
+		char *token = strtok(ctx->in, " ");
 
 		while( token != NULL ) {
 			argv[args] = strdup(token);
 			args++;
-		  	token = strchr(ctx->in, ' ');
+		  	token = strtok(NULL, " ");
 		}
 
 		cli_cmd_t *cmd = ctx->cmd;
