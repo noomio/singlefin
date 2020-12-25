@@ -144,8 +144,10 @@ static int cli_cmd_cat(int args, char *argv[]){
 					{
 						for(len = 0; len < l; len += rlen){
 							rlen = fread(buf + len, 1, l - len, fp);
+							if(rlen == 0) break;
 							write(0,buf,rlen);
 						}
+
 						free(buf);
 					}
 				}
@@ -251,11 +253,11 @@ char *cli_input(cli_t *ctx){
 			} else if (c == '\n' || c == '\r') {
 				got_eof = 1;
 				break;
-			} else if(c == '\b'){ // backspace
+			} else if(c == '\b' || c == 0x08){ // backspace
+				puts("ss");
 				if(str > ctx->in){
-					putchar(c);
 					str--;
-					*(str) = '\0';
+					*(--str) = '\0';
 				}
 			}else if(c == 0x1b){ // CTRL+C
 				return NULL;
