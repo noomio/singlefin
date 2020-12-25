@@ -23,6 +23,7 @@
 const char *CLI_CMD_HELP = "help";
 const char *CLI_CMD_MEMINFO = "meminfo";
 const char *CLI_CMD_LS = "ls";
+const char *CLI_CMD_CAT = "cat";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
@@ -116,6 +117,50 @@ static int cli_cmd_ls(int args, char *argv[]){
 
 }
 
+static int cli_cmd_cat(int args, char *argv[]){
+	FILE * fp;
+	char *filename;
+	void * buf;
+	size_t l, len, rlen=0;
+	struct stat st;
+
+	if(args <= 1 || (args == 2 && strcmp(argv[1],"-h") == 0) ){
+		// usage
+	    puts("Usage: cat <file>\r\n");
+	}
+	else if(args == 2){
+		filename = argv[1];
+		if((lstat(filename, &st) == 0) && S_ISREG(st.st_mode)){
+			fp = fopen(filename, "r");
+			if(fp)
+			{
+				fseek(fp, 0L, SEEK_END);
+				l = ftell(fp);
+				fseek(fp, 0L, SEEK_SET);
+				if(l > 0)
+				{
+					buf = malloc(256);
+					if(buf)
+					{
+						for(len = 0; len < l; len += rlen){
+							rlen = fread(buf + len, 1, l - len, fp);
+							if(rlen == 0) break;
+							write(0,buf,rlen);
+						}
+
+						free(buf);
+					}
+				}
+				fclose(fp);
+			}	
+
+		}
+	}
+
+	return 0;
+
+}
+
 
 void cli_free(cli_t *ctx){
 	free(ctx->in);
@@ -143,6 +188,12 @@ cli_t *cli_new(void){
 	ls->callback = cli_cmd_ls;
 	ls->next = NULL;
 
+	cli_cmd_t *cat = malloc(sizeof(cli_cmd_t));
+	cat->name = (char*)CLI_CMD_CAT;
+	cat->callback = cli_cmd_cat;
+	cat->next = NULL;
+
+	ls->next = cat;
 	meminfo->next = ls; 
 	ctx->cmds->next = meminfo; 
 
@@ -194,7 +245,6 @@ char *cli_input(cli_t *ctx){
 
 		for (;;) {
 			int c = getchar();
-			putchar(c);
 
 			if (c == EOF || str >= (ctx->in+STDIO_IN_MAX)) {
 				ctx->in[STDIO_IN_MAX-1] = '\0';
@@ -203,13 +253,19 @@ char *cli_input(cli_t *ctx){
 			} else if (c == '\n' || c == '\r') {
 				got_eof = 1;
 				break;
-			} else if(c == '\b'){ // backspace
-				*(str--) = '\0';
-			}else if(c == 0x1b){ // CTRL+C
+			} else if(c == '\b' || c == 0x08 || c == 127){ // backspace
+				if(str > ctx->in){
+					str--;
+					*str = '\0';
+					putchar(c);
+				}
+			}else if(c == 0x1b || c == 3){ // CTRL+C
+				puts("\r\nctrl+c\r\n");
 				return NULL;
 			}
 			else {
 				*(str++) = (char)c;
+				putchar(c);
 			}
 		}
 
@@ -218,6 +274,7 @@ char *cli_input(cli_t *ctx){
 
 	if(ctx->in){
 
+		puts("\r\n");
 		char *token = strtok(ctx->in, " ");
 
 		while( token != NULL ) {
