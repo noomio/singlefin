@@ -82,14 +82,14 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 
 
 static int cli_cmd_ls(int args, char *argv[]){
-	char *f = NULL;
+	char *arg = NULL;
 	const char *root= "/";
 	char tmp[PATH_MAX];
 	DIR * dir;
 	struct dirent * d;
 	struct stat st;
 
-	if(args <= 1){
+	if(args == 1){
 		/* Always do root when empty */
 		if((lstat(root, &st) == 0) && S_ISDIR(st.st_mode)){
 			if((dir = opendir(root)) != NULL){
@@ -101,17 +101,23 @@ static int cli_cmd_ls(int args, char *argv[]){
 
 		}
 	}else if(args == 2){
-		f = argv[1];
-		if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
-			if((dir = opendir(f)) != NULL){
-				while((d = readdir(dir)) != NULL){
-					printf("%s\r\n",d->d_name);
-				}
-				closedir(dir);
-			}			
+		arg = argv[1];
 
+		if(!strchr(arg,'-')){
+			if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
+				if((dir = opendir(f)) != NULL){
+					while((d = readdir(dir)) != NULL){
+						printf("%s\r\n",d->d_name);
+					}
+					closedir(dir);
+				}			
+
+			}
+		}else{
+			puts("Usage: ls <directory>\r\n");
 		}
-	}
+	}else
+		puts("Usage: ls <directory>\r\n");
 
 	return 0;
 
