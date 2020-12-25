@@ -253,13 +253,14 @@ char *cli_input(cli_t *ctx){
 			} else if (c == '\n' || c == '\r') {
 				got_eof = 1;
 				break;
-			} else if(c == '\b' || c == 0x08){ // backspace
-				puts("ss");
+			} else if(c == '\b' || c == 0x08 || c == 127){ // backspace
 				if(str > ctx->in){
 					str--;
-					*(--str) = '\0';
+					*str = '\0';
+					putchar(c);
 				}
-			}else if(c == 0x1b){ // CTRL+C
+			}else if(c == 0x1b || c == 3){ // CTRL+C
+				puts("\r\nctrl+c\r\n");
 				return NULL;
 			}
 			else {
