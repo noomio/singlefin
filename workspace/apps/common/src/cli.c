@@ -24,10 +24,11 @@ const char *CLI_CMD_HELP = "help";
 const char *CLI_CMD_MEMINFO = "meminfo";
 const char *CLI_CMD_LS = "ls";
 const char *CLI_CMD_CAT = "cat";
+const char *CLI_CMD_RM = "rm";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
-	while((opt=getopt(args, argv, "h")) != -1){
+	while((opt=getopt(args, argv, ":h")) != -1){
     	switch(opt) {
     		default:
 				printf("%s\r\n", optarg);
@@ -56,7 +57,7 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 
 
 	int opt;
-	while((opt=getopt(args, argv, ":m:")) != EOF){
+	while((opt=getopt(args, argv, ":m")) != EOF){
     	switch(opt) {
 			case 'm':
 				printf("%s\r\n", optarg);
@@ -104,8 +105,8 @@ static int cli_cmd_ls(int args, char *argv[]){
 		arg = argv[1];
 
 		if(!strchr(arg,'-')){
-			if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
-				if((dir = opendir(f)) != NULL){
+			if((lstat(arg, &st) == 0) && S_ISDIR(st.st_mode)){
+				if((dir = opendir(arg)) != NULL){
 					while((d = readdir(dir)) != NULL){
 						printf("%s\r\n",d->d_name);
 					}
@@ -167,6 +168,33 @@ static int cli_cmd_cat(int args, char *argv[]){
 
 }
 
+static int cli_cmd_rm(int args, char *argv[]){
+	int opt;
+	while((opt=getopt(args, argv, ":d:")) != -1){
+    	switch(opt) {
+    		case 'd':
+    			rmdir (optarg);
+    		default:
+				puts("rm\r\n"
+					"Remove files (delete/unlink)\r\n\r\n"
+					"Syntax:\r\n[options] FILE\r\n\r\n"
+					"Options:\r\n\r\n"
+					"\t-d\r\n\tRemove a directory\r\n");
+
+			break;
+    	}
+    }
+
+    /* Only way to get argumnet without option i.e rm /datatx/app.bin */
+    if(args == 2 && optind == 1 && opt == -1 && optarg == NULL && argv[args-1] != NULL){
+    	unlink(argv[args-1]);
+    }
+
+
+	return 0;
+
+}
+
 
 void cli_free(cli_t *ctx){
 	free(ctx->in);
@@ -199,6 +227,12 @@ cli_t *cli_new(void){
 	cat->callback = cli_cmd_cat;
 	cat->next = NULL;
 
+	cli_cmd_t *rm = malloc(sizeof(cli_cmd_t));
+	rm->name = (char*)CLI_CMD_RM;
+	rm->callback = cli_cmd_rm;
+	rm->next = NULL;
+
+	cat->next = rm;
 	ls->next = cat;
 	meminfo->next = ls; 
 	ctx->cmds->next = meminfo; 
