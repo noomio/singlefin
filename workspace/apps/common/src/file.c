@@ -240,6 +240,22 @@ int unlink (const char *filename){
 		return -1;
 }
 
+int truncate(const char *path, off_t length){
+	if(path == NULL) return -1;
+	if(qapi_FS_Truncate (path, length ) == QAPI_OK)
+		return 0;
+	else
+		return -1;
+}
+
+int rename(const char *old, const char *new){
+	if(old == NULL && new == NULL) return -1;
+	if(qapi_FS_Rename (old,new ) == QAPI_OK)
+		return 0;
+	else
+		return -1;
+}
+
 /*
 
 The return value is 0 if the access is permitted, and -1 otherwise. 

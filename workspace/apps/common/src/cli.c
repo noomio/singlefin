@@ -27,6 +27,7 @@ const char *CLI_CMD_LS = "ls";
 const char *CLI_CMD_CAT = "cat";
 const char *CLI_CMD_RM = "rm";
 const char *CLI_CMD_MKDIR = "mkdir";
+const char *CLI_CMD_TOUCH = "touch";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
@@ -207,6 +208,23 @@ static int cli_cmd_mkdir(int args, char *argv[]){
 		puts("\r\nmkdir\r\n"
 		"Create new folder(s), if they do not already exist.\r\n\r\n"
 		"Syntax:\r\n\tmkdir FOLDER\r\n\r\n");    	
+    }
+
+
+	return 0;
+
+}
+
+static int cli_cmd_touch(int args, char *argv[]){
+
+    /* Only way to get argumnet without option i.e rm /datatx/app.bin */
+    if(args == 2 && optind == 1 && optarg == NULL && argv[args-1] != NULL){
+    	FILE * fp = fopen(argv[args-1],"a+");
+    	fclose(fp);
+    }else{
+		puts("\r\ntouch\r\n"
+		"Create new file, if it does not already exist.\r\n\r\n"
+		"Syntax:\r\n\ttouch FILE\r\n\r\n");    	
     }
 
 
