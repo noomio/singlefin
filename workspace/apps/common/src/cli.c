@@ -28,6 +28,7 @@ const char *CLI_CMD_CAT = "cat";
 const char *CLI_CMD_RM = "rm";
 const char *CLI_CMD_MKDIR = "mkdir";
 const char *CLI_CMD_TOUCH = "touch";
+const char *CLI_CMD_ECHO = "echo";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
@@ -232,6 +233,59 @@ static int cli_cmd_touch(int args, char *argv[]){
 
 }
 
+static int cli_cmd_echo(int args, char *argv[]){
+	int opt;
+	char *file = NULL;
+	char *str = argv[1];
+	bool append = false;
+	optind = 2;
+
+	while((opt=getopt(args, argv, ":f:a")) != -1){
+    	switch(opt) {
+    		case 'f':
+    			file = strdup(optarg);
+    			break;
+    		case 'a':
+    			append = true;
+    			break;
+    		default:
+    			goto usage;
+			break;
+    	}
+    }
+
+    if(file != NULL && str != NULL){
+    	if(append){
+    		FILE *fp = fopen(file,"a");
+    		if(fp){
+    			fwrite(str,1,strlen(str),fp);
+    			fclose(fp);
+    		}
+    	}else{
+      		FILE *fp = fopen(file,"w");
+    		if(fp){
+    			fwrite(str,1,strlen(str),fp);
+    			fclose(fp);
+    		}  		
+    	}
+
+    	free(file);
+
+    	return 0;
+    }
+
+usage:
+	puts("\r\necho\r\n"
+	"Write or append to a file. Default is write.\r\n\r\n"
+	"Syntax:\r\necho STRING [options]\r\n\r\n"
+	"Options:\r\n\r\n"
+	"\t-f\r\n\tFile to write or append to.\r\n"
+	"\t-a\r\n\tAppend to a file.\r\n");
+
+	return 0;
+
+}
+
 
 void cli_free(cli_t *ctx){
 	free(ctx->in);
@@ -279,6 +333,12 @@ cli_t *cli_new(void){
 	touch->callback = cli_cmd_touch;
 	touch->next = NULL;
 
+	cli_cmd_t *echo = malloc(sizeof(cli_cmd_t));
+	echo->name = (char*)CLI_CMD_ECHO;
+	echo->callback = cli_cmd_echo;
+	echo->next = NULL;
+
+	touch->next = echo;
 	mkdir->next = touch;
 	rm->next = mkdir;
 	cat->next = rm;

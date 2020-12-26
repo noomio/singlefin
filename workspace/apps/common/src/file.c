@@ -20,9 +20,9 @@ FILE *fopen(const char *path, const char *mode){
 	else if(strcmp(mode,"w+") == 0)
 		flags = QAPI_FS_O_RDWR_E | QAPI_FS_O_TRUNC_E | QAPI_FS_O_CREAT_E;
 	else if(strcmp(mode,"a") == 0)
-		flags = QAPI_FS_O_WRONLY_E | QAPI_FS_O_CREAT_E;
+		flags = QAPI_FS_O_WRONLY_E | QAPI_FS_O_APPEND_E | QAPI_FS_O_CREAT_E;
 	else if(strcmp(mode,"a+") == 0)
-		flags = QAPI_FS_O_RDWR_E | QAPI_FS_O_CREAT_E;
+		flags = QAPI_FS_O_RDWR_E | QAPI_FS_O_APPEND_E | QAPI_FS_O_CREAT_E;
 	else
 		return NULL;
 
