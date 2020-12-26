@@ -14,6 +14,7 @@
 #include <txm_module.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <qapi_fs_types.h>
 #include <sys/stat.h>
 #include "cli.h"
 
@@ -25,6 +26,7 @@ const char *CLI_CMD_MEMINFO = "meminfo";
 const char *CLI_CMD_LS = "ls";
 const char *CLI_CMD_CAT = "cat";
 const char *CLI_CMD_RM = "rm";
+const char *CLI_CMD_MKDIR = "mkdir";
 
 static int cli_cmd_help(int args, char *argv[]){
 	int opt;
@@ -115,10 +117,10 @@ static int cli_cmd_ls(int args, char *argv[]){
 
 			}
 		}else{
-			puts("Usage: ls <directory>\r\n");
+			puts("Usage: ls FOLDER\r\n");
 		}
 	}else
-		puts("Usage: ls <directory>\r\n");
+		puts("Usage: ls FOLDER\r\n");
 
 	return 0;
 
@@ -174,10 +176,11 @@ static int cli_cmd_rm(int args, char *argv[]){
     	switch(opt) {
     		case 'd':
     			rmdir (optarg);
+    			break;
     		default:
-				puts("rm\r\n"
+				puts("\r\nrm\r\n"
 					"Remove files (delete/unlink)\r\n\r\n"
-					"Syntax:\r\n[options] FILE\r\n\r\n"
+					"Syntax:\r\nrm [options] FILE\r\n\r\n"
 					"Options:\r\n\r\n"
 					"\t-d\r\n\tRemove a directory\r\n");
 
@@ -188,6 +191,22 @@ static int cli_cmd_rm(int args, char *argv[]){
     /* Only way to get argumnet without option i.e rm /datatx/app.bin */
     if(args == 2 && optind == 1 && opt == -1 && optarg == NULL && argv[args-1] != NULL){
     	unlink(argv[args-1]);
+    }
+
+
+	return 0;
+
+}
+
+static int cli_cmd_mkdir(int args, char *argv[]){
+
+    /* Only way to get argumnet without option i.e rm /datatx/app.bin */
+    if(args == 2 && optind == 1 && optarg == NULL && argv[args-1] != NULL){
+    	mkdir(argv[args-1],QAPI_FS_S_IRUSR_E|QAPI_FS_S_IWUSR_E);
+    }else{
+		puts("\r\nmkdir\r\n"
+		"Create new folder(s), if they do not already exist.\r\n\r\n"
+		"Syntax:\r\n\tmkdir FOLDER\r\n\r\n");    	
     }
 
 
@@ -232,6 +251,12 @@ cli_t *cli_new(void){
 	rm->callback = cli_cmd_rm;
 	rm->next = NULL;
 
+	cli_cmd_t *mkdir = malloc(sizeof(cli_cmd_t));
+	mkdir->name = (char*)CLI_CMD_MKDIR;
+	mkdir->callback = cli_cmd_mkdir;
+	mkdir->next = NULL;
+
+	rm->next = mkdir;
 	cat->next = rm;
 	ls->next = cat;
 	meminfo->next = ls; 

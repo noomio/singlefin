@@ -215,13 +215,25 @@ int closedir(DIR *dirp){
 
 
 int rmdir (const char *filename){
+	if(filename == NULL) return -1;
 	if(qapi_FS_Rm_Dir(filename) == QAPI_OK)
 		return 0;
 	else
 		return -1;
 }
 
+
+int mkdir(const char *pathname, mode_t mode){
+	if(pathname == NULL) return -1;
+	if(qapi_FS_Mk_Dir (pathname, mode))
+		return 0;
+	else
+		return -1;
+
+}
+
 int unlink (const char *filename){
+	if(filename == NULL) return -1;
 	if(qapi_FS_Unlink(filename) == QAPI_OK)
 		return 0;
 	else
