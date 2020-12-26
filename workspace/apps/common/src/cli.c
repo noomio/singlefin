@@ -35,14 +35,12 @@ static int cli_cmd_help(cli_t *ctx){
 	cli_cmd_t *iter;
 
 	if(ctx){
-
 		iter = ctx->cmds;
-		while(iter->next != NULL){
+		while(iter){
 			puts(iter->name);
 			puts(" ");
 			iter = iter->next;
 		}
-
 	}
 
 	puts("\r\n");
@@ -63,7 +61,7 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 
 
 	int opt;
-	while((opt=getopt(args, argv, ":m:")) != EOF){
+	while((opt=getopt(args, argv, ":hm:")) != EOF){
     	switch(opt) {
 			case 'm':
 					if(strcmp(optarg,"heap") == 0){
@@ -77,6 +75,7 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 						available,fragments,first_suspended,suspended_count,next_pool);
 				}
 			break;
+			case 'h':
 			default:
 				puts("Usage: meminfo -m STRING\r\n"
 					"STRING:\r\n"
@@ -435,7 +434,7 @@ char *cli_input(cli_t *ctx){
 		  	token = strtok(NULL, " ");
 		}
 
-		if(strcmp(token,"help")){
+		if(argv[0] && strcmp(argv[0],"help") == 0){
 			cli_cmd_help(ctx);
 			return ctx->in;
 		}

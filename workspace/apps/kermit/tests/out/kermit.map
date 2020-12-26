@@ -987,118 +987,118 @@ PADDING_ALIGNMENT	0x43008c03	0x5	0x0
 	0x43008ca3		.L.str.10
 .rodata.str1.1	0x43008ca6	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
 	0x43008ca6		.L.str.11
-.rodata.str1.1	0x43008ca8	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43008ca8	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
 	0x43008ca8		.L.str.12
-.rodata.str1.1	0x43008cac	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008cac		.L.str.13
-.rodata.str1.1	0x43008cb1	0x59	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008cb1		.L.str.15
-.rodata.str1.1	0x43008d0a	0x6a	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008d0a		.L.str.16
-.rodata.str1.1	0x43008d74	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008d74		.L.str.17
-.rodata.str1.1	0x43008d76	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008d76		.L.str.18
-.rodata.str1.1	0x43008d7b	0x13	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008d7b		.L.str.19
-.rodata.str1.1	0x43008d8e	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008d8e		.L.str.20
-.rodata.str1.1	0x43008d91	0x14	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008d91		.L.str.21
-.rodata.str1.1	0x43008da5	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008da5		.L.str.23
-.rodata.str1.1	0x43008da9	0x6b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008da9		.L.str.24
-.rodata.str1.1	0x43008e14	0x5b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008e14		.L.str.25
-.rodata.str1.1	0x43008e6f	0x54	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008e6f		.L.str.27
-.rodata.str1.1	0x43008ec3	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008ec3		.L.str.28
-.rodata.str1.1	0x43008ec8	0xa3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008ec8		.L.str.31
-.rodata.str1.1	0x43008f6b	0x3	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008f6b		.L.str
-.rodata.str1.1	0x43008f6e	0xe	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008f6e		.L.str.1
-.rodata.str1.1	0x43008f7c	0x4	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008f7c		.L.str.2
-.rodata.str1.1	0x43008f80	0x16	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008f80		.L.str.3
-.rodata.str1.1	0x43008f96	0xb	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008f96		.L.str.4
-.rodata.str1.1	0x43008fa1	0x1e	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008fa1		.L.str.5
-.rodata.str1.1	0x43008fbf	0x4b	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43008fbf		.L.str.6
-.rodata.str1.1	0x4300900a	0x2d	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300900a		.L.str.7
-.rodata.str1.1	0x43009037	0x31	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009037		.L.str.8
-.rodata.str1.1	0x43009068	0x22	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009068		.L.str.9
-.rodata.str1.1	0x4300908a	0x20	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300908a		.L.str.10
-.rodata.str1.1	0x430090aa	0x24	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430090aa		.L.str.11
-.rodata.str1.1	0x430090ce	0x7	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430090ce		.L.str.12
-.rodata.str1.1	0x430090d5	0x3	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430090d5		.L.str.13
-.rodata.str1.1	0x430090d8	0x14	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430090d8		.L.str.15
-.rodata.str1.1	0x430090ec	0x1a	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430090ec		.L.str.16
-.rodata.str1.1	0x43009106	0x18	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009106		.L.str.17
-.rodata.str1.1	0x4300911e	0x1a	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300911e		.L.str.18
-.rodata.str1.1	0x43009138	0x14	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009138		.L.str.19
-.rodata.str1.1	0x4300914c	0xf	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300914c		.L.str.20
-.rodata.str1.1	0x4300915b	0x1d	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300915b		.L.str.21
-.rodata.str1.1	0x43009178	0x18	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009178		.L.str.22
-.rodata.str1.1	0x43009190	0x5	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x43009195	0x21	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009195		.L.str.24
-.rodata.str1.1	0x430091b6	0x2	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091b6		.L.str.25
-.rodata.str1.1	0x430091b8	0x6	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091b8		.L.str.26
-.rodata.str1.1	0x430091be	0x1	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091be		.L.str.27
-.rodata.str1.1	0x430091bf	0x11	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091bf		.L.str.28
-.rodata.str1.1	0x430091d0	0xe	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091d0		.L.str.29
-.rodata.str1.1	0x430091de	0x2	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091de		.L.str.1
-.rodata.str1.1	0x430091e0	0x2	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091e0		.L.str.2
-.rodata.str1.1	0x430091e2	0x11	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091e2		.L.str.3
-.rodata.str1.1	0x430091f3	0x17	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430091f3		.L.str.4
-.rodata.str1.1	0x4300920a	0xf	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300920a		.L.str.5
-.rodata.str1.1	0x43009219	0x2	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009219		.L.str.6
-.rodata.str1.1	0x4300921b	0x20	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300921b		.L.str.7
-.rodata.str1.1	0x4300923b	0x13	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300923b		.L.str.8
-.rodata.str1.1	0x4300924e	0x19	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300924e		.L.str.9
-.rodata.str1.1	0x43009267	0x11	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009267		.L.str.10
-.rodata.str1.1	0x43009278	0x6	../ek16/libek.a(920xio.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43009278		.L.str
-.rodata.str1.1	0x4300927e	0x1c	../ek16/libek.a(920xio.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300927e		.L.str.3
-PADDING_ALIGNMENT	0x4300929a	0x2	0x0
+.rodata.str1.1	0x43008cad	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008cad		.L.str.13
+.rodata.str1.1	0x43008cb2	0x59	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008cb2		.L.str.15
+.rodata.str1.1	0x43008d0b	0x6a	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008d0b		.L.str.16
+.rodata.str1.1	0x43008d75	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008d75		.L.str.17
+.rodata.str1.1	0x43008d77	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008d77		.L.str.18
+.rodata.str1.1	0x43008d7c	0x13	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008d7c		.L.str.19
+.rodata.str1.1	0x43008d8f	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008d8f		.L.str.20
+.rodata.str1.1	0x43008d92	0x14	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008d92		.L.str.21
+.rodata.str1.1	0x43008da6	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008da6		.L.str.23
+.rodata.str1.1	0x43008daa	0x6b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008daa		.L.str.24
+.rodata.str1.1	0x43008e15	0x5b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008e15		.L.str.25
+.rodata.str1.1	0x43008e70	0x54	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008e70		.L.str.27
+.rodata.str1.1	0x43008ec4	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008ec4		.L.str.28
+.rodata.str1.1	0x43008ec9	0xa3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008ec9		.L.str.31
+.rodata.str1.1	0x43008f6c	0x3	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008f6c		.L.str
+.rodata.str1.1	0x43008f6f	0xe	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008f6f		.L.str.1
+.rodata.str1.1	0x43008f7d	0x4	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008f7d		.L.str.2
+.rodata.str1.1	0x43008f81	0x16	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008f81		.L.str.3
+.rodata.str1.1	0x43008f97	0xb	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008f97		.L.str.4
+.rodata.str1.1	0x43008fa2	0x1e	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008fa2		.L.str.5
+.rodata.str1.1	0x43008fc0	0x4b	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43008fc0		.L.str.6
+.rodata.str1.1	0x4300900b	0x2d	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300900b		.L.str.7
+.rodata.str1.1	0x43009038	0x31	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009038		.L.str.8
+.rodata.str1.1	0x43009069	0x22	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009069		.L.str.9
+.rodata.str1.1	0x4300908b	0x20	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300908b		.L.str.10
+.rodata.str1.1	0x430090ab	0x24	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430090ab		.L.str.11
+.rodata.str1.1	0x430090cf	0x7	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430090cf		.L.str.12
+.rodata.str1.1	0x430090d6	0x3	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430090d6		.L.str.13
+.rodata.str1.1	0x430090d9	0x14	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430090d9		.L.str.15
+.rodata.str1.1	0x430090ed	0x1a	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430090ed		.L.str.16
+.rodata.str1.1	0x43009107	0x18	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009107		.L.str.17
+.rodata.str1.1	0x4300911f	0x1a	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300911f		.L.str.18
+.rodata.str1.1	0x43009139	0x14	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009139		.L.str.19
+.rodata.str1.1	0x4300914d	0xf	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300914d		.L.str.20
+.rodata.str1.1	0x4300915c	0x1d	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300915c		.L.str.21
+.rodata.str1.1	0x43009179	0x18	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009179		.L.str.22
+.rodata.str1.1	0x43009191	0x5	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x43009196	0x21	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009196		.L.str.24
+.rodata.str1.1	0x430091b7	0x2	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091b7		.L.str.25
+.rodata.str1.1	0x430091b9	0x6	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091b9		.L.str.26
+.rodata.str1.1	0x430091bf	0x1	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091bf		.L.str.27
+.rodata.str1.1	0x430091c0	0x11	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091c0		.L.str.28
+.rodata.str1.1	0x430091d1	0xe	../ek16/libek.a(ek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091d1		.L.str.29
+.rodata.str1.1	0x430091df	0x2	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091df		.L.str.1
+.rodata.str1.1	0x430091e1	0x2	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091e1		.L.str.2
+.rodata.str1.1	0x430091e3	0x11	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091e3		.L.str.3
+.rodata.str1.1	0x430091f4	0x17	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430091f4		.L.str.4
+.rodata.str1.1	0x4300920b	0xf	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300920b		.L.str.5
+.rodata.str1.1	0x4300921a	0x2	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300921a		.L.str.6
+.rodata.str1.1	0x4300921c	0x20	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300921c		.L.str.7
+.rodata.str1.1	0x4300923c	0x13	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300923c		.L.str.8
+.rodata.str1.1	0x4300924f	0x19	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300924f		.L.str.9
+.rodata.str1.1	0x43009268	0x11	../ek16/libek.a(kermit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009268		.L.str.10
+.rodata.str1.1	0x43009279	0x6	../ek16/libek.a(920xio.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43009279		.L.str
+.rodata.str1.1	0x4300927f	0x1c	../ek16/libek.a(920xio.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300927f		.L.str.3
+PADDING_ALIGNMENT	0x4300929b	0x1	0x0
 .rodata.cst16	0x4300929c	0x10	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
 	0x4300929c		$d
 .rodata.str1.1	0x430092ac	0x18	C:\Users\nikol\projects\quectel\development\customer\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
