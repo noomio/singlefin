@@ -30,20 +30,22 @@ const char *CLI_CMD_MKDIR = "mkdir";
 const char *CLI_CMD_TOUCH = "touch";
 const char *CLI_CMD_ECHO = "echo";
 
-static int cli_cmd_help(int args, char *argv[]){
-	int opt;
-	while((opt=getopt(args, argv, ":h")) != -1){
-    	switch(opt) {
-    		default:
-				printf("%s\r\n", optarg);
-				puts("Usage: \r\n");
-			break;
-    	}
-    }
+static int cli_cmd_help(cli_t *ctx){
 
-	printf("%s\r\n", optarg);
-	puts("Usage: \r\n");  	
+	cli_cmd_t *iter;
 
+	if(ctx){
+
+		iter = ctx->cmds;
+		while(iter->next != NULL){
+			puts(iter->name);
+			puts(" ");
+			iter = iter->next;
+		}
+
+	}
+
+	puts("\r\n");
 
 	return 0;
 
@@ -61,22 +63,25 @@ static int cli_cmd_meminfo(int args, char *argv[]){
 
 
 	int opt;
-	while((opt=getopt(args, argv, ":m")) != EOF){
+	while((opt=getopt(args, argv, ":m:")) != EOF){
     	switch(opt) {
 			case 'm':
-				printf("%s\r\n", optarg);
-				/* Retrieve information about the previously created
-				block pool "my_pool." */
-				tx_byte_pool_info_get(malloc_get_pool(), 
-					"memheap",
-					&available, &fragments,&first_suspended, &suspended_count,
-					&next_pool);
-				printf("Available:\t\t%lu\nFragments:\t\t%lu\nFirst Suspended:\t%p\nSuspended Count:\t%lu\nNext Pool:\t\t%p\n", 
-					available,fragments,first_suspended,suspended_count,next_pool);
+					if(strcmp(optarg,"heap") == 0){
+					/* Retrieve information about the previously created
+					block pool "my_pool." */
+					tx_byte_pool_info_get(malloc_get_pool(), 
+						"memheap",
+						&available, &fragments,&first_suspended, &suspended_count,
+						&next_pool);
+					printf("Available:\t\t%lu\nFragments:\t\t%lu\nFirst Suspended:\t%p\nSuspended Count:\t%lu\nNext Pool:\t\t%p\n", 
+						available,fragments,first_suspended,suspended_count,next_pool);
+				}
 			break;
 			default:
-				// usage
-				return -1;
+				puts("Usage: meminfo -m STRING\r\n"
+					"STRING:\r\n"
+					"\theap\r\n\tDisplay the heap information used by malloc, calloc & realloc."
+					);
 				break;
     	}
     }
@@ -300,10 +305,6 @@ cli_t *cli_new(void){
 
 	cli_t *ctx = malloc(sizeof(cli_t));
 	
-	ctx->cmds = malloc(sizeof(cli_cmd_t));
-	ctx->cmds->name = (char*)CLI_CMD_HELP;
-	ctx->cmds->callback = cli_cmd_help;
-	ctx->cmds->next = NULL;
 
 	cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
 	meminfo->name = (char*)CLI_CMD_MEMINFO;
@@ -346,7 +347,7 @@ cli_t *cli_new(void){
 	cat->next = rm;
 	ls->next = cat;
 	meminfo->next = ls; 
-	ctx->cmds->next = meminfo; 
+	ctx->cmds = meminfo; 
 
 	ctx->in = calloc(1,STDIO_IN_MAX);
 
@@ -434,6 +435,11 @@ char *cli_input(cli_t *ctx){
 		  	token = strtok(NULL, " ");
 		}
 
+		if(strcmp(token,"help")){
+			cli_cmd_help(ctx);
+			return ctx->in;
+		}
+
 		cli_cmd_t *cmd = ctx->cmds;
 		optind = 1;
 		opterr = 0;
@@ -449,6 +455,7 @@ char *cli_input(cli_t *ctx){
 			free(argv[args-1]);
 			args--;
 		}
+
 
 	}
 	
