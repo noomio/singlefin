@@ -274,6 +274,12 @@ cli_t *cli_new(void){
 	mkdir->callback = cli_cmd_mkdir;
 	mkdir->next = NULL;
 
+	cli_cmd_t *touch = malloc(sizeof(cli_cmd_t));
+	touch->name = (char*)CLI_CMD_TOUCH;
+	touch->callback = cli_cmd_touch;
+	touch->next = NULL;
+
+	mkdir->next = touch;
 	rm->next = mkdir;
 	cat->next = rm;
 	ls->next = cat;
