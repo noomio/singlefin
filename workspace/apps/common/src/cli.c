@@ -180,21 +180,23 @@ static int cli_cmd_rm(int args, char *argv[]){
     			rmdir (optarg);
     			break;
     		default:
-				puts("\r\nrm\r\n"
-					"Remove files (delete/unlink)\r\n\r\n"
-					"Syntax:\r\nrm [options] FILE\r\n\r\n"
-					"Options:\r\n\r\n"
-					"\t-d\r\n\tRemove a directory\r\n");
-
+    			goto usage;
 			break;
     	}
     }
 
     /* Only way to get argumnet without option i.e rm /datatx/app.bin */
-    if(args == 2 && optind == 1 && opt == -1 && optarg == NULL && argv[args-1] != NULL){
-    	unlink(argv[args-1]);
+    if(args == 2 && optind == 1 && opt == -1 && optarg == NULL && argv[1] != NULL){
+    	unlink(argv[1]);
+    	return 0;
     }
 
+usage:
+	puts("\r\nrm\r\n"
+		"Remove files (delete/unlink)\r\n\r\n"
+		"Syntax:\r\nrm [options] FILE\r\n\r\n"
+		"Options:\r\n\r\n"
+		"\t-d\r\n\tRemove a directory\r\n");
 
 	return 0;
 
