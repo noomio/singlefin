@@ -8,11 +8,6 @@
 #  Makefile uses the combined source file.
 #
 
-include ../../common/Makefile.defs
-
-
-DUKTAPE_SOURCES = src/duk/duktape.c
-
 # Compiler options are quite flexible.  GCC versions have a significant impact
 # on the size of -Os code, e.g. gcc-4.6 is much worse than gcc-4.5.
 
@@ -24,7 +19,7 @@ ifeq ($(OS),Windows_NT)
 	LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
 	PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
 	LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
-	CXX = $(LLVM)/bin/clang++.exe
+	CXX = "$(LLVM)/bin/clang++.exe"
 	LLD = $(LLVM)/bin/ld.qcld.exe
 	CXX_FLAGS = 	-target armv7m-none-musleabi \
 					-fuse-ld=qcld \
@@ -33,7 +28,7 @@ ifeq ($(OS),Windows_NT)
 					-fno-use-baremetal-crt 
 
 	AR = 
-	CC =  $(LLVM)/bin/clang.exe
+	CC =  "$(LLVM)/bin/clang.exe"
 	RM := rm.exe -rf
 	MKDIR := C:/Program Files/Git/usr/bin/mkdir.exe
 	CP := C:/Program Files/Git/usr/bin/cp.exe
@@ -61,7 +56,7 @@ DAM_COPTIONS = 	-DQAPI_TXM_MODULE \
 				
 DAM_CFLAGS =	-marm \
 				-target armv7m-none-musleabi \
-				-mfloat-abi=softfp \
+				-mfloat-abi=hard \
 				-mfpu=none \
 				-mcpu=cortex-a7 \
 				-Wno-parentheses \
@@ -79,14 +74,14 @@ DAM_CFLAGS =	-marm \
 
 
 DAM_INC_BASE = $(SDK_PATH_ROOT)/include
-DAM_LIB_PATH = $(SDK_PATH_ROOT)/libs
+DAM_LIB_PATH = $(SDK_PATH_ROOT)/libs/llvm
 DAM_LD_PATH = ./ldscripts
 
 DAM_RO_BASE=0x43000000
-DAM_INCPATHS ?= -I"$(DAM_INC_BASE)/ \
-				-I"$(DAM_INC_BASE)/threadx_api"  \
+
+DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
+				-I"$(DAM_INC_BASE)/threadx_api" \
 				-I"$(DAM_INC_BASE)/qapi" \
-				-I"$(SDK_PATH_ROOT)/quectel/utils/include" \
 				-I"$(TOOLCHAIN_PATH_STANDARDS)" \
 				-I"$(LLVMLIB)"
 
@@ -99,8 +94,14 @@ USER_OPTS = -DTX_DEBUG \
 			-DTX_MALLOC_MEM_SIZE=512 \
 			-DMALLOC_FREE_INLINE 
 
-COMMON_DIR = ../../common/
+
+
+DUKTAPE_SOURCES = src/duk/duktape.c
+
+COMMON_DIR = ../../common
 COMMON_INC = $(COMMON_DIR)/inc
+include $(COMMON_DIR)/Makefile.defs
+
 
 COMMON_SRC = common/src/retarget.c \
 common/src/malloc.c \
@@ -111,7 +112,7 @@ common/src/cli.c \
 common/src/time.c \
 
 
-SRC = ./src/noomiojs.c \
+SRCS = ./src/noomiojs.c \
 ./src/dummy_date_provider.c \
 ./src/native/event_mngr.c \
 ./src/native/timers.c \
@@ -123,14 +124,16 @@ SRC = ./src/noomiojs.c \
 
 OBJS += $(COMMON_SRC:%.c=$(BUILDDIR)/%.o)
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
+OBJS += $(DUKTAPE_SOURCES:%.c=$(BUILDDIR)/%.o)
 
+INCDIR = -Iinc/ -Isrc/duk/ -Iinc/native
 
 .phony: all clean
 
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: clean version sections $(TARGET_NAME).elf $(TARGET_NAME).bin
+all: clean preamble $(TARGET_NAME) $(TARGET_NAME).bin
 
 release: all release-firmware
 
@@ -147,6 +150,7 @@ preamble:
 	$(CC) -E $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm.S > $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S
 	$(CC) -c $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S -o $(DAM_LD_PATH)/txm_module_preamble_llvm.o
 
+
 # common
 $(BUILDDIR)/%.o:../../%.c
 	@$(MKDIR) -p $(dir $@)
@@ -154,35 +158,51 @@ $(BUILDDIR)/%.o:../../%.c
 	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
 	@echo 'Finished building target: $@'
 	@echo ' '
-	
 
-$(TARGET_NAME).elf: $(DUKTAPE_SOURCES) $(SRC)
-	$(CC) $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -B$(OBJ_DIR) -Iinc/ -Isrc/ -Isrc/native -Isrc/duk/ -I$(COMMON_INC) $(DAM_INCPATHS) $(DUKTAPE_SOURCES) $(SRC) -c 
+$(BUILDDIR)/%.o:%.c
+	@$(MKDIR) -p $(dir $@)
+	@echo 'Building target: $@'
+	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
+	@echo 'Finished building target: $@'
+	@echo ' '
+
+.PHONY: $(TARGET_NAME)
+$(TARGET_NAME): $(BUILDDIR)/$(TARGET_NAME).elf
+$(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	@echo 'Invoking: Cross LLVM C Linker'
-	$(CC) -d -o $(BUILDDIR)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(GETX) $(PRINTF) $(MALLOC) -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(BUILDDIR)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
+	$(CXX) -d -o $@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) \
+	-Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o \
+	$(GETX) $(PRINTF) $(MALLOC) \
+	-Wl,-T $(DAM_LD_PATH)/sections.ld \
+	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
+	-Wl,-gc-sections $(OBJS) \
+	$(DAM_LIB_PATH)/*.lib -lm -lc
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 $(TARGET_NAME).bin:
 	@echo 'Building target: $@'
 	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@
-	
+
+
 release-firmware:
 	@$(eval GIT_TAG=$(shell git describe --tags --dirty --abbrev=0 )) 
 	@echo $(GIT_TAG)
-	$(eval REL_DIR= noomiojs-releases/noomiojs-$(GIT_TAG))
+	$(eval REL_DIR= $(TARGET_NAME)-$(TARGET_NAME)/$(TARGET_NAME)-$(GIT_TAG))
 	@$(if $(findstring dirty,$(GIT_TAG)),echo "!!! DIRTY !!!", \
 	@$(shell $(MKDIR) -p $(REL_DIR)) \
-	@$(shell echo /datatx/noomiojs-$(GIT_TAG).bin > $(REL_DIR)/oem_app_path.ini)  \
-	@$(shell $(CP) bin/noomiojs.bin $(REL_DIR)/noomiojs-$(GIT_TAG).bin ) \
+	@$(shell echo /datatx/$(TARGET_NAME)-$(GIT_TAG).bin > $(REL_DIR)/oem_app_path.ini)  \
+	@$(shell $(CP) bin/$(TARGET_NAME).bin $(REL_DIR)/$(TARGET_NAME)-$(GIT_TAG).bin ) \
 	@$(shell $(CP) src/app.js $(REL_DIR)/app.js ) \
 	@$(shell $(TAR) -cvf $(REL_DIR).tar $(REL_DIR)/*  ) )
 
 
 # Other Targets
 clean:
-	-@$(RM) ./*.o ./ldscripts/*_pp.S ./ldscripts/*.o
+	-@$(RM) $(OBJS) ./ldscripts/*_pp.S ./ldscripts/*.o
 	-@echo ' '
 
 
-.SECONDARY:
+export CLI_TOOL TARGET_NAME BUILDDIR
+
+include ../../Makefile.tools

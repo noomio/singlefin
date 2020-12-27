@@ -97,8 +97,6 @@ preamble:
 	@echo 'Preamble LLVM...'
 	$(CC) -E $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm.S > $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S
 	$(CC) -c $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S -o $(DAM_LD_PATH)/txm_module_preamble_llvm.o
-	@echo 'objects: $(OBJS)'
-
 
 .PHONY: $(TARGET_NAME)
 $(TARGET_NAME): $(BUILDDIR)/$(TARGET_NAME).elf

@@ -300,7 +300,7 @@ int __wrap_fprintf(FILE *stream, const char *format, ...){
 	return 0;
 }
 
-ssize_t __wrap_write(int fildes, const void *buf, size_t nbytes){
+size_t __wrap_write(int fildes, const void *buf, size_t nbytes){
 
 	// We only have stdout
 	if(!handle)
