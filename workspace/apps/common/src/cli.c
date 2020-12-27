@@ -36,6 +36,10 @@ static int cli_cmd_help(cli_t *ctx){
 
 	if(ctx){
 		iter = ctx->cmds;
+		if(iter){
+			puts("\r\nFor command help, type COMMAND -h. For example: ls -h.\r\n");
+		}
+
 		while(iter){
 			puts(iter->name);
 			puts(" ");
