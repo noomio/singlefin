@@ -1,0 +1,16 @@
+name: print
+
+proto-javascript: |
+  print(arg1, arg1, ...)
+
+summary: |
+  <p>Write to stdout on serial port #2</p>
+
+example: |
+  print("Hello from Javascript!");
+
+tags:
+  - print
+
+
+introduced: 0.1.0

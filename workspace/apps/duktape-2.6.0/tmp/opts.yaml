@@ -1,0 +1,37 @@
+DUK_USE_FATAL_HANDLER:
+  verbatim: |
+    #define DUK_USE_FATAL_HANDLER(udata,msg) do { \
+        const char *fatal_msg = (msg); /* avoid double evaluation */ \
+        (void) udata; \
+        printf("*** FATAL ERROR: %s\r\n", fatal_msg ? fatal_msg : "no message"); \
+        abort(); \
+    } while (0) 
+
+DUK_USE_DEBUG: true
+DUK_USE_DEBUG_LEVEL: 1
+DUK_USE_DEBUG_WRITE:
+  verbatim: |
+    #define DUK_USE_DEBUG_WRITE(level,file,line,func,msg) do { \
+            printf("D%ld %s:%ld (%s): %s\r\n", \
+                    (long) (level), (file), (long) (line), (func), (msg)); \
+        } while (0)
+        
+DUK_USE_DEEP_C_STACK: true
+DUK_USE_FASTINT: true
+DUK_USE_32BIT_PTRS: true
+DUK_USE_PACKED_TVAL: true
+DUK_USE_SELF_TESTS: false
+
+DUK_USE_DATE_GET_NOW:
+  verbatim: |
+    extern duk_double_t dummy_get_now(void);
+    #define DUK_USE_DATE_GET_NOW(ctx) dummy_get_now()
+DUK_USE_DATE_GET_LOCAL_TZOFFSET:
+  verbatim: |
+    #define DUK_USE_DATE_GET_LOCAL_TZOFFSET(d)  0
+
+DUK_USE_VOLUNTARY_GC: false
+
+DUK_USE_ASSERTIONS: false
+
+DUK_OPT_FORCE_ALIGN: 4

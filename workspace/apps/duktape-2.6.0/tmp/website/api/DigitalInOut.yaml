@@ -1,0 +1,52 @@
+name: DigitalInOut
+
+proto-javascript: |
+  Object DigitalInOut(pin, mode);
+  Object DigitalInOut(pin);
+
+functions: |
+  boolean read();
+  write(value);
+  number output();
+  number input();
+  release();
+
+properties: |
+  PIN4
+  PIN5
+  PIN6
+  PIN7
+  PIN18
+  PIN19
+  PIN22
+  PIN23
+  PIN26
+  PIN27
+  PIN28
+  PIN40
+  PIN41
+  PIN64
+  PullUp
+  PullDown
+  PullNone
+  OpenDrain
+
+summary: |
+  <p>Digital input output initialisation</p>
+  <p>When a mode isn't specified then the keeper mode is used (previously set mode).</p>
+
+  <p>Use when you want to switch from an input to output or vice versa</p>
+
+
+example: |
+   var pin4  = DigitalInOut(PIN4, PullUp);
+   pin4.output();
+   pin4.write(true);
+   pin4.input();
+   var state = pin4.read();
+
+tags:
+  - DigitalInOut
+
+
+introduced: 0.1.0

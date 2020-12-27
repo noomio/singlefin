@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-142558169-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142558169-2');
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<meta content="" name="description"/>
+<!-- combined stylesheet -->
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<title>Downloads</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0" role="main">
+<div id="site-top">
+<div id="site-top-logo">
+<strong id="logo"> NoomioJS</strong>
+</div> <!-- site-top-logo -->
+<div id="site-top-nav">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="examples.html">Examples</a></li>
+<li class="selected"><a href="download.html">Download</a></li>
+<li><a href="api.html">API</a></li>
+<li><a href="dfota.html">Dfota</a></li>
+</ul>
+</div> <!-- site-top-nav -->
+</div> <!-- site-top -->
+<div id="site-middle">
+<div id="site-middle-nav">
+</div> <!-- site-middle-nav -->
+<div class="container content" id="site-middle-content"><div id="download">
+<h1>Downloads</h1>
+<p><b>Binary releases:</b> these are intended for using NoomioJS with your JavaScript application. The license used is <b><a href="LICENSE.txt">MIT License</a></b>.</p>
+<table class="releases" id="releases">
+<thead>
+<tr><th>Date</th><th>Filename</th><th>Description</th><th>MD5</th></tr>
+</thead>
+<tbody>
+
+<tr><td class="reldate">2020-01-09</td><td class="filename"><a href="noomiojs-0.3.0.tar">noomiojs-0.3.0.tar</a></td><td class="description">alpha, peripheral I/O public API</td><td class="hash">bea7d7d02784138dd904470ddb3b643e</td></tr></tbody>
+</table>
+<h2>Planned Notes</h2>
+<div id="plannedlog"></div><div class="section" id="planned">
+
+<div class="section" id="xxxx-xx-xx">
+<h2 class="badge badge-warning">0.4.0 (XXXX-XX-XX)<span></span></h2>
+<ul class="simple">
+<li>Add socket implementation and expose the necessary functions</li>
+<li>Extend the I2C peripheral functions as only transfer is implemented</li>
+<li>Tidy up the At functions and only load it with require.</li>
+</ul>
+</div>
+</div>
+<h2>Release Notes</h2>
+<div id="releaselog"></div><div class="section" id="released">
+
+
+
+
+<div class="section" id="id3">
+<h2 class="badge badge-primary">0.3.0 (2020-01-09)<span></span></h2>
+<ul class="simple">
+<li>Added finaliser for Digital I/O functions to call native code to de-initialise the peripheral in use when the object is garbage collected.</li>
+<li>Enabled stdin input via serial.</li>
+<li>Added interactive console via stdin to test script on the fly without updating app.js. A \r, \n or EOF shall signal the end of the file.</li>
+</ul>
+</div><div class="section" id="id2">
+<h2 class="badge badge-primary">0.2.0 (2019-11-30)<span></span></h2>
+<ul class="simple">
+<li>Added module load availability. Usage with require().</li>
+<li>Minor fixes</li>
+</ul>
+</div><div class="section" id="id1">
+<h2 class="badge badge-primary">0.1.0 (2019-11-24)<span></span></h2>
+<ul class="simple">
+<li>Initial alpha release</li>
+<li>Peripherals: DigitialOut, DigitalIn, DigitalInOut, InterruptIn and I2C</li>
+<li>Timers: clearInterval, setTimeout, setInterval</li>
+<li>Stdio: print</li>
+<li>Communication: At</li>
+<li>Implementation of malloc, calloc, realloc and free</li>
+<li>Most peripheral functions exposed but not fully tested</li>
+</ul>
+</div></div>
+</div><!-- download --></div> <!-- site-middle-content -->
+</div> <!-- site-middle -->
+</main>
+<footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
+<div class="container">
+<span class="text-muted">NoomioJS</span>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<hr/>
+<h2 id="timer">Timer</h2>
+<p>The example below uses the <span class="badge badge-info">DigitalOut</span>, <span class="badge badge-info">Timer</span> and <span class="badge badge-info">print</span> API. The function <span class="badge badge-info">print</span> is used to output information over the serial.</p>
+
+<h3>Hardware Setup</h3>
+<figure class="figure">
+<img src="example-digout.png" class="figure-img img-fluid rounded" style="max-width: 70%" alt="...">
+<figcaption class="figure-caption">BG96 EVB Kit v1.1 Digital Output with Led</figcaption>
+</figure>
+
+<h3>Javascript Code</h3>
+<pre class="ecmascript-code">
+var count = 0;
+var intervalId;
+
+dout = DigitalOut(PIN4); 
+var val = false;
+
+setTimeout(function cb() {
+   print('one shot timer, called after 10 seconds');
+}, 10000);
+
+
+intervalId = setInterval(function () {
+
+    print('interval', ++count);
+    
+    val = !val;
+    dout.write(val);
+
+    if (count >= 25) {
+      clearInterval(intervalId);
+    }
+
+}, 1000);
+
+print("Hello from Javascript!");
+
+</pre>
+
+<p>Note that execution order is: 
+</p>
+<div class="alert alert-primary w-25" role="alert">Hello from Javascript!</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">interval1</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">interval2</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">...</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">interval10</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">one shot timer, called after 10 seconds</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">interval11</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">...</div>
+<img src="assets/arrow-down.svg" alt="" width="32" height="32">
+<div class="alert alert-primary w-25" role="alert">interval25</div>
+

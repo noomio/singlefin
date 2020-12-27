@@ -1,0 +1,33 @@
+<div id="dfota">
+
+<h1>DFOTA</h1>
+
+<p>The ability to do a delta firmware update over the air isn't a trivial task as it requires a considarable amount of RAM to apply the patch and library dependencies for decompression. Usually FOTA (not delta) is available on most embedded products but this comes with a drawback in NB-Iot and battery operated devices such as water meters.</p>
+<h2>Smart Meters/Water and NB-Iot</h2>
+<p>Let's take for example a water meter product, were the expected operation from a primary cell battery is approximately 20 years. In addition let's assume that the water meter firmware is approximately 200kBytes, and when a crucial update is required it shall be transfered over NB-Iot. Due to the limited bandwidth of NB-Iot (250kbs per second) it may take a considarable time to pull the update. As a consequence a great amount of battery energy is lost and reducing the 20 years life expectancy of the battery.</p>
+<h2>Firmware Growth</h2>
+<p>Many times when firmware is developed and a mechanism to update the firmware exists, an external flash memory is used to store the firmware. An external flash memory of usually x2 the current firmware size is selected. As we all know there are many times that the size of the external flash memory is under estimated. Using a patching mechanism can solve this and may also remove the requirement for an external flash memory entirely. Therefore, reducing the BOM cost and benefit from external flash component obsolescence.</p>
+
+<h2>Binary Diff/Patch</h2>
+<p>One way to overcome this is by using DFOTA (delta firmware update over the air). By using BG96 ThreadX and QAPI we can utilise the onboard RAM and FLASH. For the binary diff/patch utility the source code that was used is from <a href="http://www.daemonology.net/bsdiff/">bsdiff/patch</a>. In order for this to work the <span class="badge badge-dark">bsdiff</span> was modified and compiled on Linux. This is then used to produce the patched file that is distributed over the air.</p>
+
+<h3>Binary Diff/Patch Workflow</h3>
+<p>The figure below displays the workflow required to create the patch file. The advantage is that you have the ability to control the process of creating a patch file and distributing it yourself. The produced patch file can offer more than a 90% reduction of file size.</p>
+<figure class="figure">
+<img src="bsdiff.png" class="figure-img img-fluid rounded" style="max-width: 100%" alt="...">
+<figcaption class="figure-caption">bsdiff on Linux host machine</figcaption>
+</figure>
+<p>Let's assume that the mechanism to pull the patch already exists. Once the patch file has been pulled from a remote server then the <span class="badge badge-dark">bspatch</span> shall be executed and produce a new file from the oldfile and patch file. The <span class="badge badge-dark">bspatch</span> has been modified and cross compiled to work on the BG96 module. The figure below demonstrates the workflow.</p>
+<figure class="figure">
+<img src="bspatch.png" class="figure-img img-fluid rounded" style="max-width: 100%" alt="...">
+<figcaption class="figure-caption">bspatch on BG96 Quectel Module with NoomioJS</figcaption>
+</figure>
+<h3>Binary Diff/Patch with External MCU</h3>
+<p>If your MCU doesn't have enough FLASH and RAM to realise dfota then you can still use the dfota capability by interacting via the console for example with NoomioJS interactive console (See <a href="index.html#console">Interactive Console</a>).</p>
+<figure class="figure">
+<img src="bspatch-mcu.png" class="figure-img img-fluid rounded" style="max-width: 100%" alt="...">
+<figcaption class="figure-caption">bspatch on BG96 Quectel Module with external MCU</figcaption>
+</figure>
+<h2>Implementation</h2>
+This may eventually be added into NoomioJS but if you require this feature in your product please contact me via email or LinkedIn (See <a href="index.html#contact">Contact</a>).
+</div>  <!-- dfota -->

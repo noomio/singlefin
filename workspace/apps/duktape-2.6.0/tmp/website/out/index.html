@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-142558169-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142558169-2');
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<meta content="" name="description"/>
+<!-- combined stylesheet -->
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<title>NoomioJS</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0" role="main">
+<div id="site-top">
+<div id="site-top-logo">
+<strong id="logo"> NoomioJS</strong>
+</div> <!-- site-top-logo -->
+<div id="site-top-nav">
+<ul>
+<li class="selected"><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="examples.html">Examples</a></li>
+<li><a href="download.html">Download</a></li>
+<li><a href="api.html">API</a></li>
+<li><a href="dfota.html">Dfota</a></li>
+</ul>
+</div> <!-- site-top-nav -->
+</div> <!-- site-top -->
+<div id="site-middle">
+<div id="site-middle-nav">
+</div> <!-- site-middle-nav -->
+<div class="container content" id="site-middle-content"><div class="row">
+<div class="col-md">
+<h1>NoomioJS</h1>
+<p class="lead">NoomioJS allows <a href="http://www.quectel.com/">Quectel</a> modules to run <b>JavaScript</b> applications with a focus on <b>documentation</b>, <b>debugging</b> and <b>ease of use</b>. NoomioJS is great for IoT enablement such as sensors without the requirement of an external MCU.</p>
+<figure class="figure">
+<img alt="..." class="figure-img img-fluid rounded" src="board-devkit.png" style="max-width: 100%"/>
+<figcaption class="figure-caption">Illustrative Development Kit Running JavaScript Engine on a Quectel BG96</figcaption>
+</figure>
+<p>NoomioJS is easy to integrate on a Quectel module: add <span class="badge badge-dark">noomiojs-X-X-X.bin</span>,
+		<span class="badge badge-dark">oem_app_path.ini</span>, and your JavaScript application <span class="badge badge-dark">app.js</span> to the <span class="badge badge-dark">/datatx</span> folder on the user filesystem.</p>
+<p>Simply use the standard <a href="http://www.ecma-international.org/ecma-262/5.1/">ECMAScript E5/E5.1</a>, and the API to realise your PoC or application!</p>
+<p>The ECMAScript Engine used is <a href="https://duktape.org/">Duktape</a>. Please visit the link to find out how to integrate on your own project!</p>
+<h2 class="sectiontitle" id="console">Interactive Console <a class="sectionlink" href="#console"> §</a></h2>
+<p>The interactive console allows you to connect to the JavaScript engine and easily test your scripts on the fly. Simply connect with your favourite terminal program such as minicom or putty and run JavaScript code interactively.</p>
+<p>Write active high to output PIN 4:</p>
+<div class="content">
+<pre class="ecmascript-code">
+<span class="normal">$</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="function">DigitalOut</span><span class="symbol">(</span><span class="normal">PIN4</span><span class="symbol">)</span><span class="symbol">.</span><span class="function">write</span><span class="symbol">(</span><span class="keyword">true</span><span class="symbol">)</span><span class="symbol">;</span>
+</pre>
+</div>
+<p>Once this is executed and is out of scope it will be garbage collected automaticaly, finally the finaliser will be called and native code will de-initialise the pin configuration.</p>
+<p>Write active low to output PIN 4:</p>
+<div class="content">
+<pre class="ecmascript-code">
+<span class="normal">$</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="function">DigitalOut</span><span class="symbol">(</span><span class="normal">PIN4</span><span class="symbol">)</span><span class="symbol">.</span><span class="function">write</span><span class="symbol">(</span><span class="keyword">false</span><span class="symbol">)</span><span class="symbol">;</span>
+</pre>
+</div>
+<p>Simple, Easy and Quick!</p>
+<h2>Layer</h2>
+<p>Below is an overview of overall layer and where NoomioJS stands. The benefit is that you can still develop ThreadX applications as you would normally do.</p>
+<img alt="noomiojs layer" class="img-fluid" src="layer.png"/>
+</div>
+<span class="border-left"></span>
+<div class="col-md-4">
+<h2>Supported Modules</h2>
+<p>NoomioJS has been compiled for baseline <b>TX3.0</b> and will not work on previous baselines.</p>
+<ul>
+<li>BG96</li>
+</ul>
+<div class="row">
+<div class="col-sm">
+<h2>Main features</h2>
+<p>The ECMAScript Engine has been built with minimal options due to the ROM/RAM limitations of the Quectel modules.</p>
+<table class="table">
+<tr><th>Baseline</th><th>ROM (MB)</th><th>RAM (MB)</th></tr>
+<tr><td>TX2</td><td>3</td><td>3</td></tr>
+<tr><td>TX3</td><td>3</td><td>2</td></tr>
+</table>
+</div>
+<div class="col-sm">
+<h2>Code and RAM footprint</h2>
+<p>The LLVM compiler was used to create the prebuilt binary <span class="badge badge-primary">noomiojs-X-X-X.bin</span></p>
+<table class="table">
+<tr><th>Config</th><th>Code footprint (kB)</th><th>RAM (kB)</th></tr>
+<tr><td>thumb lowmem</td><td>~310</td><td>512</td></tr>
+</table>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<h2>Current status</h2>
+<ul>
+<li>Development</li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2>Author</h2>
+<p>Nikolas Karakotas</p>
+</div>
+<div class="col-sm">
+<h2 class="sectiontitle" id="contact">Contact <a class="sectionlink" href="#contact"> §</a></h2>
+<ul>
+<li><img src="whom.png"/></li>
+<li><a href="https://www.linkedin.com/in/nikolas-karakotas">linkedin.com/in/nikolas-karakotas</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div> <!-- site-middle-content -->
+</div> <!-- site-middle -->
+</main>
+<footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
+<div class="container">
+<span class="text-muted">NoomioJS</span>
+</div>
+</footer>
+</body>
+</html>

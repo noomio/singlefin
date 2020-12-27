@@ -1,0 +1,79 @@
+name: i2c
+
+proto-javascript: |
+  i2c(channel);
+
+
+functions: |
+  on(event,callback);
+  start();
+  stop();
+  frequency(khz);  
+  transfer(address,transmit,receive);
+
+details: |
+  on(event,callback);
+    Parameters:
+      {string} event
+        See available events listed at Events
+      {function} callback
+        Function callback attached to specific event
+
+  frequency(khz);  
+    Parameters:
+      {number} khz
+        Clock frequency in kHz
+
+  transfer(address,transmit,receive);
+    Parameters:
+      {number} address
+        Slave address
+      {Uint8Array} transmit
+        Transmit data array
+      Uint8Array receive
+        Receive data array. Allocate the expected receive size from the slave
+
+properties: |
+  I2C1
+  I2C2
+
+events: |
+  open
+  close
+  data
+  error
+
+
+summary: |
+  <p>I2C communication.</p>
+
+
+example: |
+  var intervalId; 
+  var reg = Uint8Array.allocPlain(1); 
+  var recvd = Uint8Array.allocPlain(2); 
+  
+  const sensor = i2c(I2C1);
+
+  reg[0] = 0x06; 
+
+  sensor.frequency(150);
+
+  sensor.on('open',function(){ 
+    
+    intervalId = setInterval(function () { 
+      sensor.transfer(0x18,reg,recvd); 
+    }, 1000); 
+
+    sensor.on('data',function(data){ 
+      print(data[0]); 
+      print(data[1]); 
+    }); 
+
+  }); 
+
+tags:
+  - i2c
+
+
+introduced: 0.1.0

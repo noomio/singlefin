@@ -1,0 +1,68 @@
+    <p>To overcome any misalignment due to hardware and software differences the following listings provide the hardware and firmware version used. Please use at least the same firmware revision when following this guide.</p>
+    <h3>Firmware</h3>
+  <p>B96 Firmware Version: <span class="badge badge-primary">BG96MAR03A03M1GA</span></p>
+    <h3>Hardware</h3>
+  <div class="row">
+
+    <div class="col">  
+      <figure class="figure">
+      <img src="LTE OPEN EVB KIT1.1.png" class="figure-img img-fluid rounded" style="max-width: 80%" alt="...">
+      <figcaption class="figure-caption">LTE OPEN EVB KIT v1.1</figcaption>
+      </figure>
+    </div>
+    <div class="col">  
+      <figure class="figure">
+      <img src="module-lpwa-quectel-bg96-te-a-with-gnss.png" class="figure-img img-fluid rounded" style="max-width: 50%" alt="...">
+      <figcaption class="figure-caption">BG96 TE-A</figcaption>
+      </figure>
+    </div>
+  </div>
+<div class="row">
+  <div class="col">
+  <h2><span class="badge badge-secondary">1</span> Connect to the Target</h2>
+  <p>Open the program and select the Quectel USB DM Port (COM?) where ? is the enumarated DM port number.</p>
+  <p>Click the search icon and navigate to folder <span class="badge badge-dark">/datatx</span></p>
+  <figure class="figure">
+  <img src="qefs-explorer.jpg" class="figure-img img-fluid rounded" alt="...">
+  <figcaption class="figure-caption">QEFS Explorer Connected to COM4.</figcaption>
+  </figure>
+  </div>
+  <div class="col">
+  <h2><span class="badge badge-secondary">2</span> Load the files</h2>
+  <p>Drag and drop the files listed below to QEFS Explorer window on <span class="badge badge-dark">/datatx</span> and accept the default options. Finally <span class="badge badge-info">reboot</span> the module.</p>
+  <p><span class="badge badge-dark">noomiojs-X-X-X.bin</span>&nbsp;<span class="badge badge-dark">oem_app_path.ini</span>&nbsp;<span class="badge badge-dark">app.js</span>
+  </p>
+  <figure class="figure">
+  <img src="qefs-explorer-files.png" class="figure-img img-fluid rounded" alt="...">
+  <figcaption class="figure-caption">QEFS Explorer Connected to COM4 with files loaded.</figcaption>
+  </figure>
+  </div>
+</div>
+
+</div>
+<!--  <div class="col">
+  <h2><span class="badge badge-secondary">2</span> Write your Javascript</h2>
+
+  <p>Create a file <code>app.js</code> on your local machine and write your Javascript (See the <a href="api.html#bytag">API</a> for detailed information).</p>
+  <pre>
+  <span class="index-shell-output">print("Hello from Javascript!");</span>
+  </pre>
+  </div>
+<div class="row">
+  <div class="col">
+    <h2><span class="badge badge-secondary">3</span> Load your Javascript</h2>
+
+    <p>Place your <code>app.js</code> in <b>/datatx</b></p>
+    <pre>
+    $ ls /datatx
+    $ noomiojs.bin oem_app_path.ini app.js
+    </pre>
+  </div>
+  <div class="col">
+    <h2><span class="badge badge-secondary">4</span> Run your Javascript</h2>
+    <p>Reboot the module and on the Serial port the following will be outputed:</p>
+    <pre>
+    <span class="index-shell-output">Hello from Javascript!</span>
+</pre>
+  </div>
+</div> -->

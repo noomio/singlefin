@@ -1,0 +1,20 @@
+<h1 id="compile">Compilation</h1>
+
+<p>This section summarises some of the options set when compiling Duktape. These options will limit Javascript functionality and most non important options have been disabled. Try and consult the low_memory.yaml file for all the options enabled/disabled.</p>
+
+<h2>Duktape Configuration</h2>
+<p>Duktape has been compiled with the folowing options set below.</p>
+<pre class="c-code">
+python.exe tools/configure.py 
+--platform Linux
+--compiler clang
+--architecture arm32
+--option-file ./tmp/output/low_memory.yaml
+--rom-support
+</pre>
+
+
+<h2>Low Memory Options</h2>
+
+<p>Please see <a href="https://github.com/svaarala/duktape/blob/master/config/examples/low_memory.yaml">low_memory.yaml</a> for low memory options used when building the ECMAScript engine.</p>
+
