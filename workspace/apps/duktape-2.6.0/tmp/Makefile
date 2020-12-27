@@ -8,11 +8,8 @@
 #  Makefile uses the combined source file.
 #
 
-RM := rm.exe -rf
-MKDIR := C:/Program Files/Git/usr/bin/mkdir.exe
-CP := C:/Program Files/Git/usr/bin/cp.exe
-GZIP := C:/Program Files/Git/usr/bin/gzip.exe
-TAR := C:/Program Files/Git/usr/bin/tar.exe
+include ../../common/Makefile.defs
+
 
 DUKTAPE_SOURCES = src/duk/duktape.c
 
@@ -20,29 +17,36 @@ DUKTAPE_SOURCES = src/duk/duktape.c
 # on the size of -Os code, e.g. gcc-4.6 is much worse than gcc-4.5.
 
 ifeq ($(OS),Windows_NT)
-SDK_PATH_ROOT = ../../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.0-AUS/SDK
-TOOL_PATH_ROOT = C:/compile_tools
-TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
-LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
-LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
-PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
-LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
-CXX = $(LLVM)/bin/clang++.exe
-LLD = $(LLVM)/bin/ld.qcld.exe
-CXX_FLAGS = 	-target armv7m-none-musleabi \
-				-fuse-ld=qcld \
-				-Wl,-mno-unaligned-access \
-				-fuse-baremetal-sysroot \
-				-fno-use-baremetal-crt 
+	SDK_PATH_ROOT = ../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK
+	TOOL_PATH_ROOT = ../../../../tools
+	TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
+	LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
+	LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
+	PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
+	LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
+	CXX = $(LLVM)/bin/clang++.exe
+	LLD = $(LLVM)/bin/ld.qcld.exe
+	CXX_FLAGS = 	-target armv7m-none-musleabi \
+					-fuse-ld=qcld \
+					-Wl,-mno-unaligned-access \
+					-fuse-baremetal-sysroot \
+					-fno-use-baremetal-crt 
 
-AR = 
-CC =  $(LLVM)/bin/clang.exe
-else
-SDK_PATH_ROOT =
-LLVM = 
-CXX = $(LLVM)
-AR = $(LLVM)
-CC =  $(LLVM)
+	AR = 
+	CC =  $(LLVM)/bin/clang.exe
+	RM := rm.exe -rf
+	MKDIR := C:/Program Files/Git/usr/bin/mkdir.exe
+	CP := C:/Program Files/Git/usr/bin/cp.exe
+	GZIP := C:/Program Files/Git/usr/bin/gzip.exe
+	TAR := C:/Program Files/Git/usr/bin/tar.exe
+	CLI_TOOL = $(TOOL_PATH_ROOT)/cli-user-app-load.ps1
+
+	else
+	SDK_PATH_ROOT =
+	LLVM = 
+	CXX = $(LLVM)
+	AR = $(LLVM)
+	CC =  $(LLVM)
 endif
 
 DAM_COPTIONS = 	-DQAPI_TXM_MODULE \
@@ -86,46 +90,28 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)/ \
 				-I"$(TOOLCHAIN_PATH_STANDARDS)" \
 				-I"$(LLVMLIB)"
 
-OUTPUT_BIN = ./bin
-
-MALLOC = -Wl,--wrap,malloc \
-		 -Wl,--wrap,free \
-		 -Wl,--wrap,realloc \
-		 -Wl,--wrap,calloc
-
-PRINTF = -Wl,--wrap,printf \
-		 -Wl,--wrap,puts \
-	#	 -Wl,--wrap,snprintf \
-	#	 -Wl,--wrap,sprintf \
-	#	 -Wl,--wrap,vsnprintf
-
-GETX = -Wl,--wrap,getchar \
-	   -Wl,--wrap,gets	
+TARGET_NAME = noomiojs
+BUILDDIR = ./out
 
 
+USER_OPTS = -DTX_DEBUG \
+			-DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" \
+			-DTX_MALLOC_MEM_SIZE=512 \
+			-DMALLOC_FREE_INLINE 
+
+COMMON_DIR = ../../common/
+COMMON_INC = $(COMMON_DIR)/inc
+
+COMMON_SRC = common/src/retarget.c \
+common/src/malloc.c \
+common/src/stubs.c \
+common/src/printf.c \
+common/src/file.c \
+common/src/cli.c \
+common/src/time.c \
 
 
-OBJ_DIR = ./src/ \
-
-
-OBJS = ./noomiojs.o \
-./retarget.o \
-./malloc.o \
-./dummy_date_provider.o \
-./stubs.o \
-./duktape.o \
-./event_mngr.o \
-./timers.o \
-./console.o \
-./gpio.o \
-./at.o \
-./i2c.o \
-./duk_module_node.o \
-
-SRC = ../../../common/src/retarget.c \
-../../../common/src/malloc.c \
-../../../common/src/stubs.c \
-./src/noomiojs.c \
+SRC = ./src/noomiojs.c \
 ./src/dummy_date_provider.c \
 ./src/native/event_mngr.c \
 ./src/native/timers.c \
@@ -135,16 +121,16 @@ SRC = ../../../common/src/retarget.c \
 ./src/native/i2c.c \
 ./src/duk_module_node.c
 
-USER_OPTS = -DTX_DEBUG -DTX_MALLOC_MEM_SIZE=512
+OBJS += $(COMMON_SRC:%.c=$(BUILDDIR)/%.o)
+OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 
-COMMON_INC = "../common/inc"
 
-TARGET_NAME = noomiojs
+.phony: all clean
 
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: clean version sections noomiojs.elf noomiojs.bin
+all: clean version sections $(TARGET_NAME).elf $(TARGET_NAME).bin
 
 release: all release-firmware
 
@@ -152,25 +138,34 @@ release: all release-firmware
 
 
 version:
-	@echo|set /p TAG=#define NOOMIOJS_VERSION	> src/noomiojs.h.in  
-	git describe --tags --dirty --abbrev=0 >> src/noomiojs.h.in 
+	@echo|set /p TAG=#define NOOMIOJS_VERSION	> src/$(TARGET_NAME).h.in  
+	git describe --tags --dirty --abbrev=0 >> src/$(TARGET_NAME).h.in 
 
 
-sections:
-	@echo '$@'
+preamble:
+	@echo 'Preamble LLVM...'
 	$(CC) -E $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm.S > $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S
 	$(CC) -c $(DAM_COPTIONS) $(DAM_CFLAGS) $(DAM_LD_PATH)/txm_module_preamble_llvm_pp.S -o $(DAM_LD_PATH)/txm_module_preamble_llvm.o
+
+# common
+$(BUILDDIR)/%.o:../../%.c
+	@$(MKDIR) -p $(dir $@)
+	@echo 'Building target: $@'
+	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
+	@echo 'Finished building target: $@'
+	@echo ' '
 	
-noomiojs.elf: $(DUKTAPE_SOURCES) $(SRC)
+
+$(TARGET_NAME).elf: $(DUKTAPE_SOURCES) $(SRC)
 	$(CC) $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -B$(OBJ_DIR) -Iinc/ -Isrc/ -Isrc/native -Isrc/duk/ -I$(COMMON_INC) $(DAM_INCPATHS) $(DUKTAPE_SOURCES) $(SRC) -c 
 	@echo 'Invoking: Cross LLVM C Linker'
-	$(CC) -d -o $(OUTPUT_BIN)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(GETX) $(PRINTF) $(MALLOC) -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(OUTPUT_BIN)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
+	$(CC) -d -o $(BUILDDIR)/$@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) $(DAM_LD_PATH)/txm_module_preamble_llvm.o $(GETX) $(PRINTF) $(MALLOC) -Wl,-T $(DAM_LD_PATH)/sections.ld -Wl,-Map=$(BUILDDIR)/$(patsubst '%.elf','%.map','$@'),-gc-sections -Wl,-gc-sections $(OBJS) $(DAM_LIB_PATH)/*.lib -lm -lc
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-noomiojs.bin:
+$(TARGET_NAME).bin:
 	@echo 'Building target: $@'
-	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(OUTPUT_BIN)/$(patsubst '%.bin','%.elf','$@') --output $(OUTPUT_BIN)/$@
+	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@
 	
 release-firmware:
 	@$(eval GIT_TAG=$(shell git describe --tags --dirty --abbrev=0 )) 
@@ -189,5 +184,5 @@ clean:
 	-@$(RM) ./*.o ./ldscripts/*_pp.S ./ldscripts/*.o
 	-@echo ' '
 
-.PHONY: noomiojs clean
+
 .SECONDARY:
