@@ -469,8 +469,10 @@ void ek(int argc, char ** argv) {
           	    /* Maybe do other brief tasks here... */
           	    continue;			/* Keep looping */
           	  case X_DONE:
+                puts("X_DONE\r\n");
           	    break;			/* Finished */
           	  case X_ERROR:
+                puts("X_ERROR\r\n");
           	    return;
           	}
     }

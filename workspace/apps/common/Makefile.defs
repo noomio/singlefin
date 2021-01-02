@@ -13,4 +13,5 @@ GETX = -Wl,--wrap,getchar \
 	   -Wl,--wrap,gets	
 
 WRITE = -Wl,--wrap,write
-FWRITE = -Wl,--wrap,fwrite 
+FWRITE = -Wl,--wrap,fwrite \
+		 -Wl,--wrap,fflush

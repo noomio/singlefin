@@ -49,7 +49,7 @@ int main(int argc, char * argv[])
 	for(;;){
 
 		cli_input(cli);
-
+		
 	}
 
 	return 0;

@@ -28,7 +28,7 @@ typedef struct cli{
 
 void cli_free(cli_t *ctx);
 cli_t *cli_new(void);
-char *cli_input(cli_t *ctx);
+void cli_input(cli_t *ctx);
 int cli_register(cli_t *ctx, const char *name, cli_callback_t func);
 
 #endif

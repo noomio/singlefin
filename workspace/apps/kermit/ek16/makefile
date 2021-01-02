@@ -91,7 +91,7 @@ gprof:
 	make "CC=gcc" "CC2=gcc" ek "CFLAGS=-DNODEBUG -pg" "LNKFLAGS=-pg"
 
 clean:
-	rm -f $(OBJS) core
+	rm -f $(OBJS) core libek.a
 
 makewhat:
 	@echo 'Defaulting to gcc...'

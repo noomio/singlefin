@@ -352,7 +352,7 @@ cli_t *cli_new(void){
 	meminfo->next = ls; 
 	ctx->cmds = meminfo; 
 
-	ctx->in = calloc(1,STDIO_IN_MAX);
+	ctx->in = malloc(STDIO_IN_MAX);
 
 	return ctx;
 }
@@ -383,54 +383,56 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func){
 	return 1;
 }
 
-char *cli_input(cli_t *ctx){
+const char *prompt = "\r\n>> ";
 
-	int got_eof = 0;
+void cli_input(cli_t *ctx){
+
 	int args = 0;
-	char *str;
 	char *argv[STDIO_CMD_ARGS_MAX];
+	uint16_t i = 0;
 
+	memset(&ctx->in[0],'\0',STDIO_IN_MAX);
 	memset(argv,0,STDIO_CMD_ARGS_MAX);
-	memset(ctx->in,'\0',STDIO_IN_MAX);
-	str = ctx->in;
 
-	puts("\r\n>> ");
-	
-	while (!got_eof) {
+	puts(prompt);
 
-		for (;;) {
-			int c = getchar();
+	while (1) {
 
-			if (c == EOF || str >= (ctx->in+STDIO_IN_MAX)) {
+		int c = getchar();
+
+		if(c >= 0x20 && c <= 0x7E){ 
+			if(i < STDIO_IN_MAX-1){
+				putchar(c);
+				ctx->in[i] = c;
+				i++;
+			}else{
 				ctx->in[STDIO_IN_MAX-1] = '\0';
-				got_eof = 1;
 				break;
-			} else if (c == '\n' || c == '\r') {
-				got_eof = 1;
+			}
+
+		}else{ // control ascii codes
+
+			if (c == EOF || c == '\n' || c == '\r' ) {
 				break;
-			} else if(c == '\b' || c == 0x08 || c == 127){ // backspace
-				if(str > ctx->in){
-					str--;
-					*str = '\0';
-					putchar(c);
+			}else if(c == '\b' || c == 0x08 || c == 0x7F){ // backspace
+				if(i){
+					i--;
+					ctx->in[i] = '\0';
+					
 				}
 			}else if(c == 0x1b || c == 3){ // CTRL+C
-				puts("\r\nctrl+c\r\n");
-				return NULL;
+				return;
 			}
-			else {
-				*(str++) = (char)c;
-				putchar(c);
-			}
+
 		}
 
 	}
 
-
+	
 	if(ctx->in){
 
-		puts("\r\n");
-		char *token = strtok(ctx->in, " ");
+		char *str = ctx->in;
+		char *token = strtok(str, " ");
 
 		while( token != NULL ) {
 			argv[args] = strdup(token);
@@ -440,7 +442,7 @@ char *cli_input(cli_t *ctx){
 
 		if(argv[0] && strcmp(argv[0],"help") == 0){
 			cli_cmd_help(ctx);
-			return ctx->in;
+			return;
 		}
 
 		cli_cmd_t *cmd = ctx->cmds;
@@ -448,6 +450,7 @@ char *cli_input(cli_t *ctx){
 		opterr = 0;
 
 		while(cmd){
+			//printf("cmd->name=%s,argv[0]=%s",cmd->name,argv[0]);
 			if(args && argv[0] && strcmp(cmd->name,argv[0]) == 0 )
 				cmd->callback(args, argv);
 			cmd = cmd->next;
@@ -459,9 +462,10 @@ char *cli_input(cli_t *ctx){
 			args--;
 		}
 
+		//fflush(stdin);
 
 	}
-	
-	return ctx->in;
+
+	return;
 
 }

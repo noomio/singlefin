@@ -1,0 +1,188 @@
+Usage: cknker.exe [filename] [-x arg [-x arg]...[-yyy]..] [ = text ] ]
+
+  -x is an option requiring an argument, -y an option with no argument.
+  If the first command-line argument is the name of a file, interactive-
+  mode commands are executed from the file.  The '=' argument tells Kermit
+  not to parse the remainder of the command line, but to make the words
+  following '=' available as \%1, \%2, ... \%9.  The command file (if any)
+  is executed before the command-line options.
+
+If no action command is included, or -S is, then after the command line is
+executed, Kermit issues its prompt and waits for you to type commands.
+
+Complete listing of command-line options:
+
+ -# <arg>
+     Kermit 95 Startup Flags
+     Argument: 
+   1 - turn off Win95 special fixes
+   2 - do not load optional network dlls
+   4 - do not load optional tapi dlls
+   8 - do not load optional kerberos dlls
+  16 - do not load optional zmodem dlls
+  32 - use stdin for input instead of the console
+  64 - use stdout for output instead of the console
+ 128 - do not terminate process in response to Session Logoff
+
+ -0  100% transparent CONNECT mode for "in-the-middle" operation
+     Argument: (none)
+
+ -8  Connection is 8-bit clean
+     Argument: (none)
+
+ -9 <arg>
+     Make a connection to an FTP server
+     Argument: IP-address-or-hostname[:optional-TCP-port]
+
+ -A <arg>
+     Kermit is to be started as an Internet service
+     Argument:   socket handle of incoming connection
+
+ -B  Kermit is running in Batch or Background (no controlling terminal)
+     Argument: (none)
+
+ -C <arg>
+     Interactive-mode Commands to be executed
+     Argument: Commands separated by commas, list in doublequotes
+
+ -D <arg>
+     Delay before starting to send
+     Argument: Number of seconds
+
+ -E  Exit automatically when connection closes
+     Argument: (none)
+
+ -F <arg>
+     Use an existing TCP connection
+     Argument: Numeric file descriptor of open TCP connection
+
+ -G <arg> (action option)
+     GET from server, send to standard output
+     Argument: Remote file specification
+
+ -H  Suppress program startup Herald and greeting
+     Argument: (none)
+
+ -I  Connection is reliable, streaming is allowed
+     Argument: (none)
+
+ -J <arg>
+     'Be like Telnet'
+     Argument: IP hostname/address optionally followed by service
+
+ -L  Recursive directory descent for files in -s option
+     Argument: (none)
+
+ -M <arg>
+     My user name (for use with Telnet, Rlogin, etc)
+     Argument: Username string
+
+ -O  Be a server for One command only (action option)
+     Argument: (none)
+
+ -P  Don't convert file (Path) names
+     Argument: (none)
+
+ -Q  Quick (FAST) Kermit protocol settings
+     Argument: (none)
+
+ -R  Remote-only (makes IF REMOTE true)
+     Argument: (none)
+
+ -S  Stay (enter command parser after action options)
+     Argument: (none)
+
+ -T  Transfer files in Text mode
+     Argument: (none)
+
+ -V  Disable automatic per-file text/binary switching
+     Argument: (none)
+
+ -Y  Skip initialization file
+     Argument: (none)
+
+ -a <arg>
+     As-name for file(s) in -s, -r, or -g
+     Argument: As-name string (alternative filename)
+
+ -b <arg>
+     Speed for serial device
+     Argument: Numeric Bits per second
+
+ -c  CONNECT before transferring files (action option)
+     Argument: (none)
+
+ -d  Create debug.log file (a second -d adds timestamps)
+     Argument: (none)
+
+ -e <arg>
+     Maximum length for incoming file-transfer packets
+     Argument: Length in bytes
+
+ -f  Send Finish command to a Kermit server (action option)
+     Argument: (none)
+
+ -g <arg> (action option)
+     GET file(s) from a Kermit server
+     Argument: Remote file specification
+
+ -h  Print this message (pipe thru 'more' to prevent scrolling) (action option)
+     Argument: (none)
+
+ -i  Transfer files in binary mode
+     Argument: (none)
+
+ -j <arg>
+     Make a TCP connection
+     Argument: TCP host name/address and optional service name or number
+
+ -k  RECEIVE file(s) to standard output (action option)
+     Argument: (none)
+
+ -l <arg>
+     Make connection on serial communications device
+     Argument: Serial device name
+
+ -m <arg>
+     Modem type for use with -l device
+     Argument: Modem name as in SET MODEM TYPE command
+
+ -n  CONNECT after transferring files (action option)
+     Argument: (none)
+
+ -p <arg>
+     Parity
+     Argument: One of the following: even, odd, mark, none, space
+
+ -q  Quiet (suppress most messages)
+     Argument: (none)
+
+ -r  RECEIVE file(s) (action option)
+     Argument: (none)
+
+ -s <arg> (action option)
+     SEND file(s)
+     Argument: One or more file specifications
+
+ -t  XON Turnaround character for half-duplex connections
+     Argument: (none)
+
+ -v <arg>
+     Window size
+     Argument: Number, 1 to 32
+
+ -w  Incoming files Write over existing files
+     Argument: (none)
+
+ -x  Be a Kermit SERVER (action option)
+     Argument: (none)
+
+ -y <arg>
+     Alternative initialization file
+     Argument: File specification
+
+ -z  Force foreground behavior
+     Argument: (none)
+
+To prevent this message from scrolling, use 'cknker.exe -h | more'.
+For a list of extended options use 'cknker.exe --help'.

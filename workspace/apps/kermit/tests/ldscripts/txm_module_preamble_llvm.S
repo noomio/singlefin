@@ -50,13 +50,13 @@ _txm_module_preamble:
 		.p2align 2
         .word       0                                                 @ Module Stop Thread Entry Point 
 		.p2align 2
-        .word       60                                                @ Module Start/Stop Thread Priority
+        .word       64                                                @ Module Start/Stop Thread Priority
 		.p2align 2
         .word       16384                                              @ Module Start/Stop Thread Stack Size
 		.p2align 2
         .word       _txm_module_callback_request_thread_entry - . + . @ Module Callback Thread Entry
 		.p2align 2
-        .word       25                                                @ Module Callback Thread Priority  
+        .word       64                                                @ Module Callback Thread Priority  
         .p2align 2		
         .word       8046                                              @ Module Callback Thread Stack Size    
 		.p2align 2
