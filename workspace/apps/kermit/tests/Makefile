@@ -144,4 +144,4 @@ $(TARGET_NAME).bin:
 
 export CLI_TOOL TARGET_NAME BUILDDIR
 
-include ../../Makefile.tools
+include ../../cli/Makefile.tools
