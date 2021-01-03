@@ -3,3 +3,4 @@
 **/ldscripts/*.o
 **/bin/*
 **/*.o
+**/out/*

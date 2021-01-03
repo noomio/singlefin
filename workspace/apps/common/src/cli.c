@@ -412,7 +412,7 @@ void cli_input(cli_t *ctx, char c){
 		}
 		else if(c == '\b' || c == 0x08 || c == 0x7F){ // backspace
 			if(ctx->count){	
-				--ctx->head;			
+				ctx->head--;			
 				ctx->in[ctx->head] = '\0';
 				ctx->count--;					
 			}
