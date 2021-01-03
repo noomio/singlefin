@@ -49,7 +49,7 @@ int main(int argc, char * argv[])
 	cli_t *ctx;
 
 	ctx = cli_new();
-	//cli_register(cli,"ek",cli_cmd_ek);
+	cli_register(ctx,"ek",cli_cmd_ek);
 
 	for(;;){
 

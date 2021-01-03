@@ -435,7 +435,7 @@ void cli_input(cli_t *ctx, char c){
 		ctx->in[ctx->count] = '\0';
 		//printf("%s,%d,%d\r\n",ctx->in,ctx->count,ctx->head);
 		memset(argv,0,STDIO_CMD_ARGS_MAX);
-		char *token =  ctx->in;
+		char *token = strtok(ctx->in, " ");
 
 		while( token != NULL ) {
 			argv[args] = strdup(token);
