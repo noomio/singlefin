@@ -281,10 +281,10 @@ int __wrap_getchar(void){
 	if(!handle)
 		return 0;
 	
-	int c = EOF;
+	int c;
 
-	if(tx_queue_receive(recv_queue, &c, 10) != TX_SUCCESS)
-		c = EOF;
+	tx_queue_receive(recv_queue, &c, TX_WAIT_FOREVER);
+
 
 	return c;
 }
