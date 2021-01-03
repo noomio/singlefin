@@ -30,6 +30,8 @@ const char *CLI_CMD_MKDIR = "mkdir";
 const char *CLI_CMD_TOUCH = "touch";
 const char *CLI_CMD_ECHO = "echo";
 
+const char *prompt = "\r\n>> ";
+
 static int cli_cmd_help(cli_t *ctx){
 
 	cli_cmd_t *iter;
@@ -353,7 +355,11 @@ cli_t *cli_new(void){
 	ctx->cmds = meminfo; 
 
 	ctx->in = malloc(STDIO_IN_MAX);
-
+	memset(&ctx->in[0],'\0',STDIO_IN_MAX);
+	ctx->head = 0;	
+	ctx->tail = 0;
+	ctx->count = 0;
+	puts(prompt);
 	return ctx;
 }
 
@@ -383,89 +389,94 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func){
 	return 1;
 }
 
-const char *prompt = "\r\n>> ";
 
-void cli_input(cli_t *ctx){
+
+void cli_input(cli_t *ctx, char c){
 
 	int args = 0;
 	char *argv[STDIO_CMD_ARGS_MAX];
-	uint16_t i = 0;
 
-	memset(&ctx->in[0],'\0',STDIO_IN_MAX);
-	memset(argv,0,STDIO_CMD_ARGS_MAX);
+	if(c >= 0x20 && c <= 0x7E){ 
 
-	puts(prompt);
+		if(ctx->count < STDIO_IN_MAX-1){
+			ctx->in[ctx->head++] = c;
+			ctx->count++;
+		}else{
+			ctx->in[STDIO_IN_MAX-1] = '\0';
+			ctx->count = STDIO_IN_MAX;
+		}
 
-	while (1) {
+	}else{ // control ascii codes
+		if(c != '\n' || c != '\r'){
 
-		int c = getchar();
-
-		if(c >= 0x20 && c <= 0x7E){ 
-			if(i < STDIO_IN_MAX-1){
-				putchar(c);
-				ctx->in[i] = c;
-				i++;
-			}else{
-				ctx->in[STDIO_IN_MAX-1] = '\0';
-				break;
+		}
+		else if(c == '\b' || c == 0x08 || c == 0x7F){ // backspace
+			if(ctx->count){	
+				--ctx->head;			
+				ctx->in[ctx->head] = '\0';
+				ctx->count--;					
 			}
-
-		}else{ // control ascii codes
-
-			if (c == EOF || c == '\n' || c == '\r' ) {
-				break;
-			}else if(c == '\b' || c == 0x08 || c == 0x7F){ // backspace
-				if(i){
-					i--;
-					ctx->in[i] = '\0';
-					
-				}
-			}else if(c == 0x1b || c == 3){ // CTRL+C
-				return;
-			}
+		}else if(c == 0x1b || c == 3){ // CTRL+C
 
 		}
 
 	}
 
-	
-	if(ctx->in){
 
-		char *str = ctx->in;
-		char *token = strtok(str, " ");
+	if((c == '\r' || c == '\n')){
+
+		puts("\r\n");
+
+		if(ctx->count == 0){
+			puts(prompt);
+			return;
+		}
+
+		ctx->in[ctx->count] = '\0';
+		//printf("%s,%d,%d\r\n",ctx->in,ctx->count,ctx->head);
+		memset(argv,0,STDIO_CMD_ARGS_MAX);
+		char *token =  ctx->in;
 
 		while( token != NULL ) {
-			argv[args] = strdup(token);
+			char *str = malloc(strlen(token)+1);
+			strcpy(str,token);
+			argv[args] = str;
 			args++;
 		  	token = strtok(NULL, " ");
 		}
 
 		if(argv[0] && strcmp(argv[0],"help") == 0){
 			cli_cmd_help(ctx);
-			return;
-		}
+		}else{
 
-		cli_cmd_t *cmd = ctx->cmds;
-		optind = 1;
-		opterr = 0;
+			cli_cmd_t *cmd = ctx->cmds;
+			optind = 1;
+			opterr = 0;
 
-		while(cmd){
-			//printf("cmd->name=%s,argv[0]=%s",cmd->name,argv[0]);
-			if(args && argv[0] && strcmp(cmd->name,argv[0]) == 0 )
-				cmd->callback(args, argv);
-			cmd = cmd->next;
+			while(cmd){
+				//printf("cmd->name=%s,argv[0]=%s",cmd->name,argv[0]);
+				if(args && argv[0] && strcmp(cmd->name,argv[0]) == 0 )
+					cmd->callback(args, argv);
+				cmd = cmd->next;
 
-		}
+			}
 
-		while(args){
-			free(argv[args-1]);
-			args--;
+			while(args){
+				free(argv[args-1]);
+				args--;
+			}
+
 		}
 
 		//fflush(stdin);
+		memset(ctx->in,'\0',STDIO_IN_MAX);
+		ctx->head = 0;
+		ctx->tail = 0;
+		ctx->count = 0;
+
+		puts(prompt);
 
 	}
 
-	return;
 
 }

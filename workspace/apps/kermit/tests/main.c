@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <locale.h>
 #include <qapi_timer.h>
+#include "txm_module.h"
 
 #include "cli.h"
 
@@ -39,17 +40,26 @@ static int cli_cmd_ek(int args, char *argv[]){
 
 }
 
+
+
 int main(int argc, char * argv[])
 {
 
 
-	cli_t *cli = cli_new();
-	cli_register(cli,"ek",cli_cmd_ek);
+	cli_t *ctx;
+
+	ctx = cli_new();
+	//cli_register(cli,"ek",cli_cmd_ek);
 
 	for(;;){
 
-		cli_input(cli);
+		int c = getchar();
+		if(c != EOF){
+			putchar(c);
+			cli_input(ctx,c);
+		}
 		
+
 	}
 
 	return 0;

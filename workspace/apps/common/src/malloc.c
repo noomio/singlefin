@@ -34,7 +34,7 @@ typedef struct malloc_size{
 
 */
 
-TX_BYTE_POOL *byte_malloc_mem_pool;
+TX_BYTE_POOL *byte_malloc_mem_pool = NULL;
 
 #ifndef TX_MALLOC_MEM_SIZE
 #define TX_MALLOC_MEM_SIZE 32

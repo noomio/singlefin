@@ -22,13 +22,16 @@ typedef	struct cli_cmd{
 
 typedef struct cli{
 	char *in;
+	int head;
+	int tail;
+	int count;
 	cli_cmd_t *cmds;
 } cli_t;
 
 
 void cli_free(cli_t *ctx);
 cli_t *cli_new(void);
-void cli_input(cli_t *ctx);
+void cli_input(cli_t *ctx, char c);
 int cli_register(cli_t *ctx, const char *name, cli_callback_t func);
 
 #endif

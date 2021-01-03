@@ -10,6 +10,7 @@
 #include "qapi_uart.h"
 #include "txm_module.h"
 #include <locale.h>
+#include "cli.h"
 
 #define DEBUG_PORT	QAPI_UART_PORT_002_E
 
@@ -19,6 +20,7 @@ FILE *const stderr;
 
 extern int main(void);
 extern qapi_Status_t malloc_byte_pool_init(void);
+extern TX_BYTE_POOL *malloc_get_pool(void);
 
 static void init_debug(void);
 
@@ -28,9 +30,9 @@ extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va
 	setlocale(LC_ALL, "C");	
 	init_debug();
 	malloc_byte_pool_init();
-	TX_THREAD *t = tx_thread_identify();
-	UINT old_priority;
-	tx_thread_priority_change(t,64, &old_priority);
+	//TX_THREAD *t = tx_thread_identify();
+	//UINT old_priority;
+	//tx_thread_priority_change(t,64, &old_priority);
 	main();
 	for(;;);
 }
@@ -82,7 +84,7 @@ static void tracef_thread(ULONG param);
 TX_MUTEX *out_tx_mutex;
 TX_SEMAPHORE *out_tx_done_sem;
 
-TX_SEMAPHORE *in_rx_sem,*in_rx_sem2, *in_rx_ready;
+TX_SEMAPHORE *in_rx_sem1,*in_rx_sem2;
 
 #ifndef TX_PRINTF_LEN
 #define TX_PRINTF_LEN 512
@@ -93,42 +95,48 @@ TX_SEMAPHORE *in_rx_sem,*in_rx_sem2, *in_rx_ready;
 #define RECV_QUEUE_MEM_SIZE 512
 
 TX_QUEUE *recv_queue;
-uint8_t recv_queue_mem[RECV_QUEUE_MEM_SIZE];
+uint32_t recv_queue_mem[RECV_QUEUE_MEM_SIZE];
 
-uint8_t recv_queue_global_mem[RECV_QUEUE_MEM_SIZE];
-uint16_t in = 0, out = 0;
 
 #define RX_SIZE RECV_QUEUE_MEM_SIZE/2
-volatile uint8_t bytes[RX_SIZE];
+volatile uint8_t bytes1[RX_SIZE];
 volatile uint8_t bytes2[RX_SIZE];
+volatile uint32_t bytes1_cnt;
+volatile uint32_t bytes2_cnt;
 
 static void rx_queue_task(ULONG param);
 TX_THREAD* rx_queue_thread_handle; 
 TX_BYTE_POOL *rx_queue_thread_byte_pool;
 void *rx_queue_thread_stack;
-#define RX_QUEUE_THREAD_STACK_SIZE			512
+#define RX_QUEUE_THREAD_STACK_SIZE			1024
 #define RX_QUEUE_THREAD_BYTE_POOL_SIZE		2*RX_QUEUE_THREAD_STACK_SIZE
 char rx_queue_thread_mem[RX_QUEUE_THREAD_BYTE_POOL_SIZE];
 
+TX_EVENT_FLAGS_GROUP	*evnt_rx;
+const int byte_num1 = 1;
+const int byte_num2 = 2;
 
 static void uart_rx_cb(uint32_t num_bytes, void *cb_data){
 
-	TX_SEMAPHORE *sem = (TX_SEMAPHORE*)cb_data;
-	tx_semaphore_ceiling_put(sem,1); // signal to  queue next
+	int num = *(int*)cb_data;
 
-	for(int i =0; i < num_bytes; i++){
-		if(sem == in_rx_sem)
-			tx_queue_send(recv_queue,&bytes[i],TX_NO_WAIT);
-		else
-			tx_queue_send(recv_queue,&bytes2[i],TX_NO_WAIT);
+	if(num == byte_num1){
+		__atomic_store(&bytes1_cnt, &num_bytes, __ATOMIC_SEQ_CST);
+	}
+	else if(num == byte_num2){
+		__atomic_store(&bytes2_cnt, &num_bytes, __ATOMIC_SEQ_CST);
 	}
 
-	tx_queue_prioritize(recv_queue);
+
+	tx_event_flags_set(evnt_rx,num, TX_OR);
+	//tx_semaphore_ceiling_put(sem_rx,1); // signal to  queue 
+
+
 };
 
 
 
-static void uart_tx_cb(uint32_t num_bytes, void *cb_data){
+static void uart_tx_cb(uint32_t num_bytes1, void *cb_data){
 	tx_semaphore_ceiling_put(out_tx_done_sem,1);
 };
 
@@ -155,6 +163,7 @@ static void init_debug(void){
 		txm_module_object_allocate(&recv_queue, sizeof(TX_QUEUE));
 		tx_queue_create(recv_queue, "recv_queue_mem",1, recv_queue_mem, RECV_QUEUE_MEM_SIZE);
 
+
 		txm_module_object_allocate(&out_tx_mutex, sizeof(TX_MUTEX));
 		tx_mutex_create(out_tx_mutex,"out_tx_mutex", TX_NO_INHERIT);
 
@@ -163,14 +172,15 @@ static void init_debug(void){
 
 
 		/* RX */
-		txm_module_object_allocate(&in_rx_sem, sizeof(TX_SEMAPHORE));
-		tx_semaphore_create(in_rx_sem,"in_rx_sem", 1);
+		//txm_module_object_allocate(&in_rx_sem1, sizeof(TX_SEMAPHORE));
+		//tx_semaphore_create(in_rx_sem1,"in_rx_sem1", 0);
 
-		txm_module_object_allocate(&in_rx_sem2, sizeof(TX_SEMAPHORE));
-		tx_semaphore_create(in_rx_sem2,"in_rx_sem2", 1);
+		//txm_module_object_allocate(&in_rx_sem2, sizeof(TX_SEMAPHORE));
+		//tx_semaphore_create(in_rx_sem2,"in_rx_sem2", 0);
 
-		txm_module_object_allocate(&in_rx_ready, sizeof(TX_SEMAPHORE));
-		tx_semaphore_create(in_rx_ready,"in_rx_ready", 0);
+
+		txm_module_object_allocate(&evnt_rx, sizeof(TX_EVENT_FLAGS_GROUP));
+		tx_event_flags_create(evnt_rx,"evnt_rx");
 
 		txm_module_object_allocate(&rx_queue_thread_byte_pool, sizeof(TX_BYTE_POOL));
 		tx_byte_pool_create(rx_queue_thread_byte_pool, "rx_queue_thread_byte_pool", rx_queue_thread_mem, RX_QUEUE_THREAD_BYTE_POOL_SIZE);
@@ -189,8 +199,8 @@ static void init_debug(void){
 						   	TX_AUTO_START
 		);
 
-		while(qapi_UART_Receive (handle, bytes, RX_SIZE, in_rx_sem) != QAPI_OK); // queue as per doc
-		while(qapi_UART_Receive (handle, bytes2, RX_SIZE, in_rx_sem2) != QAPI_OK); // queue as per doc
+		while(qapi_UART_Receive (handle, bytes1, RX_SIZE, &byte_num1) != QAPI_OK); // queue as per doc
+		while(qapi_UART_Receive (handle, bytes2, RX_SIZE, &byte_num2) != QAPI_OK); // queue as per doc
 
 
 
@@ -224,25 +234,31 @@ static void init_debug(void){
 
 
 static void rx_queue_task(ULONG param){
+
+	ULONG actual_events;
+	bytes1_cnt = 0;
+	bytes2_cnt = 0;
+
 	for(;;){
 
-		int c;
-		if(tx_semaphore_get(in_rx_sem,1) == TX_SUCCESS){
-			//puts("queue2\r\n");
-			while(qapi_UART_Receive (handle, bytes2, RX_SIZE, in_rx_sem2) != QAPI_OK); // queue as per doc
+
+		if(tx_event_flags_get(evnt_rx,byte_num1,TX_OR_CLEAR,&actual_events,1) == TX_SUCCESS){
+			uint32_t val;
+			__atomic_load(&bytes1_cnt,&val,__ATOMIC_SEQ_CST);
+			for(int i =0; i < val; i++)
+				tx_queue_send(recv_queue,&bytes1[i],TX_WAIT_FOREVER);
+			while(qapi_UART_Receive (handle, bytes1, RX_SIZE, &byte_num1) != QAPI_OK); // queue as per doc
 		}
 
-		else if(tx_semaphore_get(in_rx_sem2,1) == TX_SUCCESS){
-			//puts("queue1\r\n");
-			while(qapi_UART_Receive (handle, bytes, RX_SIZE, in_rx_sem) != QAPI_OK); // queue as per doc
+		if(tx_event_flags_get(evnt_rx,byte_num2,TX_OR_CLEAR,&actual_events,1) == TX_SUCCESS){
+			uint32_t val;
+			__atomic_load(&bytes2_cnt,&val,__ATOMIC_SEQ_CST);
+			for(int i =0; i < val; i++)
+				tx_queue_send(recv_queue,&bytes2[i],TX_WAIT_FOREVER);
+			while(qapi_UART_Receive (handle, bytes2, RX_SIZE, &byte_num2) != QAPI_OK); // queue as per doc
 		}
 
-		tx_queue_receive(recv_queue, &c, TX_WAIT_FOREVER);
-		recv_queue_global_mem[in++] = c;
-		if(in >= RECV_QUEUE_MEM_SIZE)
-			in = 0;
-		tx_semaphore_put(in_rx_ready);
-		//putchar(c);
+		tx_thread_relinquish();
 
 	}
 
@@ -366,12 +382,12 @@ int __wrap_getchar(void){
 	if(!handle)
 		return 0;
 	
-	int c;
+	int c = EOF;
 
-	tx_semaphore_get(in_rx_ready,TX_WAIT_FOREVER);
-	c = recv_queue_global_mem[out++];
-	if(out >= RECV_QUEUE_MEM_SIZE)
-		out = 0;
+	if(tx_queue_receive(recv_queue, &c, 10) != TX_SUCCESS)
+		c = EOF;
+	//tx_queue_receive(recv_queue_global, &c, TX_WAIT_FOREVER);
+
 	return c;
 }
 
@@ -381,7 +397,7 @@ int __wrap_fprintf(FILE *stream, const char *format, ...){
 	return 0;
 }
 
-size_t __wrap_write(int fildes, const void *buf, size_t nbytes){
+size_t __wrap_write(int fildes, const void *buf, size_t nbytes1){
 
 	// We only have stdout
 	if(!handle)
@@ -389,14 +405,14 @@ size_t __wrap_write(int fildes, const void *buf, size_t nbytes){
 
 	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
 
-	if(qapi_UART_Transmit(handle, buf, nbytes, NULL) == QAPI_OK)	
+	if(qapi_UART_Transmit(handle, buf, nbytes1, NULL) == QAPI_OK)	
 		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 	else
-		nbytes = -1;
+		nbytes1 = -1;
 	
 	tx_mutex_put(out_tx_mutex);
 
-	return nbytes;
+	return nbytes1;
 
 }
 
