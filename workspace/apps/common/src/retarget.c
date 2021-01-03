@@ -84,7 +84,6 @@ static void tracef_thread(ULONG param);
 TX_MUTEX *out_tx_mutex;
 TX_SEMAPHORE *out_tx_done_sem;
 
-TX_SEMAPHORE *in_rx_sem1,*in_rx_sem2;
 
 #ifndef TX_PRINTF_LEN
 #define TX_PRINTF_LEN 512
@@ -98,38 +97,55 @@ TX_QUEUE *recv_queue;
 uint32_t recv_queue_mem[RECV_QUEUE_MEM_SIZE];
 
 
-#define RX_SIZE RECV_QUEUE_MEM_SIZE/2
-volatile uint8_t bytes1[RX_SIZE];
-volatile uint8_t bytes2[RX_SIZE];
-volatile uint32_t bytes1_cnt;
-volatile uint32_t bytes2_cnt;
 
 static void rx_queue_task(ULONG param);
 TX_THREAD* rx_queue_thread_handle; 
 TX_BYTE_POOL *rx_queue_thread_byte_pool;
 void *rx_queue_thread_stack;
-#define RX_QUEUE_THREAD_STACK_SIZE			1024
+#define RX_QUEUE_THREAD_STACK_SIZE			512
 #define RX_QUEUE_THREAD_BYTE_POOL_SIZE		2*RX_QUEUE_THREAD_STACK_SIZE
 char rx_queue_thread_mem[RX_QUEUE_THREAD_BYTE_POOL_SIZE];
 
+#define RX_SIZE RECV_QUEUE_MEM_SIZE/2
+volatile uint8_t bytes1[RX_SIZE];
+volatile uint8_t bytes2[RX_SIZE];
+
 TX_EVENT_FLAGS_GROUP	*evnt_rx;
-const int byte_num1 = 1;
-const int byte_num2 = 2;
+const int BYTE_NUM_1 = 1;
+const int BYTE_NUM_2 = 2;
+#define RX_BUF_SIZE RECV_QUEUE_MEM_SIZE/4
+volatile uint8_t rx_buf[RX_BUF_SIZE];
+uint32_t rx_buf_head;
+uint32_t rx_buf_tail;
+
 
 static void uart_rx_cb(uint32_t num_bytes, void *cb_data){
 
 	int num = *(int*)cb_data;
 
-	if(num == byte_num1){
-		__atomic_store(&bytes1_cnt, &num_bytes, __ATOMIC_SEQ_CST);
+	if(num == BYTE_NUM_1){
+		for(int i=0; i < num_bytes; i++){
+			uint32_t index = __atomic_fetch_add(&rx_buf_head,1,__ATOMIC_RELAXED);
+			if(index+1 >= RX_BUF_SIZE-1){
+				__atomic_store_n(&rx_buf_head,0,__ATOMIC_RELAXED);
+				index = 0;
+			}
+			__atomic_store_n (&rx_buf[index], bytes1[i], __ATOMIC_RELAXED);
+		}
 	}
-	else if(num == byte_num2){
-		__atomic_store(&bytes2_cnt, &num_bytes, __ATOMIC_SEQ_CST);
+	else if(num == BYTE_NUM_2){
+		for(int i=0; i < num_bytes; i++){
+			uint32_t index = __atomic_fetch_add(&rx_buf_head,1,__ATOMIC_RELAXED);
+			if(index+1 >= RX_BUF_SIZE-1){
+				__atomic_store_n(&rx_buf_head,0,__ATOMIC_RELAXED);
+				index = 0;
+			}
+			__atomic_store_n (&rx_buf[index], bytes2[i], __ATOMIC_RELAXED);
+		}
 	}
 
 
 	tx_event_flags_set(evnt_rx,num, TX_OR);
-	//tx_semaphore_ceiling_put(sem_rx,1); // signal to  queue 
 
 
 };
@@ -185,6 +201,7 @@ static void init_debug(void){
 		txm_module_object_allocate(&rx_queue_thread_byte_pool, sizeof(TX_BYTE_POOL));
 		tx_byte_pool_create(rx_queue_thread_byte_pool, "rx_queue_thread_byte_pool", rx_queue_thread_mem, RX_QUEUE_THREAD_BYTE_POOL_SIZE);
 
+
 		tx_byte_allocate(rx_queue_thread_byte_pool, (VOID **) &rx_queue_thread_stack, RX_QUEUE_THREAD_STACK_SIZE, TX_NO_WAIT);	
 		txm_module_object_allocate(&rx_queue_thread_handle, sizeof(TX_THREAD));
 		tx_thread_create(rx_queue_thread_handle,
@@ -199,8 +216,8 @@ static void init_debug(void){
 						   	TX_AUTO_START
 		);
 
-		while(qapi_UART_Receive (handle, bytes1, RX_SIZE, &byte_num1) != QAPI_OK); // queue as per doc
-		while(qapi_UART_Receive (handle, bytes2, RX_SIZE, &byte_num2) != QAPI_OK); // queue as per doc
+		while(qapi_UART_Receive (handle, bytes1, RX_SIZE, &BYTE_NUM_1) != QAPI_OK); // queue as per doc
+		while(qapi_UART_Receive (handle, bytes2, RX_SIZE, &BYTE_NUM_2) != QAPI_OK); // queue as per doc
 
 
 
@@ -236,28 +253,28 @@ static void init_debug(void){
 static void rx_queue_task(ULONG param){
 
 	ULONG actual_events;
-	bytes1_cnt = 0;
-	bytes2_cnt = 0;
+	rx_buf_tail = 0;
+	rx_buf_head = 0;
 
 	for(;;){
 
 
-		if(tx_event_flags_get(evnt_rx,byte_num1,TX_OR_CLEAR,&actual_events,1) == TX_SUCCESS){
-			uint32_t val;
-			__atomic_load(&bytes1_cnt,&val,__ATOMIC_SEQ_CST);
-			for(int i =0; i < val; i++)
-				tx_queue_send(recv_queue,&bytes1[i],TX_WAIT_FOREVER);
-			while(qapi_UART_Receive (handle, bytes1, RX_SIZE, &byte_num1) != QAPI_OK); // queue as per doc
+		if(tx_event_flags_get(evnt_rx,BYTE_NUM_1,TX_OR_CLEAR,&actual_events,1) == TX_SUCCESS){
+			while(qapi_UART_Receive (handle, bytes1, RX_SIZE, &BYTE_NUM_1) != QAPI_OK); // queue as per doc
 		}
 
-		if(tx_event_flags_get(evnt_rx,byte_num2,TX_OR_CLEAR,&actual_events,1) == TX_SUCCESS){
-			uint32_t val;
-			__atomic_load(&bytes2_cnt,&val,__ATOMIC_SEQ_CST);
-			for(int i =0; i < val; i++)
-				tx_queue_send(recv_queue,&bytes2[i],TX_WAIT_FOREVER);
-			while(qapi_UART_Receive (handle, bytes2, RX_SIZE, &byte_num2) != QAPI_OK); // queue as per doc
+		if(tx_event_flags_get(evnt_rx,BYTE_NUM_2,TX_OR_CLEAR,&actual_events,1) == TX_SUCCESS){
+			while(qapi_UART_Receive (handle, bytes2, RX_SIZE, &BYTE_NUM_2) != QAPI_OK); // queue as per doc
 		}
 
+		uint32_t head = __atomic_load_n(&rx_buf_head,__ATOMIC_RELAXED);
+		while(rx_buf_tail != head){
+			uint8_t byte = __atomic_load_n(&rx_buf[rx_buf_tail],__ATOMIC_RELAXED);
+			rx_buf_tail++;
+			if(rx_buf_tail >= RX_BUF_SIZE-1)
+				rx_buf_tail = 0;
+			tx_queue_send(recv_queue,&byte,TX_WAIT_FOREVER);
+		}
 		tx_thread_relinquish();
 
 	}
