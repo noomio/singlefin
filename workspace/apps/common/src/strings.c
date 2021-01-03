@@ -8,7 +8,5 @@ char *strdup(const char *s){
 		strcpy(str,s);
 	}
 
-	putchar('s');
-
 	return str;
 }

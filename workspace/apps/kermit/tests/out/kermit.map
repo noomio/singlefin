@@ -236,7 +236,7 @@ END GROUP
 Linker scripts used (including INCLUDE command)
 ./ldscripts/sections.ld
 
-ER_RO	0x43000000	0x560c # Offset: 0x60, LMA: 0x43000000
+ER_RO	0x43000000	0x5604 # Offset: 0x60, LMA: 0x43000000
 	Image$$ER_RO$$Base(0x43000000) = .( 0x43000000 );
 *txm_module_preamble_llvm.o(.text .text.* )
 *txm_module_preamble_llvm.o(Init )
@@ -431,435 +431,435 @@ KEEP (*(.text .text.* ))
 	0x430034ec		$a.0
 	0x430034ec		localtime
 	0x43003510		$d.1
-.text	0x43003514	0x48	out/common/src/strings.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text	0x43003514	0x40	out/common/src/strings.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43003514		$a.0
 	0x43003514		strdup
-.text	0x4300355c	0x38	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x4300355c		$a.0
-	0x4300355c		main
-.text._txm_module_thread_shell_entry	0x43003594	0x94	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003594		$a.0
-	0x43003594		_txm_module_thread_shell_entry
-	0x4300361c		$d.1
-.text._txm_module_callback_request_thread_entry	0x43003628	0x108	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003628		$a.0
-	0x43003628		_txm_module_callback_request_thread_entry
-	0x43003680		$d.1
-	0x43003694		$a.2
-	0x43003728		$d.3
-.text._txm_module_system_call11	0x43003730	0x68	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003730		$a.0
-	0x43003730		_txm_module_system_call11
-	0x43003794		$d.1
-.text._txm_module_system_call12	0x43003798	0x70	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003798		$a.0
-	0x43003798		_txm_module_system_call12
-	0x43003804		$d.1
-.text._txm_module_system_call4	0x43003808	0x2c	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003808		$a.0
-	0x43003808		_txm_module_system_call4
-	0x43003830		$d.1
-.text._txm_module_system_call5	0x43003834	0x34	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003834		$a.0
-	0x43003834		_txm_module_system_call5
-	0x43003864		$d.1
-.text._txm_module_system_call6	0x43003868	0x3c	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003868		$a.0
-	0x43003868		_txm_module_system_call6
-	0x430038a0		$d.1
-.text._txm_module_system_call7	0x430038a4	0x44	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430038a4		$a.0
-	0x430038a4		_txm_module_system_call7
-	0x430038e4		$d.1
-.text.setlocale	0x430038e8	0xe8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430038e8		$t
-	0x430038e9		setlocale
-	0x430039c0		$d
-.text.setlocale_one_unlocked	0x430039d0	0x34	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430039d0		$t
-	0x430039d1		setlocale_one_unlocked
-	0x430039fc		$d
-.text.__getopt_msg	0x43003a04	0x64	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003a04		$t
-	0x43003a05		__getopt_msg
-	0x43003a64		$d
-.text.getopt	0x43003a68	0x174	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003a68		$t
-	0x43003a69		getopt
-	0x43003a69		__posix_getopt
-	0x43003bc4		$d
-.text.mbtowc	0x43003bdc	0xcc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003bdc		$t
-	0x43003bdd		mbtowc
-	0x43003ca4		$d
-.text.flockfile	0x43003ca8	0x28	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003ca8		$t
-	0x43003ca9		flockfile
-.text.fputs	0x43003cd0	0x26	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003cd0		$t
-	0x43003cd1		fputs
-	0x43003cd1		fputs_unlocked
-.text.__do_orphaned_stdio_locks	0x43003cf6	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003cf6		$t
-	0x43003cf7		__do_orphaned_stdio_locks
-.text.__unlist_locked_file	0x43003d14	0x26	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003d14		$t
-	0x43003d15		__unlist_locked_file
-PADDING_ALIGNMENT	0x43003d3a	0x2	0x0
-.text.ftrylockfile	0x43003d3c	0x80	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43003d3c		$t
-	0x43003d3d		ftrylockfile
-	0x43003db8		$d
-.text.funlockfile	0x43003dbc	0x24	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003dbc		$t
-	0x43003dbd		funlockfile
-.text.putc	0x43003de0	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003de0		$t
-	0x43003de1		putc
-	0x43003de1		_IO_putc
-.text	0x43003e48	0x2ee	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43003e48		$t
-	0x43003e49		memcpy
-	0x43003e88		src_aligned
-	0x43003ed6		congruent_aligned32
-	0x43003ed6		cached_aligned32
-	0x43003eec		less_than_32_left
-	0x43003f3a		non_congruent
-	0x43003fb6		loop16
-	0x43004012		loop8
-	0x4300406e		loop24
-	0x430040c6		less_than_thirtytwo
-	0x430040f0		partial_word_tail
-	0x4300410c		copy_last_3_and_return
-PADDING_ALIGNMENT	0x43004136	0x2	0x0
-.text	0x43004138	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004138		$t
-	0x43004139		memset
-.text.strchr	0x430041a0	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430041a0		$t
-	0x430041a1		strchr
-.text.__strchrnul	0x430041b4	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430041b4		$t
-	0x430041b5		__strchrnul
-	0x430041b5		strchrnul
-.text.strcmp	0x43004210	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004210		$t
-	0x43004211		strcmp
-.text.strcpy	0x43004224	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004224		$t
-	0x43004225		strcpy
-.text.strlen	0x43004230	0x34	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004230		$t
-	0x43004231		strlen
-.text.strncpy	0x43004264	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004264		$t
-	0x43004265		strncpy
-.text.strtok	0x43004270	0x50	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004270		$t
-	0x43004271		strtok
-	0x430042bc		$d
-.text.__lock	0x430042c0	0x38	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430042c0		$t
-	0x430042c1		__lock
-	0x430042f4		$d
-.text.__unlock	0x430042f8	0x32	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430042f8		$t
-	0x430042f9		__unlock
-.text.__syscall3	0x4300432a	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300432a		$t
-	0x4300432b		__syscall3
-.text.__wait	0x43004334	0x64	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004334		$t
-	0x43004335		__wait
-.text.__syscall4	0x43004398	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004398		$t
-	0x43004399		__syscall4
-.text.a_fetch_add	0x430043a2	0x18	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430043a2		$t
-	0x430043a3		a_fetch_add
-.text.__errno_location	0x430043ba	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text	0x43003554	0x38	out/main.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003554		$a.0
+	0x43003554		main
+.text._txm_module_thread_shell_entry	0x4300358c	0x94	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x4300358c		$a.0
+	0x4300358c		_txm_module_thread_shell_entry
+	0x43003614		$d.1
+.text._txm_module_callback_request_thread_entry	0x43003620	0x108	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_callback_request_thread_entry.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003620		$a.0
+	0x43003620		_txm_module_callback_request_thread_entry
+	0x43003678		$d.1
+	0x4300368c		$a.2
+	0x43003720		$d.3
+.text._txm_module_system_call11	0x43003728	0x68	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call11.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003728		$a.0
+	0x43003728		_txm_module_system_call11
+	0x4300378c		$d.1
+.text._txm_module_system_call12	0x43003790	0x70	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call12.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003790		$a.0
+	0x43003790		_txm_module_system_call12
+	0x430037fc		$d.1
+.text._txm_module_system_call4	0x43003800	0x2c	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call4.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003800		$a.0
+	0x43003800		_txm_module_system_call4
+	0x43003828		$d.1
+.text._txm_module_system_call5	0x4300382c	0x34	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call5.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x4300382c		$a.0
+	0x4300382c		_txm_module_system_call5
+	0x4300385c		$d.1
+.text._txm_module_system_call6	0x43003860	0x3c	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call6.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003860		$a.0
+	0x43003860		_txm_module_system_call6
+	0x43003898		$d.1
+.text._txm_module_system_call7	0x4300389c	0x44	../../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x4300389c		$a.0
+	0x4300389c		_txm_module_system_call7
+	0x430038dc		$d.1
+.text.setlocale	0x430038e0	0xe8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430038e0		$t
+	0x430038e1		setlocale
+	0x430039b8		$d
+.text.setlocale_one_unlocked	0x430039c8	0x34	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430039c8		$t
+	0x430039c9		setlocale_one_unlocked
+	0x430039f4		$d
+.text.__getopt_msg	0x430039fc	0x64	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430039fc		$t
+	0x430039fd		__getopt_msg
+	0x43003a5c		$d
+.text.getopt	0x43003a60	0x174	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003a60		$t
+	0x43003a61		getopt
+	0x43003a61		__posix_getopt
+	0x43003bbc		$d
+.text.mbtowc	0x43003bd4	0xcc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003bd4		$t
+	0x43003bd5		mbtowc
+	0x43003c9c		$d
+.text.flockfile	0x43003ca0	0x28	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003ca0		$t
+	0x43003ca1		flockfile
+.text.fputs	0x43003cc8	0x26	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003cc8		$t
+	0x43003cc9		fputs
+	0x43003cc9		fputs_unlocked
+.text.__do_orphaned_stdio_locks	0x43003cee	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003cee		$t
+	0x43003cef		__do_orphaned_stdio_locks
+.text.__unlist_locked_file	0x43003d0c	0x26	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003d0c		$t
+	0x43003d0d		__unlist_locked_file
+PADDING_ALIGNMENT	0x43003d32	0x2	0x0
+.text.ftrylockfile	0x43003d34	0x80	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43003d34		$t
+	0x43003d35		ftrylockfile
+	0x43003db0		$d
+.text.funlockfile	0x43003db4	0x24	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003db4		$t
+	0x43003db5		funlockfile
+.text.putc	0x43003dd8	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003dd8		$t
+	0x43003dd9		putc
+	0x43003dd9		_IO_putc
+.text	0x43003e40	0x2ee	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43003e40		$t
+	0x43003e41		memcpy
+	0x43003e80		src_aligned
+	0x43003ece		congruent_aligned32
+	0x43003ece		cached_aligned32
+	0x43003ee4		less_than_32_left
+	0x43003f32		non_congruent
+	0x43003fae		loop16
+	0x4300400a		loop8
+	0x43004066		loop24
+	0x430040be		less_than_thirtytwo
+	0x430040e8		partial_word_tail
+	0x43004104		copy_last_3_and_return
+PADDING_ALIGNMENT	0x4300412e	0x2	0x0
+.text	0x43004130	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004130		$t
+	0x43004131		memset
+.text.strchr	0x43004198	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004198		$t
+	0x43004199		strchr
+.text.__strchrnul	0x430041ac	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430041ac		$t
+	0x430041ad		__strchrnul
+	0x430041ad		strchrnul
+.text.strcmp	0x43004208	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004208		$t
+	0x43004209		strcmp
+.text.strcpy	0x4300421c	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300421c		$t
+	0x4300421d		strcpy
+.text.strlen	0x43004228	0x34	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004228		$t
+	0x43004229		strlen
+.text.strncpy	0x4300425c	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300425c		$t
+	0x4300425d		strncpy
+.text.strtok	0x43004268	0x50	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004268		$t
+	0x43004269		strtok
+	0x430042b4		$d
+.text.__lock	0x430042b8	0x38	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430042b8		$t
+	0x430042b9		__lock
+	0x430042ec		$d
+.text.__unlock	0x430042f0	0x32	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430042f0		$t
+	0x430042f1		__unlock
+.text.__syscall3	0x43004322	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004322		$t
+	0x43004323		__syscall3
+.text.__wait	0x4300432c	0x64	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300432c		$t
+	0x4300432d		__wait
+.text.__syscall4	0x43004390	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004390		$t
+	0x43004391		__syscall4
+.text.a_fetch_add	0x4300439a	0x18	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300439a		$t
+	0x4300439b		a_fetch_add
+.text.__errno_location	0x430043b2	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430043b2		$t
+	0x430043b3		__errno_location
+.text.dummy	0x430043ba	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430043ba		$t
-	0x430043bb		__errno_location
-.text.dummy	0x430043c2	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430043c2		$t
-	0x430043c3		dummy
-.text.__lctrans	0x430043c4	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430043c4		$t
-	0x430043c5		__lctrans
-.text.__lctrans_cur	0x430043c8	0xe	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430043c8		$t
-	0x430043c9		__lctrans_cur
-.text.__lctrans_impl	0x430043d6	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430043d6		$t
-	0x430043d7		__lctrans_impl
-.text.__get_locale	0x430043f4	0x1e8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430043f4		$t
-	0x430043f5		__get_locale
-	0x430045b8		$d
-.text.dummy	0x430045dc	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430045dc		$t
-	0x430045dd		dummy
-	0x430045dd		__vm_wait
-.text.__munmap	0x430045de	0x1a	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430045de		$t
-	0x430045df		__munmap
-	0x430045df		munmap
-.text.__overflow	0x430045f8	0x54	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430045f8		$t
-	0x430045f9		__overflow
-.text.__towrite	0x4300464c	0x38	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300464c		$t
-	0x4300464d		__towrite
-.text.__towrite_needs_stdio_exit	0x43004684	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430043bb		dummy
+.text.__lctrans	0x430043bc	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430043bc		$t
+	0x430043bd		__lctrans
+.text.__lctrans_cur	0x430043c0	0xe	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430043c0		$t
+	0x430043c1		__lctrans_cur
+.text.__lctrans_impl	0x430043ce	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430043ce		$t
+	0x430043cf		__lctrans_impl
+.text.__get_locale	0x430043ec	0x1e8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430043ec		$t
+	0x430043ed		__get_locale
+	0x430045b0		$d
+.text.dummy	0x430045d4	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430045d4		$t
+	0x430045d5		dummy
+	0x430045d5		__vm_wait
+.text.__munmap	0x430045d6	0x1a	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430045d6		$t
+	0x430045d7		__munmap
+	0x430045d7		munmap
+.text.__overflow	0x430045f0	0x54	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430045f0		$t
+	0x430045f1		__overflow
+.text.__towrite	0x43004644	0x38	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004644		$t
+	0x43004645		__towrite
+.text.__towrite_needs_stdio_exit	0x4300467c	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300467c		$t
+	0x4300467d		__towrite_needs_stdio_exit
+.text.__lockfile	0x43004680	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004680		$t
+	0x43004681		__lockfile
+.text.__unlockfile	0x43004684	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43004684		$t
-	0x43004685		__towrite_needs_stdio_exit
-.text.__lockfile	0x43004688	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004685		__unlockfile
+.text.dummy	0x43004686	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004686		$t
+	0x43004687		dummy
+	0x43004687		__aio_close
+.text.__stdio_close	0x43004688	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43004688		$t
-	0x43004689		__lockfile
-.text.__unlockfile	0x4300468c	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300468c		$t
-	0x4300468d		__unlockfile
-.text.dummy	0x4300468e	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300468e		$t
-	0x4300468f		dummy
-	0x4300468f		__aio_close
-.text.__stdio_close	0x43004690	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004690		$t
-	0x43004691		__stdio_close
-.text.__stdio_read	0x430046a4	0xc0	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430046a4		$t
-	0x430046a5		__stdio_read
-.text.__stdio_seek	0x43004764	0x72	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004764		$t
-	0x43004765		__stdio_seek
-.text.__stdio_write	0x430047d6	0xfe	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430047d6		$t
-	0x430047d7		__stdio_write
-.text.__stdout_write	0x430048d4	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x430048d4		$t
-	0x430048d5		__stdout_write
-	0x43004920		$d
-.text.__stpcpy	0x43004930	0x3e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004930		$t
-	0x43004931		__stpcpy
-	0x43004931		stpcpy
-.text.__stpncpy	0x4300496e	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x4300496e		$t
-	0x4300496f		__stpncpy
-	0x4300496f		stpncpy
-.text.strcspn	0x430049d6	0x6a	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x430049d6		$t
-	0x430049d7		strcspn
-.text.strspn	0x43004a40	0x74	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004a40		$t
-	0x43004a41		strspn
-.text.__map_file	0x43004ab4	0x58	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004ab4		$t
-	0x43004ab5		__map_file
-	0x43004b08		$d
-.text.getenv	0x43004b0c	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004b0c		$t
-	0x43004b0d		getenv
-	0x43004b64		$d
-.text.__syscall_ret	0x43004b68	0x20	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004b68		$t
-	0x43004b69		__syscall_ret
-	0x43004b84		$d
-.text.__mo_lookup	0x43004b88	0xd8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004b88		$t
-	0x43004b89		__mo_lookup
-	0x43004c5c		$d
-.text.dummy	0x43004c60	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004c60		$t
-	0x43004c61		dummy
-PADDING_ALIGNMENT	0x43004c62	0x2	0x0
-.text.__mmap	0x43004c64	0x60	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004c64		$t
-	0x43004c65		__mmap
-	0x43004c65		mmap
-	0x43004c65		mmap64
-	0x43004cc0		$d
-.text.__stdio_exit	0x43004cc4	0x30	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004cc4		$t
-	0x43004cc5		__stdio_exit
-	0x43004cc5		__stdio_exit_needed
-	0x43004cec		$d
-.text.close_file	0x43004cf4	0x3c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004cf4		$t
-	0x43004cf5		close_file
-.text.__ofl_lock	0x43004d30	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004689		__stdio_close
+.text.__stdio_read	0x4300469c	0xc0	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300469c		$t
+	0x4300469d		__stdio_read
+.text.__stdio_seek	0x4300475c	0x72	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x4300475c		$t
+	0x4300475d		__stdio_seek
+.text.__stdio_write	0x430047ce	0xfe	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430047ce		$t
+	0x430047cf		__stdio_write
+.text.__stdout_write	0x430048cc	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x430048cc		$t
+	0x430048cd		__stdout_write
+	0x43004918		$d
+.text.__stpcpy	0x43004928	0x3e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004928		$t
+	0x43004929		__stpcpy
+	0x43004929		stpcpy
+.text.__stpncpy	0x43004966	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004966		$t
+	0x43004967		__stpncpy
+	0x43004967		stpncpy
+.text.strcspn	0x430049ce	0x6a	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x430049ce		$t
+	0x430049cf		strcspn
+.text.strspn	0x43004a38	0x74	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004a38		$t
+	0x43004a39		strspn
+.text.__map_file	0x43004aac	0x58	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004aac		$t
+	0x43004aad		__map_file
+	0x43004b00		$d
+.text.getenv	0x43004b04	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004b04		$t
+	0x43004b05		getenv
+	0x43004b5c		$d
+.text.__syscall_ret	0x43004b60	0x20	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004b60		$t
+	0x43004b61		__syscall_ret
+	0x43004b7c		$d
+.text.__mo_lookup	0x43004b80	0xd8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004b80		$t
+	0x43004b81		__mo_lookup
+	0x43004c54		$d
+.text.dummy	0x43004c58	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004c58		$t
+	0x43004c59		dummy
+PADDING_ALIGNMENT	0x43004c5a	0x2	0x0
+.text.__mmap	0x43004c5c	0x60	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004c5c		$t
+	0x43004c5d		__mmap
+	0x43004c5d		mmap
+	0x43004c5d		mmap64
+	0x43004cb8		$d
+.text.__stdio_exit	0x43004cbc	0x30	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004cbc		$t
+	0x43004cbd		__stdio_exit
+	0x43004cbd		__stdio_exit_needed
+	0x43004ce4		$d
+.text.close_file	0x43004cec	0x3c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004cec		$t
+	0x43004ced		close_file
+.text.__ofl_lock	0x43004d28	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004d28		$t
+	0x43004d29		__ofl_lock
+	0x43004d2c		$d
+.text.__ofl_unlock	0x43004d30	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43004d30		$t
-	0x43004d31		__ofl_lock
-	0x43004d34		$d
-.text.__ofl_unlock	0x43004d38	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004d38		$t
-	0x43004d39		__ofl_unlock
-.text.__aeabi_memclr	0x43004d3a	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004d31		__ofl_unlock
+.text.__aeabi_memclr	0x43004d32	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004d32		$t
+	0x43004d33		__aeabi_memclr
+	0x43004d33		__aeabi_memclr4
+	0x43004d33		__aeabi_memclr8
+.text.strncmp	0x43004d3a	0x28	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43004d3a		$t
-	0x43004d3b		__aeabi_memclr
-	0x43004d3b		__aeabi_memclr4
-	0x43004d3b		__aeabi_memclr8
-.text.strncmp	0x43004d42	0x28	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004d42		$t
-	0x43004d43		strncmp
-PADDING_ALIGNMENT	0x43004d6a	0x2	0x0
-.text	0x43004d6c	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
-	0x43004d6c		$t.0
-	0x43004d6d		__aeabi_uldivmod
-.text.__udivmoddi4	0x43004d80	0x1d4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
-	0x43004d80		$t.0
-	0x43004d81		__udivmoddi4
+	0x43004d3b		strncmp
+PADDING_ALIGNMENT	0x43004d62	0x2	0x0
+.text	0x43004d64	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+	0x43004d64		$t.0
+	0x43004d65		__aeabi_uldivmod
+.text.__udivmoddi4	0x43004d78	0x1d4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+	0x43004d78		$t.0
+	0x43004d79		__udivmoddi4
 *(Init )
 *(.rodata .rodata.* )
-.rodata.str1.1	0x43004f54	0x2	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f54		.L.str
-.rodata.str1.1	0x43004f56	0x8	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f56		.L.str.1
-.rodata.str1.1	0x43004f5e	0xf	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f5e		.L.str.2
-.rodata.str1.1	0x43004f6d	0xd	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f6d		.L.str.3
-.rodata.str1.1	0x43004f7a	0x10	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f7a		.L.str.4
-.rodata.str1.1	0x43004f8a	0x8	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f8a		.L.str.5
-.rodata.str1.1	0x43004f92	0x1a	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004f92		.L.str.6
-.rodata.str1.1	0x43004fac	0xe	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004fac		.L.str.7
-PADDING_ALIGNMENT	0x43004fba	0x2	0x0
-.rodata	0x43004fbc	0x8	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC,4
-	0x43004fbc		byte_num1
-	0x43004fc0		byte_num2
-.rodata.str1.1	0x43004fc4	0x31	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004fc4		.L.str
-.rodata.str1.1	0x43004ff5	0x8	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004ff5		.L.str.1
-.rodata.str1.1	0x43004ffd	0x2f	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43004ffd		.L.str.2
-.rodata.str1.1	0x4300502c	0x29	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300502c		.L.str.3
-.rodata.str1.1	0x43005055	0x25	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005055		.L.str.4
-.rodata.str1.1	0x4300507a	0x8	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300507a		.L.str
-.rodata.str1.1	0x43005082	0x7	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005082		.L.str.1
-.rodata.str1.1	0x43005089	0x8	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005089		.L.str.2
-.rodata.str1.1	0x43005091	0xd	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005091		.L.str.3
-.rodata.str1.1	0x4300509e	0x7	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300509e		.L.str
-.rodata.str1.1	0x430050a5	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430050a5		.L.str.1
-.rodata.str1.1	0x430050a9	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430050a9		.L.str.2
-.rodata.str1.1	0x430050ae	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430050ae		.L.str.3
-.rodata.str1.1	0x430050b3	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430050b3		.L.str.4
-PADDING_ALIGNMENT	0x430050b7	0x1	0x0
-.rodata	0x430050b8	0x50	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC,8
-	0x430050b8		_ftoa.pow10
+.rodata.str1.1	0x43004f4c	0x2	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f4c		.L.str
+.rodata.str1.1	0x43004f4e	0x8	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f4e		.L.str.1
+.rodata.str1.1	0x43004f56	0xf	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f56		.L.str.2
+.rodata.str1.1	0x43004f65	0xd	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f65		.L.str.3
+.rodata.str1.1	0x43004f72	0x10	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f72		.L.str.4
+.rodata.str1.1	0x43004f82	0x8	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f82		.L.str.5
+.rodata.str1.1	0x43004f8a	0x1a	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004f8a		.L.str.6
+.rodata.str1.1	0x43004fa4	0xe	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004fa4		.L.str.7
+PADDING_ALIGNMENT	0x43004fb2	0x2	0x0
+.rodata	0x43004fb4	0x8	out/common/src/retarget.o	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43004fb4		byte_num1
+	0x43004fb8		byte_num2
+.rodata.str1.1	0x43004fbc	0x31	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004fbc		.L.str
+.rodata.str1.1	0x43004fed	0x8	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004fed		.L.str.1
+.rodata.str1.1	0x43004ff5	0x2f	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43004ff5		.L.str.2
+.rodata.str1.1	0x43005024	0x29	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005024		.L.str.3
+.rodata.str1.1	0x4300504d	0x25	out/common/src/malloc.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300504d		.L.str.4
+.rodata.str1.1	0x43005072	0x8	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005072		.L.str
+.rodata.str1.1	0x4300507a	0x7	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300507a		.L.str.1
+.rodata.str1.1	0x43005081	0x8	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005081		.L.str.2
+.rodata.str1.1	0x43005089	0xd	out/common/src/stubs.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005089		.L.str.3
+.rodata.str1.1	0x43005096	0x7	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005096		.L.str
+.rodata.str1.1	0x4300509d	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300509d		.L.str.1
+.rodata.str1.1	0x430050a1	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430050a1		.L.str.2
+.rodata.str1.1	0x430050a6	0x5	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430050a6		.L.str.3
+.rodata.str1.1	0x430050ab	0x4	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430050ab		.L.str.4
+PADDING_ALIGNMENT	0x430050af	0x1	0x0
+.rodata	0x430050b0	0x50	out/common/src/printf.o	#SHT_PROGBITS,SHF_ALLOC,8
+	0x430050b0		_ftoa.pow10
+.rodata.str1.1	0x43005100	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005100		.L.str
+.rodata.str1.1	0x43005102	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005102		.L.str.1
+.rodata.str1.1	0x43005105	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005105		.L.str.2
 .rodata.str1.1	0x43005108	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005108		.L.str
+	0x43005108		.L.str.3
 .rodata.str1.1	0x4300510a	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300510a		.L.str.1
-.rodata.str1.1	0x4300510d	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300510d		.L.str.2
-.rodata.str1.1	0x43005110	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005110		.L.str.3
-.rodata.str1.1	0x43005112	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005112		.L.str.4
-.rodata.str1.1	0x43005115	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005115		.L.str.5
-.rodata.str1.1	0x43005117	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005117		.L.str.6
-.rodata.str1.1	0x4300511a	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300511a		.L.str
-.rodata.str1.1	0x4300511f	0x8	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300511f		.L.str.1
-.rodata.str1.1	0x43005127	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005127		.L.str.2
-.rodata.str1.1	0x4300512a	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300512a		.L.str.3
-.rodata.str1.1	0x4300512e	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300512e		.L.str.4
-.rodata.str1.1	0x43005131	0x6	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005131		.L.str.5
-.rodata.str1.1	0x43005137	0x6	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005137		.L.str.6
-.rodata.str1.1	0x4300513d	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300513d		.L.str.7
-.rodata.str1.1	0x43005142	0x6	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005142		.L.str.8
-.rodata.str1.1	0x43005148	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005148		.L.str.9
-.rodata.str1.1	0x4300514b	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300514b		.L.str.10
-.rodata.str1.1	0x4300514d	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300514d		.L.str.11
-.rodata.str1.1	0x43005152	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005152		.L.str.12
-.rodata.str1.1	0x43005157	0x59	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005157		.L.str.14
-.rodata.str1.1	0x430051b0	0x6a	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430051b0		.L.str.15
-.rodata.str1.1	0x4300521a	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300521a		.L.str.16
-.rodata.str1.1	0x4300521c	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300521c		.L.str.17
-.rodata.str1.1	0x43005221	0x13	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005221		.L.str.18
-.rodata.str1.1	0x43005234	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005234		.L.str.19
-.rodata.str1.1	0x43005237	0x14	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005237		.L.str.20
-.rodata.str1.1	0x4300524b	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300524b		.L.str.22
-.rodata.str1.1	0x4300524f	0x6b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300524f		.L.str.23
-.rodata.str1.1	0x430052ba	0x5b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x430052ba		.L.str.24
-.rodata.str1.1	0x43005315	0x54	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005315		.L.str.26
-.rodata.str1.1	0x43005369	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005369		.L.str.27
-.rodata.str1.1	0x4300536e	0xa3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x4300536e		.L.str.30
-.rodata.str1.1	0x43005411	0x3b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-	0x43005411		.L.str.31
-.rodata.cst16	0x4300544c	0x10	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
-	0x4300544c		$d
-.rodata.str1.1	0x4300545c	0x18	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x43005474	0x20	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.stderr	0x43005494	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x43005494		$d
-	0x43005494		stderr
-.rodata.stdout	0x43005498	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x43005498		$d
-	0x43005498		stdout
-.rodata.str1.1	0x4300549c	0x7	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x430054a3	0x5	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x430054a8	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x430054b0	0x6	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x430054b6	0xd	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.envvars	0x430054c3	0x48	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC,1
-	0x430054c3		envvars
-PADDING_ALIGNMENT	0x4300550b	0x1	0x0
-.rodata.__fsmu8	0x4300550c	0xcc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x4300550c		$d
-	0x4300550c		__fsmu8
-.rodata.str1.1	0x430055d8	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.empty_mo	0x430055dc	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x430055dc		empty_mo
-	0x430055dc		$d
-.rodata.__c_dot_utf8	0x430055f0	0x1c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
-	0x430055f0		$d
-	0x430055f0		__c_dot_utf8
-	Image$$ER_RO$$Limit(0x4300560c) = .( 0x4300560c );
-Image$$ER_RO$$Length(0x560c) = Image$$ER_RO$$Limit( 0x4300560c ) - Image$$ER_RO$$Base( 0x43000000 );
+	0x4300510a		.L.str.4
+.rodata.str1.1	0x4300510d	0x2	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300510d		.L.str.5
+.rodata.str1.1	0x4300510f	0x3	out/common/src/file.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300510f		.L.str.6
+.rodata.str1.1	0x43005112	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005112		.L.str
+.rodata.str1.1	0x43005117	0x8	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005117		.L.str.1
+.rodata.str1.1	0x4300511f	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300511f		.L.str.2
+.rodata.str1.1	0x43005122	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005122		.L.str.3
+.rodata.str1.1	0x43005126	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005126		.L.str.4
+.rodata.str1.1	0x43005129	0x6	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005129		.L.str.5
+.rodata.str1.1	0x4300512f	0x6	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300512f		.L.str.6
+.rodata.str1.1	0x43005135	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005135		.L.str.7
+.rodata.str1.1	0x4300513a	0x6	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300513a		.L.str.8
+.rodata.str1.1	0x43005140	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005140		.L.str.9
+.rodata.str1.1	0x43005143	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005143		.L.str.10
+.rodata.str1.1	0x43005145	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005145		.L.str.11
+.rodata.str1.1	0x4300514a	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300514a		.L.str.12
+.rodata.str1.1	0x4300514f	0x59	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300514f		.L.str.14
+.rodata.str1.1	0x430051a8	0x6a	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430051a8		.L.str.15
+.rodata.str1.1	0x43005212	0x2	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005212		.L.str.16
+.rodata.str1.1	0x43005214	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005214		.L.str.17
+.rodata.str1.1	0x43005219	0x13	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005219		.L.str.18
+.rodata.str1.1	0x4300522c	0x3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300522c		.L.str.19
+.rodata.str1.1	0x4300522f	0x14	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300522f		.L.str.20
+.rodata.str1.1	0x43005243	0x4	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005243		.L.str.22
+.rodata.str1.1	0x43005247	0x6b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005247		.L.str.23
+.rodata.str1.1	0x430052b2	0x5b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x430052b2		.L.str.24
+.rodata.str1.1	0x4300530d	0x54	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x4300530d		.L.str.26
+.rodata.str1.1	0x43005361	0x5	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005361		.L.str.27
+.rodata.str1.1	0x43005366	0xa3	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005366		.L.str.30
+.rodata.str1.1	0x43005409	0x3b	out/common/src/cli.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x43005409		.L.str.31
+.rodata.cst16	0x43005444	0x10	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
+	0x43005444		$d
+.rodata.str1.1	0x43005454	0x18	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300546c	0x20	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.stderr	0x4300548c	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x4300548c		$d
+	0x4300548c		stderr
+.rodata.stdout	0x43005490	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43005490		$d
+	0x43005490		stdout
+.rodata.str1.1	0x43005494	0x7	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300549b	0x5	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430054a0	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430054a8	0x6	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x430054ae	0xd	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.envvars	0x430054bb	0x48	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC,1
+	0x430054bb		envvars
+PADDING_ALIGNMENT	0x43005503	0x1	0x0
+.rodata.__fsmu8	0x43005504	0xcc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x43005504		$d
+	0x43005504		__fsmu8
+.rodata.str1.1	0x430055d0	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.empty_mo	0x430055d4	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x430055d4		empty_mo
+	0x430055d4		$d
+.rodata.__c_dot_utf8	0x430055e8	0x1c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
+	0x430055e8		$d
+	0x430055e8		__c_dot_utf8
+	Image$$ER_RO$$Limit(0x43005604) = .( 0x43005604 );
+Image$$ER_RO$$Length(0x5604) = Image$$ER_RO$$Limit( 0x43005604 ) - Image$$ER_RO$$Base( 0x43000000 );
 
 ER_RW	0x43005610	0xab4 # Offset: 0x5670, LMA: 0x43005610
 	Image$$ER_RW$$Base(0x43005610) = .( 0x43005610 );
