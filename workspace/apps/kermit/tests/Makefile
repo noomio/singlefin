@@ -79,6 +79,7 @@ common/src/printf.c \
 common/src/file.c \
 common/src/cli.c \
 common/src/time.c \
+common/src/strings.c \
 
 
 LIBS = ../ek16

@@ -1,11 +1,14 @@
+#include "string.h"
 #include "malloc.h"
 
 char *strdup(const char *s){
 	char *str = NULL;
 	if(s){
-		str = malloc(strlen(token)+1);
-		strcpy(str,token);
+		str = malloc(strlen(s)+1);
+		strcpy(str,s);
 	}
+
+	putchar('s');
 
 	return str;
 }

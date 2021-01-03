@@ -438,8 +438,6 @@ void cli_input(cli_t *ctx, char c){
 		char *token =  ctx->in;
 
 		while( token != NULL ) {
-			//char *str = malloc(strlen(token)+1);
-			//strcpy(str,token);
 			argv[args] = strdup(token);
 			args++;
 		  	token = strtok(NULL, " ");
