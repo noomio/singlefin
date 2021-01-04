@@ -25,7 +25,7 @@ int main(void)
 
 	printf("Hello world!\n");
 	
-	tlmm_config.pin = 23;
+	tlmm_config.pin = 15;
 	tlmm_config.func = 0; 
 	// pin mux value 1
 	tlmm_config.dir = QAPI_GPIO_OUTPUT_E;

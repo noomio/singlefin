@@ -63,14 +63,13 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
 
 TARGET_NAME = gpio
 BUILDDIR = out
+MODULE = bg96
 
 USER_OPTS = -DTX_DEBUG \
-			-DTX_USER_DEBUG_OPT=\"../../ml/inc/user_debug_opt.h\" \
-			-DTX_MALLOC_MEM_SIZE=512 \
-			-DMALLOC_FREE_INLINE 
 
 COMMON_DIR = ../../common/
 COMMON_INC = $(COMMON_DIR)/inc
+COMMON_INC += -I$(COMMON_DIR)/inc/target/$(MODULE)
 
 COMMON_SRC = common/src/retarget.c \
 common/src/malloc.c \
@@ -80,6 +79,7 @@ common/src/file.c \
 common/src/cli.c \
 common/src/time.c \
 common/src/strings.c \
+common/src/target/bg96/gpio.c \
 
 
 LIBS = 
@@ -96,7 +96,7 @@ all: preamble $(TARGET_NAME) $(TARGET_NAME).bin oem
 
 .PHONY: oem
 oem:
-	@echo datatx/$(TARGET_NAME).bin	> $(BUILDDIR)/oem_app_path.ini
+	@echo /datatx/$(TARGET_NAME).bin	> $(BUILDDIR)/oem_app_path.ini
 
 preamble:
 	@echo 'Preamble LLVM...'

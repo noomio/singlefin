@@ -4,63 +4,63 @@
 * @date   :  4/1/2021
 *
 */
-#include "qapi_txm_base.h"
-#include "qapi_gpioint.h"
-#include "txm_module.h"
-#include "bg96/gpio.h"
+#include <qapi_tlmm.h>
+#include <qapi_txm_base.h>
+#include <qapi_gpioint.h>
+#include "gpio.h"
 
 typedef struct{
-    uint32_t pin_num;
-    uint32_t gpio_id;
+    uint32_t pin_num;   // module pin
+    uint32_t pin_soc;   // internal soc pin number
     uint32_t gpio_func;
     const char *int_name;
-    gpio_interrupt_cb_t invoke_interrupt_cb;
 }GPIO_MAP_TBL;
 
 
- const GPIO_MAP_TBL gpio_map_tbl[PIN_E_GPIO_MAX] = {
-/* PIN NUM,      GPIO ID  GPIO FUNC         INTERRUPT NAME*/
-    {  4,             23,      0,         "_int00000004",       NULL},
-    {  5,             20,      0,         "_int00000005",       NULL},
-    {  6,             21,      0,         "_int00000006",       NULL},
-    {  7,             22,      0,         "_int00000007",       NULL},
-    { 18,             11,      0,         "_int00000018",       NULL},
-    { 19,             10,      0,         "_int00000019",       NULL},
-    { 22,              9,      0,         "_int00000022",       NULL},
-    { 23,              8,      0,         "_int00000023",       NULL},
-    { 26,             15,      0,         "_int00000026",       NULL},
-    { 27,             12,      0,         "_int00000027",       NULL},
-    { 28,             13,      0,         "_int00000028",       NULL},
-    { 40,             19,      0,         "_int00000040",       NULL},
-    { 41,             18,      0,         "_int00000041",       NULL},
-    { 64,             07,      0,         "_int00000064",       NULL}
+#define PIN_E_GPIO_MAX 14
+const GPIO_MAP_TBL gpio_map_tbl[PIN_E_GPIO_MAX] = {
+    /* PIN NUM,       PIN_SOC  GPIO FUNC  INTERRUPT NAME     */
+    {  4,             23,      0,         "_int00000004"},
+    {  5,             20,      0,         "_int00000005"},
+    {  6,             21,      0,         "_int00000006"},
+    {  7,             22,      0,         "_int00000007"},
+    { 18,             11,      0,         "_int00000018"},
+    { 19,             10,      0,         "_int00000019"},
+    { 22,              9,      0,         "_int00000022"},
+    { 23,              8,      0,         "_int00000023"},
+    { 26,             15,      0,         "_int00000026"},
+    { 27,             12,      0,         "_int00000027"},
+    { 28,             13,      0,         "_int00000028"},
+    { 40,             19,      0,         "_int00000040"},
+    { 41,             18,      0,         "_int00000041"},
+    { 64,             07,      0,         "_int00000064"}
 };
 
-/* gpio id table */
+/* gpio id table - stores */
 qapi_GPIO_ID_t gpio_id_tbl[PIN_E_GPIO_MAX];
 
-/* gpio tlmm config table */
+/* gpio tlmm config table - stores */
 qapi_TLMM_Config_t tlmm_config[PIN_E_GPIO_MAX];
 
 
 qapi_Instance_Handle_t gpio_interrupt_id_tbl[PIN_E_GPIO_MAX];
 
 
-static const duk_number_list_entry gpio_module_consts[] = {
-    { "PIN4",       PIN_E_GPIO_01 },
-    { "PIN5",       PIN_E_GPIO_02 },
-    { "PIN6",       PIN_E_GPIO_03 },
-    { "PIN7",       PIN_E_GPIO_04 },
-    { "PIN18",      PIN_E_GPIO_05 },
-    { "PIN19",      PIN_E_GPIO_06 },
-    { "PIN22",      PIN_E_GPIO_07 },
-    { "PIN23",      PIN_E_GPIO_08 },
-    { "PIN26",      PIN_E_GPIO_09 },
-    { "PIN27",      PIN_E_GPIO_10 },
-    { "PIN28",      PIN_E_GPIO_11 },
-    { "PIN40",      PIN_E_GPIO_19 },
-    { "PIN41",      PIN_E_GPIO_20 },
-    { "PIN64",      PIN_E_GPIO_21 },
+static const struct gpio_list_entry gpio_module_consts[] = {
+    { "PIN4",       0 },
+    { "PIN5",       1 },
+    { "PIN6",       2 },
+    { "PIN7",       3 },
+    { "PIN18",      4 },
+    { "PIN19",      5 },
+    { "PIN22",      6 },
+    { "PIN23",      7 },
+    { "PIN26",      8 },
+    { "PIN27",      9 },
+    { "PIN28",      10 },
+    { "PIN40",      11 },
+    { "PIN41",      12 },
+    { "PIN64",      13 },
     { "PullUp",     QAPI_GPIO_PULL_UP_E },
     { "PullDown",   QAPI_GPIO_PULL_DOWN_E },
     { "PullNone",   QAPI_GPIO_NO_PULL_E },
@@ -68,6 +68,58 @@ static const duk_number_list_entry gpio_module_consts[] = {
     { NULL, 0 }
 };
 
+static uint32_t get_soc_pin(uint32_t pin){
+    uint32_t pin_soc = (uint32_t)-1;
+
+    for(int i=0; i < PIN_E_GPIO_MAX; i++){
+        if(gpio_map_tbl[i].pin_num == pin)
+            pin_soc = gpio_map_tbl[i].pin_soc;
+    }
+
+   return pin_soc;
+}
+
+static int get_soc_pin_index(uint32_t pin){
+
+    for(int i=0; i < PIN_E_GPIO_MAX; i++){
+        if(gpio_map_tbl[i].pin_num == pin)
+            return i;
+    }
+
+   return -1;
+}
+
+static qapi_GPIO_ID_t get_gpio_id(uint32_t pin){
+
+    for(uint8_t i=0; i < PIN_E_GPIO_MAX; i++){
+        if(gpio_map_tbl[i].pin_num == pin){
+            return gpio_id_tbl[i];
+        }
+    }
+
+    return (uint32_t)-1;
+}
+
+static qapi_TLMM_Config_t* get_tlmm_config(uint32_t pin){
+
+    for(uint8_t i=0; i < PIN_E_GPIO_MAX; i++){
+        if(gpio_map_tbl[i].pin_num == pin){
+            return &tlmm_config[i];
+        }
+    }
+
+    return NULL;
+}
+
+static qapi_Instance_Handle_t* get_instance_handle(uint32_t pin){
+    for(uint8_t i=0; i < PIN_E_GPIO_MAX; i++){
+        if(gpio_map_tbl[i].pin_num == pin){
+            return &gpio_interrupt_id_tbl[i];
+        }
+    }
+
+    return NULL;
+}
 
 static qapi_GPIO_Value_t gpio_read( uint32_t pin_soc, qapi_GPIO_ID_t gpio_id) {
 
@@ -90,19 +142,17 @@ static int gpio_write(uint32_t pin_soc, qapi_GPIO_ID_t gpio_id, bool val) {
 
 static int gpio_config(uint32_t pin, uint32_t pull, uint32_t dir, qapi_GPIO_Drive_t drive) {
 
-    qapi_Status_t status;
+    int index = get_soc_pin_index(pin);
+    if(index != -1){
 
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-
-            uint8_t index = pin; // pin is the index as we are using consts string names
-            tlmm_config[index].pin = gpio_map_tbl[index].gpio_id; 
+            tlmm_config[index].pin = gpio_map_tbl[index].pin_soc; 
             tlmm_config[index].func = 0; 
             // pin mux value 1
             tlmm_config[index].dir = dir;
             tlmm_config[index].pull =  pull; 
             tlmm_config[index].drive = drive; // drive is for output pins, specify
             // the default here
-            status = qapi_TLMM_Get_Gpio_ID( &tlmm_config[index], &gpio_id_tbl[index]);
+            qapi_Status_t status = qapi_TLMM_Get_Gpio_ID( &tlmm_config[index], &gpio_id_tbl[index]);
             if (status == QAPI_OK){
                 status = qapi_TLMM_Config_Gpio(gpio_id_tbl[index], &tlmm_config[index]);
             }
@@ -126,25 +176,26 @@ static int gpio_config(uint32_t pin, uint32_t pull, uint32_t dir, qapi_GPIO_Driv
     QAPI_GPIOINT_TRIGGER_LEVEL_LOW_E;
     QAPI_GPIOINT_TRIGGER_EDGE_DUAL_E;
 */
-int gpio_on(uint32_t pin, qapi_GPIOINT_Trigger_e trigger, gpio_interrupt_cb_t interrupt_cb) {
+int gpio_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb) {
 
+    uint32_t pin_soc = get_soc_pin(pin);
 
-    if(pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
+    if(pin_soc != (uint32_t)-1UL){
 
-        if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-            qapi_Status_t status = qapi_GPIOINT_Register_Interrupt(&gpio_interrupt_id_tbl[pin],
-                                                     gpio_map_tbl[pin].gpio_id,
-                                                     interrupt_cb,
-                                                     pin,
-                                                     trigger,
-                                                     QAPI_GPIOINT_PRIO_LOWEST_E,
-                                                     false);
-            gpio_map_tbl[pin].invoke_interrupt_cb = interrupt_cb;
-            if(status == QAPI_OK){
-                return 0;
-            }
+        qapi_Status_t status = qapi_GPIOINT_Register_Interrupt(
+            get_instance_handle(pin),
+            get_gpio_id(pin),
+            interrupt_cb,
+            pin_soc,
+            trigger,
+            QAPI_GPIOINT_PRIO_LOWEST_E,
+            false
+            );
 
+        if(status == QAPI_OK){
+            return 0;
         }
+
 
     }
 
@@ -153,58 +204,69 @@ int gpio_on(uint32_t pin, qapi_GPIOINT_Trigger_e trigger, gpio_interrupt_cb_t in
   
 int gpio_trigger(uint32_t pin) {
    
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        qapi_GPIOINT_Trigger_Interrupt(&gpio_interrupt_id_tbl[pin], gpio_map_tbl[pin].gpio_id );
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        return qapi_GPIOINT_Trigger_Interrupt(get_instance_handle(pin), get_gpio_id(pin) );
     }
 
-    return 0; /* no return value (= undefined) */
+    return 1;
 }
 
 
 int gpio_disable_irq(uint32_t pin) {
     
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        qapi_GPIOINT_Deregister_Interrupt(&gpio_interrupt_id_tbl[pin], gpio_map_tbl[pin].gpio_id);
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        return qapi_GPIOINT_Deregister_Interrupt(get_instance_handle(pin), get_gpio_id(pin));
     }
 
-    return 0; /* no return value (= undefined) */
+    return 1;
 }
 
 int gpio_enable_irq(uint32_t pin) {
 
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        qapi_GPIOINT_Enable_Interrupt (&gpio_interrupt_id_tbl[pin], gpio_map_tbl[pin].gpio_id);
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        return qapi_GPIOINT_Enable_Interrupt (get_instance_handle(pin), get_gpio_id(pin));
     }
 
-    return 0; /* no return value (= undefined) */
+    return 1;
 }
 
 int gpio_deactivate(uint32_t pin) {
+    
+    uint32_t pin_soc = get_soc_pin(pin);
 
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        qapi_GPIOINT_Deregister_Interrupt (&gpio_interrupt_id_tbl[pin], gpio_map_tbl[pin].gpio_id);
+    if(pin_soc != (uint32_t)-1UL){
+        return qapi_GPIOINT_Deregister_Interrupt (get_instance_handle(pin), get_gpio_id(pin));
     }
 
-    return 0; /* no return value (= undefined) */
-
+    return 1; 
 }
 
 int gpio_output(uint32_t pin, uint32_t pull, uint32_t drive) {
 
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        if(qapi_TLMM_Release_Gpio_ID(&tlmm_config[pin], gpio_id_tbl[pin]) == QAPI_OK){
-            return gpio_config(pin, pull, QAPI_GPIO_OUTPUT_E, drive)
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        if(qapi_TLMM_Release_Gpio_ID(get_tlmm_config(pin), get_gpio_id(pin)) == QAPI_OK){
+            return gpio_config(pin_soc, pull, QAPI_GPIO_OUTPUT_E, drive);
         }
     }
 
     return 1;
 }
 
-int gpio_input(uint32_t pin, uint32_t pull) {
+int gpio_input(uint32_t pin, uint32_t pull, uint32_t drive) {
 
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        if(qapi_TLMM_Release_Gpio_ID(&tlmm_config[pin], gpio_id_tbl[pin]) == QAPI_OK){
-           return gpio_config(pin, pull, QAPI_GPIO_INPUT_E, QAPI_GPIO_KEEPER_E);
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        if(qapi_TLMM_Release_Gpio_ID(get_tlmm_config(pin), get_gpio_id(pin)) == QAPI_OK){
+           return gpio_config(pin, pull, QAPI_GPIO_INPUT_E, drive);
         }
     }
 
@@ -213,11 +275,26 @@ int gpio_input(uint32_t pin, uint32_t pull) {
 
 int gpio_release(uint32_t pin) {
 
-    if( pin >= PIN_E_GPIO_01 && pin < PIN_E_GPIO_MAX){
-        if(qapi_TLMM_Release_Gpio_ID(&tlmm_config[pin], gpio_id_tbl[pin]) == QAPI_OK){
-            return 0;
-        }
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        return qapi_TLMM_Release_Gpio_ID(get_tlmm_config(pin), get_gpio_id(pin));
     }
 
     return 1; 
+}
+
+int gpio_write_pin(uint32_t pin, bool val) {
+
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if( pin_soc != (uint32_t)-1UL){
+        return gpio_write(pin_soc,get_gpio_id(pin), val);
+    }
+
+    return 1;
+}
+
+int gpio_read_pin(uint32_t pin, bool val) {
+    return 1;;
 }

@@ -1,40 +1,27 @@
-/******************************************************************************
-*@file    bg96_gpio.h
-*@brief   gpio operation
-*
-*  ---------------------------------------------------------------------------
-*
-*  Copyright (c) 2019 Quectel Technologies, Inc.
-*  All Rights Reserved.
-*  Confidential and Proprietary - Quectel Technologies, Inc.
-*  ---------------------------------------------------------------------------
-*******************************************************************************/
-#ifndef __QUECTEL_BG96_GPIO_H__
-#define __QUECTEL_BG96_GPIO_H__
+#ifndef __BG96_GPIO_H__
+#define __BG96_GPIO_H__
 
-#include "qapi_tlmm.h"
+#include <stdint.h>
+#include <stdbool.h>
+#include <qapi_tlmm.h>
+#include <qapi_txm_base.h>
 
-/*  !!! This Pin Enumeration Only Applicable BG96-OPEN Project !!!
- */
-typedef enum{
-	PIN_E_GPIO_01=0,
-	PIN_E_GPIO_02,
-	PIN_E_GPIO_03,
-	PIN_E_GPIO_04,
-	PIN_E_GPIO_05,
-	PIN_E_GPIO_06,
-	PIN_E_GPIO_07,
-	PIN_E_GPIO_08,
-	PIN_E_GPIO_09,
-	PIN_E_GPIO_10,
-	PIN_E_GPIO_11,
-	PIN_E_GPIO_19,
-	PIN_E_GPIO_20,
-	PIN_E_GPIO_21,
-	PIN_E_GPIO_MAX
-}MODULE_PIN_ENUM;
+struct gpio_list_entry {
+    const char *key;
+    uint32_t value;
+ };
 
-typedef void (gpio_interrupt_cb_t*)(qapi_GPIOINT_Callback_Data_t arg);
+typedef void (*gpio_interrupt_cb_t)(uint32_t arg);
 
+int gpio_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb) ;
+int gpio_trigger(uint32_t pin);
+int gpio_disable_irq(uint32_t pin);
+int gpio_enable_irq(uint32_t pin);
+int gpio_deactivate(uint32_t pin);
+int gpio_output(uint32_t pin, uint32_t pull, uint32_t drive);
+int gpio_input(uint32_t pin, uint32_t pull, uint32_t drive);
+int gpio_release(uint32_t pin);
+int gpio_write_pin(uint32_t pin, bool val);
+int gpio_read_pin(uint32_t pin, bool val);
 
-#endif /*__QUECTEL_BG96_GPIO_H__*/
+#endif
