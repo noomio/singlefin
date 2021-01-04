@@ -176,7 +176,7 @@ static int gpio_config(uint32_t pin, uint32_t pull, uint32_t dir, qapi_GPIO_Driv
     QAPI_GPIOINT_TRIGGER_LEVEL_LOW_E;
     QAPI_GPIOINT_TRIGGER_EDGE_DUAL_E;
 */
-int gpio_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb) {
+int gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb) {
 
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -202,7 +202,7 @@ int gpio_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb) {
     return 1; 
 }
   
-int gpio_trigger(uint32_t pin) {
+int gpio_pin_trigger(uint32_t pin) {
    
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -214,7 +214,7 @@ int gpio_trigger(uint32_t pin) {
 }
 
 
-int gpio_disable_irq(uint32_t pin) {
+int gpio_pin_disable_irq(uint32_t pin) {
     
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -225,7 +225,7 @@ int gpio_disable_irq(uint32_t pin) {
     return 1;
 }
 
-int gpio_enable_irq(uint32_t pin) {
+int gpio_pin_enable_irq(uint32_t pin) {
 
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -236,7 +236,7 @@ int gpio_enable_irq(uint32_t pin) {
     return 1;
 }
 
-int gpio_deactivate(uint32_t pin) {
+int gpio_pin_deactivate(uint32_t pin) {
     
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -247,7 +247,17 @@ int gpio_deactivate(uint32_t pin) {
     return 1; 
 }
 
-int gpio_output(uint32_t pin, uint32_t pull, uint32_t drive) {
+int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type) {
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if(pin_soc != (uint32_t)-1UL){
+        return gpio_config(pin, pull, type, drive);
+    }
+
+    return 1;
+}
+
+int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive) {
 
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -260,7 +270,7 @@ int gpio_output(uint32_t pin, uint32_t pull, uint32_t drive) {
     return 1;
 }
 
-int gpio_input(uint32_t pin, uint32_t pull, uint32_t drive) {
+int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive) {
 
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -273,7 +283,7 @@ int gpio_input(uint32_t pin, uint32_t pull, uint32_t drive) {
     return 1;
 }
 
-int gpio_release(uint32_t pin) {
+int gpio_pin_release(uint32_t pin) {
 
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -284,7 +294,7 @@ int gpio_release(uint32_t pin) {
     return 1; 
 }
 
-int gpio_write_pin(uint32_t pin, bool val) {
+int gpio_pin_write(uint32_t pin, bool val) {
 
     uint32_t pin_soc = get_soc_pin(pin);
 
@@ -295,6 +305,6 @@ int gpio_write_pin(uint32_t pin, bool val) {
     return 1;
 }
 
-int gpio_read_pin(uint32_t pin, bool val) {
+int gpio_pin_read(uint32_t pin, bool val) {
     return 1;;
 }

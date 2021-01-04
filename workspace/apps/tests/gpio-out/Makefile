@@ -96,7 +96,7 @@ all: preamble $(TARGET_NAME) $(TARGET_NAME).bin oem
 
 .PHONY: oem
 oem:
-	@echo /datatx/$(TARGET_NAME).bin	> $(BUILDDIR)/oem_app_path.ini
+	@echo /datatx/$(TARGET_NAME).bin> $(BUILDDIR)/oem_app_path.ini
 
 preamble:
 	@echo 'Preamble LLVM...'
