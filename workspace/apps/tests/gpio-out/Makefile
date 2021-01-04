@@ -65,7 +65,7 @@ TARGET_NAME = gpio
 BUILDDIR = out
 MODULE = bg96
 
-USER_OPTS = -DTX_DEBUG \
+USER_OPTS = 
 
 COMMON_DIR = ../../common/
 COMMON_INC = $(COMMON_DIR)/inc

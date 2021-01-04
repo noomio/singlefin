@@ -52,6 +52,8 @@
 								 printf message; \
 							   } \
 							 } while(0)
+#else 
+#define TX_DEBUGF(debug,message)
 #endif
 
 #endif /* DEBUG_H_ */
