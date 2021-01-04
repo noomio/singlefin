@@ -1,0 +1,3 @@
+kmtsend 'test.txt'
+closett
+end

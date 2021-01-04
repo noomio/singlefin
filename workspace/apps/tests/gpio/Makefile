@@ -61,7 +61,7 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
 				-I"$(LLVMLIB)"
 
 
-TARGET_NAME = kermit
+TARGET_NAME = gpio
 BUILDDIR = out
 
 USER_OPTS = -DTX_DEBUG \
@@ -82,7 +82,7 @@ common/src/time.c \
 common/src/strings.c \
 
 
-LIBS = ../ek16
+LIBS = 
 
 SRCS = main.c 
 
@@ -115,8 +115,7 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
 	-Wl,-gc-sections \
 	-L $(LIBS) \
-	$(DAM_LIB_PATH)/*.lib \
-	-lek
+	$(DAM_LIB_PATH)/*.lib
 	@echo 'Finished building target: $@'
 	@echo ' '
 

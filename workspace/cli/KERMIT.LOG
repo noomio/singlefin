@@ -1,0 +1,45 @@
+KERMIT Send start: Sun Jan 03 21:18:18 2021
+
+
+>>>
+01 2C 20 53 7E 2A 20 40 2D 23 59 31 7E 22           ., S~* @-#Y1~"
+MARK=1 LEN=12 SEQ#=0 TYPE=SendInitiate DATA_LEN=9
+  Data: MAXL=94 TIME=10 NPAD=0 PADC=0 EOL=2d QCTL=# QBIN=Y CHKT=1 REPT=~ 
+
+<<<
+01 30 20 59 7E 48 20 40 2D 23 59 31 7E 2E 3F 4B     .0 Y~H @-#Y1~.?K
+2B 2A                                               +*
+MARK=1 LEN=16 SEQ#=0 TYPE=ACK DATA_LEN=13
+
+>>>
+01 2B 21 46 74 65 73 74 2E 74 78 74 43              .+!Ftest.txtC
+MARK=1 LEN=11 SEQ#=1 TYPE=FileHeader DATA_LEN=8
+
+<<<
+01 2B 21 59 74 65 73 74 2E 74 78 74 56              .+!Ytest.txtV
+MARK=1 LEN=11 SEQ#=1 TYPE=ACK DATA_LEN=8
+
+>>>
+01 35 22 44 66 72 6F 6D 20 70 6F 77 65 72 73 68     .5"Dfrom powersh
+65 6C 6C 2E 2E 2E 5E                                ell...^
+MARK=1 LEN=21 SEQ#=2 TYPE=Data DATA_LEN=18
+
+<<<
+01 23 22 59 40                                      .#"Y@
+MARK=1 LEN=3 SEQ#=2 TYPE=ACK DATA_LEN=0
+
+>>>
+01 23 23 5A 42                                      .##ZB
+MARK=1 LEN=3 SEQ#=3 TYPE=EOF DATA_LEN=0
+
+<<<
+01 23 23 59 41                                      .##YA
+MARK=1 LEN=3 SEQ#=3 TYPE=ACK DATA_LEN=0
+
+>>>
+01 23 24 42 2B                                      .#$B+
+MARK=1 LEN=3 SEQ#=4 TYPE=EOT DATA_LEN=0
+
+<<<
+01 23 24 59 42                                      .#$YB
+MARK=1 LEN=3 SEQ#=4 TYPE=ACK DATA_LEN=0
