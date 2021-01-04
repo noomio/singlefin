@@ -8,7 +8,7 @@
 
 @    /* Define application-specific start/stop entry points for the module.  */
 
-    .extern quectel_task_entry
+    .extern task_main_entry
 
 
 @    /* Define common external refrences.  */
@@ -50,7 +50,7 @@ _txm_module_preamble:
 		.p2align 2
         .word       0                                                 @ Module Stop Thread Entry Point 
 		.p2align 2
-        .word       60                                                @ Module Start/Stop Thread Priority
+        .word       140                                                @ Module Start/Stop Thread Priority
 		.p2align 2
         .word       16384                                              @ Module Start/Stop Thread Stack Size
 		.p2align 2
@@ -58,7 +58,7 @@ _txm_module_preamble:
 		.p2align 2
         .word       25                                                @ Module Callback Thread Priority  
         .p2align 2		
-        .word       8046                                              @ Module Callback Thread Stack Size    
+        .word       2024                                              @ Module Callback Thread Stack Size    
 		.p2align 2
         .word (Image$$ER_RO$$Length)                                   @ Module Code Size
 #ifdef TX_DAM_QC_CUSTOMIZATIONS
@@ -70,7 +70,7 @@ _txm_module_preamble:
         .word (Image$$ER_RW$$Length)                                 @ Reserved 1
 #else
         .p2align 2
-        .word       16384                                           @ Module Data Size - default to 16K (need to make sure this is large enough for module's data needs!)
+        .word       0x32000                                           @ Module Data Size - default to 16K (need to make sure this is large enough for module's data needs!)
 		.p2align 2
         .word       0                                                 @ Reserved 0
 		.p2align 2

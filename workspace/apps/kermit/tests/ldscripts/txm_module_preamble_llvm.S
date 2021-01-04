@@ -8,7 +8,7 @@
 
 @    /* Define application-specific start/stop entry points for the module.  */
 
-    .extern quectel_task_entry
+    .extern task_main_entry
 
 
 @    /* Define common external refrences.  */

@@ -2,8 +2,7 @@
 #include <qapi_timer.h>
 #include "gpio.h"
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char * argv[]){
 
 	puts("gpio\r\n");
 	//int res = gpio_output(18,QAPI_GPIO_12MA_E,QAPI_GPIO_NO_PULL_E);
