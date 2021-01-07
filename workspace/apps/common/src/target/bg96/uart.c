@@ -116,6 +116,9 @@ int uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
 					nbytes--;
 				}
 
+				// queue again - crude way
+				while(qapi_UART_Receive (uart[i].handle, uart[i].recv_buf, RECV_BUF_SIZE, &uart[i].index) != QAPI_OK); // queue as per doc
+
 				return z;
 
 			}
