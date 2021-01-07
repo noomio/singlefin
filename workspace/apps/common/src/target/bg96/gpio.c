@@ -72,8 +72,10 @@ static uint32_t get_soc_pin(uint32_t pin){
     uint32_t pin_soc = (uint32_t)-1;
 
     for(int i=0; i < PIN_E_GPIO_MAX; i++){
-        if(gpio_map_tbl[i].pin_num == pin)
+        if(gpio_map_tbl[i].pin_num == pin){
             pin_soc = gpio_map_tbl[i].pin_soc;
+            break;
+        }
     }
 
    return pin_soc;
