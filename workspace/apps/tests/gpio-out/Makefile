@@ -61,7 +61,7 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
 				-I"$(LLVMLIB)"
 
 
-TARGET_NAME = gpio
+TARGET_NAME = gpio_out
 BUILDDIR = out
 MODULE = bg96
 

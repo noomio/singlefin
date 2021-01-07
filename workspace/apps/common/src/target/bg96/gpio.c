@@ -24,14 +24,14 @@ const GPIO_MAP_TBL gpio_map_tbl[PIN_E_GPIO_MAX] = {
     {  5,             20,      0,         "_int00000005"},
     {  6,             21,      0,         "_int00000006"},
     {  7,             22,      0,         "_int00000007"},
-    { 18,             11,      0,         "_int00000018"},
-    { 19,             10,      0,         "_int00000019"},
+    { 18,             11,      0,         "_int00000018"},  // IO1
+    { 19,             10,      0,         "_int00000019"},  // IO2 -> ap ready
     { 22,              9,      0,         "_int00000022"},
     { 23,              8,      0,         "_int00000023"},
-    { 26,             15,      0,         "_int00000026"},
+    { 26,             15,      0,         "_int00000026"},  // IO3
     { 27,             12,      0,         "_int00000027"},
     { 28,             13,      0,         "_int00000028"},
-    { 40,             19,      0,         "_int00000040"},
+    { 40,             19,      0,         "_int00000040"},  
     { 41,             18,      0,         "_int00000041"},
     { 64,             07,      0,         "_int00000064"}
 };
@@ -305,6 +305,13 @@ int gpio_pin_write(uint32_t pin, bool val) {
     return 1;
 }
 
-int gpio_pin_read(uint32_t pin, bool val) {
-    return 1;;
+int gpio_pin_read(uint32_t pin) {
+    
+    uint32_t pin_soc = get_soc_pin(pin);
+
+    if( pin_soc != (uint32_t)-1UL){
+        return gpio_read(pin_soc,get_gpio_id(pin));
+    }
+
+    return 1;
 }

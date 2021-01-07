@@ -23,6 +23,6 @@ int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
 int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
 int gpio_pin_release(uint32_t pin);
 int gpio_pin_write(uint32_t pin, bool val);
-int gpio_pin_read(uint32_t pin, bool val);
+int gpio_pin_read(uint32_t pin);
 
 #endif
