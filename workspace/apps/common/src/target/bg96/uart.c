@@ -130,5 +130,33 @@ int uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
 }
 
 int uart_deconfig(uint32_t serial){
-	return 0;
+	for(int i=0; i < UART_NO_MAX; i++){
+		if(uart[i].serial_num == serial){
+			qapi_UART_Power_Off(uart[i].handle);
+			return qapi_UART_Close(uart[i].handle);
+		}
+	}
+
+	return 1;
+}
+
+
+int uart_power_down(uint32_t serial){
+	for(int i=0; i < UART_NO_MAX; i++){
+		if(uart[i].serial_num == serial){
+			return qapi_UART_Power_Off(uart[i].handle);
+		}
+	}
+
+	return 1;
+}
+
+int uart_power_up(uint32_t serial){
+	for(int i=0; i < UART_NO_MAX; i++){
+		if(uart[i].serial_num == serial){
+			return qapi_UART_Power_On(uart[i].handle);
+		}
+	}
+
+	return 1;
 }
