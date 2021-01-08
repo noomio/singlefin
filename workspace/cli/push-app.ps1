@@ -40,9 +40,12 @@ function Send {
             $fileReader.Close
             $fileStream.Close
             $port.Write($bytes, $Start, $Length)
-		}
-		else{
-			$data = Get-Content -Path $file 
+		}elseif($commandonly){
+			$data = Get-Content -Path $file
+			$port.Write($data)
+		}else{
+			$data = Get-Content -Path $file -Raw
+			$data.replace("`r`n","")
 			$port.Write($data)
 		}
 
@@ -107,13 +110,17 @@ if($serial_port.Count -eq 1){
 			$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
 			if($resp -match 'CME ERROR: 407'){
 				$resp = Send -Port $port -Command $at_cmd_file_delete -File $filebin -CommandOnly $true
+				start-sleep -m 250
 				$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
+				start-sleep -m 250
 			}
 
 			$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
 			if($resp -match 'CME ERROR: 407'){
 				$resp = Send -Port $port -Command $at_cmd_ini_delete -File $fileini -CommandOnly $true
+				start-sleep -m 250
 				$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
+				start-sleep -m 250
 			}
 
 			if($ResetTarget){
