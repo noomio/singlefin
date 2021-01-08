@@ -4,11 +4,10 @@
 
 #include "qapi_adc_types.h"
 
-#define ADC_MAX_NO 2
-
 typedef enum adc_channel{	
 	ADC0,
 	ADC1,
+	ADC_MAX_NO
 }adc_channel_t;
 
 int adc_config(adc_channel_t adc_num);
