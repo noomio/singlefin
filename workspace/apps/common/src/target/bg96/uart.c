@@ -5,6 +5,7 @@
 *
 */
 #include "uart.h"
+#include <stdatomic.h>
 
 #define UART_NO_MAX 1
 #define RECV_BUF_SIZE	128
