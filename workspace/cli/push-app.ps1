@@ -17,7 +17,7 @@ function Send {
 	param($port, $command, $file, $binary=$false, $commandonly=$false)
 
 	$port.WriteLine($command)
-	start-sleep -m 250
+	start-sleep -m 500
 	$resp = $port.ReadExisting()
 	Write-Host $resp
 
@@ -110,17 +110,15 @@ if($serial_port.Count -eq 1){
 			$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
 			if($resp -match 'CME ERROR: 407'){
 				$resp = Send -Port $port -Command $at_cmd_file_delete -File $filebin -CommandOnly $true
-				start-sleep -m 250
 				$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
-				start-sleep -m 250
 			}
 
 			$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
 			if($resp -match 'CME ERROR: 407'){
 				$resp = Send -Port $port -Command $at_cmd_ini_delete -File $fileini -CommandOnly $true
-				start-sleep -m 250
 				$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
-				start-sleep -m 250
+			}else{
+			
 			}
 
 			if($ResetTarget){
