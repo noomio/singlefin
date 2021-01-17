@@ -17,8 +17,7 @@ function Send {
 	param($port, $command, $file, $binary=$false, $commandonly=$false)
 
 	$port.WriteLine($command)
-	start-sleep -m 500
-	$resp = $port.ReadExisting()
+	$resp = $port.ReadLine()
 	Write-Host $resp
 
 
@@ -40,9 +39,6 @@ function Send {
             $fileReader.Close
             $fileStream.Close
             $port.Write($bytes, $Start, $Length)
-		}elseif($commandonly){
-			$data = Get-Content -Path $file
-			$port.Write($data)
 		}else{
 			$data = Get-Content -Path $file -Raw
 			$data.replace("`r`n","")
@@ -118,7 +114,7 @@ if($serial_port.Count -eq 1){
 				$resp = Send -Port $port -Command $at_cmd_ini_delete -File $fileini -CommandOnly $true
 				$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
 			}else{
-			
+
 			}
 
 			if($ResetTarget){
