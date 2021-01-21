@@ -240,7 +240,7 @@ int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t
 				//wait for signal
 				do{
 					tx_thread_sleep(5);
-				}while(__atomic_load_n(&spi_map_tbl[spi_num].signal,__ATOMIC_SEQ_CST) == 1);
+				}while(__atomic_load_n(&spi_map_tbl[spi_num].signal,__ATOMIC_SEQ_CST) == 0);
 				//free signal
 				while(__atomic_compare_exchange_n(
 					&spi_map_tbl[spi_num].signal,
@@ -260,9 +260,12 @@ int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t
 				false,
 				__ATOMIC_SEQ_CST,
 				__ATOMIC_SEQ_CST) != 1);
+
+			return 0;
 		}
 
 
 	}
+
 	return 1;
 }

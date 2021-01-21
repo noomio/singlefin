@@ -16,8 +16,12 @@ param (
 function Send {
 	param($port, $command, $file, $binary=$false, $commandonly=$false)
 
+	$port.DiscardOutBuffer()
+	$port.DiscardInBuffer()
+
 	$port.WriteLine($command)
-	$resp = $port.ReadLine()
+	start-sleep -m 500
+	$resp = $port.ReadExisting()
 	Write-Host $resp
 
 

@@ -15,18 +15,25 @@
 #define VERSION_REG_ADDR    0x7F
 
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char * argv[]){
 
-	uint8_t txdata[1] = {0x05};
-	uint8_t rxdata[2];
+	uint8_t addr = VERSION_REG_ADDR;
+	uint8_t version;
 
-	puts("spi\r\n");
+	puts("spi1\r\n");
 
 	int res = spi_config(SPI1);
+	printf("spi1 config=%d\r\n",res);
 
 	for(;;){
 
+		res = spi_send_receive(SPI1,&addr,&version,1);
+
+		if(res == 0 && CLRC663_VERSION_SUB == version){
+			puts("CLRC663 detected\r\n");
+		}else{
+			puts("spi 1 error\r\n");
+		}
 
 		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
 
