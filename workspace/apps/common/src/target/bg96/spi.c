@@ -4,6 +4,7 @@
 * @date   :  16/01/2021
 *
 */
+#include <stdio.h> 
 #include "txm_module.h"
 #include "qapi_fs_types.h"
 #include "qapi_fs.h"
@@ -25,13 +26,14 @@ typedef struct {
 	uint8_t				inter_word_delay;
 	uint8_t				slaves;					// max 7
 	bool 				loopback;
+	volatile uint32_t   status;
 	volatile uint32_t 	lock;
 	volatile uint32_t 	signal;
 }spi_map_tbl_t;
 
 spi_map_tbl_t spi_map_tbl[SPI_MAX_NO] = {
-    {  	SPI1,  QAPI_SPIM_INSTANCE_6_E,	NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_HIGH, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0,	SPI_BPW_8,	SPI_DEFAULT_FREQ, 5, 0, 0, false, 0, 0},
-    {  	SPI2,  QAPI_SPIM_INSTANCE_5_E,  NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_HIGH, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0, SPI_BPW_8,	SPI_DEFAULT_FREQ, 5, 0, 0, false, 0, 0}
+    {  	SPI1,  QAPI_SPIM_INSTANCE_6_E,	NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_LOW, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0,	SPI_BPW_8,	SPI_DEFAULT_FREQ, 0, 0, 0, false, 0, 0, 0},
+    {  	SPI2,  QAPI_SPIM_INSTANCE_5_E,  NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_LOW, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0, SPI_BPW_8,	SPI_DEFAULT_FREQ, 0, 0, 0, false, 0, 0, 0}
 };
 
 static const struct spi_list_entry spi_module_consts[] = {
@@ -45,6 +47,8 @@ void spi_cb_func(uint32 status, void *cb_para){
 
 	int spi_num = *((int*)cb_para);
 	uint32_t expected;
+
+	spi_map_tbl[spi_num].status = status; // no need for atomic
     
     if (QAPI_SPI_COMPLETE == status){
     	while(__atomic_compare_exchange_n(
@@ -93,7 +97,7 @@ int spi_config(spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		if(qapi_SPIM_Open(spi_map_tbl[spi_num].instance, &spi_map_tbl[spi_num].handle) == QAPI_OK 
 			&& !spi_map_tbl[spi_num].lock){
-			return qapi_SPIM_Power_Off(spi_map_tbl[spi_num].handle);
+			return qapi_SPIM_Power_On(spi_map_tbl[spi_num].handle);
 		}
 	}
 
@@ -201,33 +205,37 @@ int spi_set_slaves_num(spi_num_t spi_num, uint8_t num){
 }
 
 int spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t len){
-	return 1;
+	return spi_send_receive(spi_num, tx_buf, NULL, len);
 }
 
 int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t len){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
-		qapi_SPIM_Config_t config = {
-		   .SPIM_Mode = (qapi_SPIM_Shift_Mode_t)spi_map_tbl[spi_num].mode,
-		   .SPIM_CS_Polarity = (qapi_SPIM_CS_Polarity_t)spi_map_tbl[spi_num].cs_polarity,
-		   .SPIM_endianness = (qapi_SPIM_Byte_Order_t)spi_map_tbl[spi_num].endian,
-		   .SPIM_Bits_Per_Word = spi_map_tbl[spi_num].bpw,
-		   .SPIM_Slave_Index = spi_map_tbl[spi_num].slaves,
-		   .Clk_Freq_Hz = spi_map_tbl[spi_num].frequency,
-		   .CS_Clk_Delay_Cycles = spi_map_tbl[spi_num].cs_delay,
-		   .Inter_Word_Delay_Cycles = spi_map_tbl[spi_num].inter_word_delay,
-		   .SPIM_CS_Mode = (qapi_SPIM_CS_Mode_t)spi_map_tbl[spi_num].cs_mode,
-		   .loopback_Mode = (qbool_t)spi_map_tbl[spi_num].loopback
-		};
+		
+		qapi_SPIM_Config_t config;
+		config.SPIM_Mode = (qapi_SPIM_Shift_Mode_t)spi_map_tbl[spi_num].mode;
+		config.SPIM_CS_Polarity = (qapi_SPIM_CS_Polarity_t)spi_map_tbl[spi_num].cs_polarity;
+		config.SPIM_endianness = (qapi_SPIM_Byte_Order_t)spi_map_tbl[spi_num].endian;
+		config.SPIM_Bits_Per_Word = spi_map_tbl[spi_num].bpw;
+		config.SPIM_Slave_Index = spi_map_tbl[spi_num].slaves;
+		config.Clk_Freq_Hz = spi_map_tbl[spi_num].frequency;
+		config.CS_Clk_Delay_Cycles = spi_map_tbl[spi_num].cs_delay;
+		config.Inter_Word_Delay_Cycles = spi_map_tbl[spi_num].inter_word_delay;
+		config.SPIM_CS_Mode = (qapi_SPIM_CS_Mode_t)spi_map_tbl[spi_num].cs_mode;
+		config.loopback_Mode = (qbool_t)spi_map_tbl[spi_num].loopback;
 
-		qapi_SPIM_Descriptor_t desc = {
-			.tx_buf = tx_buf,
-			.rx_buf = rx_buf,
-			.len = len
-		};
+
+
+		qapi_SPIM_Descriptor_t desc;
+		desc.tx_buf = tx_buf;
+		desc.rx_buf = rx_buf;
+		desc.len = len;
+	
+
 
 		//check for lock
 		if(__atomic_load_n(&spi_map_tbl[spi_num].lock,__ATOMIC_SEQ_CST) == 0){
 			// lock
+			spi_map_tbl[spi_num].status = -1;
 			uint32_t expected;
 			while(__atomic_compare_exchange_n(
 				&spi_map_tbl[spi_num].lock,
@@ -236,6 +244,7 @@ int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t
 				false,
 				__ATOMIC_SEQ_CST,
 				__ATOMIC_SEQ_CST) != 1);
+
 			if(qapi_SPIM_Full_Duplex(spi_map_tbl[spi_num].handle, &config, &desc, 1, spi_cb_func, &spi_map_tbl[spi_num].num, false) == QAPI_OK){
 				//wait for signal
 				do{
@@ -261,11 +270,50 @@ int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t
 				__ATOMIC_SEQ_CST,
 				__ATOMIC_SEQ_CST) != 1);
 
-			return 0;
+			int status = (spi_map_tbl[spi_num].status == QAPI_SPI_COMPLETE) ?  0 : spi_map_tbl[spi_num].status;
+			return status;
+
 		}
 
 
 	}
 
-	return 1;
+	return -1;
+}
+
+void spi_config_dump(spi_num_t spi_num){
+	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
+
+		printf("%s:\r\n"
+			"Mode: %u\r\n"
+			"CS Polarity: %u\r\n"
+			"CS Delay: %u\r\n"
+			"CS Mode: %u\r\n"
+			"Endian: %u\r\n"
+			"Bits per Word: %u\r\n"
+			"Slaves: %u\r\n"
+			"Frequency Hz: %u\r\n"
+			"Inter Word Delay: %u\r\n"
+			"Loopback: %u\r\n",
+			spi_module_consts[spi_num].key,
+			spi_map_tbl[spi_num].mode,
+			spi_map_tbl[spi_num].cs_polarity,
+			spi_map_tbl[spi_num].cs_delay,
+			spi_map_tbl[spi_num].cs_mode,
+			spi_map_tbl[spi_num].endian,
+			spi_map_tbl[spi_num].bpw,
+			spi_map_tbl[spi_num].slaves,
+			spi_map_tbl[spi_num].frequency,			
+			spi_map_tbl[spi_num].inter_word_delay,			
+			spi_map_tbl[spi_num].loopback);
+	}else{
+		puts("NULL\r\n");
+	}
+}
+
+const char *spi_get_name(spi_num_t spi_num){
+	if(spi_num >= 0 && spi_num < SPI_MAX_NO)
+		return spi_module_consts[spi_num].key;
+	else
+		return NULL;
 }

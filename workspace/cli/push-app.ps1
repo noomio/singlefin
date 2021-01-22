@@ -24,7 +24,10 @@ function Send {
 	$resp = $port.ReadExisting()
 	Write-Host $resp
 
-
+	if($commandonly -eq $true){
+		return $true
+	}
+	
 	if($resp -match 'CONNECT' -and $commandonly -eq $false ){
 		Write-Host 'Received CONNECT'
 		Write-Host 'Uploading File...'
@@ -109,20 +112,32 @@ if($serial_port.Count -eq 1){
 			$port.open();			
 			$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
 			if($resp -match 'CME ERROR: 407'){
+				start-sleep -m 500
 				$resp = Send -Port $port -Command $at_cmd_file_delete -File $filebin -CommandOnly $true
-				$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
+				start-sleep -m 500
+				$resp += $port.ReadExisting()
+
+				if($resp -match 'OK'){
+					$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
+				}else{
+					Write-Output "Failed to delete file"
+					Write-Output "Please try again"
+					$port.Dispose() 
+					exit 0
+				}
 			}
 
 			$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
 			if($resp -match 'CME ERROR: 407'){
 				$resp = Send -Port $port -Command $at_cmd_ini_delete -File $fileini -CommandOnly $true
+				start-sleep -m 500
 				$resp = Send -Port $port -Command $at_cmd_ini_upload -File $fileini
 			}else{
 
 			}
 
 			if($ResetTarget){
-				Write-Host 'Reseting Target...'
+				Write-Output 'Reseting Target...'
 				$port.WriteLine($at_cmd_reset)
 				$port.ReadLine()
 				$port.DiscardOutBuffer()

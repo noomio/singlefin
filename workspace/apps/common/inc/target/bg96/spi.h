@@ -9,7 +9,7 @@ struct spi_list_entry {
  };
 
 
-#define SPI_DEFAULT_FREQ	100000  // 100kHz
+#define SPI_DEFAULT_FREQ	10000000L  // 100kHz
 
 typedef enum {
 	SPI1,
@@ -19,7 +19,8 @@ typedef enum {
 
 typedef enum{
 	SPI_CS_DEASSERT,
-	SPI_CS_KEEP_ASSERTED
+	SPI_CS_KEEP_ASSERTED,
+	SPI_CS_MODE_INVALID = 0x7FFFFFFF
 } spi_cs_mode_t;
 
 typedef enum{
@@ -28,8 +29,8 @@ typedef enum{
 } spi_cs_polarity_t;
 
 typedef enum{
-	SPI_BYTE_ORDER_NATIVE,
-	SPI_BYTE_ORDER_LITTLE_ENDIAN,
+	SPI_BYTE_ORDER_NATIVE = 0,
+	SPI_BYTE_ORDER_LITTLE_ENDIAN = 0,
 	SPI_BYTE_ORDER_BIG_ENDIAN
 }spi_endian_t;
 
@@ -72,11 +73,6 @@ typedef enum{
 	SPI_BPW_31
 }spi_bits_per_word_t;
 
-typedef struct{
-	uint8_t tx_buf; //Buffer address for transmitting data.
-	uint8_t rx_buf; //Buffer address for receiving data.
-	uint32_t len; 	//Size in bytes. No alignment requirements; the arbitrary length data can be transferred.
-}spi_descriptor_t;
 
 
 int spi_power_down(spi_num_t spi_num);
@@ -95,5 +91,7 @@ int spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay);
 int spi_set_slaves_num(spi_num_t spi_num, uint8_t num);
 int spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
 int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
+void spi_config_dump(spi_num_t spi_num);
+const char *spi_get_name(spi_num_t spi_num);
 
 #endif

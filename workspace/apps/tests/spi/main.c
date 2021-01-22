@@ -18,11 +18,15 @@
 int main(int argc, char * argv[]){
 
 	uint8_t addr = VERSION_REG_ADDR;
-	uint8_t version;
+	uint8_t version = 0;
 
 	puts("spi1\r\n");
 
 	int res = spi_config(SPI1);
+	spi_set_loopback(SPI1,true);
+	spi_config_dump(SPI1);
+	char *name = spi_get_name(SPI1);
+
 	printf("spi1 config=%d\r\n",res);
 
 	for(;;){
@@ -32,7 +36,7 @@ int main(int argc, char * argv[]){
 		if(res == 0 && CLRC663_VERSION_SUB == version){
 			puts("CLRC663 detected\r\n");
 		}else{
-			puts("spi 1 error\r\n");
+			printf("%s: error=%d\r\n",name,res);
 		}
 
 		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
