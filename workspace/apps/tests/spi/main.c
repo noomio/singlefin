@@ -24,6 +24,7 @@ int main(int argc, char * argv[]){
 
 	int res = spi_config(SPI1);
 	spi_set_loopback(SPI1,true);
+	spi_set_frequency(SPI1,1000L);
 	spi_config_dump(SPI1);
 	char *name = spi_get_name(SPI1);
 
