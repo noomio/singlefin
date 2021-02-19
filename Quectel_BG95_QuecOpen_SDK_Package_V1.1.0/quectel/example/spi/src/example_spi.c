@@ -22,6 +22,7 @@
 #include "example_spi.h"
 #include "qapi_spi_master.h"
 #include <locale.h>
+#include "qapi_quectel.h"
 
 /**************************************************************************
 *								  GLOBAL
@@ -38,7 +39,7 @@ static char *tx2_buff=NULL;
 static QT_UART_CONF_PARA uart2_conf =
 {
 	NULL,
-	QT_UART_PORT_02,
+	QT_QAPI_UART_PORT_01,
 	NULL,
 	0,
 	NULL,
@@ -77,16 +78,15 @@ int quectel_task_entry(void)
     qapi_Status_t res = QAPI_OK; 
     uint8 wr_buff[4] = {0x9f, 0xff, 0xff, 0xff}; // cmd for read flash id
     uint8 rd_buff[4] = {0xff, 0xff, 0xff, 0xff}; // buff for id
+  
     qapi_SPIM_Descriptor_t spi_desc[1];
 
     int ret = -1;
-	
-	// MUST SETTING,TBD
-	setlocale(LC_ALL, "C");
 
-    qapi_Timer_Sleep(3000, QAPI_TIMER_UNIT_MSEC, true);
+    qapi_Timer_Sleep(8, QAPI_TIMER_UNIT_SEC, true);
 
 	IOT_DEBUG("QT# quectel_task_entry Start");
+	setlocale(LC_ALL, "C");
 
 	ret = txm_module_object_allocate(&byte_pool_uart, sizeof(TX_BYTE_POOL));
   	if(ret != TX_SUCCESS)
@@ -124,12 +124,15 @@ int quectel_task_entry(void)
 	/* prompt task running */
 	qt_uart_dbg(uart2_conf.hdlr, "\r\n===quectel spi task entry Start!!!===\r\n");
 
-    // Obtain a client specific connection handle to the spi bus instance 6
-    res = qapi_SPIM_Open(QAPI_SPIM_INSTANCE_6_E, &spi_hdl);    
-    qt_uart_dbg(uart2_conf.hdlr,"qapi_SPIM_Open: res=%d, hdl=%x", res, spi_hdl);
 
+    // Obtain a client specific connection handle to the spi bus instance 1
+    res = qapi_SPIM_Open(QT_QAPI_SPIM_PORT_01, &spi_hdl);    
+    qt_uart_dbg(uart2_conf.hdlr,"qapi_SPIM_Open: res=%d, hdl=%x", res, spi_hdl);
+	IOT_DEBUG("qapi_SPIM_Open: res=%d, hdl=%x", res, spi_hdl);
+	
     res = qapi_SPIM_Power_On(spi_hdl);
     qt_uart_dbg(uart2_conf.hdlr,"qapi_SPIM_Power_On: res=%d", res);
+	
 
     //spi interface config
     spi_config.SPIM_Mode = QAPI_SPIM_MODE_0_E; // set the spi mode, determined by slave device
@@ -137,11 +140,11 @@ int quectel_task_entry(void)
     spi_config.SPIM_endianness  = SPI_LITTLE_ENDIAN;
     spi_config.SPIM_Bits_Per_Word = 8;
     spi_config.SPIM_Slave_Index = 0;
-    spi_config.Clk_Freq_Hz = 100000; //config spi clk about 1Mhz
+    spi_config.Clk_Freq_Hz = 1000000; //config spi clk about 1Mhz
     spi_config.SPIM_CS_Mode = QAPI_SPIM_CS_KEEP_ASSERTED_E;
     spi_config.CS_Clk_Delay_Cycles = 0; // don't care, set 0 is ok.
     spi_config.Inter_Word_Delay_Cycles = 0; // don't care, set 0 is ok.
-    spi_config.loopback_Mode = 0;
+    spi_config.loopback_Mode =0;
     
     
     qt_uart_dbg(uart2_conf.hdlr,"[config] MDOE=%d, Clk_Freq_Hz=%d, Bits_Per_Word=%d\r\n", spi_config.SPIM_Mode, spi_config.Clk_Freq_Hz, spi_config.SPIM_Bits_Per_Word);   
@@ -154,15 +157,17 @@ int quectel_task_entry(void)
     res = qapi_SPIM_Full_Duplex(spi_hdl, &spi_config, spi_desc, 1, qapi_spi_cb_func, &cb_para, false); // at now only support one descriptor
     qapi_Timer_Sleep(500, QAPI_TIMER_UNIT_MSEC, true);
     qt_uart_dbg(uart2_conf.hdlr,"[Read flash ID] ret=%x, rd[1]=%x, rd[2]=%x, rd[3]=%x\r\n", res, rd_buff[1], rd_buff[2], rd_buff[3]);
-    
+	IOT_DEBUG("[Read flash ID] ret=%x, rd[1]=%x, rd[2]=%x, rd[3]=%x\r\n", res, rd_buff[1], rd_buff[2], rd_buff[3]);
+
     res = qapi_SPIM_Power_Off(spi_hdl);
     qt_uart_dbg(uart2_conf.hdlr,"qapi_SPIM_Power_Off: res=%d", res);
+	
 
     // Close the connection handle to the spi bus instance
     res = qapi_SPIM_Close(spi_hdl);    
     qapi_Timer_Sleep(500, QAPI_TIMER_UNIT_MSEC, true);
     qt_uart_dbg(uart2_conf.hdlr,"qapi_SPIM_Close: res=%d", res);
-    
+ 
 	qt_uart_dbg(uart2_conf.hdlr,"\r\n===quectel spi task entry Exit!!!===\r\n");
     return 0;
 }

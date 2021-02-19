@@ -23,10 +23,9 @@ int main(int argc, char * argv[]){
 	puts("spi1\r\n");
 
 	int res = spi_config(SPI1);
-	spi_set_loopback(SPI1,true);
-	spi_set_frequency(SPI1,1000L);
+	//spi_set_loopback(SPI1,true);
 	spi_config_dump(SPI1);
-	char *name = spi_get_name(SPI1);
+	const char *name = spi_get_name(SPI1);
 
 	printf("spi1 config=%d\r\n",res);
 
@@ -34,11 +33,8 @@ int main(int argc, char * argv[]){
 
 		res = spi_send_receive(SPI1,&addr,&version,1);
 
-		if(res == 0 && CLRC663_VERSION_SUB == version){
-			puts("CLRC663 detected\r\n");
-		}else{
-			printf("%s: error=%d\r\n",name,res);
-		}
+		printf("%s: error=%d, version=%u\r\n",name,res,version);
+
 
 		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
 

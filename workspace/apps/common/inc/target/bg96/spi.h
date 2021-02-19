@@ -9,7 +9,7 @@ struct spi_list_entry {
  };
 
 
-#define SPI_DEFAULT_FREQ	10000000L  // 100kHz
+#define SPI_DEFAULT_FREQ	1000000L  // 1MHz
 
 typedef enum {
 	SPI1,

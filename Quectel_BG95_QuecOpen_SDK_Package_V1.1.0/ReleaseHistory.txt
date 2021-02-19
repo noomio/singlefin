@@ -1,0 +1,148 @@
+####################          Quectel BG95 SDK Package (V1.0) For Quecopen Solution        ####################
+====================================================================================================================
+Version     :  Quectel_BG95_QuecOpen_SDK_Package_V1.0.0
+When        :  2019-10-23
+Who         :  Justice Han
+ChangeLists :  Initial release.
+Supported	:  Data networking services	- 1.dns_client
+                                          2.ftp_client
+                                          3.http
+                                          4.lwm2m
+                                          5.mqtt
+                                          6.ping
+                                          7.tcp_client
+                                          8.tcp_server
+                                          9.udp_client
+                                          10.udp_server
+			   Peripheral services	- 1.adc
+                                      2.gpio
+                                      3.gpio_int
+                                      4.i2c
+                                      5.nmea_usb
+                                      6.rtc
+                                      7.spi
+                                      8.timer
+                                      9.uart
+			   General services	- 1.atfwd
+                                  2.device_info
+                                  3.file
+                                  4.network
+                                  5.random
+                                  6.sahara
+                                  7.sim
+                                  8.sms
+                                  9.task_create
+                                  10.time
+========================================================================================================================
+Version     :  Quectel_BG95_QuecOpen_SDK_Package_V1.0.1
+When        :  2019-11-10
+Who         :  Justice Han
+ChangeLists :  1.add the example of pwm.
+               2.update the exmaples of gpio, i2c and spi.
+			   3.fix compilation warnings.
+Supported	:  Data networking services	- 1.dns_client
+                                          2.ftp_client
+                                          3.http
+                                          4.lwm2m
+                                          5.mqtt
+                                          6.ping
+                                          7.tcp_client
+                                          8.tcp_server
+                                          9.udp_client
+                                          10.udp_server
+			   Peripheral services	- 1.adc
+                                      2.gpio
+                                      3.gpio_int
+                                      4.i2c
+                                      5.nmea_usb
+									  6.pwm
+                                      7.rtc
+                                      8.spi
+                                      9.timer
+                                      10.uart
+			   General services	- 1.atfwd
+                                  2.device_info
+                                  3.file
+                                  4.network
+                                  5.random
+                                  6.sahara
+                                  7.sim
+                                  8.sms
+                                  9.task_create
+                                  10.time
+========================================================================================================================
+Version     :  Quectel_BG95_QuecOpen_SDK_Package_V1.0.2
+When        :  2019-12-25
+Who         :  Justice Han
+ChangeLists :  1.add the example of atc_pipe.
+               2.update the exmaple of atfwd for parsing multi-parameters.
+			   3.optimize the thread architecture of examples to separate the app loading thread(quectel_task_entry).
+Supported	:  Data networking services	- 1.dns_client
+                                          2.ftp_client
+                                          3.http
+                                          4.lwm2m
+                                          5.mqtt
+                                          6.ping
+                                          7.tcp_client
+                                          8.tcp_server
+                                          9.udp_client
+                                          10.udp_server
+			   Peripheral services	- 1.adc
+                                      2.gpio
+                                      3.gpio_int
+                                      4.i2c
+                                      5.nmea_usb
+									  6.pwm
+                                      7.rtc
+                                      8.spi
+                                      9.timer
+                                      10.uart
+			   General services	- 1.atc_pipe
+			                      2.atfwd
+                                  3.device_info
+                                  4.file
+                                  5.network
+                                  6.random
+                                  7.sahara
+                                  8.sim
+                                  9.sms
+                                  10.task_create
+                                  11.time
+========================================================================================================================
+Version     :  Quectel_BG95_QuecOpen_SDK_Package_V1.1.0
+When        :  2019-01-20
+Who         :  Justice Han
+ChangeLists :  1.initial official version.
+			   2.update Application Note.
+Supported	:  Data networking services	- 1.dns_client
+                                          2.ftp_client
+                                          3.http
+                                          4.lwm2m
+                                          5.mqtt
+                                          6.ping
+                                          7.tcp_client
+                                          8.tcp_server
+                                          9.udp_client
+                                          10.udp_server
+			   Peripheral services	- 1.adc
+                                      2.gpio
+                                      3.gpio_int
+                                      4.i2c
+                                      5.nmea_usb
+									  6.pwm
+                                      7.rtc
+                                      8.spi
+                                      9.timer
+                                      10.uart
+			   General services	- 1.atc_pipe
+			                      2.atfwd
+                                  3.device_info
+                                  4.file
+                                  5.network
+                                  6.random
+                                  7.sahara
+                                  8.sim
+                                  9.sms
+                                  10.task_create
+                                  11.time
+========================================================================================================================
