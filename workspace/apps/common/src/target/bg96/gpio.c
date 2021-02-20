@@ -4,6 +4,7 @@
 * @date   :  4/1/2021
 *
 */
+#include <stdio.h> 
 #include <qapi_tlmm.h>
 #include <qapi_txm_base.h>
 #include <qapi_gpioint.h>
@@ -61,10 +62,26 @@ static const struct gpio_list_entry gpio_module_consts[] = {
     { "PIN40",      11 },
     { "PIN41",      12 },
     { "PIN64",      13 },
+    { NULL, 0 }
+};
+
+static const struct gpio_list_entry gpio_pull_consts[] = {
     { "PullUp",     QAPI_GPIO_PULL_UP_E },
     { "PullDown",   QAPI_GPIO_PULL_DOWN_E },
     { "PullNone",   QAPI_GPIO_NO_PULL_E },
     { "OpenDrain",  QAPI_GPIO_KEEPER_E },
+    { NULL, 0 }
+};
+
+static const struct gpio_list_entry gpio_drive_consts[] = {
+    { "2mA",  QAPI_GPIO_2MA_E },
+    { "4mA",  QAPI_GPIO_4MA_E },
+    { "6mA",  QAPI_GPIO_6MA_E },
+    { "8mA",  QAPI_GPIO_8MA_E },
+    { "10mA", QAPI_GPIO_10MA_E },
+    { "12mA", QAPI_GPIO_12MA_E },
+    { "14mA", QAPI_GPIO_14MA_E },
+    { "16mA", QAPI_GPIO_16MA_E },
     { NULL, 0 }
 };
 
@@ -316,4 +333,30 @@ int gpio_pin_read(uint32_t pin) {
     }
 
     return 1;
+}
+
+void gpio_config_dump(uint32_t pin){
+    uint32_t pin_soc = get_soc_pin(pin);
+    int index = get_soc_pin_index(pin);
+
+    if( pin_soc != (uint32_t)-1UL && index != -1){
+
+        printf("Pin: %u\r\n"
+            "Pin Soc: %u\r\n"
+            "Pin Name: %s\r\n"
+            "Direction: %s\r\n"
+            "Function: %u\r\n"
+            "Pull: %s\r\n"
+            "Drive: %s\r\n",
+            pin,
+            pin_soc,
+            gpio_module_consts[index].key,
+            (tlmm_config[index].dir == QAPI_GPIO_INPUT_E ? "input" : "output"),
+            tlmm_config[index].func, 
+            gpio_pull_consts[tlmm_config[index].pull].key,
+            gpio_drive_consts[tlmm_config[index].drive].key
+            );
+    }else{
+        puts("NULL\r\n");
+    }
 }
