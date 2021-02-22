@@ -48,29 +48,27 @@ qapi_Instance_Handle_t gpio_interrupt_id_tbl[PIN_E_GPIO_MAX];
 
 
 static const struct gpio_list_entry gpio_module_consts[] = {
-    { "PIN4",       0 },
-    { "PIN5",       1 },
-    { "PIN6",       2 },
-    { "PIN7",       3 },
-    { "PIN18",      4 },
-    { "PIN19",      5 },
-    { "PIN22",      6 },
-    { "PIN23",      7 },
-    { "PIN26",      8 },
-    { "PIN27",      9 },
-    { "PIN28",      10 },
-    { "PIN40",      11 },
-    { "PIN41",      12 },
-    { "PIN64",      13 },
-    { NULL, 0 }
+    { "PIN4",       4 },
+    { "PIN5",       5 },
+    { "PIN6",       6 },
+    { "PIN7",       7 },
+    { "PIN18",      18 },
+    { "PIN19",      19 },
+    { "PIN22",      22 },
+    { "PIN23",      23 },
+    { "PIN26",      26 },
+    { "PIN27",      27 },
+    { "PIN28",      28 },
+    { "PIN40",      40 },
+    { "PIN41",      41 },
+    { "PIN64",      64 }
 };
 
 static const struct gpio_list_entry gpio_pull_consts[] = {
     { "PullUp",     QAPI_GPIO_PULL_UP_E },
     { "PullDown",   QAPI_GPIO_PULL_DOWN_E },
     { "PullNone",   QAPI_GPIO_NO_PULL_E },
-    { "OpenDrain",  QAPI_GPIO_KEEPER_E },
-    { NULL, 0 }
+    { "OpenDrain",  QAPI_GPIO_KEEPER_E }
 };
 
 static const struct gpio_list_entry gpio_drive_consts[] = {
@@ -81,8 +79,7 @@ static const struct gpio_list_entry gpio_drive_consts[] = {
     { "10mA", QAPI_GPIO_10MA_E },
     { "12mA", QAPI_GPIO_12MA_E },
     { "14mA", QAPI_GPIO_14MA_E },
-    { "16mA", QAPI_GPIO_16MA_E },
-    { NULL, 0 }
+    { "16mA", QAPI_GPIO_16MA_E }
 };
 
 static uint32_t get_soc_pin(uint32_t pin){
@@ -118,6 +115,38 @@ static qapi_GPIO_ID_t get_gpio_id(uint32_t pin){
 
     return (uint32_t)-1;
 }
+
+
+static const char *get_pin_name(uint32_t pin){
+
+    for(int i=0; i < sizeof(gpio_module_consts)/sizeof(struct gpio_list_entry); i++){
+        if(gpio_module_consts[i].value == pin)
+            return gpio_module_consts[i].key;
+    }
+
+   return "NULL";
+}
+
+static const char *get_pin_drive(uint32_t drive){
+
+    for(int i=0; i < sizeof(gpio_drive_consts)/sizeof(struct gpio_list_entry); i++){
+        if(gpio_drive_consts[i].value == drive)
+            return gpio_drive_consts[i].key;
+    }
+
+   return "NULL";
+}
+
+static const char *get_pin_pull(uint32_t pull){
+
+    for(int i=0; i < sizeof(gpio_pull_consts)/sizeof(struct gpio_list_entry); i++){
+        if(gpio_pull_consts[i].value == pull)
+            return gpio_pull_consts[i].key;
+    }
+
+   return "NULL";
+}
+
 
 static qapi_TLMM_Config_t* get_tlmm_config(uint32_t pin){
 
@@ -350,11 +379,11 @@ void gpio_config_dump(uint32_t pin){
             "Drive: %s\r\n",
             pin,
             pin_soc,
-            gpio_module_consts[index].key,
+            get_pin_name(pin),
             (tlmm_config[index].dir == QAPI_GPIO_INPUT_E ? "input" : "output"),
             tlmm_config[index].func, 
-            gpio_pull_consts[tlmm_config[index].pull].key,
-            gpio_drive_consts[tlmm_config[index].drive].key
+            get_pin_pull(tlmm_config[index].pull),
+            get_pin_drive(tlmm_config[index].drive)
             );
     }else{
         puts("NULL\r\n");
