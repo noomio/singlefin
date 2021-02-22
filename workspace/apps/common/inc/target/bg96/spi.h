@@ -9,7 +9,7 @@ struct spi_list_entry {
  };
 
 
-#define SPI_DEFAULT_FREQ	1000000L  // 1MHz
+#define SPI_DEFAULT_FREQ	1000000L  // 1MHz, this is the min and anything less will return error when spi_config
 
 typedef enum {
 	SPI1,

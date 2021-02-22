@@ -379,7 +379,7 @@ void gpio_config_dump(uint32_t pin){
             "Function: %u\r\n"
             "Pull: %s\r\n"
             "Drive: %s\r\n"
-            "Irq Enabled: %s",
+            "Irq Enabled: %s\r\n",
             pin,
             pin_soc,
             get_pin_name(pin),
