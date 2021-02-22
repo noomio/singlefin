@@ -47,6 +47,9 @@ qapi_TLMM_Config_t tlmm_config[PIN_E_GPIO_MAX];
 qapi_Instance_Handle_t gpio_interrupt_id_tbl[PIN_E_GPIO_MAX];
 
 
+bool gpio_is_interrupt[PIN_E_GPIO_MAX];
+
+
 static const struct gpio_list_entry gpio_module_consts[] = {
     { "PIN4",       4 },
     { "PIN5",       5 },
@@ -199,6 +202,7 @@ static int gpio_config(uint32_t pin, uint32_t pull, uint32_t dir, qapi_GPIO_Driv
             tlmm_config[index].dir = dir;
             tlmm_config[index].pull =  pull; 
             tlmm_config[index].drive = drive; // drive is for output pins, specify
+            gpio_is_interrupt[index] = false;
             // the default here
             qapi_Status_t status = qapi_TLMM_Get_Gpio_ID( &tlmm_config[index], &gpio_id_tbl[index]);
             if (status == QAPI_OK){
@@ -265,9 +269,13 @@ int gpio_pin_trigger(uint32_t pin) {
 int gpio_pin_disable_irq(uint32_t pin) {
     
     uint32_t pin_soc = get_soc_pin(pin);
+    int index = get_soc_pin_index(pin);
 
     if(pin_soc != (uint32_t)-1UL){
-        return qapi_GPIOINT_Deregister_Interrupt(get_instance_handle(pin), get_gpio_id(pin));
+        if(qapi_GPIOINT_Deregister_Interrupt(get_instance_handle(pin), get_gpio_id(pin)) == QAPI_OK){
+            gpio_is_interrupt[index] = false;
+            return 0;
+        }
     }
 
     return 1;
@@ -276,24 +284,18 @@ int gpio_pin_disable_irq(uint32_t pin) {
 int gpio_pin_enable_irq(uint32_t pin) {
 
     uint32_t pin_soc = get_soc_pin(pin);
+    int index = get_soc_pin_index(pin);
 
     if(pin_soc != (uint32_t)-1UL){
-        return qapi_GPIOINT_Enable_Interrupt (get_instance_handle(pin), get_gpio_id(pin));
+        if(qapi_GPIOINT_Enable_Interrupt (get_instance_handle(pin), get_gpio_id(pin)) == QAPI_OK){
+            gpio_is_interrupt[index] = true;
+            return 0;
+        }
     }
 
     return 1;
 }
 
-int gpio_pin_deactivate(uint32_t pin) {
-    
-    uint32_t pin_soc = get_soc_pin(pin);
-
-    if(pin_soc != (uint32_t)-1UL){
-        return qapi_GPIOINT_Deregister_Interrupt (get_instance_handle(pin), get_gpio_id(pin));
-    }
-
-    return 1; 
-}
 
 int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type) {
     uint32_t pin_soc = get_soc_pin(pin);
@@ -376,14 +378,16 @@ void gpio_config_dump(uint32_t pin){
             "Direction: %s\r\n"
             "Function: %u\r\n"
             "Pull: %s\r\n"
-            "Drive: %s\r\n",
+            "Drive: %s\r\n"
+            "Irq Enabled: %s",
             pin,
             pin_soc,
             get_pin_name(pin),
             (tlmm_config[index].dir == QAPI_GPIO_INPUT_E ? "input" : "output"),
             tlmm_config[index].func, 
             get_pin_pull(tlmm_config[index].pull),
-            get_pin_drive(tlmm_config[index].drive)
+            get_pin_drive(tlmm_config[index].drive),
+            gpio_is_interrupt[index] == 0 ? "no" : "yes"
             );
     }else{
         puts("NULL\r\n");

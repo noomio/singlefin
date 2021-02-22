@@ -17,7 +17,6 @@ int gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb
 int gpio_pin_trigger(uint32_t pin);
 int gpio_pin_disable_irq(uint32_t pin);
 int gpio_pin_enable_irq(uint32_t pin);
-int gpio_pin_deactivate(uint32_t pin);
 int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
 int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
 int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
