@@ -7,9 +7,9 @@ int main(int argc, char * argv[])
 
 	puts("gpio_in\r\n");
 	
-	gpio_pin_config(18,QAPI_GPIO_12MA_E,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_INPUT_E);
-	gpio_pin_config(19,QAPI_GPIO_12MA_E,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_INPUT_E);
-	gpio_pin_config(26,QAPI_GPIO_12MA_E,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_INPUT_E);
+	gpio_pin_config(18,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
+	gpio_pin_config(19,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
+	gpio_pin_config(26,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
 
 	for(;;){
 
