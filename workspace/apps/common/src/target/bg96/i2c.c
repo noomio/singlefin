@@ -1,7 +1,7 @@
 #include "txm_module.h"
 #include "qapi_i2c_master.h"
 #include "i2c.h"
-
+#include "stdio.h"
 
 typedef struct {
     const i2c_num_t num;
@@ -25,10 +25,11 @@ static const struct i2c_list_entry i2c_module_consts[] = {
 };
 
 
-
+volatile int num = -1;
 static void invoke_i2c_callback_1(const uint32 status, void *param){
 	// param not passed correctly...
-	//int i2c_num = *(int*)param;
+	int i2c_num = *(int*)param;
+	num = i2c_num;
 	uint32_t expected;
 	//if(i2c_num >= 0 && i2c_num < I2C_MAX_NO){
 		while(__atomic_compare_exchange_n(
@@ -58,7 +59,7 @@ static void invoke_i2c_callback_2(const uint32 status, void *param){
 }
 
 
-
+const int param = 1;
 int i2c_transfer(i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_data_size, 
 	uint8_t *rx_data, size_t rx_data_size, uint32_t delay_us){
 
@@ -97,7 +98,7 @@ int i2c_transfer(i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_d
 		if(i2c_num == I2C1){
 			if(__atomic_load_n(&i2c_map_tbl[i2c_num].lock,__ATOMIC_SEQ_CST) == 0){
 				if(qapi_I2CM_Transfer(i2c_map_tbl[i2c_num].handle, &config, &desc[0], to_send, 
-					invoke_i2c_callback_1, &i2c_map_tbl[i2c_num].num, delay_us) == QAPI_OK){
+					invoke_i2c_callback_1, &param, delay_us) == QAPI_OK){
 					uint32_t expected;
 					while(__atomic_compare_exchange_n(
 						&i2c_map_tbl[i2c_num].lock,
@@ -105,7 +106,11 @@ int i2c_transfer(i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_d
 						1,
 						false,
 						__ATOMIC_SEQ_CST,
-						__ATOMIC_SEQ_CST) != 1);
+						__ATOMIC_SEQ_CST) != 1)
+						;
+
+						printf("num=%d\r\n",num);
+						num = -1;
 					return 0;
 				}
 

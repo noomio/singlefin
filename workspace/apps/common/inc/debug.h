@@ -5,8 +5,8 @@
  *      Author: Nikolas Karakotas
  */
 
-#ifndef TX_DEBUG_H_
-#define TX_DEBUG_H_
+#ifndef __920X_TX_DEBUG_H__
+#define __920X_TX_DEBUG_H__
 
 #include <stdio.h>
 #include "debug_opt.h"

@@ -1,5 +1,5 @@
-#ifndef __DSS_H__
-#define __DSS_H__
+#ifndef __920X_DSS_H__
+#define __920X_DSS_H__
 
 #ifdef __cplusplus
 extern "C" {

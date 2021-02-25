@@ -5,8 +5,8 @@
  *      Author: Nikolas Karakotas
  */
 
-#ifndef TX_DEBUG_OPT_H_
-#define TX_DEBUG_OPT_H_
+#ifndef __920X_TX_DEBUG_OPT_H__
+#define __920X_TX_DEBUG_OPT_H__
 
 #ifdef TX_USER_DEBUG_OPT
 #include TX_USER_DEBUG_OPT

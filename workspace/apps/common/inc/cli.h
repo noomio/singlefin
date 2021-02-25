@@ -5,8 +5,8 @@
  *      Author: Nikolas Karakotas
  */
 
-#ifndef CLI_H_
-#define CLI_H_
+#ifndef __920X_CLI_H__
+#define __920X_CLI_H__
 
 #define STDIO_IN_MAX 256
 #define STDIO_CMD_MAX 25
