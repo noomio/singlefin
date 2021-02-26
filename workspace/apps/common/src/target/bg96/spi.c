@@ -29,11 +29,12 @@ typedef struct {
 	volatile uint32_t   status;
 	volatile uint32_t 	lock;
 	volatile uint32_t 	signal;
+	bool				configured;
 }spi_map_tbl_t;
 
 spi_map_tbl_t spi_map_tbl[SPI_MAX_NO] = {
-    {  	SPI1,  QAPI_SPIM_INSTANCE_6_E,	NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_LOW, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0,	SPI_BPW_8,	SPI_DEFAULT_FREQ, 0, 0, 0, false, 0, 0, 0},
-    {  	SPI2,  QAPI_SPIM_INSTANCE_5_E,  NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_LOW, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0, SPI_BPW_8,	SPI_DEFAULT_FREQ, 0, 0, 0, false, 0, 0, 0}
+    {  	SPI1,  QAPI_SPIM_INSTANCE_6_E,	NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_LOW, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0,	SPI_BPW_8,	SPI_DEFAULT_FREQ, 0, 0, 0, false, 0, 0, 0, 0},
+    {  	SPI2,  QAPI_SPIM_INSTANCE_5_E,  NULL,	SPI_CS_KEEP_ASSERTED,	SPI_CS_ACTIVE_LOW, SPI_BYTE_ORDER_LITTLE_ENDIAN,	SPI_MODE_0, SPI_BPW_8,	SPI_DEFAULT_FREQ, 0, 0, 0, false, 0, 0, 0, 0}
 };
 
 static const struct spi_list_entry spi_module_consts[] = {
@@ -48,29 +49,32 @@ void spi_cb_func(uint32 status, void *cb_para){
 	int spi_num = *((int*)cb_para);
 	uint32_t expected;
 
-	spi_map_tbl[spi_num].status = status; // no need for atomic
-    
-    if (QAPI_SPI_COMPLETE == status){
-    	while(__atomic_compare_exchange_n(
-					&spi_map_tbl[spi_num].signal,
-					&expected,
-					1,
-					false,
-					__ATOMIC_SEQ_CST,
-					__ATOMIC_SEQ_CST) != 1);
-    	
+	if(spi_num >= SPI1 && spi_num <=SPI2 ){
 
-    }else if (QAPI_SPI_QUEUED == status || QAPI_SPI_IN_PROGRESS == status){
+		spi_map_tbl[spi_num].status = status; // no need for atomic
+	    
+	    if (QAPI_SPI_COMPLETE == status){
+	    	while(__atomic_compare_exchange_n(
+						&spi_map_tbl[spi_num].signal,
+						&expected,
+						1,
+						false,
+						__ATOMIC_SEQ_CST,
+						__ATOMIC_SEQ_CST) != 1);
+	    	
 
-    }else{
-    	while(__atomic_compare_exchange_n(
-					&spi_map_tbl[spi_num].signal,
-					&expected,
-					1,
-					false,
-					__ATOMIC_SEQ_CST,
-					__ATOMIC_SEQ_CST) != 1);
-    }
+	    }else if (QAPI_SPI_QUEUED == status || QAPI_SPI_IN_PROGRESS == status){
+
+	    }else{
+	    	while(__atomic_compare_exchange_n(
+						&spi_map_tbl[spi_num].signal,
+						&expected,
+						1,
+						false,
+						__ATOMIC_SEQ_CST,
+						__ATOMIC_SEQ_CST) != 1);
+	    }
+	}
 
 }
 
@@ -97,7 +101,10 @@ int spi_config(spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		if(qapi_SPIM_Open(spi_map_tbl[spi_num].instance, &spi_map_tbl[spi_num].handle) == QAPI_OK 
 			&& !spi_map_tbl[spi_num].lock){
-			return qapi_SPIM_Power_On(spi_map_tbl[spi_num].handle);
+			if(qapi_SPIM_Power_On(spi_map_tbl[spi_num].handle) == QAPI_OK){
+				spi_map_tbl[spi_num].configured = true;
+				return 0;
+			}
 		}
 	}
 
@@ -107,8 +114,12 @@ int spi_config(spi_num_t spi_num){
 
 int spi_deconfig(spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
-		if(qapi_SPIM_Close(spi_map_tbl[spi_num].handle) == QAPI_OK)
-			return qapi_SPIM_Power_Off(spi_map_tbl[spi_num].handle);
+		if(qapi_SPIM_Close(spi_map_tbl[spi_num].handle) == QAPI_OK){
+			if(qapi_SPIM_Power_Off(spi_map_tbl[spi_num].handle) == QAPI_OK){
+				spi_map_tbl[spi_num].configured = false;
+				return 0;
+			}
+		}
 	}
 
 	return 1;
@@ -209,7 +220,7 @@ int spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t len){
 }
 
 int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t len){
-	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
+	if((spi_num >= 0 && spi_num < SPI_MAX_NO) && spi_map_tbl[spi_num].configured){
 		
 		qapi_SPIM_Config_t config;
 		config.SPIM_Mode = (qapi_SPIM_Shift_Mode_t)spi_map_tbl[spi_num].mode;
