@@ -11,11 +11,12 @@ typedef struct {
 	uint32_t transferred2;
 	uint32_t frequency;
 	volatile uint32_t lock;
+	bool configured;
 }i2c_map_tbl_t;
 
 i2c_map_tbl_t i2c_map_tbl[I2C_MAX_NO] = {
-    {  	I2C1,  QAPI_I2CM_INSTANCE_004_E,      	NULL,	0,	0, I2C_DEFAULT_FREQ, 0},
-    {  	I2C2,  QAPI_I2CM_INSTANCE_005_E,      	NULL,	0,	0, I2C_DEFAULT_FREQ, 0}
+    {  	I2C1,  QAPI_I2CM_INSTANCE_004_E,      	NULL,	0,	0, I2C_DEFAULT_FREQ, 0, 0},
+    {  	I2C2,  QAPI_I2CM_INSTANCE_005_E,      	NULL,	0,	0, I2C_DEFAULT_FREQ, 0, 0}
 };
 
 static const struct i2c_list_entry i2c_module_consts[] = {
@@ -64,7 +65,7 @@ int i2c_transfer(i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_d
 	uint8_t *rx_data, size_t rx_data_size, uint32_t delay_us){
 
 
-	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO){
+	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO && i2c_map_tbl[i2c_num].configured){
 
 	    qapi_I2CM_Config_t config;
 	   	qapi_I2CM_Descriptor_t desc[2];
@@ -148,7 +149,7 @@ int i2c_start(i2c_num_t i2c_num){
 	qapi_I2CM_Config_t config;
 	qapi_I2CM_Descriptor_t desc[1];
 
-	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO){
+	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO && i2c_map_tbl[i2c_num].configured){
 
 	   	// Configure the bus speed and slave address
 		config.bus_Frequency_KHz = i2c_map_tbl[i2c_num].frequency; 
@@ -175,7 +176,7 @@ int i2c_stop(i2c_num_t i2c_num){
     qapi_I2CM_Config_t config;
    	qapi_I2CM_Descriptor_t desc[2];
 
-	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO){
+	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO && i2c_map_tbl[i2c_num].configured){
 
 	   	// Configure the bus speed and slave address
 		config.bus_Frequency_KHz = i2c_map_tbl[i2c_num].frequency; 
@@ -203,7 +204,10 @@ int i2c_config(i2c_num_t i2c_num){
 	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO){
 		if(qapi_I2CM_Open(i2c_map_tbl[i2c_num].instance, &i2c_map_tbl[i2c_num].handle) == QAPI_OK 
 			&& !i2c_map_tbl[i2c_num].lock){
-	   		return qapi_I2CM_Power_On(i2c_map_tbl[i2c_num].handle);
+	   		if(qapi_I2CM_Power_On(i2c_map_tbl[i2c_num].handle)){
+	   			i2c_map_tbl[i2c_num].configured = true;
+	   			return 0;
+	   		}
 	    }
 	}
 
@@ -212,8 +216,12 @@ int i2c_config(i2c_num_t i2c_num){
 
 int i2c_deconfig(i2c_num_t i2c_num){
 	if(i2c_num >= 0 && i2c_num < I2C_MAX_NO){
-		if(qapi_I2CM_Close (i2c_map_tbl[i2c_num].handle) == QAPI_OK)
-			return qapi_I2CM_Power_Off(i2c_map_tbl[i2c_num].handle);
+		if(qapi_I2CM_Close (i2c_map_tbl[i2c_num].handle) == QAPI_OK){
+			if(qapi_I2CM_Power_Off(i2c_map_tbl[i2c_num].handle) == QAPI_OK){
+				i2c_map_tbl[i2c_num].configured = false;
+				return 0;
+			}
+		}
 	}
 
 	return 1;
