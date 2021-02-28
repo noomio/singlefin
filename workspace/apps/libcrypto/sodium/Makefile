@@ -19,7 +19,7 @@ ASFLAGS		:= -Wall -Os
 CFLAGS		:= -Wall -Os -DRANDOMBYTES_CUSTOM_IMPLEMENTATION -DRANDOMBYTES_DEFAULT_IMPLEMENTATION=NULL -DSODIUM_STATIC
 CXXFLAGS	:= -Wall -Os 
 INCDIRS		:= -I . -I ./include -I./include/sodium -I./include/sodium/private -I$(LLVM)/armv7m-none-eabi/libc/include
-SRCDIRS		:= . crypto_hash crypto_stream randombytes
+SRCDIRS		:= . crypto_hash crypto_stream crypto_auth crypto_sign crypto_verify randombytes
 
 SFILES		:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.S))
 CFILES		:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
