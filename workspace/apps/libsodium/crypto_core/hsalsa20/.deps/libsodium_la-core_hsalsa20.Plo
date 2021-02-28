@@ -1,0 +1,29 @@
+crypto_core/hsalsa20/libsodium_la-core_hsalsa20.lo: \
+ crypto_core/hsalsa20/core_hsalsa20.c \
+ include/sodium/crypto_core_hsalsa20.h \
+ /usr/lib/gcc/x86_64-pc-cygwin/10/include/stddef.h \
+ include/sodium/export.h \
+ /usr/lib/gcc/x86_64-pc-cygwin/10/include/stdint.h /usr/include/stdint.h \
+ /usr/include/machine/_default_types.h /usr/include/sys/features.h \
+ /usr/include/_newlib_version.h /usr/include/sys/_intsup.h \
+ /usr/include/sys/_stdint.h \
+ /usr/lib/gcc/x86_64-pc-cygwin/10/include/limits.h \
+ /usr/lib/gcc/x86_64-pc-cygwin/10/include/syslimits.h \
+ /usr/include/limits.h /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h
+include/sodium/crypto_core_hsalsa20.h:
+/usr/lib/gcc/x86_64-pc-cygwin/10/include/stddef.h:
+include/sodium/export.h:
+/usr/lib/gcc/x86_64-pc-cygwin/10/include/stdint.h:
+/usr/include/stdint.h:
+/usr/include/machine/_default_types.h:
+/usr/include/sys/features.h:
+/usr/include/_newlib_version.h:
+/usr/include/sys/_intsup.h:
+/usr/include/sys/_stdint.h:
+/usr/lib/gcc/x86_64-pc-cygwin/10/include/limits.h:
+/usr/lib/gcc/x86_64-pc-cygwin/10/include/syslimits.h:
+/usr/include/limits.h:
+/usr/include/features.h:
+/usr/include/sys/cdefs.h:
+/usr/include/bits/wordsize.h:
