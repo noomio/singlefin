@@ -11,7 +11,7 @@
 #include <malloc.h>
 #include <getopt.h>
 #include <ctype.h>
-#include <txm_module.h>
+#include <qapi_txm_base.h>
 #include <unistd.h>
 #include <dirent.h>
 #include <qapi_fs_types.h>

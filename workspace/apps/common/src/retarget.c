@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include "qapi_uart.h"
-#include "txm_module.h"
+#include "qapi_txm_base.h"
 #include <locale.h>
 #include "cli.h"
 

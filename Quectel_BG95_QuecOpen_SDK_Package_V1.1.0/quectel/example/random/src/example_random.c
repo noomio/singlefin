@@ -20,6 +20,7 @@
 #include "quectel_uart_apis.h"
 #include "example_random.h"
 #include "qapi_device_info.h"
+#include "tx_api.h"
 #include "qapi_quectel.h"
 #include <locale.h>
 
