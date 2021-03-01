@@ -132,16 +132,17 @@ static TLS InternalRandom stream = {
 
 /* platform dependent. provide implementations */
 extern void hwrandombytes(uint8_t *buf, uint64_t size );
+extern uint64_t cputimeusecs(void);
 
 static uint64_t
 sodium_hrtime(void)
 {
-    struct timeval tv;
+    uint64_t ticks;
 
-    if (gettimeofday(&tv, NULL) != 0) {
+    if ((ticks = cputimeusecs()) == 0) {
         sodium_misuse(); /* LCOV_EXCL_LINE */
     }
-    return ((uint64_t) tv.tv_sec) * 1000000U + (uint64_t) tv.tv_usec;
+    return ticks;
 }
 
 static int
