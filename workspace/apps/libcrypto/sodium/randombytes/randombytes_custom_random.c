@@ -186,12 +186,12 @@ randombytes_custom_random_init(void)
 
     if (randombytes_getentropy(fodder, sizeof fodder) == 0) {
         global.getentropy_available = 1;
-        errno = errno_save;
+        //errno = errno_save;  makes it fails??
         return;
     }
   
 
-    errno = errno_save;
+    //errno = errno_save;
     return;
 
 }

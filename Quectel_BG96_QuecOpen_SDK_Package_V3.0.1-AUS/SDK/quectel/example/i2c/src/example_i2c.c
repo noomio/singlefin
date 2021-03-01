@@ -85,9 +85,19 @@ void quectel_dbg_uart_init(qapi_UART_Port_Id_e port_id)
 
 
 // Transfer completed
-int32 CB_Parameter;
+int32 CB_Parameter = -1;
+volatile bool error = false;
 void client_callback (const uint32 status, void *cb_para)  //  uint32
 {
+
+    int32 val = *(int32*)cb_para;
+    if(val == -1) { // should be -1
+       // ok
+      error = false;
+    }else{
+      // error  <------ always error
+      error = true;
+    }
  
 }
 
@@ -241,8 +251,9 @@ int quectel_task_entry(void)
    // write the register
    res = i2c_write(slave_Address, reg, wbuf, 2); 
     
-   qapi_Timer_Sleep(500, QAPI_TIMER_UNIT_MSEC, true);
+   qapi_Timer_Sleep(1000, QAPI_TIMER_UNIT_MSEC, true);
    qt_uart_dbg(uart_conf.hdlr,"i2c_write:res=%d\r\n", res);
+   qt_uart_dbg(uart_conf.hdlr,"CB_Param error:=%u\r\n", error);
   
     // read the register again
    res = i2c_read(slave_Address, reg);   
