@@ -79,10 +79,11 @@ common/src/file.c \
 common/src/cli.c \
 common/src/time.c \
 common/src/strings.c \
-common/src/random.c \
+common/src/hwrandom.c \
 
-
-LIBS = 
+INCDIR = -I../../libcrypto/sodium/include -I../../libcrypto/sodium/include/sodium -I../../libcrypto/sodium/randombytes
+LIBS_PATH = ../../libcrypto/sodium
+LIBS = -lsodium
 
 SRCS = main.c 
 
@@ -114,7 +115,8 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	-Wl,-T $(DAM_LD_PATH)/sections.ld \
 	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
 	-Wl,-gc-sections \
-	-L $(LIBS) \
+	-L $(LIBS_PATH) \
+	$(LIBS) \
 	$(DAM_LIB_PATH)/*.lib
 	@echo 'Finished building target: $@'
 	@echo ' '

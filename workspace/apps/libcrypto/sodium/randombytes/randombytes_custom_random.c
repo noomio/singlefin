@@ -131,25 +131,24 @@ static TLS InternalRandom stream = {
 };
 
 /* platform dependent. provide implementations */
-extern void randombytes(uint8_t *buf, uint64_t size );
-extern uint64_t qurt_timer_get_ticks(void);
+extern void hwrandombytes(uint8_t *buf, uint64_t size );
 
 static uint64_t
 sodium_hrtime(void)
 {
-    uint64_t ticks;
+    struct timeval tv;
 
-    if ((ticks = qurt_timer_get_ticks()) == 0) {
-        sodium_misuse(); 
+    if (gettimeofday(&tv, NULL) != 0) {
+        sodium_misuse(); /* LCOV_EXCL_LINE */
     }
-    return ticks;
+    return ((uint64_t) tv.tv_sec) * 1000000U + (uint64_t) tv.tv_usec;
 }
 
 static int
 _randombytes_getentropy(void * const buf, const size_t size)
 {
     assert(size <= 256U);
-    randombytes(buf, size);
+    hwrandombytes(buf, size);
     return 0;
 }
 
