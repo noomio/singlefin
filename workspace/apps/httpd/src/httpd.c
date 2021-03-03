@@ -5,7 +5,6 @@
 #include "debug.h"
 #include "httpd.h"
 
-
 httpd_t * httpd_new(const char *addr, uint32_t port){
 	httpd_t *ctx = malloc(sizeof(httpd_t));
 	if(addr == NULL)
@@ -37,8 +36,7 @@ __attribute__ ((noreturn)) void httpd_start(httpd_t *ctx){
 
 	TX_DEBUGF(HTTPD_DBG,("httpd: waiting for network...\n"));
 
-	uint32_t received_sigs = 0;
-	tx_event_flags_get(ctx->notify.evt, QAPI_DSS_EVT_NET_IS_CONN_E, TX_OR_CLEAR, &received_sigs, TX_WAIT_FOREVER);
+	dss_wait_conn_notify(ctx);
 
 	ctx->socket = qapi_socket(AF_INET,SOCK_STREAM,0);
 

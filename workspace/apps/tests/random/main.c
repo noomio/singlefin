@@ -18,7 +18,7 @@ int main(int argc, char * argv[])
 	uint8_t buf[255];
 	puts("random\r\n");
 
-
+	sodium_set_misuse_handler(sodium_misuse_handler);
     randombytes_set_implementation(&randombytes_custom_implementation);
 
 	if(sodium_init() == 0) {

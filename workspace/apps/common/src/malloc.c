@@ -65,7 +65,6 @@ qapi_Status_t malloc_byte_pool_init(void)
 {
  	int ret;
 
-
 	/* Allocate byte_pool_dam (memory heap) */
 	ret = txm_module_object_allocate(&byte_malloc_mem_pool, sizeof(TX_BYTE_POOL));
 	TX_ASSERT("malloc_byte_pool_init\r\n",ret == TX_SUCCESS);

@@ -15,6 +15,8 @@ extern "C" {
 #include "qapi_uart.h"
 #include "qapi_timer.h"
 #include "qapi_device_info.h"
+#include "qapi_socket.h"
+#include "qapi_ns_utils.h"
 
 #define DSS_ADDR_SIZE 48
 
@@ -51,6 +53,11 @@ typedef struct dss_ctx{
 extern dss_ctx_t *dss_ctx_store[DSS_CONCURRENT_NUM];
 
 #define dss_set_notify(ctx, tobenotified) do { (ctx)->notify = &(tobenotified)->notify; } while (0) 
+#define dss_wait_conn_notify(N) \
+do { 	\
+	uint32_t N##_received_sigs = 0; \
+	tx_event_flags_get(N->notify->evt, QAPI_DSS_EVT_NET_IS_CONN_E, TX_OR_CLEAR, &N##_received_sigs, TX_WAIT_FOREVER); \
+} while (0)
 
 dss_ctx_t *dss_new(const char *apn, const char *password, const char *username);
 int dss_start(dss_ctx_t *ctx);

@@ -11,9 +11,7 @@
 
 
 
-int main(void)
-{
-
+int main(void){
 
 	qapi_Net_Ifnameindex_t itf[10];
 	int itf_no = qapi_Net_Get_All_Ifnames (&itf);

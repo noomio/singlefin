@@ -11,7 +11,7 @@
 
 @
 
-    .extern quectel_task_entry
+    .extern task_main_entry
 
 
 @
@@ -55,13 +55,13 @@ _txm_module_preamble:
   .p2align 2
         .word 140 @ Module Start/Stop Thread Priority
   .p2align 2
-        .word 8192 @ Module Start/Stop Thread Stack Size
+        .word 16384 @ Module Start/Stop Thread Stack Size
   .p2align 2
         .word _txm_module_callback_request_thread_entry - . + . @ Module Callback Thread Entry
   .p2align 2
         .word 25 @ Module Callback Thread Priority
         .p2align 2
-        .word 2046 @ Module Callback Thread Stack Size
+        .word 2024 @ Module Callback Thread Stack Size
   .p2align 2
         .word (Image$$ER_RO$$Length) @ Module Code Size
 
