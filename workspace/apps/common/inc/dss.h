@@ -29,6 +29,7 @@ typedef struct dss_notify{
 	TX_EVENT_FLAGS_GROUP *evt;
 	char addr[DSS_ADDR_SIZE];
 	dss_data_call_status_cb_t cb;
+	bool timed_out;
 }dss_notify_t;
 
 #define __DSS_NOTIFY__ dss_notify_t notify
@@ -53,10 +54,10 @@ typedef struct dss_ctx{
 extern dss_ctx_t *dss_ctx_store[DSS_CONCURRENT_NUM];
 
 #define dss_set_notify(ctx, tobenotified) do { (ctx)->notify = &(tobenotified)->notify; } while (0) 
-#define dss_wait_conn_notify(N) \
+#define dss_wait_conn_notify(N,T) \
 do { 	\
 	uint32_t N##_received_sigs = 0; \
-	tx_event_flags_get(N->notify->evt, QAPI_DSS_EVT_NET_IS_CONN_E, TX_OR_CLEAR, &N##_received_sigs, TX_WAIT_FOREVER); \
+	N->notify->timed_out = tx_event_flags_get(N->notify->evt, QAPI_DSS_EVT_NET_IS_CONN_E, TX_OR_CLEAR, &N##_received_sigs, T); \
 } while (0)
 
 dss_ctx_t *dss_new(const char *apn, const char *password, const char *username);

@@ -4,22 +4,22 @@
 
 #include <stdio.h>
 #include "qapi_httpc.h"
-
+#include "qapi_socket.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define HTTP_CLIENT_SESSIONS_MAX	2
-#define HTTP_CLIENT_BYTE_POOL_SIZE		512
+#define HTTP_CLIENT_SESSIONS_MAX	1
+#define HTTP_CLIENT_BYTE_POOL_SIZE		5120*HTTP_CLIENT_SESSIONS_MAX
 #define HTTP_CLIENT_BODY_LEN	1024
 #define HTTP_CLIENT_HEADER_LEN	512
-#define HTTP_CLIENT_TIMEOUT		10 // secs
+#define HTTP_CLIENT_TIMEOUT		10000 // secs
 
 typedef struct http_client_ctx{
 	qapi_Net_HTTPc_handle_t handle;
 	TX_BYTE_POOL *byte_pool;
-	char mem[HTTP_CLIENT_BYTE_POOL_SIZE];
+	qapi_Net_HTTPc_Config_t *httpc_cfg;
 } http_client_ctx_t;
 
 http_client_ctx_t *htpp_client_new(void);

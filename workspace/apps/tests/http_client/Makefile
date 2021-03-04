@@ -65,7 +65,7 @@ TARGET_NAME = http_client
 BUILDDIR = out
 MODULE = bg96
 
-USER_OPTS = 
+USER_OPTS = -DTX_DEBUG -DTX_USER_DEBUG_OPT=\"../../tests/http_client/user_debug_opt.h\"
 
 COMMON_DIR = ../../common/
 COMMON_INC = $(COMMON_DIR)/inc
@@ -80,6 +80,7 @@ common/src/cli.c \
 common/src/time.c \
 common/src/strings.c \
 common/src/dss.c \
+common/src/http_client.c
 
 LIBS = 
 
