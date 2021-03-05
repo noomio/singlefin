@@ -3,13 +3,13 @@
 
 char http_client_mem[HTTP_CLIENT_BYTE_POOL_SIZE];
 
-void http_client_cb(void* arg, int32 state, void* http_resp){
+static void http_client_cb(void* arg, int state, void* http_resp){
     
     http_client_ctx_t *ctx = (http_client_ctx_t*)arg;
 
     qapi_Net_HTTPc_Response_t * resp = (qapi_Net_HTTPc_Response_t *)http_resp;
 
-	TX_DEBUGF(HTTP_CLIENT_DBG,("%p,state=%ld,len=%u,code=%u\r\n",arg,state,resp->length,resp->resp_Code));
+	TX_DEBUGF(HTTP_CLIENT_DBG,("%p,state=%d,len=%u,code=%u\r\n",arg,state,resp->length,resp->resp_Code));
 
     if( resp->resp_Code >= 200 && resp->resp_Code < 300){
     	
@@ -58,7 +58,9 @@ do{ \
 
 
 static void *http_client_new_session(http_client_ctx_t *ctx, uint32_t t, uint32_t blen, uint32_t hlen){
-	ctx->handle = qapi_Net_HTTPc_New_sess(t, NULL, http_client_cb, ctx, blen, hlen); 
+	qapi_HTTPc_CB_t cb;
+	cb = (ctx->user_callback != NULL) ? ctx->user_callback : http_client_cb;
+	ctx->handle = qapi_Net_HTTPc_New_sess(t, NULL, cb, ctx, blen, hlen); 
 	TX_ASSERT("http_client: session ctx->handle != NULL\r\n",(ctx->handle != NULL)); 
 	if(ctx->handle){ 
 		htpp_client_set_default_config(ctx);
