@@ -22,16 +22,16 @@ int main(int argc, char * argv[]){
 
 	puts("spi1\r\n");
 
-	int res = spi_config(SPI2);
+	int res = spi_config(SPI1);
 	//spi_set_loopback(SPI1,true);
-	spi_config_dump(SPI2);
-	const char *name = spi_get_name(SPI2);
+	spi_config_dump(SPI1);
+	const char *name = spi_get_name(SPI1);
 
 	printf("spi1 config=%d\r\n",res);
 
 	for(;;){
 
-		res = spi_send_receive(SPI2,&addr,&version,1);
+		res = spi_send_receive(SPI1,&addr,&version,1);
 
 		printf("%s: error=%d, version=%u\r\n",name,res,version);
 

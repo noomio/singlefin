@@ -91,6 +91,8 @@ void client_callback (const uint32 status, void *cb_para)  //  uint32
 {
 
     int32 val = *(int32*)cb_para;
+    qt_uart_dbg(uart_conf.hdlr,"callback: CB_Parameter=%d,%p\r\n", val,cb_para);
+
     if(val == -1) { // should be -1
        // ok
       error = false;
@@ -141,6 +143,7 @@ qapi_Status_t i2c_read (uint8 slave_Address, uint8 reg)
    desc[1].transferred = (uint32)&transferred2;
    desc[1].flags       = QAPI_I2C_FLAG_START | QAPI_I2C_FLAG_READ  | QAPI_I2C_FLAG_STOP;
 
+   qt_uart_dbg(uart_conf.hdlr,"i2c_read: CB_Parameter=%d,%p\r\n", CB_Parameter,&CB_Parameter);
    res = qapi_I2CM_Transfer (client_handle, &config, &desc, 2, client_callback, &CB_Parameter, 100);   
 
    return res;
@@ -178,7 +181,7 @@ qapi_Status_t i2c_write (uint8 slave_Address, uint8 reg, uint8 *wbuf, uint8 len)
    desc[0].transferred = (uint32)&transferred1;
    desc[0].flags       = QAPI_I2C_FLAG_START | QAPI_I2C_FLAG_WRITE | QAPI_I2C_FLAG_STOP;
 
-
+   qt_uart_dbg(uart_conf.hdlr,"i2c_write: CB_Parameter=%d,%p\r\n", CB_Parameter,&CB_Parameter);
    res = qapi_I2CM_Transfer (client_handle, &config, &desc[0], 1, client_callback, &CB_Parameter, 100);
  
    return res;

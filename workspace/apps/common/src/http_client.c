@@ -5,6 +5,8 @@ char http_client_mem[HTTP_CLIENT_BYTE_POOL_SIZE];
 
 void http_client_cb(void* arg, int32 state, void* http_resp){
     
+    http_client_ctx_t *ctx = (http_client_ctx_t*)arg;
+
     qapi_Net_HTTPc_Response_t * resp = (qapi_Net_HTTPc_Response_t *)http_resp;
 
 	TX_DEBUGF(HTTP_CLIENT_DBG,("%p,state=%ld,len=%u,code=%u\r\n",arg,state,resp->length,resp->resp_Code));
@@ -13,12 +15,11 @@ void http_client_cb(void* arg, int32 state, void* http_resp){
     	
         if(resp->data != NULL && state >= 0){
         	TX_DEBUGF(HTTP_CLIENT_DBG,("%s\r\n",(char*)resp->data));
+        	tx_event_flags_set(ctx->evt, HTTP_CLIENT_DATA_EVT_DONE, TX_OR);
         }
     }
 
-    tx_byte_release(resp->data);
-	tx_byte_release(resp->rsp_hdr);
-	tx_byte_release(http_resp);
+ 
 }
 
 #define http_client_start() qapi_Net_HTTPc_Start()
@@ -57,7 +58,7 @@ do{ \
 
 
 static void *http_client_new_session(http_client_ctx_t *ctx, uint32_t t, uint32_t blen, uint32_t hlen){
-	ctx->handle = qapi_Net_HTTPc_New_sess(t, NULL, http_client_cb, NULL, blen, hlen); 
+	ctx->handle = qapi_Net_HTTPc_New_sess(t, NULL, http_client_cb, ctx, blen, hlen); 
 	TX_ASSERT("http_client: session ctx->handle != NULL\r\n",(ctx->handle != NULL)); 
 	if(ctx->handle){ 
 		htpp_client_set_default_config(ctx);
@@ -71,10 +72,18 @@ http_client_ctx_t *htpp_client_new(void){
 	http_client_ctx_t *ctx = malloc(sizeof(http_client_ctx_t));
 	txm_module_object_allocate(&ctx->byte_pool, sizeof(TX_BYTE_POOL)); 
 	tx_byte_pool_create(ctx->byte_pool, "http_client_mem", http_client_mem, sizeof(http_client_mem)); 
+	txm_module_object_allocate(&ctx->evt, sizeof(TX_EVENT_FLAGS_GROUP));
+	tx_event_flags_create(ctx->evt, "http_client evt");
 	return ctx;
 }
 
 int htpp_client_free(http_client_ctx_t *ctx){
+	tx_byte_pool_delete(ctx->byte_pool);
+	txm_module_object_deallocate(&ctx->byte_pool);
+	tx_event_flags_delete(ctx->evt);
+	txm_module_object_deallocate(&ctx->evt);
+	free(ctx->httpc_cfg->sock_options);
+	free(ctx->httpc_cfg);
 	free(ctx);
 	return 0;
 }
@@ -118,15 +127,17 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 			TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_session_connected\r\n")); 
 			if(qapi_Net_HTTPc_Request(ctx->handle,QAPI_NET_HTTP_CLIENT_GET_E, url) == QAPI_OK){
 				TX_DEBUGF(HTTP_CLIENT_DBG,("http client request successful\r\n")); 
-				
-				//http_client_session_disconnect(ctx);
+				// wait
+				uint32_t signal = 0; 
+				tx_event_flags_get(ctx->evt, HTTP_CLIENT_DATA_EVT_DONE, TX_OR_CLEAR, &signal, HTTP_CLIENT_TIMEOUT);
+				http_client_session_disconnect(ctx);
 				err = 0;
 			}
 		}
-		//http_client_session_free(ctx);
+		http_client_session_free(ctx);
 	}
 
-	//qapi_Net_HTTPc_Clear_Header(ctx->handle);	
+	qapi_Net_HTTPc_Clear_Header(ctx->handle);	
 	return err;	
 
 }
