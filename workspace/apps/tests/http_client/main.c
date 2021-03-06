@@ -19,6 +19,17 @@ int main(int argc, char * argv[])
 	http_client_ctx_t *ctx = htpp_client_new();
 	htpp_client_get(ctx, "13.237.19.148", 80, "test.html");
 
+	struct list_head *iter;
+	http_client_for_each(iter,ctx){
+		char *data = (char *)list_entry(iter,http_client_entry_t, head )->data;
+		if(data){
+			printf("%s",data);
+			list_del(iter);
+			free(data);
+			void *p = htpp_client_has_data(ctx);
+			printf("p=%p\r\n",p);
+		}
+	}
 
 	for(;;){
 		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);

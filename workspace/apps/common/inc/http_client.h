@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "qapi_httpc.h"
 #include "qapi_socket.h"
+#include "list.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,16 +19,27 @@ extern "C" {
 
 #define HTTP_CLIENT_DATA_EVT_DONE	(1 >> 0)
 
+typedef struct http_entry_list {
+	struct list_head head;
+	char *data;
+	uint32_t data_len;
+	char *header;
+	uint32_t header_len;
+	uint32_t code;
+} http_client_entry_t;
+
 typedef struct http_client_ctx{
 	qapi_Net_HTTPc_handle_t handle;
 	TX_BYTE_POOL *byte_pool;
 	qapi_Net_HTTPc_Config_t *httpc_cfg;
 	TX_EVENT_FLAGS_GROUP *evt;
-	qapi_Net_HTTPc_Response_t response;
+	struct list_head list;
 	qapi_HTTPc_CB_t user_callback;
 } http_client_ctx_t;
 
 #define htpp_client_set_user_callback(ctx,cb) do{ ctx->user_callback = cb } while(0)
+#define http_client_for_each(p,ctx) list_for_each(p,&ctx->list)
+#define htpp_client_has_data(ctx) list_first_entry_or_null(&ctx->list, http_client_entry_t,head)
 
 http_client_ctx_t *htpp_client_new(void);
 int htpp_client_free(http_client_ctx_t *ctx);

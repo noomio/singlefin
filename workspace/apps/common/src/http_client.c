@@ -11,10 +11,22 @@ static void http_client_cb(void* arg, int state, void* http_resp){
 
 	TX_DEBUGF(HTTP_CLIENT_DBG,("%p,state=%d,len=%u,code=%u\r\n",arg,state,resp->length,resp->resp_Code));
 
+    http_client_entry_t *entry = malloc(sizeof(http_client_entry_t));
+    if(entry)
+    	entry->code = resp->resp_Code;
+
     if( resp->resp_Code >= 200 && resp->resp_Code < 300){
     	
         if(resp->data != NULL && state >= 0){
-        	TX_DEBUGF(HTTP_CLIENT_DBG,("%s\r\n",(char*)resp->data));
+        	if(entry){
+        		entry->data = malloc(resp->length+1); // add null
+        		if(entry->data){
+        			memcpy(entry->data,resp->data,resp->length);
+        			entry->data[resp->length+1] = '\0';
+        			entry->data_len = resp->length;
+        			list_add(&entry->head,&ctx->list);
+        		}
+        	}
         	tx_event_flags_set(ctx->evt, HTTP_CLIENT_DATA_EVT_DONE, TX_OR);
         }
     }
@@ -71,11 +83,13 @@ static void *http_client_new_session(http_client_ctx_t *ctx, uint32_t t, uint32_
 
 
 http_client_ctx_t *htpp_client_new(void){
+	http_client_start();
 	http_client_ctx_t *ctx = malloc(sizeof(http_client_ctx_t));
 	txm_module_object_allocate(&ctx->byte_pool, sizeof(TX_BYTE_POOL)); 
 	tx_byte_pool_create(ctx->byte_pool, "http_client_mem", http_client_mem, sizeof(http_client_mem)); 
 	txm_module_object_allocate(&ctx->evt, sizeof(TX_EVENT_FLAGS_GROUP));
 	tx_event_flags_create(ctx->evt, "http_client evt");
+	init_list_head(&ctx->list);
 	return ctx;
 }
 
@@ -87,6 +101,7 @@ int htpp_client_free(http_client_ctx_t *ctx){
 	free(ctx->httpc_cfg->sock_options);
 	free(ctx->httpc_cfg);
 	free(ctx);
+	http_client_stop();
 	return 0;
 }
 
@@ -117,12 +132,12 @@ int htpp_client_set_body(http_client_ctx_t *ctx, const char *body, uint32_t len)
 
 int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const char *path){
 
-	http_client_start();
+
 	int err = 1;
 	char url[128];
 
 	snprintf(url,sizeof(url),"http://%s/%s",host,path);
-	TX_DEBUGF(HTTP_CLIENT_DBG,("htpp_client_get: url=%s port=%u \r\n",url,port));
+	TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_get: url=%s port=%u \r\n",url,port));
 
 	if(http_client_new_session(ctx,HTTP_CLIENT_TIMEOUT,HTTP_CLIENT_BODY_LEN,HTTP_CLIENT_HEADER_LEN) != NULL){
 		if(http_client_session_connect(ctx,host,port) == QAPI_OK){
