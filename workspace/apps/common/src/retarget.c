@@ -249,20 +249,26 @@ int __wrap_printf(const char *format, ...){
 
 	va_list ap;
 	int len;
-	static char stdout_buf[TX_PRINTF_LEN];
 
 	if(!handle)
 		return 0;
 
-		
+	
+	char *stdout_buf = malloc(TX_PRINTF_LEN);
+	if(!stdout_buf)
+		return 0;
+	
 	va_start( ap, format );
 	len = vsnprintf_( stdout_buf, (size_t)TX_PRINTF_LEN, format, ap );
 	va_end( ap );
 	
 	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
+
 	
 	if(qapi_UART_Transmit(handle, stdout_buf, len, NULL) == TX_SUCCESS)
 		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
+
+	free(stdout_buf);
 
 	tx_mutex_put(out_tx_mutex);
 

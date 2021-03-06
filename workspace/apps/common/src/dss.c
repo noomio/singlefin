@@ -78,7 +78,7 @@ void device_info_cb(qapi_Device_Info_Hndl_t device_info_hndl, const qapi_Device_
 		switch(dev_info->info_type)
 		{
 			case QAPI_DEVICE_INFO_TYPE_BOOLEAN_E:
-				//TX_DEBUGF(DSS_DBG,("%c: %d\r\n", dev_info->id, dev_info->u.valuebool));
+				TX_DEBUGF(DSS_DBG,("%c: %d\r\n", dev_info->id, dev_info->u.valuebool));
 				if(dev_info->u.valuebool == true){
 					if(evt != NULL){
 						tx_event_flags_set(evt, QAPI_DEVICE_INFO_NETWORK_IND_E, TX_OR); 
@@ -87,13 +87,13 @@ void device_info_cb(qapi_Device_Info_Hndl_t device_info_hndl, const qapi_Device_
 			break;
 
 			case QAPI_DEVICE_INFO_TYPE_INTEGER_E:
-				//TX_DEBUGF(DSS_DBG,("%c: %lld\r\n", dev_info->id, dev_info->u.valueint));
+				TX_DEBUGF(DSS_DBG,("%c: %lld\r\n", dev_info->id, dev_info->u.valueint));
 			break;
 
 			case QAPI_DEVICE_INFO_TYPE_BUFFER_E:
-				//TX_DEBUGF(DSS_DBG,("%c: %s\r\n", dev_info->id, dev_info->u.valuebuf.buf));
+				TX_DEBUGF(DSS_DBG,("%c: %s\r\n", dev_info->id, dev_info->u.valuebuf.buf));
 			default:
-				//TX_DEBUGF(DSS_DBG,("%c: %s\r\n", dev_info->id, "NULL"));
+				TX_DEBUGF(DSS_DBG,("%c: %s\r\n", dev_info->id, "NULL"));
 			break;
 
 		}
