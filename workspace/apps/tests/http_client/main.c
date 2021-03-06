@@ -21,14 +21,10 @@ int main(int argc, char * argv[])
 
 	struct list_head *iter;
 	http_client_for_each(iter,ctx){
-		char *data = (char *)list_entry(iter,http_client_entry_t, head )->data;
-		if(data){
+		char *data = (char*)http_client_get_data(iter);
+		if(data)
 			printf("%s",data);
-			list_del(iter);
-			free(data);
-			void *p = htpp_client_has_data(ctx);
-			printf("p=%p\r\n",p);
-		}
+		http_client_free_resource(iter, data);
 	}
 
 	for(;;){

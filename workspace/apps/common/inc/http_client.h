@@ -40,6 +40,16 @@ typedef struct http_client_ctx{
 #define htpp_client_set_user_callback(ctx,cb) do{ ctx->user_callback = cb } while(0)
 #define http_client_for_each(p,ctx) list_for_each(p,&ctx->list)
 #define htpp_client_has_data(ctx) list_first_entry_or_null(&ctx->list, http_client_entry_t,head)
+#define http_client_get_data(iter) list_entry(iter,http_client_entry_t, head )->data
+#define http_client_get_data_length(iter) (uint32_t)list_entry(iter,http_client_entry_t, head )->data_len
+#define http_client_get_header(iter) list_entry(iter,http_client_entry_t, head )->header
+#define http_client_get_header_length(iter) (uint32_t)list_entry(iter,http_client_entry_t, head )->header_len
+#define http_client_free_resource(iter,data)	\
+do{ \
+	list_del(iter); \
+	free(data); \
+}while (0)
+
 
 http_client_ctx_t *htpp_client_new(void);
 int htpp_client_free(http_client_ctx_t *ctx);
