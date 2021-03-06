@@ -265,10 +265,10 @@ static qapi_Status_t dss_net_ctrl_start(dss_ctx_t *ctx)
 	}while(status == QAPI_OK && info.u.valuebool != true);
 #endif
 
-	TX_DEBUGF(DSS_DBG,("dss_net_ctrl_start: starting data call...\r\n"));
+	TX_DEBUGF(DSS_DBG,("dss_net_ctrl_start: starting data call -> %d\r\n",status));
 	status = qapi_DSS_Start_Data_Call(ctx->dss_handle);
 
-	TX_DEBUGF(DSS_DBG,("dss_net_ctrl_start: start data call=%d\r\n",!status));
+	TX_DEBUGF(DSS_DBG,("dss_net_ctrl_start: start data call -> %d\r\n",!status));
 
 	return status;
 

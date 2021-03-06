@@ -257,14 +257,14 @@ int __wrap_printf(const char *format, ...){
 	char *stdout_buf = malloc(TX_PRINTF_LEN);
 	if(!stdout_buf)
 		return 0;
-	
-	va_start( ap, format );
-	len = vsnprintf_( stdout_buf, (size_t)TX_PRINTF_LEN, format, ap );
-	va_end( ap );
-	
+
 	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
 
-	
+	va_start( ap, format );
+	//need to guard when no argumets will call putchar
+	len = vsnprintf_( stdout_buf, (size_t)TX_PRINTF_LEN, format, ap ); 
+	va_end( ap );
+
 	if(qapi_UART_Transmit(handle, stdout_buf, len, NULL) == TX_SUCCESS)
 		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 
@@ -297,7 +297,7 @@ int __wrap_getchar(void){
 
 
 int __wrap_fprintf(FILE *stream, const char *format, ...){
-	puts("error\r\n");
+	puts("__wrap_fprintf: error\r\n");
 	return 0;
 }
 
