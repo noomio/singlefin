@@ -9,7 +9,7 @@ static void http_client_cb(void* arg, int state, void* http_resp){
 
     qapi_Net_HTTPc_Response_t * resp = (qapi_Net_HTTPc_Response_t *)http_resp;
 
-	TX_DEBUGF(HTTP_CLIENT_DBG,("%p,state=%d,len=%u,code=%u\r\n",arg,state,resp->length,resp->resp_Code));
+	//unsafe TX_DEBUGF(HTTP_CLIENT_DBG,("%p,state=%d,len=%u,code=%u\r\n",arg,state,resp->length,resp->resp_Code));
 
     http_client_entry_t *entry = malloc(sizeof(http_client_entry_t));
     if(entry)

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "qapi_httpc.h"
 #include "qapi_socket.h"
+#include "qapi_netservices.h"
 #include "list.h"
 
 #ifdef __cplusplus
@@ -45,6 +46,13 @@ typedef struct http_entry_list {
 	uint32_t header_len;
 	uint32_t code;
 } http_client_entry_t;
+
+typedef struct http_client_ssl {
+	qapi_Net_SSL_Obj_Hdl_t ctx; 
+	qapi_Net_SSL_Con_Hdl_t con; 
+	qapi_Net_SSL_Config_t config; 
+	qapi_Net_SSL_Role_t role;
+} http_client_ssl_t;
 
 typedef struct http_client_ctx{
 	qapi_Net_HTTPc_handle_t handle;

@@ -207,12 +207,9 @@ int putchar(int character){
 
 	int c = character; // make a local copy
 
-	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
-
 	if(qapi_UART_Transmit(handle, &c, 1, NULL) == TX_SUCCESS)	// puts removes the new line!
 		tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
 	
-	tx_mutex_put(out_tx_mutex);
 
 	return c;
 }
@@ -227,18 +224,24 @@ int __wrap_puts(const char *s){
 	if(!handle)
 		return 0;
 
-	if(s){
+	tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
 
-		tx_mutex_get(out_tx_mutex,TX_WAIT_FOREVER);
+	int i = 0;
+	int ret = 1;
+   	while(s[i]){
+	    if( putchar(s[i]) == -1) { 
+	        ret = -1;
+	    }
+	    i++;
+    }
+	if(putchar('\n') == -1) {
 
-		if(qapi_UART_Transmit(handle, s, strlen(s), NULL) == TX_SUCCESS)
-			tx_semaphore_get(out_tx_done_sem,TX_WAIT_FOREVER);
-
-		tx_mutex_put(out_tx_mutex);
-
+	   ret = -1;
 	}
 
-	return 0;
+	tx_mutex_put(out_tx_mutex);
+   return ret; 
+
 }
 
 
