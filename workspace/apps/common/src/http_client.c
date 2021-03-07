@@ -15,20 +15,28 @@ static void http_client_cb(void* arg, int state, void* http_resp){
     if(entry)
     	entry->code = resp->resp_Code;
 
-    if( resp->resp_Code >= 200 && resp->resp_Code < 300){
+    if( state == QAPI_NET_HTTPC_RX_FINISHED || state == QAPI_NET_HTTPC_RX_MORE_DATA){
     	
-        if(resp->data != NULL && state >= 0){
-        	if(entry){
-        		entry->data = malloc(resp->length+1); // add null
-        		if(entry->data){
-        			memcpy(entry->data,resp->data,resp->length);
-        			entry->data[resp->length+1] = '\0';
-        			entry->data_len = resp->length;
-        			list_add(&entry->head,&ctx->list);
-        		}
-        	}
-        	tx_event_flags_set(ctx->evt, HTTP_CLIENT_DATA_EVT_DONE, TX_OR);
-        }
+    	if(entry){
+    		entry->data = malloc(resp->length+1); // add null
+    		if(entry->data){
+    			memcpy(entry->data,resp->data,resp->length);
+    			entry->data[resp->length+1] = '\0';
+    			entry->data_len = resp->length;
+    		}
+
+    		entry->header = malloc(resp->rsp_hdr_len+1); // add null
+			if(entry->header){
+				memcpy(entry->header,resp->rsp_hdr,resp->rsp_hdr_len);
+				entry->header[resp->rsp_hdr_len+1] = '\0';
+    			entry->header_len = resp->rsp_hdr_len;
+			}
+
+			list_add(&entry->head,&ctx->list);
+    		
+    	}
+    	if(state == QAPI_NET_HTTPC_RX_FINISHED)
+    		tx_event_flags_set(ctx->evt, HTTP_CLIENT_EVT_FINISHED, TX_OR);
     }
 
  
@@ -146,7 +154,7 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 				TX_DEBUGF(HTTP_CLIENT_DBG,("http client request successful\r\n")); 
 				// wait
 				uint32_t signal = 0; 
-				tx_event_flags_get(ctx->evt, HTTP_CLIENT_DATA_EVT_DONE, TX_OR_CLEAR, &signal, HTTP_CLIENT_TIMEOUT);
+				tx_event_flags_get(ctx->evt, HTTP_CLIENT_EVT_FINISHED, TX_OR_CLEAR, &signal, HTTP_CLIENT_TIMEOUT);
 				http_client_session_disconnect(ctx);
 				err = 0;
 			}

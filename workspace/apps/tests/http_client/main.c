@@ -22,9 +22,14 @@ int main(int argc, char * argv[])
 	struct list_head *iter;
 	http_client_for_each(iter,ctx){
 		char *data = (char*)http_client_get_data(iter);
+		char *header = (char*)http_client_get_header(iter);
 		if(data)
 			printf("%s",data);
 		http_client_free_resource(iter, data);
+
+		if(header)
+			printf("%s",header);
+		http_client_free_resource(iter, header);
 	}
 
 	for(;;){
