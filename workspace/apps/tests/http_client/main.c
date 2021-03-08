@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <qapi_timer.h>
 #include "dss.h"
 #include "http_client.h"
 #include "net.h"
+#include "sleep.h"
 
 int main(int argc, char * argv[])
 {
@@ -17,7 +17,8 @@ int main(int argc, char * argv[])
 	dss_wait_conn_notify(dss_ctx,10000);
 
 	http_client_ctx_t *ctx = htpp_client_new();
-	htpp_client_get(ctx, "13.237.19.148", 80, "test.html");
+	htpp_client_set_https(ctx);
+	htpp_client_get(ctx, "172.67.69.236", 443, "health");
 
 	struct list_head *iter;
 	http_client_for_each(iter,ctx){
@@ -33,7 +34,7 @@ int main(int argc, char * argv[])
 	}
 
 	for(;;){
-		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
+		sleep(1000);
 	}
 
 	return 1;

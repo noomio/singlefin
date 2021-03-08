@@ -50,7 +50,7 @@ typedef struct http_entry_list {
 typedef struct http_client_ssl {
 	qapi_Net_SSL_Obj_Hdl_t ctx; 
 	qapi_Net_SSL_Con_Hdl_t con; 
-	qapi_Net_SSL_Config_t config; 
+	qapi_Net_SSL_Config_t *config; 
 	qapi_Net_SSL_Role_t role;
 } http_client_ssl_t;
 
@@ -61,6 +61,9 @@ typedef struct http_client_ctx{
 	TX_EVENT_FLAGS_GROUP *evt;
 	struct list_head list;
 	qapi_HTTPc_CB_t user_callback;
+	uint32_t timeout;
+	http_client_ssl_t ssl;
+	bool use_https;
 } http_client_ctx_t;
 
 #define htpp_client_set_user_callback(ctx,cb) do{ ctx->user_callback = cb } while(0)
@@ -76,6 +79,9 @@ do{ \
 	free(data); \
 }while (0)
 
+#define http_client_set_timeout(ctx, t) do{ ctx->timeout = t; } while(0)
+#define htpp_client_set_https(ctx) do{ ctx->use_https = true; } while(0)
+#define htpp_client_unset_https(ctx) do{ ctx->use_https = false; } while(0)
 
 http_client_ctx_t *htpp_client_new(void);
 int htpp_client_free(http_client_ctx_t *ctx);
@@ -83,7 +89,6 @@ int htpp_client_set_header(http_client_ctx_t *ctx, const char *key, const char *
 int htpp_client_set_parameter(http_client_ctx_t *ctx, const char *key, const char *value);
 int htpp_client_set_body(http_client_ctx_t *ctx, const char *body, uint32_t len);
 int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const char *path);
-
 
 
 #ifdef __cplusplus
