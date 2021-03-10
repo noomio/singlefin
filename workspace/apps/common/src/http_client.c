@@ -47,7 +47,7 @@ static void http_client_cb(void* arg, int state, void* http_resp){
 #define http_client_start() qapi_Net_HTTPc_Start()
 #define http_client_stop() qapi_Net_HTTPc_Stop() 
 
-#define htpp_client_set_default_config(ctx) \
+#define htpp_client_default_deconfig(ctx) \
 do{ \
 	ctx->httpc_cfg = malloc(sizeof(qapi_Net_HTTPc_Config_t)); \
 	ctx->httpc_cfg->sock_options = malloc(sizeof(qapi_Net_HTTPc_Sock_Opts_t)); \
@@ -62,8 +62,11 @@ do{ \
 		qapi_Net_HTTPc_Configure(ctx->handle, ctx->httpc_cfg); \
 }while(0)
 
+#define htpp_client_set_default_deconfig(ctx) \
+do{ free(ctx->httpc_cfg); free(ctx->httpc_cfg->sock_options); }while(0)
 
-#define http_client_session_connect(ctx,url,port) qapi_Net_HTTPc_Connect(ctx->handle,url, port)
+#define http_client_session_connect(ctx,url,port) \
+qapi_Net_HTTPc_Connect(ctx->handle,url, port)
 
 #define http_client_session_disconnect(ctx) \
 do{ \
@@ -76,9 +79,6 @@ do{ \
 do{ \
 	TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_session_free\r\n")); \
 	qapi_Net_HTTPc_Free_sess(ctx->byte_pool); \
-	txm_module_object_deallocate(&ctx->byte_pool); \
-	tx_byte_pool_delete(&ctx->byte_pool); \
-	qapi_Net_SSL_Obj_Free(ctx->ssl.ctx); \
 }while(0)
 
 
@@ -104,7 +104,14 @@ static void *http_client_new_session(http_client_ctx_t *ctx, uint32_t t, uint32_
 	return ctx->handle; 
 }
 
-static int http_client_one_way_auth(http_client_ctx_t *ctx){
+#define http_client_ssl_free(ctx) \
+do{	\
+	free(ctx->ssl.config); \
+	qapi_Net_SSL_Obj_Free(ctx->ssl.ctx); \
+	ctx->ssl.ctx = 0; \
+}while(0)
+
+static int http_client_ssl_new(http_client_ctx_t *ctx){
 
 
 	memset(&ctx->ssl, 0, sizeof(http_client_ssl_t));	
@@ -131,6 +138,7 @@ static int http_client_one_way_auth(http_client_ctx_t *ctx){
 
 }
 
+
 http_client_ctx_t *htpp_client_new(void){
 	http_client_start();
 	http_client_ctx_t *ctx = malloc(sizeof(http_client_ctx_t));
@@ -150,9 +158,6 @@ int htpp_client_free(http_client_ctx_t *ctx){
 	txm_module_object_deallocate(&ctx->byte_pool);
 	tx_event_flags_delete(ctx->evt);
 	txm_module_object_deallocate(&ctx->evt);
-	free(ctx->httpc_cfg->sock_options);
-	free(ctx->httpc_cfg);
-	free(ctx->ssl.config);
 	free(ctx);
 	http_client_stop();
 	return 0;
@@ -195,7 +200,7 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 	printf("err=%d,%d\r\n", QAPI_ERR_SSL_CERT,QAPI_ERR_SSL_CONN);
 	if(ctx->use_https){
 		snprintf(url,sizeof(url),"https://%s/%s",host,path);
-		http_client_one_way_auth(ctx);
+		http_client_ssl_new(ctx);
 	}
 	else
 		snprintf(url,sizeof(url),"http://%s/%s",host,path);
@@ -211,10 +216,16 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 				uint32_t signal = 0; 
 				tx_event_flags_get(ctx->evt, HTTP_CLIENT_EVT_FINISHED, TX_OR_CLEAR, &signal, ctx->timeout);
 				http_client_session_disconnect(ctx);
+
 				err = 0;
 			}
 		}
 		TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_session_connect: ret=%d\r\n",ret)); 
+		
+		if(ctx->use_https)
+			http_client_ssl_free(ctx);
+
+		htpp_client_default_deconfig(ctx);
 		http_client_session_free(ctx);
 	}
 

@@ -54,6 +54,11 @@ typedef struct http_client_ssl {
 	qapi_Net_SSL_Role_t role;
 } http_client_ssl_t;
 
+typedef struct http_client_certificates{
+	qapi_Net_SSL_Cert_Info_t cert_info;
+	qapi_NET_SSL_CA_Info_t calist_info[QAPI_NET_SSL_MAX_CA_LIST];
+} http_client_certificates_t;
+
 typedef struct http_client_ctx{
 	qapi_Net_HTTPc_handle_t handle;
 	TX_BYTE_POOL *byte_pool;
