@@ -18,14 +18,16 @@ function Send {
 
 	$port.DiscardOutBuffer()
 	$port.DiscardInBuffer()
+	
+	Write-Host $command
 
 	$port.WriteLine($command)
-	start-sleep -m 500
-	$resp = $port.ReadExisting()
+	$port.ReadLine()
+	$resp = $port.ReadLine()
 	Write-Host $resp
 
 	if($commandonly -eq $true){
-		return $true
+		return $resp
 	}
 	
 	if($resp -match 'CONNECT' -and $commandonly -eq $false ){
@@ -62,9 +64,9 @@ function Send {
 
 		if($resp -match 'OK'){
 			Write-Host 'Upload completed!'
-			return $true
+			return $true,$null
 		}else{
-			return $false
+			return $false,$null
 		}
 
 	}else{
@@ -112,17 +114,14 @@ if($serial_port.Count -eq 1){
 			$port.open();			
 			$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
 			if($resp -match 'CME ERROR: 407'){
-				start-sleep -m 500
 				$resp = Send -Port $port -Command $at_cmd_file_delete -File $filebin -CommandOnly $true
-				start-sleep -m 500
-				$resp += $port.ReadExisting()
 
-				if($resp -match 'OK'){
+				if($resp -is [string] -and $resp.Trim("`r","`n") -match 'OK'){
 					$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
 				}else{
 					Write-Output "Failed to delete file"
 					Write-Output "Please try again"
-					$port.Dispose() 
+					$port.Close() 
 					exit 0
 				}
 			}

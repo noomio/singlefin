@@ -47,7 +47,7 @@ static void http_client_cb(void* arg, int state, void* http_resp){
 #define http_client_start() qapi_Net_HTTPc_Start()
 #define http_client_stop() qapi_Net_HTTPc_Stop() 
 
-#define htpp_client_default_deconfig(ctx) \
+#define htpp_client_set_default_config(ctx) \
 do{ \
 	ctx->httpc_cfg = malloc(sizeof(qapi_Net_HTTPc_Config_t)); \
 	ctx->httpc_cfg->sock_options = malloc(sizeof(qapi_Net_HTTPc_Sock_Opts_t)); \
@@ -62,7 +62,7 @@ do{ \
 		qapi_Net_HTTPc_Configure(ctx->handle, ctx->httpc_cfg); \
 }while(0)
 
-#define htpp_client_set_default_deconfig(ctx) \
+#define htpp_client_config_free(ctx) \
 do{ free(ctx->httpc_cfg); free(ctx->httpc_cfg->sock_options); }while(0)
 
 #define http_client_session_connect(ctx,url,port) \
@@ -225,7 +225,7 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 		if(ctx->use_https)
 			http_client_ssl_free(ctx);
 
-		htpp_client_default_deconfig(ctx);
+		htpp_client_config_free(ctx);
 		http_client_session_free(ctx);
 	}
 

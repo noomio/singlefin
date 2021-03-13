@@ -17,8 +17,8 @@ int main(int argc, char * argv[])
 	dss_wait_conn_notify(dss_ctx,10000);
 
 	http_client_ctx_t *ctx = htpp_client_new();
-	htpp_client_set_https(ctx);
-	htpp_client_get(ctx, "172.67.69.236", 443, "health");
+	//htpp_client_set_https(ctx);
+	htpp_client_get(ctx, "www.noomio.com.au", 80, "test.html");
 
 	struct list_head *iter;
 	http_client_for_each(iter,ctx){
