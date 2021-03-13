@@ -20,6 +20,9 @@ do{ \
 	} \
 }while(0); \
 
+char *resolve_host_itf(const char *itf, const char *domain);
+
+
 #ifdef __cplusplus
 }
 #endif

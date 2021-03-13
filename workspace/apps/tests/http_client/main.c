@@ -9,12 +9,13 @@ int main(int argc, char * argv[])
 
 	puts("http_client\r\n");
 	
-	dump_net_interfaces();
+
 	dss_ctx_t *dss_ctx = dss_new("mdata.net.au",NULL,NULL);
 	dss_start(dss_ctx);
 
 	printf("waiting for network\r\n");
 	dss_wait_conn_notify(dss_ctx,10000);
+	dump_net_interfaces();
 
 	http_client_ctx_t *ctx = htpp_client_new();
 	//htpp_client_set_https(ctx);

@@ -329,6 +329,8 @@ static void dss_thread(ULONG param){
 
 		if (received_sigs & QAPI_DSS_EVT_NET_NO_NET_E){
 			TX_DEBUGF(DSS_DBG,("dss_thread: QAPI_DSS_EVT_NET_NO_NET_E\r\n"));
+			TX_DEBUGF(DSS_DBG,("dss_thread: Stop DNS\r\n"));
+			qapi_Net_DNSc_Command(QAPI_NET_DNS_STOP_E);
 			dss_net_no_net(ctx->dss_handle);
 			if(ctx->notify != NULL){
 				ctx->notify->addr[0] = '\0';
@@ -338,6 +340,9 @@ static void dss_thread(ULONG param){
 		}
 		else if (received_sigs & QAPI_DSS_EVT_NET_IS_CONN_E){
 			TX_DEBUGF(DSS_DBG,("dss_thread: QAPI_DSS_EVT_NET_IS_CONN_E\r\n"));
+			TX_DEBUGF(DSS_DBG,("dss_thread: Start DNS\r\n"));
+			int dns = qapi_Net_DNSc_Command(QAPI_NET_DNS_START_E);
+			TX_ASSERT("dss_thread: dns != -1", (status != -1));
 			int len = 0;
 			if((len = dss_get_addr_info(ctx->dss_handle,&network_info[0],sizeof(network_info))) > 0){
 				for(int i=0; i < len; i++){
