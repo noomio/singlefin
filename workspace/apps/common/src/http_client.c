@@ -88,7 +88,6 @@ static void *http_client_new_session(http_client_ctx_t *ctx, uint32_t t, uint32_
 	cb = (ctx->user_callback != NULL) ? ctx->user_callback : http_client_cb;
 	ctx->handle = qapi_Net_HTTPc_New_sess(t, ctx->ssl.ctx, cb, ctx, blen, hlen); 
 	TX_ASSERT("http_client: session ctx->handle != NULL\r\n",(ctx->handle != NULL)); 
-	TX_ASSERT("http_client: session ctx->ssl.ctx != QAPI_NET_SSL_INVALID_HANDLE\r\n",(ctx->ssl.ctx != QAPI_NET_SSL_INVALID_HANDLE)); 
 	TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_session: setting up...\r\n"));
 	if(ctx->handle){ 
 		if(ctx->ssl.ctx != QAPI_NET_SSL_INVALID_HANDLE){
@@ -117,6 +116,7 @@ static int http_client_ssl_new(http_client_ctx_t *ctx){
 	memset(&ctx->ssl, 0, sizeof(http_client_ssl_t));	
 	ctx->ssl.role = QAPI_NET_SSL_CLIENT_E;
 	ctx->ssl.ctx = qapi_Net_SSL_Obj_New(QAPI_NET_SSL_CLIENT_E);
+	TX_ASSERT("http_client_ssl_new: ctx->ssl.ctx != QAPI_NET_SSL_INVALID_HANDLE\r\n",(ctx->ssl.ctx != QAPI_NET_SSL_INVALID_HANDLE)); 
 
 	ctx->ssl.config = malloc(sizeof(qapi_Net_SSL_Config_t));
 	ctx->ssl.config->cipher[0] = QAPI_NET_TLS_RSA_WITH_AES_128_CBC_SHA;
