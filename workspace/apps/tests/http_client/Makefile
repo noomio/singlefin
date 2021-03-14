@@ -80,6 +80,7 @@ common/src/cli.c \
 common/src/time.c \
 common/src/strings.c \
 common/src/dss.c \
+common/src/net.c \
 common/src/http_client.c
 
 LIBS = 

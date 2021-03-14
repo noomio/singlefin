@@ -2,6 +2,9 @@
 #define __920X_NET_H__
 
 #include <stdio.h>
+#include "qapi_socket.h"
+#include "qapi_dnsc.h"
+#include "qapi_dss.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,7 +23,22 @@ do{ \
 	} \
 }while(0); \
 
-char *resolve_host_itf(const char *itf, const char *domain);
+#define dump_dns_server_list() \
+do { \
+	qapi_Net_DNS_Server_List_t svr_list; \
+	/* iface_index can be 0,1,2,or 3 */ \
+	if (qapi_Net_DNSc_Get_Server_List(&svr_list,0) == 0){ \
+		int i; \
+		char ip_str[48]; \
+		for (i = 0; i < QAPI_NET_DNS_SERVER_MAX; ++i){ \
+			if (svr_list.svr[i].type != AF_UNSPEC){ \
+				printf("DNS Server: %s\r\n",	inet_ntop(svr_list.svr[i].type,	&svr_list.svr[i].a, ip_str, sizeof(ip_str))); \
+			} \
+		} \
+	} \
+} while(0)
+
+const char *resolve_host_itf(const char *itf, const char *domain);
 
 
 #ifdef __cplusplus
