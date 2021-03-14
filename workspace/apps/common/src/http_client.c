@@ -197,7 +197,7 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 	if(ctx == NULL)
 		return -1;
 
-	printf("err=%d,%d\r\n", QAPI_ERR_SSL_CERT,QAPI_ERR_SSL_CONN);
+	//printf("err=%d,%d\r\n", QAPI_ERR_SSL_CERT,QAPI_ERR_SSL_CONN);
 	if(ctx->use_https){
 		snprintf(url,sizeof(url),"https://%s/%s",host,path);
 		http_client_ssl_new(ctx);

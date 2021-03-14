@@ -350,15 +350,18 @@ static void dss_thread(ULONG param){
 				for(int i=0; i < len; i++){
 					const char *ip_p = inet_ntop(AF_INET,&network_info[i].iface_addr_s.addr.v4,addr,sizeof(addr));
 					if(ip_p != NULL && ctx->notify != NULL){
+						const char *gw_p = inet_ntop(AF_INET,&network_info[i].gtwy_addr_s.addr.v4,gw,sizeof(gw));
+						TX_DEBUGF(DSS_DBG,("dss_thread: addr= %s, gw= %s\r\n",ip_p,gw_p));
+						
+						const char *dnsp_p = inet_ntop(AF_INET,&network_info[i].dnsp_addr_s.addr.v4,dnsp,sizeof(dnsp));
+						const char *dnss_p = inet_ntop(AF_INET,&network_info[i].dnss_addr_s.addr.v4,dnss,sizeof(dnss));
+						TX_DEBUGF(DSS_DBG,("dss_thread: dnsp= %s, dnss= %s\r\n",dnsp_p,dnss_p));
+						TX_DEBUGF(DSS_DBG,("dss_thread: Adding DNS Servers\r\n"));
+						qapi_Net_DNSc_Add_Server(dnsp_p, QAPI_NET_DNS_V4_PRIMARY_SERVER_ID);
+						qapi_Net_DNSc_Add_Server(dnss_p, QAPI_NET_DNS_V4_SECONDARY_SERVER_ID);
 						strncpy(ctx->notify->addr,ip_p,strlen(ip_p));
 						tx_event_flags_set(ctx->notify->evt, QAPI_DSS_EVT_NET_IS_CONN_E, TX_OR);
 					}
-					const char *gw_p = inet_ntop(AF_INET,&network_info[i].gtwy_addr_s.addr.v4,gw,sizeof(gw));
-					TX_DEBUGF(DSS_DBG,("dss_thread: addr= %s, gw= %s\r\n",ip_p,gw_p));
-					
-					const char *dnsp_p = inet_ntop(AF_INET,&network_info[i].dnsp_addr_s.addr.v4,dnsp,sizeof(dnsp));
-					const char *dnss_p = inet_ntop(AF_INET,&network_info[i].dnss_addr_s.addr.v4,dnss,sizeof(dnss));
-					TX_DEBUGF(DSS_DBG,("dss_thread: dnsp= %s, dnss= %s\r\n",dnsp_p,dnss_p));
 
 				}
 			}

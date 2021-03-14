@@ -18,10 +18,11 @@ int main(int argc, char * argv[])
 	dump_net_interfaces();
 	dump_dns_server_list();
 
+
 	http_client_ctx_t *ctx = htpp_client_new();
 	//htpp_client_set_https(ctx);
-	const char *ip = resolve_host_itf("www.noomio.com.au","rmnet_data0");
-	printf("Resolved IP: %s",ip);
+	const char *ip = resolve_host("www.noomio.com.au",rmnet_data0);
+	printf("Resolved IP: %s\r\n",ip);
 	htpp_client_get(ctx, ip, 80, "test.html");
 
 	struct list_head *iter;

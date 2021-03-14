@@ -39,8 +39,13 @@ do { \
 	} \
 } while(0)
 
-const char *resolve_host_itf(const char *itf, const char *domain);
+const char *resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len);
 
+#define resolve_host(domain, itf) \
+({char itf##_ip_str[48]; \
+	resolve_host_itf(domain, #itf, itf##_ip_str, sizeof(itf##_ip_str)); \
+    itf##_ip_str;\
+})
 
 #ifdef __cplusplus
 }
