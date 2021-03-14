@@ -16,6 +16,7 @@ int main(int argc, char * argv[])
 	printf("waiting for network\r\n");
 	dss_wait_conn_notify(dss_ctx,10000);
 	dump_net_interfaces();
+	dump_dns_server_list();
 
 	http_client_ctx_t *ctx = htpp_client_new();
 	//htpp_client_set_https(ctx);

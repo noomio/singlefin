@@ -313,6 +313,8 @@ static void dss_thread(ULONG param){
 	qapi_DSS_Addr_Info_t network_info[6];
 	char addr[16];
 	char gw[16];
+	char dnsp[16];
+	char dnss[16];
 
 	setlocale(LC_ALL, "C");
 
@@ -353,6 +355,11 @@ static void dss_thread(ULONG param){
 					}
 					const char *gw_p = inet_ntop(AF_INET,&network_info[i].gtwy_addr_s.addr.v4,gw,sizeof(gw));
 					TX_DEBUGF(DSS_DBG,("dss_thread: addr= %s\r\ngw= %s\r\n",ip_p,gw_p));
+					
+					const char *dnsp_p = inet_ntop(AF_INET,&network_info[i].dnsp_addr_s.addr.v4,dnsp,sizeof(dnsp));
+					const char *dnss_p = inet_ntop(AF_INET,&network_info[i].dnss_addr_s.addr.v4,dnss,sizeof(dnss));
+					TX_DEBUGF(DSS_DBG,("dss_thread: dnsp= %s\r\ndnss= %s\r\n",dnsp_p,dnss_p));
+
 				}
 			}
 

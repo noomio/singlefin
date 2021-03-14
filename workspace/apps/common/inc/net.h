@@ -5,6 +5,7 @@
 #include "qapi_socket.h"
 #include "qapi_dnsc.h"
 #include "qapi_dss.h"
+#include "qapi_netservices.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,7 +31,7 @@ do { \
 	if (qapi_Net_DNSc_Get_Server_List(&svr_list,0) == 0){ \
 		int i; \
 		char ip_str[48]; \
-		for (i = 0; i < QAPI_NET_DNS_SERVER_MAX; ++i){ \
+		for (i = 0; i < MAX_DNS_SVR_NUM; ++i){ \
 			if (svr_list.svr[i].type != AF_UNSPEC){ \
 				printf("DNS Server: %s\r\n",	inet_ntop(svr_list.svr[i].type,	&svr_list.svr[i].a, ip_str, sizeof(ip_str))); \
 			} \
