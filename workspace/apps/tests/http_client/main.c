@@ -19,11 +19,12 @@ int main(int argc, char * argv[])
 	dump_dns_server_list();
 
 
+	const char *ip = resolve_host("api.algoexplorer.io",rmnet_data0);
+	printf("resolved ip: %s\r\n",ip);
+
 	http_client_ctx_t *ctx = htpp_client_new();
-	//htpp_client_set_https(ctx);
-	const char *ip = resolve_host("www.noomio.com.au",rmnet_data0);
-	printf("Resolved IP: %s\r\n",ip);
-	htpp_client_get(ctx, ip, 80, "test.html");
+	http_client_set_sni(ctx,"api.algoexplorer.io");
+	htpp_client_get(ctx, "https://api.algoexplorer.io", 443, "health");
 
 	struct list_head *iter;
 	http_client_for_each(iter,ctx){

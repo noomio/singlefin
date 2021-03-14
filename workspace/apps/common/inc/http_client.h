@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 #define HTTP_CLIENT_SESSIONS_MAX	1
-#define HTTP_CLIENT_BYTE_POOL_SIZE		1024*HTTP_CLIENT_SESSIONS_MAX
+#define HTTP_CLIENT_BYTE_POOL_SIZE		2048*HTTP_CLIENT_SESSIONS_MAX
 #define HTTP_CLIENT_BODY_LEN	1024
 #define HTTP_CLIENT_HEADER_LEN	512
 #define HTTP_CLIENT_TIMEOUT		10000 // secs
@@ -50,7 +50,7 @@ typedef struct http_entry_list {
 typedef struct http_client_ssl {
 	qapi_Net_SSL_Obj_Hdl_t ctx; 
 	qapi_Net_SSL_Con_Hdl_t con; 
-	qapi_Net_SSL_Config_t *config; 
+	qapi_Net_SSL_Config_t config; 
 	qapi_Net_SSL_Role_t role;
 } http_client_ssl_t;
 
@@ -63,6 +63,7 @@ typedef struct http_client_ctx{
 	qapi_Net_HTTPc_handle_t handle;
 	TX_BYTE_POOL *byte_pool;
 	qapi_Net_HTTPc_Config_t *httpc_cfg;
+	struct linger so_linger;
 	TX_EVENT_FLAGS_GROUP *evt;
 	struct list_head list;
 	qapi_HTTPc_CB_t user_callback;
@@ -84,9 +85,14 @@ do{ \
 	free(data); \
 }while (0)
 
-#define http_client_set_timeout(ctx, t) do{ ctx->timeout = t; } while(0)
-#define htpp_client_set_https(ctx) do{ ctx->use_https = true; } while(0)
-#define htpp_client_unset_https(ctx) do{ ctx->use_https = false; } while(0)
+#define http_client_set_timeout(ctx, t) do{ if(ctx){ ctx->timeout = t; } } while(0)
+#define http_client_set_sni(ctx, domain) \
+do{ \
+	if(ctx){ \
+		ctx->ssl.config.sni_Name=domain; \
+		ctx->ssl.config.sni_Name_Size=strlen(domain); \
+	} \
+} while (0)
 
 http_client_ctx_t *htpp_client_new(void);
 int htpp_client_free(http_client_ctx_t *ctx);
