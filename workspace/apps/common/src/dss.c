@@ -354,11 +354,11 @@ static void dss_thread(ULONG param){
 						tx_event_flags_set(ctx->notify->evt, QAPI_DSS_EVT_NET_IS_CONN_E, TX_OR);
 					}
 					const char *gw_p = inet_ntop(AF_INET,&network_info[i].gtwy_addr_s.addr.v4,gw,sizeof(gw));
-					TX_DEBUGF(DSS_DBG,("dss_thread: addr= %s\r\ngw= %s\r\n",ip_p,gw_p));
+					TX_DEBUGF(DSS_DBG,("dss_thread: addr= %s, gw= %s\r\n",ip_p,gw_p));
 					
 					const char *dnsp_p = inet_ntop(AF_INET,&network_info[i].dnsp_addr_s.addr.v4,dnsp,sizeof(dnsp));
 					const char *dnss_p = inet_ntop(AF_INET,&network_info[i].dnss_addr_s.addr.v4,dnss,sizeof(dnss));
-					TX_DEBUGF(DSS_DBG,("dss_thread: dnsp= %s\r\ndnss= %s\r\n",dnsp_p,dnss_p));
+					TX_DEBUGF(DSS_DBG,("dss_thread: dnsp= %s, dnss= %s\r\n",dnsp_p,dnss_p));
 
 				}
 			}
