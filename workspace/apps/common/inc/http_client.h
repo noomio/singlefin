@@ -86,13 +86,7 @@ do{ \
 }while (0)
 
 #define http_client_set_timeout(ctx, t) do{ if(ctx){ ctx->timeout = t; } } while(0)
-#define http_client_set_sni(ctx, domain) \
-do{ \
-	if(ctx){ \
-		ctx->ssl.config.sni_Name=domain; \
-		ctx->ssl.config.sni_Name_Size=strlen(domain); \
-	} \
-} while (0)
+
 
 http_client_ctx_t *htpp_client_new(void);
 int htpp_client_free(http_client_ctx_t *ctx);

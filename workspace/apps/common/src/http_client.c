@@ -117,6 +117,14 @@ do{	\
 	ctx->ssl.ctx = 0; \
 }while(0)
 
+#define http_client_set_sni(ctx, domain) \
+do{ \
+	if(ctx){ \
+		ctx->ssl.config.sni_Name=domain; \
+		ctx->ssl.config.sni_Name_Size=strlen(domain); \
+	} \
+} while (0)
+
 static int http_client_ssl_new(http_client_ctx_t *ctx){
 
 
@@ -219,6 +227,8 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 	if((p_host = strstr(host,"//")) != NULL)
 		p_host += 2;
 
+	if(ctx->use_https)
+		http_client_set_sni(ctx,p_host);
 
 	TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_get: host:%s, %s:%u \r\n",p_host,url,port));
 
