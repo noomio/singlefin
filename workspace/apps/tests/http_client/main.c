@@ -23,7 +23,6 @@ int main(int argc, char * argv[])
 	printf("resolved ip: %s\r\n",ip);
 
 	http_client_ctx_t *ctx = htpp_client_new();
-	http_client_set_sni(ctx,"api.algoexplorer.io");
 	htpp_client_get(ctx, "https://api.algoexplorer.io", 443, "health");
 
 	struct list_head *iter;

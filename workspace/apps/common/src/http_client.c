@@ -22,14 +22,14 @@ static void http_client_cb(void* arg, int state, void* http_resp){
     		entry->data = malloc(resp->length+1); // add null
     		if(entry->data){
     			memcpy(entry->data,resp->data,resp->length);
-    			entry->data[resp->length+1] = '\0';
+    			entry->data[resp->length] = '\0';
     			entry->data_len = resp->length;
     		}
 
     		entry->header = malloc(resp->rsp_hdr_len+1); // add null
 			if(entry->header){
 				memcpy(entry->header,resp->rsp_hdr,resp->rsp_hdr_len);
-				entry->header[resp->rsp_hdr_len+1] = '\0';
+				entry->header[resp->rsp_hdr_len] = '\0';
     			entry->header_len = resp->rsp_hdr_len;
 			}
 
@@ -212,13 +212,11 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 	if(ctx == NULL)
 		return -1;
 
-	//printf("err=%d,%d\r\n", QAPI_ERR_SSL_CERT,QAPI_ERR_SSL_CONN);
 	if(strstr(host,"https://") != NULL){
 		snprintf(url,sizeof(url),"%s/%s",host,path);
 		http_client_ssl_new(ctx);
 		ctx->use_https = true;
-	}
-	else{
+	}else{
 		snprintf(url,sizeof(url),"%s/%s",host,path);
 		ctx->use_https = false;
 	}
