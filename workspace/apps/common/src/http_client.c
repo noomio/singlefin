@@ -61,10 +61,10 @@ do{ \
 	ctx->httpc_cfg->sock_options->opt_name = SO_LINGER; \
 	ctx->httpc_cfg->sock_options->opt_len = sizeof(struct linger); \
 	ctx->httpc_cfg->sock_options->opt_value = &ctx->so_linger; \
-	ctx->httpc_cfg->max_send_chunk = 2000; \
+	ctx->httpc_cfg->max_send_chunk = 1024; \
 	ctx->httpc_cfg->max_send_chunk_delay_ms = 10; \
-	ctx->httpc_cfg->max_send_chunk_retries = 200; \
-	ctx->httpc_cfg->max_conn_poll_cnt = 15; \
+	ctx->httpc_cfg->max_send_chunk_retries = 5; \
+	ctx->httpc_cfg->max_conn_poll_cnt = 10; \
 	ctx->httpc_cfg->max_conn_poll_interval_ms = 500; \
 	if(ctx->ssl.ctx != 0 &ctx->ssl.ctx != QAPI_NET_SSL_INVALID_HANDLE) \
 		qapi_Net_HTTPc_Configure(ctx->handle, ctx->httpc_cfg); \
@@ -119,8 +119,8 @@ do{	\
 
 #define http_client_set_sni(ctx, domain) \
 do{ \
-	if(ctx){ \
-		ctx->ssl.config.sni_Name=domain; \
+	if(ctx && domain){ \
+		ctx->ssl.config.sni_Name=(char*)domain; \
 		ctx->ssl.config.sni_Name_Size=strlen(domain); \
 	} \
 } while (0)
@@ -141,7 +141,7 @@ static int http_client_ssl_new(http_client_ctx_t *ctx){
 	ctx->ssl.config.cipher[6] = QAPI_NET_TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA;
 	ctx->ssl.config.cipher[7] = QAPI_NET_TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384;
 	
-	ctx->ssl.config.max_Frag_Len = 4096;
+	ctx->ssl.config.max_Frag_Len = 512;
 	ctx->ssl.config.max_Frag_Len_Neg_Disable = 1;
 	ctx->ssl.config.protocol = QAPI_NET_SSL_PROTOCOL_TLS_1_2;
 	ctx->ssl.config.verify.domain = 0;
@@ -230,7 +230,7 @@ int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const ch
 
 	TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_get: host:%s, %s:%u \r\n",p_host,url,port));
 
-	if(http_client_new_session(ctx,HTTP_CLIENT_TIMEOUT,HTTP_CLIENT_BODY_LEN,HTTP_CLIENT_HEADER_LEN) != NULL){
+	if(http_client_new_session(ctx,HTTP_CLIENT_TIMEOUT,HTTP_CLIENT_BODY_LEN_MAX,HTTP_CLIENT_HEADER_LEN_MAX) != NULL){
 		if((ret = http_client_session_connect(ctx,p_host,port)) == QAPI_OK){
 			TX_DEBUGF(HTTP_CLIENT_DBG,("http_client_session_connected\r\n")); 
 			if((ret = qapi_Net_HTTPc_Request(ctx->handle,QAPI_NET_HTTP_CLIENT_GET_E, url)) == QAPI_OK){

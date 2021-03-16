@@ -29,12 +29,16 @@ int main(int argc, char * argv[])
 	http_client_for_each(iter,ctx){
 		char *data = (char*)http_client_get_data(iter);
 		char *header = (char*)http_client_get_header(iter);
-		if(data)
+		if(data){
+			printf("len=%d\r\n",http_client_get_data_length(iter));
 			printf("%s",data);
+		}
 		http_client_free_resource(iter, data);
 
-		if(header)
+		if(header){
+			printf("len=%d\r\n",http_client_get_header_length(iter));
 			printf("%s",header);
+		}
 		http_client_free_resource(iter, header);
 	}
 
