@@ -9,7 +9,7 @@
 #define I2C_CHANNEL     0
 #define I2C_HOST        1
 
-#define CLRC663_VERSION_SUB ((1 << 4) | (0x0A))
+#define CLRC663_VERSION_SUB ((1 << 4) | (0x08))
 
 /* Registers */
 #define VERSION_REG_ADDR    0x7F
@@ -18,7 +18,7 @@
 int main(int argc, char * argv[]){
 
 	uint8_t addr = VERSION_REG_ADDR;
-	uint8_t version = 0;
+	
 
 	puts("spi1\r\n");
 
@@ -31,9 +31,12 @@ int main(int argc, char * argv[]){
 
 	for(;;){
 
+		uint8_t version = 0;
 		res = spi_send_receive(SPI1,&addr,&version,1);
 
 		printf("%s: error=%d, version=%u\r\n",name,res,version);
+		if(version == CLRC663_VERSION_SUB)
+			printf("CLRC663 probed\r\n");
 
 
 		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);

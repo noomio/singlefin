@@ -12,10 +12,12 @@ int main(int argc, char * argv[])
 	puts("i2c\r\n");
 
 	int res = i2c_config(I2C1);
+	printf("i2c config:%d\r\n",res);	
 
 	for(;;){
 
 		res = i2c_transfer(I2C1,0x18,txdata,sizeof(txdata),rxdata,sizeof(rxdata),0);
+		printf("i2c: res=%d\r\n",res);
 		if(res == 0){
 			rxdata[0] = rxdata[0] & 0x1F;
     		int sign = rxdata[0] & (1 << 5) ? -1 : 1;
