@@ -7,10 +7,10 @@ int main(int argc, char * argv[])
 
 	puts("gpio_out\r\n");
 	
-	gpio_pin_config(18,QAPI_GPIO_NO_PULL_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_pin_config(19,QAPI_GPIO_NO_PULL_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_pin_config(26,QAPI_GPIO_NO_PULL_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-
+	gpio_pin_config(18,QAPI_GPIO_NO_PULL_E,QAPI_GPIO_6MA_E,QAPI_GPIO_OUTPUT_E);
+	gpio_pin_config(19,QAPI_GPIO_NO_PULL_E,QAPI_GPIO_6MA_E,QAPI_GPIO_OUTPUT_E);
+	gpio_pin_config(26,QAPI_GPIO_NO_PULL_E,QAPI_GPIO_6MA_E,QAPI_GPIO_OUTPUT_E);
+	gpio_config_dump(19);
 
 	for(;;){
 
