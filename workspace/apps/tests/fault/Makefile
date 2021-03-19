@@ -69,7 +69,7 @@ USER_OPTS =
 
 COMMON_DIR = ../../common/
 COMMON_INC = $(COMMON_DIR)/inc
-#COMMON_INC += -I$(COMMON_DIR)/inc/target/$(MODULE)
+
 
 COMMON_SRC = common/src/retarget.c \
 common/src/malloc.c \

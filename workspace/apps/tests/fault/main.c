@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "sleep.h"
+#include <qapi_timer.h>
 
 int main(int argc, char * argv[])
 {
@@ -8,7 +8,7 @@ int main(int argc, char * argv[])
 
 	for(;;){
 
-		sleep(5);
+		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
 
 	}
 

@@ -34,21 +34,22 @@ extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va
 	malloc_byte_pool_init();
 
 
+	// toggle pseudo STATUS pin
+	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
+	gpio_pin_write(64,false);
+	sleep(100);
+	gpio_pin_write(64,true);
+
+	// Now read fault 
+	gpio_pin_release(64);
 	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
-	if(gpio_pin_read(64)){
-		puts("!!! Fault caught !!!\r\n");
+	if(gpio_pin_read(64) == 0){
+		puts("[ PROGRAM FAULT ]\r\n");
+		exit(1);
+	}else{
+		main();
 	}
 
-
-	// toggle pseudo STATUS pin
-	gpio_pin_release(64);
-	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_pin_write(64,true);
-	sleep(100);
-	gpio_pin_write(64,false);
-
-
-	main();
 	for(;;);
 }
 
