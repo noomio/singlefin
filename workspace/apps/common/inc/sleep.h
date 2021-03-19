@@ -8,7 +8,7 @@ extern "C" {
 
 #include <qapi_timer.h>
 	
-#define sleep(T) qapi_Timer_Sleep(T, QAPI_TIMER_UNIT_USEC, true)
+#define sleep(T) qapi_Timer_Sleep(T, QAPI_TIMER_UNIT_MSEC, true)
 
 
 #ifdef __cplusplus
