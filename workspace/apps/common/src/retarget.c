@@ -11,6 +11,8 @@
 #include "qapi_txm_base.h"
 #include <locale.h>
 #include "cli.h"
+#include "gpio.h"
+#include "sleep.h"
 
 #define DEBUG_PORT	QAPI_UART_PORT_002_E
 
@@ -30,6 +32,22 @@ extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va
 	setlocale(LC_ALL, "C");	
 	init_debug();
 	malloc_byte_pool_init();
+
+
+	// toggle pseudo STATUS pin
+	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
+	gpio_pin_write(64,false);
+	sleep(100);
+	gpio_pin_write(64,true);
+
+	// Now read fault 
+	gpio_pin_release(64);
+	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
+	if(gpio_pin_read(64) == 0){
+		puts("[ PROGRAM FAULT ]\r\n");
+		exit(1);
+	}
+	
 	main();
 	for(;;);
 }

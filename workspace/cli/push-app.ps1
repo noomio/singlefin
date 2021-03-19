@@ -116,7 +116,7 @@ if($serial_port.Count -eq 1){
 			if($resp -match 'CME ERROR: 407'){
 				$resp = Send -Port $port -Command $at_cmd_file_delete -File $filebin -CommandOnly $true
 
-				if($resp -is [string] -and $resp.Trim("`r","`n") -match 'OK'){
+				if($resp -match 'OK'){
 					$resp = Send -Port $port -Command $at_cmd_file_upload -File $filebin -Binary $true
 				}else{
 					Write-Output "Failed to delete file"
