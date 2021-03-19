@@ -46,10 +46,9 @@ extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va
 	if(gpio_pin_read(64) == 0){
 		puts("[ PROGRAM FAULT ]\r\n");
 		exit(1);
-	}else{
-		main();
 	}
-
+	
+	main();
 	for(;;);
 }
 
