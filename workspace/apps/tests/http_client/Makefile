@@ -17,7 +17,7 @@ ifeq ($(OS),Windows_NT)
 				-Wl,-mno-unaligned-access -fuse-baremetal-sysroot -fno-use-baremetal-crt
 	AR = 
 	CC =  "$(LLVM)/bin/clang.exe"
-	CLI_TOOL = $(TOOL_PATH_ROOT)/../workspace/cli/push-app.ps1
+	CLI_TOOL = $(TOOL_PATH_ROOT)/../workspace/tools/push-app.ps1
 	MKDIR := C:/Program Files/Git/usr/bin/mkdir.exe
 	FIND := C:/Program Files/Git/usr/bin/find.exe
 else
@@ -148,4 +148,4 @@ $(TARGET_NAME).bin:
 
 export CLI_TOOL TARGET_NAME BUILDDIR
 
-include ../../../cli/Makefile.tools
+include ../../../tools/Makefile.tools

@@ -14,7 +14,7 @@
 
 #if defined(__EXAMPLE_GPIO__)
 /* Modify this which mode(input/output) you want to test */
-#define GPIO_TEST_MODE   0	//1: test pin output; 0: test pin input;
+#define GPIO_TEST_MODE   1	//1: test pin output; 0: test pin input;
 
 #endif /*__EXAMPLE_GPIO__*/
 

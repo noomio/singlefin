@@ -62,7 +62,7 @@ qapi_GPIO_ID_t gpio_id_tbl[PIN_E_GPIO_MAX];
 qapi_TLMM_Config_t tlmm_config[PIN_E_GPIO_MAX];
 	
 /* Modify this pin num which you want to test */
-MODULE_PIN_ENUM  g_test_pin_num = PIN_E_GPIO_01;
+MODULE_PIN_ENUM  g_test_pin_num = PIN_E_GPIO_06;
 
 /**************************************************************************
 *                           FUNCTION DECLARATION
@@ -195,29 +195,37 @@ int quectel_task_entry(void)
 
 #if GPIO_TEST_MODE /* Test output type */
 
+
+	gpio_config(g_test_pin_num, QAPI_GPIO_OUTPUT_E, QAPI_GPIO_NO_PULL_E, QAPI_GPIO_16MA_E);	
+
 	while(1)
 	{
-		gpio_config(g_test_pin_num, QAPI_GPIO_OUTPUT_E, QAPI_GPIO_NO_PULL_E, QAPI_GPIO_2MA_E);	
-		status = qapi_TLMM_Drive_Gpio(gpio_id_tbl[g_test_pin_num], gpio_map_tbl[g_test_pin_num].gpio_id, QAPI_GPIO_LOW_VALUE_E);
-		IOT_DEBUG("[GPIO] Set %d QAPI_GPIO_LOW_VALUE_E status = %d", g_test_pin_num, status);
-		qt_uart_dbg(uart_conf.hdlr,"[GPIO] Set %d QAPI_GPIO_LOW_VALUE_E status = %d", g_test_pin_num, status);
-		qapi_Timer_Sleep(2, QAPI_TIMER_UNIT_SEC, true);
+
+
+	//	gpio_config(g_test_pin_num, QAPI_GPIO_OUTPUT_E, QAPI_GPIO_NO_PULL_E, QAPI_GPIO_16MA_E);	
+	//	status = qapi_TLMM_Drive_Gpio(gpio_id_tbl[g_test_pin_num], gpio_map_tbl[g_test_pin_num].gpio_id, QAPI_GPIO_LOW_VALUE_E);
+	//	IOT_DEBUG("[GPIO] Set %d QAPI_GPIO_LOW_VALUE_E status = %d", g_test_pin_num, status);
+	//	qt_uart_dbg(uart_conf.hdlr,"[GPIO] Set %d QAPI_GPIO_LOW_VALUE_E status = %d", g_test_pin_num, status);
+	//	qapi_Timer_Sleep(2, QAPI_TIMER_UNIT_SEC, true);
+
 
 		status = qapi_TLMM_Drive_Gpio(gpio_id_tbl[g_test_pin_num], gpio_map_tbl[g_test_pin_num].gpio_id, QAPI_GPIO_HIGH_VALUE_E);
-		IOT_DEBUG("[GPIO] Set %d QAPI_GPIO_HIGH_VALUE_E status = %d", g_test_pin_num, status);
-		qt_uart_dbg(uart_conf.hdlr,"[GPIO] Set %d QAPI_GPIO_HIGH_VALUE_E status = %d", g_test_pin_num, status);
 		qapi_Timer_Sleep(2, QAPI_TIMER_UNIT_SEC, true);
 
-		status = qapi_TLMM_Release_Gpio_ID(&tlmm_config[g_test_pin_num], gpio_id_tbl[g_test_pin_num]);
-		IOT_DEBUG("[GPIO] release %d status = %d", g_test_pin_num, status);
-		qt_uart_dbg(uart_conf.hdlr,"[GPIO] release %d status = %d", g_test_pin_num, status);
+		status = qapi_TLMM_Drive_Gpio(gpio_id_tbl[g_test_pin_num], gpio_map_tbl[g_test_pin_num].gpio_id, QAPI_GPIO_LOW_VALUE_E);
 
-		g_test_pin_num ++;
-		if(g_test_pin_num >= PIN_E_GPIO_MAX)
-		{
-			g_test_pin_num = PIN_E_GPIO_01;
-			qapi_Timer_Sleep(5, QAPI_TIMER_UNIT_SEC, true);
-		}
+		qapi_Timer_Sleep(2, QAPI_TIMER_UNIT_SEC, true);
+
+	//	status = qapi_TLMM_Release_Gpio_ID(&tlmm_config[g_test_pin_num], gpio_id_tbl[g_test_pin_num]);
+	//	IOT_DEBUG("[GPIO] release %d status = %d", g_test_pin_num, status);
+	//	qt_uart_dbg(uart_conf.hdlr,"[GPIO] release %d status = %d", g_test_pin_num, status);
+
+	//	g_test_pin_num ++;
+	//	if(g_test_pin_num >= PIN_E_GPIO_MAX)
+	//	{
+	//		g_test_pin_num = PIN_E_GPIO_01;
+	//		qapi_Timer_Sleep(5, QAPI_TIMER_UNIT_SEC, true);
+	//	}
 	}
 
 #else /* Test iutput type */
