@@ -1,0 +1,85 @@
+name: I2c
+
+functions: |
+  int i2c_transfer
+  int i2c_start
+  int i2c_stop
+  int i2c_config
+  int i2c_deconfig
+  int i2c_set_frequency
+  int i2c_power_down
+  int i2c_power_up
+
+details: |
+    int i2c_transfer(i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_data_size, uint8_t *rx_data, size_t rx_data_size, uint32_t delay_us);
+    Arguments:
+      {i2c_num_t} i2c_num
+        I2c number
+      {Uint16} addr
+        I2c address
+      {Uint8*} tx_data
+        Transmit data buffer
+      {size_t} tx_data_size
+        Transmit data buffer size
+      {Uint8*} rx_data
+        Receive data buffer
+      {size_t} rx_data_size
+        Receive data buffer size
+      {uint32_t} delay_us
+        Delay in microseconds prior to starting transfer
+
+    int i2c_start(i2c_num_t i2c_num);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+
+    int i2c_stop(i2c_num_t i2c_num);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+
+    int i2c_config(i2c_num_t i2c_num);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+
+    int i2c_deconfig(i2c_num_t i2c_num);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+
+    int i2c_set_frequency(i2c_num_t i2c_num, uint32_t frequency);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+        {Uint32} frequency
+          I2c clock frequency in kHz
+
+    int i2c_power_down(i2c_num_t i2c_num);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+
+    int i2c_power_up(i2c_num_t i2c_num);
+      Arguments:
+        {i2c_num_t} i2c_num
+          I2c number
+
+properties: |
+  BG96:
+    I2c1
+    I2c2
+
+summary: |
+  <p>I2c bus</p>
+
+
+
+example: |
+
+
+tags:
+  - I2c
+
+
+introduced: 0.0.0

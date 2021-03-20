@@ -25,4 +25,5 @@ int gpio_pin_write(uint32_t pin, bool val);
 int gpio_pin_read(uint32_t pin);
 void gpio_config_dump(uint32_t pin);
 
+
 #endif

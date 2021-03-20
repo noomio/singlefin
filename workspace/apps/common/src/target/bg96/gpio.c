@@ -71,18 +71,18 @@ static const struct gpio_list_entry gpio_pull_consts[] = {
     { "PullUp",     QAPI_GPIO_PULL_UP_E },
     { "PullDown",   QAPI_GPIO_PULL_DOWN_E },
     { "PullNone",   QAPI_GPIO_NO_PULL_E },
-    { "OpenDrain",  QAPI_GPIO_KEEPER_E }
+    { "Keeper",  QAPI_GPIO_KEEPER_E }
 };
 
 static const struct gpio_list_entry gpio_drive_consts[] = {
-    { "2mA",  QAPI_GPIO_2MA_E },
-    { "4mA",  QAPI_GPIO_4MA_E },
-    { "6mA",  QAPI_GPIO_6MA_E },
-    { "8mA",  QAPI_GPIO_8MA_E },
-    { "10mA", QAPI_GPIO_10MA_E },
-    { "12mA", QAPI_GPIO_12MA_E },
-    { "14mA", QAPI_GPIO_14MA_E },
-    { "16mA", QAPI_GPIO_16MA_E }
+    { "Drive2mA",  QAPI_GPIO_2MA_E },
+    { "Drive4mA",  QAPI_GPIO_4MA_E },
+    { "Drive6mA",  QAPI_GPIO_6MA_E },
+    { "Drive8mA",  QAPI_GPIO_8MA_E },
+    { "Drive10mA", QAPI_GPIO_10MA_E },
+    { "Drive12mA", QAPI_GPIO_12MA_E },
+    { "Drive14mA", QAPI_GPIO_14MA_E },
+    { "Drive16mA", QAPI_GPIO_16MA_E }
 };
 
 static uint32_t get_soc_pin(uint32_t pin){
@@ -393,3 +393,4 @@ void gpio_config_dump(uint32_t pin){
         puts("NULL\r\n");
     }
 }
+

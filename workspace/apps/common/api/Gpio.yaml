@@ -1,0 +1,138 @@
+name: Gpio
+
+functions: |
+  gpio_pin_on
+  gpio_pin_trigger
+  gpio_pin_disable_irq
+  gpio_pin_enable_irq
+  gpio_pin_config
+  gpio_pin_output
+  gpio_pin_input
+  gpio_pin_release
+  gpio_pin_write
+  gpio_pin_read
+  gpio_config_dump
+
+details: |
+  int gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+      {Uint32} trigger
+        Callback edge trigger
+      {function}
+        Function callback
+
+  int gpio_pin_trigger(uint32_t pin);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+
+  int gpio_pin_disable_irq(uint32_t pin);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+
+  int gpio_pin_enable_irq(uint32_t pin);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+
+  int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+      {Uint32} pull
+        Pull type
+      {Uint32} drive
+        Pin current drive
+      {Uint32} type
+       Input or Output
+
+  int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+      {Uint32} pull
+        Pull type
+      {Uint32} drive
+        Pin current drive
+
+  int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+      {Uint32} pull
+        Pull type
+      {Uint32} drive
+        Pin current drive
+
+  int gpio_pin_release(uint32_t pin);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+
+  int gpio_pin_write(uint32_t pin, bool val);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+      {Bool} val
+        Value to write
+
+  int gpio_pin_read(uint32_t pin);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+
+  void gpio_config_dump(uint32_t pin);
+    Arguments:
+      {Uint32} pin
+        Module pin number
+
+events: |
+  typedef void (*gpio_interrupt_cb_t)(uint32_t arg);
+
+properties: |
+  PullUp
+  PullDown
+  PullNone
+  Keeper
+  Drive2mA
+  Drive4mA
+  Drive6mA
+  Drive8mA
+  Drive10mA
+  Drive12mA
+  Drive14mA
+  Drive16mA
+
+  BG96:
+    PIN4
+    PIN5
+    PIN6
+    PIN7
+    PIN18
+    PIN19
+    PIN22
+    PIN23
+    PIN26
+    PIN27
+    PIN28
+    PIN40
+    PIN41
+    PIN64
+
+summary: |
+  <p>Digital input initialisation</p>
+  <p>When a mode isn't specified then the keeper mode is used (previously set mode).</p>
+
+
+example: |
+   var pin4  = DigitalIn(PIN4, PullUp);
+   var state = pin4.read();
+
+tags:
+  - Gpio
+
+
+introduced: 0.0.0

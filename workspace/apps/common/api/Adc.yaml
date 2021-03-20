@@ -1,0 +1,54 @@
+name: Adc
+
+functions: |
+  adc_config
+  adc_read_microvolts
+  adc_read_physical
+  adc_read_percent
+  adc_read_raw
+
+details: |
+  int adc_config(adc_channel_t adc_num);
+    Arguments:
+      {adc_channel_t} adc_num
+        Adc number
+
+  uint32_t adc_read_microvolts(adc_channel_t adc_num);
+    Arguments:
+      {adc_channel_t} adc_num
+        Adc number
+
+  uint32_t adc_read_physical(adc_channel_t adc_num);
+    Arguments:
+    {adc_channel_t} adc_num
+      Adc number
+
+  uint32_t adc_read_percent(adc_channel_t adc_num);
+    Arguments:
+      {adc_channel_t} adc_num
+        Adc number
+
+  uint32_t adc_read_raw(adc_channel_t adc_num);
+    Arguments:
+      {adc_channel_t} adc_num
+        Adc number
+
+properties: |
+  BG96:
+    Adc0
+    Adc1
+
+summary: |
+  <p>Analogue Input</p>
+  <p>Single ended analogue inputs</p>
+
+
+
+example: |
+
+
+tags:
+  - Adc
+
+
+introduced: 0.0.0

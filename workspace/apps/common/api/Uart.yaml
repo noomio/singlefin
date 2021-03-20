@@ -1,0 +1,77 @@
+name: Uart
+
+functions: |
+  uart_config
+  uart_deconfig
+  uart_write
+  uart_read
+  uart_power_up
+  uart_power_down
+
+details: |
+  int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
+    Arguments:
+      {Uint8} serial
+        Uart serial number
+      {Uint32} baud_rate
+        Uart baud rate
+      {Uint32} stop_bits
+        Uart number of stop bits
+      {Uint32} bits_per_char
+        Uart bits per character
+      {Uint32} parity
+        Uart parity
+      {Uint32} flow_ctrl
+        Uart flow control
+
+  int uart_deconfig(uint8_t serial);
+    Arguments:
+      {Uint8} serial
+        Uart serial number
+
+  int uart_write(uint8_t serial, uint8_t *buf, size_t nbytes);
+    Arguments:
+      {Uint8} serial
+        Uart number
+      {Uint8*} buf
+        Transmit data buffer 
+      {size_t} nbytes
+        Transmit data buffer size
+
+  int uart_read(uint32_t serial, uint8_t *buf, size_t nbytes);
+    Arguments:
+    {Uint32} serial
+      Uart number
+    {Uint8*} buf
+      Receive data buffer 
+    {size_t} nbytes
+      Receive data buffer size
+
+  int uart_power_up(uint32_t serial);
+    Arguments:
+    {Uint32} serial
+      Uart number
+
+  int uart_power_down(uint32_t serial);
+    Arguments:
+    {Uint32} serial
+      Uart number  
+
+properties: |
+  BG96:
+    UART1
+    UART2
+    UART3
+
+summary: |
+  <p>Uart</p>
+
+
+example: |
+
+
+tags:
+  - Uart
+
+
+introduced: 0.0.0
