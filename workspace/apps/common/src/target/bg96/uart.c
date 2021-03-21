@@ -6,7 +6,7 @@
 */
 #include "uart.h"
 
-#define UART_NO_MAX 1
+#define UART_NO_MAX 3
 #define RECV_BUF_SIZE	128
 
 struct uart_map {
@@ -21,7 +21,9 @@ struct uart_map {
 };
 
 struct uart_map uart[UART_NO_MAX] = {
-	3, -1, QAPI_UART_PORT_003_E, NULL, 0
+	{1, -1, QAPI_UART_PORT_001_E, NULL, 0},
+	{2, -1, QAPI_UART_PORT_002_E, NULL, 0},
+	{3, -1, QAPI_UART_PORT_003_E, NULL, 0}
 };
 
 static void uart_rx_cb(uint32_t num_bytes, void *cb_data){
