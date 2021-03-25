@@ -1,0 +1,43 @@
+<h1 id="load">Load a Binary</h1>
+
+<p>To load a binary or a file to the module you can use the following methods:</p>
+<ol>
+<li>1. AT File commands</li>
+<li>2. Kermit protocol</li>
+</ol>
+
+
+<h2>AT File Commands</h2>
+<p>The script provided uses Powershell to communicate to the modules over the <span class="badge badge-dark">MODEM</span> port. The process is automated so the developer doesnt need to manually send the AT Commands.</p>
+
+<h2>Kermit Protocol</h2>
+<p>The script provided uses the Kermit protocol to send files to the module over the <span class="badge badge-dark">DEBUG</span> port.</p>
+
+<h2>List of Command Lines</h2>
+<table class="table">
+	  <thead>
+    <tr>
+      <th scope="col">Command Name</th>
+      <th scope="col">SingleFin Interface</th>
+      <th scope="col">Module Interface</th>
+      <th scope="col">Script</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+<tr>
+<td><code>make load</code></td>
+<td>MODEM</td>
+<td>USB AT Port</td>
+<td>push-app.ps1</td>
+<td>Push a binary file and .ini file to the module using AT File commands</td>
+</tr>
+<tr>
+<td><code>make push</code></td>
+<td>DEBUG</td>
+<td>UART 2</td>
+<td>push-file.ps1</td>
+<td>Push a binary file using Kermit protocol</td>
+</tr>
+</table>
+
+

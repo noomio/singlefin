@@ -1,12 +1,12 @@
 name: Uart
 
-functions: |
-  uart_config
-  uart_deconfig
-  uart_write
-  uart_read
-  uart_power_up
-  uart_power_down
+proto: |
+  int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
+  uart_deconfig(uint8_t serial);
+  uart_write(uint8_t serial, uint8_t *buf, size_t nbytes);
+  uart_read(uint32_t serial, uint8_t *buf, size_t nbytes);
+  uart_power_up(uint8_t serial);
+  uart_power_down(uint8_t serial);
 
 details: |
   int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
@@ -57,8 +57,7 @@ details: |
     {Uint32} serial
       Uart number  
 
-properties: |
-  BG96:
+defines: |
     UART1
     UART2
     UART3
@@ -68,10 +67,14 @@ summary: |
 
 
 example: |
+  /* Uart 3*/
+  const char *str = "Aloha!";
 
+  uart_config(UART3,115200,QAPI_UART_1_0_STOP_BITS_E,QAPI_UART_8_BITS_PER_CHAR_E,QAPI_UART_NO_PARITY_E,QAPI_FCTL_OFF_E);
+  uart_write(UART3,str,strlen(str));
 
 tags:
   - Uart
 
 
-introduced: 0.0.0
+introduced: 1.0.0

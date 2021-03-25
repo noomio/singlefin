@@ -1,0 +1,54 @@
+name: File
+
+proto: |
+  FILE *fopen(const char *path, const char *mode);
+  int fclose(FILE *fp);
+  int fseek(FILE *fp, long offset, int whence);
+  long ftell(FILE *fp);
+  int fstat(int fd, struct stat *statbuf);
+  int lstat(const char *pathname, struct stat *statbuf);
+  size_t fread(void *ptr, size_t size, size_t nmemb, FILE *fp);
+  size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *fp);
+  DIR *opendir(const char *name);
+  struct dirent *readdir(DIR *dirp);
+  int closedir(DIR *dirp);
+  int rmdir (const char *filename);
+  int mkdir(const char *pathname, mode_t mode);
+  int unlink (const char *filename);
+  int truncate(const char *path, off_t length);
+  int rename(const char *old, const char *new);
+  int access (const char *filename, int how);
+
+
+summary: |
+  <p>File system functions.</p>
+
+
+example: |
+  struct stat st;
+  char *f = "/mydir";
+  DIR * dir;
+  struct dirent * d;
+  char tmp[PATH_MAX];
+
+  if((lstat(f, &st) == 0) && S_ISDIR(st.st_mode)){
+      if((dir = opendir(f)) != NULL){
+        while((d = readdir(dir)) != NULL){
+          sprintf(tmp,"%s/%s",f,d->d_name);
+          if((lstat(tmp, &st) == 0) && S_ISDIR(st.st_mode)){
+            if(strcmp(".", d->d_name) == 0)
+              continue;
+            if(strcmp("..", d->d_name) == 0)
+              continue;
+            printf("%s\r\n",tmp);
+          }
+        }
+        closedir(dir);
+      }
+  }
+
+tags:
+  - File
+
+
+introduced: 1.0.0

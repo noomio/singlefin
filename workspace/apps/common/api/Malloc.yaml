@@ -1,0 +1,26 @@
+name: Malloc
+
+proto: |
+  void *malloc(size_t size);
+  void free(void *ptr);
+  void *calloc (size_t num, size_t size);
+  void *realloc (void* ptr, size_t size);
+  void *memalign(size_t align, size_t len);
+
+defines: |
+  MALLOC_FREE_INLINE
+
+summary: |
+  <p>Thread safe dynamic memory alloation.</p>
+  <p>The memory is 8 byte aligned.</p>
+  <p>The <b>memalign</b> argument align is ignored and will align 8 bytes always.</p>
+
+example: |
+  int *p = malloc(sizeof(int));
+  free(p);
+
+tags:
+  - Malloc
+
+
+introduced: 1.0.0

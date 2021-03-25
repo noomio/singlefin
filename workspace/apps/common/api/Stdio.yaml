@@ -1,0 +1,31 @@
+name: Stdio
+
+proto: |
+  int printf(const char *format, ...);
+  size_t write(int fildes, const void *buf, size_t nbytes1);
+  int puts(const char *s);
+  int putchar(int character);
+  int getchar(void);
+
+
+summary: |
+  <p>Stdio</p> 
+  <p>stdout and stdin uses Uart 2.</p>
+  <p>The listed functions are wrapped/overwritten to keep compatibility with the standard C library.</p>
+  <p>The functions are thread safe.</p>
+  <p>stdout & stdin are allocated with 512 bytes. If you printf anything larger it shalll be clipped.</p>
+
+
+example: |
+  /* Stdio */
+  const char *s = "SingleFin";
+  printf("%s\r\n",s);
+
+  /* Stdin */
+  int c = getchar();
+  
+tags:
+  - Stdio
+
+
+introduced: 1.0.0

@@ -1,0 +1,27 @@
+name: Random
+
+proto: |
+  void hwrandombytes(uint8_t *buf, uint64_t size );
+
+details: |
+  void hwrandombytes(uint8_t *buf, uint64_t size );
+    Arguments:
+      {uint8_t*} buf
+        Buffer to store random bytes
+      {uint64_t} size
+        Size of the buffer
+    
+summary: |
+  <p>Random</p>
+  <p>Return hardware created random bytes.</p>
+
+example: |
+  uint8_t buf[255];
+  hwrandombytes(buf, sizeof(buf));
+
+
+tags:
+  - Random
+
+
+introduced: 1.0.0

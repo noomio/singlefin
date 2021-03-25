@@ -1,0 +1,59 @@
+<h1 id="commandline">Command Line</h1>
+
+<p>A number of commands have been integrated in the library to allow the developer to interact with the file system directly instead of using AT commands. Some of the most common commands have been integrated and can be seen below.</p>
+
+<p>Additionally the API allows a developer to create their own command lines (see <a href="#cli">cli</a> for details).</p>
+
+<h2>List of Command Lines</h2>
+<table class="table">
+	  <thead>
+    <tr>
+      <th scope="col">Command Name</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+<tr>
+<td><code>help</code></td>
+<td>Display a list of the commands</td>
+</tr>
+<tr>
+<td><code>meminfo</code></td>
+<td>Display dynamic memory information</td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td>List directory details</td>
+</tr>
+<tr>
+<td><code>cat</code></td>
+<td>Display on the terminal a files content</td>
+</tr>
+<tr>
+<td><code>rm</code></td>
+<td>Remove a file or directory</td>
+</tr>
+<tr>
+<td><code>mkdir</code></td>
+<td>Create a directory</td>
+</tr>
+<tr>
+<td><code>touch</code></td>
+<td>Create an empty file</td>
+</tr>
+<tr>
+<td><code>echo</code></td>
+<td>Write to a file</td>
+</tr>
+</table>
+
+<h2>Prompt</h2>
+<p>When connected over UART2 or when using SingleFin <span class="badge badge-dark">USB DEBUG</span> port (UART2) you will be prompted the shift right arrows.</p>
+<pre class="c-code">
+>> 
+</pre>
+
+<h2>Help</h2>
+<p>Type help to view a list of the available commands.</p>
+<pre class="c-code">
+>> help
+</pre>

@@ -1,24 +1,24 @@
 name: Spi
 
-functions: |
-  spi_power_down
-  spi_power_up
-  spi_config
-  spi_deconfig
-  spi_set_frequency
-  spi_set_endianess
-  spi_set_bit_per_word
-  spi_set_mode
-  spi_set_inter_word_delay
-  spi_set_loopback
-  spi_set_chip_select_mode
-  spi_set_chip_select_polarity
-  spi_set_chip_select_delay
-  spi_set_slaves_num
-  spi_send
-  spi_send_receive
-  spi_config_dump
-  spi_get_name
+proto: |
+  spi_power_down(spi_num_t spi_num);
+  spi_power_up(spi_num_t spi_num);
+  spi_config(spi_num_t spi_num);
+  spi_deconfig(spi_num_t spi_num);
+  spi_set_frequency(spi_num_t spi_num, uint32_t frequency);
+  spi_set_endianess(spi_num_t spi_num, spi_endian_t endian);
+  spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw);
+  spi_set_mode(spi_num_t spi_num, spi_mode_t mode);
+  spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay);
+  spi_set_loopback(spi_num_t spi_num, bool enable);
+  spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode);
+  spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity);
+  spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay);
+  spi_set_slaves_num(spi_num_t spi_num, uint8_t num);
+  spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
+  spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
+  spi_config_dump(spi_num_t spi_num);
+  spi_get_name(spi_num_t spi_num);
 
 details: |
   int spi_power_down(spi_num_t spi_num);
@@ -197,10 +197,14 @@ summary: |
 
 
 example: |
+  int res = spi_config(SPI1);
+  spi_config_dump(SPI1);
+  const char *name = spi_get_name(SPI1);
 
+  res = spi_send_receive(SPI1,&addr,&version,1);
 
 tags:
   - Spi
 
 
-introduced: 0.0.0
+introduced: 1.0.0

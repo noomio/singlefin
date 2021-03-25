@@ -1,0 +1,25 @@
+name: Net
+
+proto: |
+  const char *resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len);
+
+macros: |
+  dump_net_interfaces();
+  dump_dns_server_list();
+  resolve_host(domain, itf);
+
+summary: |
+  <p>Net</p>
+
+
+example: |
+  const char *ip = resolve_host("www.google.com",rmnet_data0);
+  printf("resolved ip: %s\r\n",ip);
+
+tags:
+  - Net
+
+seealso:
+  - Dss
+
+introduced: 1.0.0
