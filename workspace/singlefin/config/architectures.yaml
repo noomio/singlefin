@@ -1,0 +1,12 @@
+# Architecture metadata.
+
+autodetect:
+  -
+    name: ARM 32-bit
+    check: DUK_F_ARM32
+    include: architecture_arm32.h.in
+
+  -
+    name: Generic
+    check: null
+    include: architecture_generic.h.in

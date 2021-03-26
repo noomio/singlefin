@@ -952,7 +952,7 @@ def generateIndexPage():
 
     title_elem = templ_soup.select('#template-title')[0]
     del title_elem['id']
-    title_elem.string = 'NoomioJS'
+    title_elem.string = 'SingleFin'
 
     tmp_soup = templ_soup.select('#site-middle-content')[0]
     tmp_soup.clear()

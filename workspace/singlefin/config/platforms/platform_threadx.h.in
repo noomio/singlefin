@@ -1,0 +1,38 @@
+#if defined(FIN_F_THREADX) && defined(DUK_COMPILING_DUKTAPE)
+
+
+#define DUK_USE_DATE_NOW_GETTIMEOFDAY
+#define DUK_USE_DATE_TZO_GMTIME_R
+#define DUK_USE_DATE_PRS_STRPTIME
+#define DUK_USE_DATE_FMT_STRFTIME
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+#include <qapi_adc_types.h>
+#include <qapi_fs_types.h>
+#include <qapi_dss.h>
+#include <qapi_uart.h>
+#include <qapi_timer.h>
+#include <qapi_device_info.h>
+#include <qapi_socket.h>
+#include <qapi_ns_utils.h>
+#include <qapi_tlmm.h>
+#include <qapi_txm_base.h>
+#include <qapi_httpc.h>
+#include <qapi_socket.h>
+#include <qapi_netservices.h>
+#include <list.h>
+#include <qapi_dnsc.h>
+#include <qapi_dss.h>
+#include <qapi_netservices.h>
+#include <qapi_timer.h>
+#include <qapi_uart.h>
+
+#include "debug_opt.h"
+
+#define FIN_USE_OS_STRING "threadx"

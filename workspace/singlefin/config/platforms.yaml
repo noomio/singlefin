@@ -1,0 +1,9 @@
+# Platform metadata.
+  -
+    name: THREADX
+    check: FIN_F_THREADX
+    include: platform_threadx.h.in
+  -
+    name: Generic fallback
+    check: null
+    include: platform_generic.h.in  # if nothing else

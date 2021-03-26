@@ -148,19 +148,19 @@ def cstring(x):
 # DUK_VERSION is grepped from duktape.h.in: it is needed for the
 # public API and we want to avoid defining it in two places.
 def get_duk_version(apiheader_filename):
-    r = re.compile(r'^#define\s+DUK_VERSION\s+(.*?)L?\s*$')
+    r = re.compile(r'^#define\s+FIN_VERSION\s+(.*?)L?\s*$')
     with open(apiheader_filename, 'rb') as f:
         for line in f:
             m = r.match(line)
             if m is not None:
-                duk_version = int(m.group(1))
-                duk_major = duk_version / 10000
-                duk_minor = (duk_version % 10000) / 100
-                duk_patch = duk_version % 100
-                duk_version_formatted = '%d.%d.%d' % (duk_major, duk_minor, duk_patch)
-                return duk_version, duk_major, duk_minor, duk_patch, duk_version_formatted
+                fin_version = int(m.group(1))
+                fin_major = fin_version / 10000
+                fin_minor = (fin_version % 10000) / 100
+                fin_patch = fin_version % 100
+                fin_version_formatted = '%d.%d.%d' % (fin_major, fin_minor, fin_patch)
+                return fin_version, fin_major, fin_minor, fin_patch, fin_version_formatted
 
-    raise Exception('cannot figure out duktape version')
+    raise Exception('cannot figure out singlefin version')
 
 # Option parsing
 
@@ -217,11 +217,14 @@ def main():
     parser.add_option('--git-commit', dest='git_commit', default=None, help='Force git commit hash')
     parser.add_option('--git-describe', dest='git_describe', default=None, help='Force git describe')
     parser.add_option('--git-branch', dest='git_branch', default=None, help='Force git branch name')
-    parser.add_option('--duk-dist-meta', dest='duk_dist_meta', default=None, help='duk_dist_meta.json to read git commit etc info from')
+    parser.add_option('--fin-dist-meta', dest='fin_dist_meta', default=None, help='fin_dist_meta.json to read git commit etc info from')
 
     # Options for combining sources.
     parser.add_option('--separate-sources', dest='separate_sources', action='store_true', default=False, help='Output separate sources instead of combined source (default is combined)')
     parser.add_option('--line-directives', dest='line_directives', action='store_true', default=False, help='Output #line directives in combined source (default is false)')
+
+    # Options forwarded to genconfig.py.
+    genconfig.add_genconfig_optparse_options(parser)
 
     # Log level options.
     parser.add_option('--quiet', dest='quiet', action='store_true', default=False, help='Suppress info messages (show warnings)')
@@ -231,8 +234,8 @@ def main():
     if len(args) > 0:
         raise Exception('unexpected arguments: %r' % args)
 
-    if opts.obsolete_builtin_metadata is not None:
-        raise Exception('--user-builtin-metadata has been removed, use --builtin-file instead')
+    #if opts.obsolete_builtin_metadata is not None:
+    #    raise Exception('--user-builtin-metadata has been removed, use --builtin-file instead')
 
     # Log level.
     forward_loglevel = []
@@ -273,28 +276,28 @@ def main():
 
     opts.config_metadata = default_from_script_path('--config-metadata', opts.config_metadata, [ 'config' ])
 
-    opts.license_file = default_from_script_path('--license-file', opts.license_file, [ 'LICENSE.txt' ])
-    license_file = opts.license_file
+    #opts.license_file = default_from_script_path('--license-file', opts.license_file, [ 'LICENSE.txt' ])
+    #license_file = opts.license_file
 
-    opts.authors_file = default_from_script_path('--authors-file', opts.authors_file, [ 'AUTHORS.rst' ])
-    authors_file = opts.authors_file
+    #opts.authors_file = default_from_script_path('--authors-file', opts.authors_file, [ 'AUTHORS.rst' ])
+    #authors_file = opts.authors_file
 
-    duk_dist_meta = None
-    if opts.duk_dist_meta is not None:
-        with open(opts.duk_dist_meta, 'rb') as f:
-            duk_dist_meta = json.loads(f.read())
+    fin_dist_meta = None
+    if opts.fin_dist_meta is not None:
+        with open(opts.fin_dist_meta, 'rb') as f:
+            fin_dist_meta = json.loads(f.read())
 
-    duk_version, duk_major, duk_minor, duk_patch, duk_version_formatted = \
-        get_duk_version(os.path.join(srcdir, 'duktape.h.in'))
+    fin_version, fin_major, fin_minor, fin_patch, fin_version_formatted = \
+        get_duk_version(os.path.join(srcdir, 'singlefin.h.in'))
 
     git_commit = None
     git_branch = None
     git_describe = None
 
-    if duk_dist_meta is not None:
-        git_commit = duk_dist_meta['git_commit']
-        git_branch = duk_dist_meta['git_branch']
-        git_describe = duk_dist_meta['git_describe']
+    if fin_dist_meta is not None:
+        git_commit = fin_dist_meta['git_commit']
+        git_branch = fin_dist_meta['git_branch']
+        git_describe = fin_dist_meta['git_describe']
 
     if opts.git_commit is not None:
         git_commit = opts.git_commit
@@ -323,17 +326,17 @@ def main():
 
 
     logger.info('Configuring Duktape version %s, commit %s, describe %s, branch %s' % \
-                (duk_version_formatted, git_commit, git_describe, git_branch))
+                (fin_version_formatted, git_commit, git_describe, git_branch))
     logger.info('  - source input directory: ' + opts.source_directory)
-    logger.info('  - license file: ' + opts.license_file)
-    logger.info('  - authors file: ' + opts.authors_file)
+    #logger.info('  - license file: ' + opts.license_file)
+    #logger.info('  - authors file: ' + opts.authors_file)
     logger.info('  - config metadata directory: ' + opts.config_metadata)
     logger.info('  - output directory: ' + opts.output_directory)
 
     # Create output directory.  If the directory already exists, reuse it but
     # only when it's safe to do so, i.e. it contains only known output files.
     allow_outdir_reuse = True
-    outdir_whitelist = [ 'duk_config.h', 'duktape.c', 'duktape.h', 'duk_source_meta.json' ]
+    outdir_whitelist = [ 'fin_config.h', 'singlefin.c', 'singlefin.h', 'fin_source_meta.json' ]
     if os.path.exists(outdir):
         if not allow_outdir_reuse:
             raise Exception('configure target directory %s already exists, please delete it first' % repr(outdir))
@@ -351,7 +354,7 @@ def main():
         os.mkdir(outdir)
 
     # Temporary directory.
-    tempdir = tempfile.mkdtemp(prefix='tmp-duk-prepare-')
+    tempdir = tempfile.mkdtemp(prefix='tmp-fin-prepare-')
     atexit.register(shutil.rmtree, tempdir)
     mkdir(os.path.join(tempdir, 'src'))
     logger.debug('Using temporary directory %r' % tempdir)
@@ -364,8 +367,8 @@ def main():
     # Build temp versions of LICENSE.txt and AUTHORS.rst for embedding into
     # autogenerated C/H files.
 
-    copy_and_cquote(license_file, os.path.join(tempdir, 'LICENSE.txt.tmp'))
-    copy_and_cquote(authors_file, os.path.join(tempdir, 'AUTHORS.rst.tmp'))
+    #copy_and_cquote(license_file, os.path.join(tempdir, 'LICENSE.txt.tmp'))
+    #copy_and_cquote(authors_file, os.path.join(tempdir, 'AUTHORS.rst.tmp'))
 
 
     # Create a duk_config.h.
@@ -374,54 +377,54 @@ def main():
     def forward_genconfig_options():
         res = []
         res += [ '--metadata', os.path.abspath(opts.config_metadata) ]  # rename option, --config-metadata => --metadata
-        if opts.platform is not None:
-            res += [ '--platform', opts.platform ]
-        if opts.compiler is not None:
-            res += [ '--compiler', opts.compiler ]
-        if opts.architecture is not None:
-            res += [ '--architecture', opts.architecture ]
-        if opts.c99_types_only:
-            res += [ '--c99-types-only' ]
-        if opts.dll:
-            res += [ '--dll' ]
-        if opts.support_feature_options:
-            res += [ '--support-feature-options' ]
-        if opts.emit_legacy_feature_check:
-            res += [ '--emit-legacy-feature-check' ]
-        if opts.emit_config_sanity_check:
-            res += [ '--emit-config-sanity-check' ]
-        if opts.omit_removed_config_options:
-            res += [ '--omit-removed-config-options' ]
-        if opts.omit_deprecated_config_options:
-            res += [ '--omit-deprecated-config-options' ]
-        if opts.omit_unused_config_options:
-            res += [ '--omit-unused-config-options' ]
-        if opts.add_active_defines_macro:
-            res += [ '--add-active-defines-macro' ]
-        if len(opts.force_options_yaml) > 0:
-            # Use temporary files so that large option sets don't create
-            # excessively large commands.
-            for idx,i in enumerate(opts.force_options_yaml):
-                tmpfn = os.path.join(tempdir, 'genconfig%d.yaml' % idx)
-                with open(tmpfn, 'wb') as f:
-                    f.write(i)
-                with open(tmpfn, 'rb') as f:
-                    logger.debug(f.read())
-                res += [ '--option-file', tmpfn ]
-        for i in opts.fixup_header_lines:
-            res += [ '--fixup-line', i ]
-        if not opts.sanity_strict:
-            res += [ '--sanity-warning' ]
-        if opts.use_cpp_warning:
-            res += [ '--use-cpp-warning' ]
+        # if opts.platform is not None:
+        #     res += [ '--platform', opts.platform ]
+        # if opts.compiler is not None:
+        #     res += [ '--compiler', opts.compiler ]
+        # if opts.architecture is not None:
+        #     res += [ '--architecture', opts.architecture ]
+        # if opts.c99_types_only:
+        #     res += [ '--c99-types-only' ]
+        # if opts.dll:
+        #     res += [ '--dll' ]
+        # if opts.support_feature_options:
+        #     res += [ '--support-feature-options' ]
+        # if opts.emit_legacy_feature_check:
+        #     res += [ '--emit-legacy-feature-check' ]
+        # if opts.emit_config_sanity_check:
+        #     res += [ '--emit-config-sanity-check' ]
+        # if opts.omit_removed_config_options:
+        #     res += [ '--omit-removed-config-options' ]
+        # if opts.omit_deprecated_config_options:
+        #     res += [ '--omit-deprecated-config-options' ]
+        # if opts.omit_unused_config_options:
+        #     res += [ '--omit-unused-config-options' ]
+        # if opts.add_active_defines_macro:
+        #     res += [ '--add-active-defines-macro' ]
+        # if len(opts.force_options_yaml) > 0:
+        #     # Use temporary files so that large option sets don't create
+        #     # excessively large commands.
+        #     for idx,i in enumerate(opts.force_options_yaml):
+        #         tmpfn = os.path.join(tempdir, 'genconfig%d.yaml' % idx)
+        #         with open(tmpfn, 'wb') as f:
+        #             f.write(i)
+        #         with open(tmpfn, 'rb') as f:
+        #             logger.debug(f.read())
+        #         res += [ '--option-file', tmpfn ]
+        # for i in opts.fixup_header_lines:
+        #     res += [ '--fixup-line', i ]
+        # if not opts.sanity_strict:
+        #     res += [ '--sanity-warning' ]
+        # if opts.use_cpp_warning:
+        #     res += [ '--use-cpp-warning' ]
         return res
 
     cmd = [
         sys.executable, os.path.join(script_path, 'genconfig.py'),
-        '--output', os.path.join(tempdir, 'duk_config.h.tmp'),
-        '--output-active-options', os.path.join(tempdir, 'duk_config_active_options.json'),
-        '--git-commit', git_commit, '--git-describe', git_describe, '--git-branch', git_branch,
-        '--used-stridx-metadata', os.path.join(tempdir, 'duk_used_stridx_bidx_defs.json.tmp')
+        '--output', os.path.join(tempdir, 'fin_config.h.tmp'),
+        #'--output-active-options', os.path.join(tempdir, 'fin_config_active_options.json'),
+        #'--git-commit', git_commit, '--git-describe', git_describe, '--git-branch', git_branch,
+        #'--used-stridx-metadata', os.path.join(tempdir, 'fin_used_stridx_bidx_defs.json.tmp')
     ]
     cmd += forward_genconfig_options()
     cmd += [
@@ -430,7 +433,7 @@ def main():
     logger.debug(repr(cmd))
     exec_print_stdout(cmd)
 
-    copy_file(os.path.join(tempdir, 'duk_config.h.tmp'), os.path.join(outdir, 'duk_config.h'))
+    copy_file(os.path.join(tempdir, 'fin_config.h.tmp'), os.path.join(outdir, 'fin_config.h'))
 
     # Build duktape.h from parts, with some git-related replacements.
     # The only difference between single and separate file duktape.h
@@ -438,11 +441,12 @@ def main():
     #
     # Newline after 'i \':
     # http://stackoverflow.com/questions/25631989/sed-insert-line-command-osx
-    copy_and_replace(os.path.join(srcdir, 'duktape.h.in'), os.path.join(tempdir, 'duktape.h'), {
+
+    copy_and_replace(os.path.join(srcdir, 'singlefin.h.in'), os.path.join(tempdir, 'singlefin.h'), {
         '@DUK_SINGLE_FILE@': '#define DUK_SINGLE_FILE',
-        '@LICENSE_TXT@': read_file(os.path.join(tempdir, 'LICENSE.txt.tmp'), strip_last_nl=True),
-        '@AUTHORS_RST@': read_file(os.path.join(tempdir, 'AUTHORS.rst.tmp'), strip_last_nl=True),
-        '@DUK_VERSION_FORMATTED@': duk_version_formatted,
+   #     '@LICENSE_TXT@': read_file(os.path.join(tempdir, 'LICENSE.txt.tmp'), strip_last_nl=True),
+   #     '@AUTHORS_RST@': read_file(os.path.join(tempdir, 'AUTHORS.rst.tmp'), strip_last_nl=True),
+        '@DUK_VERSION_FORMATTED@': fin_version_formatted,
         '@GIT_COMMIT@': git_commit,
         '@GIT_COMMIT_CSTRING@': git_commit_cstring,
         '@GIT_DESCRIBE@': git_describe,
@@ -453,11 +457,11 @@ def main():
 
     if opts.separate_sources:
         # keep the line so line numbers match between the two variant headers
-        copy_and_replace(os.path.join(tempdir, 'duktape.h'), os.path.join(outdir, 'duktape.h'), {
+        copy_and_replace(os.path.join(tempdir, 'singlefin.h'), os.path.join(outdir, 'singlefin.h'), {
             '#define DUK_SINGLE_FILE': '#undef DUK_SINGLE_FILE'
         })
     else:
-        copy_file(os.path.join(tempdir, 'duktape.h'), os.path.join(outdir, 'duktape.h'))
+        copy_file(os.path.join(tempdir, 'singlefin.h'), os.path.join(outdir, 'singlefin.h'))
 
     
     # Create a combined source file, duktape.c, into a separate combined source
@@ -479,11 +483,11 @@ def main():
         # Duktape version information to the duktape.c header (duktape.h
         # already contains them).
 
-        duk_major = duk_version / 10000
-        duk_minor = duk_version / 100 % 100
-        duk_patch = duk_version % 100
+        fin_major = fin_version / 10000
+        fin_minor = fin_version / 100 % 100
+        fin_patch = fin_version % 100
         res.append('/*')
-        res.append(' *  Single source autogenerated distributable for Duktape %d.%d.%d.' % (duk_major, duk_minor, duk_patch))
+        res.append(' *  Single source autogenerated distributable for Duktape %d.%d.%d.' % (fin_major, fin_minor, fin_patch))
         res.append(' *')
         res.append(' *  Git commit %s (%s).' % (git_commit, git_describe))
         res.append(' *  Git branch %s.' % git_branch)
@@ -497,14 +501,16 @@ def main():
         # included and are up-to-date.
 
         res.append('/* LICENSE.txt */')
-        with open(license_file, 'rb') as f:
-            for line in f:
-                res.append(line.strip())
-        res.append('')
-        res.append('/* AUTHORS.rst */')
-        with open(authors_file, 'rb') as f:
-            for line in f:
-                res.append(line.strip())
+        if os.path.exists(license_file):
+            with open(license_file, 'rb') as f:
+                for line in f:
+                    res.append(line.strip())
+            res.append('')
+            res.append('/* AUTHORS.rst */')
+        if os.path.exists(authors_file):
+            with open(authors_file, 'rb') as f:
+                for line in f:
+                    res.append(line.strip())
 
         return '\n'.join(res) + '\n'
 
@@ -515,7 +521,33 @@ def main():
         # cause C++ issues (see GH-63).  When changing, verify by
         # compiling with g++.
         handpick = [
-
+            fin_adc.h,
+            fin_cli.c,
+            fin_cli.h,
+            fin_critical.h,
+            fin_debug.h,
+            fin_debug_opt.h,
+            fin_dss.c,
+            fin_dss.h,
+            fin_file.c,
+            fin_gpio.h,
+            fin_http_client.c,
+            fin_http_client.h,
+            fin_hwrandom.c,
+            fin_hwrandom.h,
+            fin_i2c.h,
+            fin_list.h,
+            fin_malloc.c,
+            fin_net.c,
+            fin_net.h,
+            fin_printf.c,
+            fin_retarget.c,
+            fin_sleep.h,
+            fin_spi.h,
+            fin_strings.c,
+            fin_stubs.c,
+            fin_time.c,
+            fin_uart.h
         ]
 
         files = []
@@ -546,10 +578,10 @@ def main():
             sys.executable,
             os.path.join(script_path, 'combine_src.py'),
             '--include-path', os.path.join(tempdir, 'src'),
-            '--include-exclude', 'duk_config.h',  # don't inline
-            '--include-exclude', 'duktape.h',     # don't inline
+            '--include-exclude', 'fin_config.h',  # don't inline
+            '--include-exclude', 'singlefin.h',     # don't inline
             '--prologue', os.path.join(tempdir, 'prologue.tmp'),
-            '--output-source', os.path.join(outdir, 'duktape.c'),
+            '--output-source', os.path.join(outdir, 'singlefin.c'),
             '--output-metadata', os.path.join(tempdir, 'combine_src_metadata.json')
         ]
         if opts.line_directives:
@@ -561,13 +593,13 @@ def main():
     # Merge metadata files.
 
     doc = {
-        'type': 'duk_source_meta',
+        'type': 'fin_source_meta',
         'comment': 'Metadata for prepared Duktape sources and configuration',
         'git_commit': git_commit,
         'git_branch': git_branch,
         'git_describe': git_describe,
-        'duk_version': duk_version,
-        'duk_version_string': duk_version_formatted
+        'fin_version': fin_version,
+        'fin_version_string': fin_version_formatted
     }
     with open(os.path.join(tempdir, 'genbuiltins_metadata.json'), 'rb') as f:
         tmp = json.loads(f.read())

@@ -1,0 +1,8 @@
+# Compiler metadata.
+
+autodetect:
+  -
+    name: Clang
+    check: DUK_F_CLANG
+    include: compiler_clang.h.in
+
