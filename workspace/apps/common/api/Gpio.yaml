@@ -1,20 +1,20 @@
 name: Gpio
 
 proto: |
-  int gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb);
-  int gpio_pin_trigger(uint32_t pin);
-  int gpio_pin_disable_irq(uint32_t pin);
-  int gpio_pin_enable_irq(uint32_t pin);
-  int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
-  int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
-  int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
-  int gpio_pin_release(uint32_t pin);
-  int gpio_pin_write(uint32_t pin, bool val);
-  int gpio_pin_read(uint32_t pin);
-  void gpio_config_dump(uint32_t pin);
+  int fin_gpio_pin_on(uint32_t pin, uint32_t trigger, fin_gpio_interrupt_cb_t interrupt_cb);
+  int fin_gpio_pin_trigger(uint32_t pin);
+  int fin_gpio_pin_disable_irq(uint32_t pin);
+  int fin_gpio_pin_enable_irq(uint32_t pin);
+  int fin_gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
+  int fin_gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
+  int fin_gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
+  int fin_gpio_pin_release(uint32_t pin);
+  int fin_gpio_pin_write(uint32_t pin, bool val);
+  int fin_gpio_pin_read(uint32_t pin);
+  void fin_gpio_config_dump(uint32_t pin);
 
 details: |
-  int gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb);
+  int fin_gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb);
     Arguments:
       {Uint32} pin
         Module pin number
@@ -23,22 +23,22 @@ details: |
       {function}
         Function callback
 
-  int gpio_pin_trigger(uint32_t pin);
+  int fin_gpio_pin_trigger(uint32_t pin);
     Arguments:
       {Uint32} pin
         Module pin number
 
-  int gpio_pin_disable_irq(uint32_t pin);
+  int fin_gpio_pin_disable_irq(uint32_t pin);
     Arguments:
       {Uint32} pin
         Module pin number
 
-  int gpio_pin_enable_irq(uint32_t pin);
+  int fin_gpio_pin_enable_irq(uint32_t pin);
     Arguments:
       {Uint32} pin
         Module pin number
 
-  int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
+  int fin_gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
     Arguments:
       {Uint32} pin
         Module pin number
@@ -49,7 +49,7 @@ details: |
       {Uint32} type
        Input or Output
 
-  int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
+  int fin_gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
     Arguments:
       {Uint32} pin
         Module pin number
@@ -58,7 +58,7 @@ details: |
       {Uint32} drive
         Pin current drive
 
-  int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
+  int fin_gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
     Arguments:
       {Uint32} pin
         Module pin number
@@ -67,30 +67,30 @@ details: |
       {Uint32} drive
         Pin current drive
 
-  int gpio_pin_release(uint32_t pin);
+  int fin_gpio_pin_release(uint32_t pin);
     Arguments:
       {Uint32} pin
         Module pin number
 
-  int gpio_pin_write(uint32_t pin, bool val);
+  int fin_gpio_pin_write(uint32_t pin, bool val);
     Arguments:
       {Uint32} pin
         Module pin number
       {Bool} val
         Value to write
 
-  int gpio_pin_read(uint32_t pin);
+  int fin_gpio_pin_read(uint32_t pin);
     Arguments:
       {Uint32} pin
         Module pin number
 
-  void gpio_config_dump(uint32_t pin);
+  void fin_gpio_config_dump(uint32_t pin);
     Arguments:
       {Uint32} pin
         Module pin number
 
 callbacks: |
-  typedef void (*gpio_interrupt_cb_t)(uint32_t arg);
+  typedef void (*fin_gpio_interrupt_cb_t)(uint32_t arg);
 
 defines: |
   PIN4
@@ -126,8 +126,8 @@ summary: |
 
 
 example: |
-  gpio_pin_config(18,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
-  int val = gpio_pin_read(18);
+  fin_gpio_pin_config(18,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
+  int val = fin_gpio_pin_read(18);
 
 tags:
   - Gpio

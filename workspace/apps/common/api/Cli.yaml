@@ -1,63 +1,66 @@
 name: Cli
 
 proto: |
-  cli_t *cli_new(void);
-  void cli_free(cli_t *ctx);
-  void cli_input(cli_t *ctx, char c);
-  int cli_register(cli_t *ctx, const char *name, cli_callback_t func);
+  fin_cli_t *fin_cli_new(void);
+  void fin_cli_free(fin_cli_t *ctx);
+  void fin_cli_input(fin_cli_t *ctx, char c);
+  int fin_cli_register(fin_cli_t *ctx, const char *name, fin_cli_callback_t func);
 
 details: |
-  cli_t *cli_new(void);
+  fin_cli_t *fin_cli_new(void);
     Return:
-      {cli_t*} A new cli context
+      {fin_cli_t*} A new cli context
 
-  void cli_free(cli_t *ctx);
+  void cli_free(fin_cli_t *ctx);
     Arguments:
-      {cli_t} ctx
+      {fin_cli_t} ctx
         Free a cli context 
 
-  void cli_input(cli_t *ctx, char c);
+  void fin_cli_input(fin_cli_t *ctx, char c);
     Arguments:
-      {cli_t} ctx
+      {fin_cli_t} ctx
         Cli context
       {char} c
         Character to add and parse to the internal ctx
 
-  int cli_register(cli_t *ctx, const char *name, cli_callback_t func);
+  int fin_cli_register(fin_cli_t *ctx, const char *name, fin_cli_callback_t func);
     Arguments:
-      {cli_t*} ctx
+      {fin_cli_t*} ctx
         Cli context
       {const char *} name
         Command line name to register
-      {cli_callback_t} func
+      {fin_cli_callback_t} func
         Callback function to call when the command line has been received
     Return:
       {int} Zero on success otherwise error
 
 callbacks: |
-  typedef int (*cli_callback_t)(int args, char *argv[]);
+  typedef int (*fin_cli_callback_t)(int args, char *argv[]);
 
 summary: |
   <p>Cli</p>
 
 
 example: |
+  /* User Callback */
   static int cli_cmd_onnx(int args, char *argv[]){
-    // your code
+    /* User code */
   }
 
   int main(void){
 
-    cli_t *cli = cli_new();
-    cli_register(cli,"onnx",cli_cmd_onnx);
+    fin_cli_t *fin_cli = cli_new();
+    fin_cli_register(cli,"onnx",cli_cmd_onnx);
 
     for(;;){
 
       int c = getchar();
       
       if(c != EOF){
+        /* Echo */
         putchar(c);
-        cli_input(ctx,c);
+        /* Push to Input */
+        fin_cli_input(ctx,c);
       }
 
     }

@@ -1,18 +1,18 @@
 name: Uart
 
 proto: |
-  int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
-  uart_deconfig(uint8_t serial);
-  uart_write(uint8_t serial, uint8_t *buf, size_t nbytes);
-  uart_read(uint32_t serial, uint8_t *buf, size_t nbytes);
-  uart_power_up(uint8_t serial);
-  uart_power_down(uint8_t serial);
+  int fin_uart_config(fin_uart_t uart, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
+  int fin_uart_deconfig(fin_uart_t uart);
+  int fin_uart_write(fin_uart_t uart, uint8_t *buf, size_t nbytes);
+  int fin_uart_read(fin_uart_t uart, uint8_t *buf, size_t nbytes);
+  int fin_uart_power_up(fin_uart_t uart);
+  int fin_uart_power_down(fin_uart_t uart);
 
 details: |
-  int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
+  int fin_uart_config(fin_uart_t uart, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
     Arguments:
-      {Uint8} serial
-        Uart serial number
+      {fin_uart_t} uart
+        Uart number
       {Uint32} baud_rate
         Uart baud rate
       {Uint32} stop_bits
@@ -24,37 +24,37 @@ details: |
       {Uint32} flow_ctrl
         Uart flow control
 
-  int uart_deconfig(uint8_t serial);
+  int fin_uart_deconfig(fin_uart_t uart);
     Arguments:
-      {Uint8} serial
-        Uart serial number
+      {fin_uart_t} uart
+        Uart number
 
-  int uart_write(uint8_t serial, uint8_t *buf, size_t nbytes);
+  int fin_uart_write(fin_uart_t uart, uint8_t *buf, size_t nbytes);
     Arguments:
-      {Uint8} serial
+      {fin_uart_t} uart
         Uart number
       {Uint8*} buf
         Transmit data buffer 
       {size_t} nbytes
         Transmit data buffer size
 
-  int uart_read(uint32_t serial, uint8_t *buf, size_t nbytes);
+  int fin_uart_read(fin_uart_t uart, uint8_t *buf, size_t nbytes);
     Arguments:
-    {Uint32} serial
+    {fin_uart_t} uart
       Uart number
     {Uint8*} buf
       Receive data buffer 
     {size_t} nbytes
       Receive data buffer size
 
-  int uart_power_up(uint32_t serial);
+  int fin_uart_power_up(fin_uart_t uart);
     Arguments:
-    {Uint32} serial
+    {fin_uart_t} uart
       Uart number
 
-  int uart_power_down(uint32_t serial);
+  int fin_uart_power_down(fin_uart_t uart);
     Arguments:
-    {Uint32} serial
+    {fin_uart_t} uart
       Uart number  
 
 defines: |
@@ -70,8 +70,8 @@ example: |
   /* Uart 3*/
   const char *str = "Aloha!";
 
-  uart_config(UART3,115200,QAPI_UART_1_0_STOP_BITS_E,QAPI_UART_8_BITS_PER_CHAR_E,QAPI_UART_NO_PARITY_E,QAPI_FCTL_OFF_E);
-  uart_write(UART3,str,strlen(str));
+  fin_uart_config(UART3,115200,QAPI_UART_1_0_STOP_BITS_E,QAPI_UART_8_BITS_PER_CHAR_E,QAPI_UART_NO_PARITY_E,QAPI_FCTL_OFF_E);
+  fin_uart_write(UART3,str,strlen(str));
 
 tags:
   - Uart

@@ -1,70 +1,70 @@
 name: Spi
 
 proto: |
-  spi_power_down(spi_num_t spi_num);
-  spi_power_up(spi_num_t spi_num);
-  spi_config(spi_num_t spi_num);
-  spi_deconfig(spi_num_t spi_num);
-  spi_set_frequency(spi_num_t spi_num, uint32_t frequency);
-  spi_set_endianess(spi_num_t spi_num, spi_endian_t endian);
-  spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw);
-  spi_set_mode(spi_num_t spi_num, spi_mode_t mode);
-  spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay);
-  spi_set_loopback(spi_num_t spi_num, bool enable);
-  spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode);
-  spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity);
-  spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay);
-  spi_set_slaves_num(spi_num_t spi_num, uint8_t num);
-  spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
-  spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
-  spi_config_dump(spi_num_t spi_num);
-  spi_get_name(spi_num_t spi_num);
+  fin_spi_power_down(fin_spi_num_t spi_num);
+  fin_spi_power_up(fin_spi_num_t spi_num);
+  fin_spi_config(fin_spi_num_t spi_num);
+  fin_spi_deconfig(fin_spi_num_t spi_num);
+  fin_spi_set_frequency(fin_spi_num_t spi_num, uint32_t frequency);
+  fin_spi_set_endianess(fin_spi_num_t spi_num, spi_endian_t endian);
+  fin_spi_set_bit_per_word(fin_spi_num_t spi_num, spi_bits_per_word_t bpw);
+  fin_spi_set_mode(fin_spi_num_t spi_num, spi_mode_t mode);
+  fin_spi_set_inter_word_delay(fin_spi_num_t spi_num, uint8_t delay);
+  fin_spi_set_loopback(fin_spi_num_t spi_num, bool enable);
+  fin_spi_set_chip_select_mode(fin_spi_num_t spi_num, spi_cs_mode_t mode);
+  fin_spi_set_chip_select_polarity(fin_spi_num_t spi_num, spi_cs_polarity_t polarity);
+  fin_spi_set_chip_select_delay(fin_spi_num_t spi_num, uint8_t delay);
+  fin_spi_set_slaves_num(fin_spi_num_t spi_num, uint8_t num);
+  fin_spi_send(fin_spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
+  fin_spi_send_receive(fin_spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
+  fin_spi_config_dump(fin_spi_num_t spi_num);
+  fin_spi_get_name(fin_spi_num_t spi_num);
 
 details: |
-  int spi_power_down(spi_num_t spi_num);
+  int fin_spi_power_down(fin_spi_num_t spi_num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
     
-  int spi_power_up(spi_num_t spi_num);
+  int fin_spi_power_up(fin_spi_num_t spi_num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
 
-  int spi_config(spi_num_t spi_num);
+  int fin_spi_config(fin_spi_num_t spi_num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
 
-  int spi_deconfig(spi_num_t spi_num);
+  int fin_spi_deconfig(fin_spi_num_t spi_num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
 
-  int spi_set_frequency(spi_num_t spi_num, uint32_t frequency);
+  int fin_spi_set_frequency(fin_spi_num_t spi_num, uint32_t frequency);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {Uint32} frequency
         Spi clock frequency with a ninimum of 1 Mhz.
 
-  int spi_set_endianess(spi_num_t spi_num, spi_endian_t endian);
+  int fin_spi_set_endianess(fin_spi_num_t spi_num, spi_endian_t endian);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {spi_endian_t} endian
         Set endianess
 
-  int spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw);
+  int fin_spi_set_bit_per_word(fin_spi_num_t spi_num, spi_bits_per_word_t bpw);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {spi_bits_per_word_t} bpw
         Set bits per word
 
-  int spi_set_mode(spi_num_t spi_num, spi_mode_t mode);
+  int fin_spi_set_mode(fin_spi_num_t spi_num, spi_mode_t mode);
     Arguments:
-    {spi_num_t} spi_num
+    {fin_spi_num_t} spi_num
       Spi number
     {spi_mode_t} mode
       Set mode to 0,1,2 or 3. 
@@ -73,60 +73,60 @@ details: |
       2: CPOL = 1, CPHA = 0
       3: CPOL = 1, CPHA = 1
 
-  int spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay);
+  int fin_spi_set_inter_word_delay(fin_spi_num_t spi_num, uint8_t delay);
     Arguments:
       {spi_num_t} spi_num
         Spi number
       {Uint8} delay
         Set the inter word delay
 
-  int spi_set_loopback(spi_num_t spi_num, bool enable);
+  int fin_spi_set_loopback(fin_spi_num_t spi_num, bool enable);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {Bool} enable
         Set loopack mode  
 
-  int spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode);
+  int fin_spi_set_chip_select_mode(fin_spi_num_t spi_num, spi_cs_mode_t mode);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {spi_cs_mode_t} mode
         Set chip select mode to deassert or keep asserted.
 
-  int spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity);
+  int fin_spi_set_chip_select_polarity(fin_spi_num_t spi_num, spi_cs_polarity_t polarity);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {spi_cs_polarity_t} polarity
         Set chip select polarity to active low or active high.
 
-  int spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay);
+  int fin_spi_set_chip_select_delay(fin_spi_num_t spi_num, uint8_t delay);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {Uint8} delay
         Set chip select delay.
 
-  int spi_set_slaves_num(spi_num_t spi_num, uint8_t num);
+  int fin_spi_set_slaves_num(fin_spi_num_t spi_num, uint8_t num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {Uint8} num
         Set the number of daisy chained slaves with a range of 0 to 7.
 
-  int spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
+  int fin_spi_send(fin_spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {Uint8*} tx_buf
         Transmit data buffer
       {size_t} tx_len
         Transmit data buffer length
 
-  int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
+  int fin_spi_send_receive(fin_spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
       {Uint8*} tx_buf
         Transmit data buffer
@@ -135,14 +135,14 @@ details: |
       {size_t} rx_len
         Receive data buffer length
 
-  void spi_config_dump(spi_num_t spi_num);
+  void fin_spi_config_dump(fin_spi_num_t spi_num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
 
-  const char *spi_get_name(spi_num_t spi_num);
+  const char *fin_spi_get_name(fin_spi_num_t spi_num);
     Arguments:
-      {spi_num_t} spi_num
+      {fin_spi_num_t} spi_num
         Spi number
 
 
@@ -197,11 +197,11 @@ summary: |
 
 
 example: |
-  int res = spi_config(SPI1);
-  spi_config_dump(SPI1);
-  const char *name = spi_get_name(SPI1);
+  int res = fin_spi_config(SPI1);
+  fin_spi_config_dump(SPI1);
+  const char *name = fin_spi_get_name(SPI1);
 
-  res = spi_send_receive(SPI1,&addr,&version,1);
+  res = fin_spi_send_receive(SPI1,&addr,&version,1);
 
 tags:
   - Spi

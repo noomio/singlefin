@@ -20,10 +20,10 @@ struct uart_map {
 	volatile uint32_t recvd_tail;
 };
 
-struct uart_map uart[UART_NO_MAX] = {
-	{1, -1, QAPI_UART_PORT_001_E, NULL, 0},
-	{2, -1, QAPI_UART_PORT_002_E, NULL, 0},
-	{3, -1, QAPI_UART_PORT_003_E, NULL, 0}
+struct uart_map uart_map[UART_NO_MAX] = {
+	{UART1, -1, QAPI_UART_PORT_001_E, NULL, 0},
+	{UART2, -1, QAPI_UART_PORT_002_E, NULL, 0},
+	{UART3, -1, QAPI_UART_PORT_003_E, NULL, 0}
 };
 
 static void uart_rx_cb(uint32_t num_bytes, void *cb_data){
@@ -45,15 +45,15 @@ static void uart_tx_cb(uint32_t num_bytes1, void *cb_data){
 }
 
 
-int fin_uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl){
+int fin_uart_config(fin_uart_t uart, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl){
 
 	qapi_UART_Open_Config_t uart_cfg;
 	int index = -1;
 
 	for(int i=0; i < UART_NO_MAX; i++){
-		if(uart[i].serial_num == serial){
+		if(uart_map[i].serial_num == uart){
 			index = i;
-			uart[i].index = i;
+			uart_map[i].index = i;
 			break;
 		}
 	}
@@ -70,11 +70,11 @@ int fin_uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint
 		uart_cfg.tx_CB_ISR			= (qapi_UART_Callback_Fn_t)&uart_tx_cb;
 
 
-		if(qapi_UART_Open(&uart[index].handle, uart[index].port_id, &uart_cfg) == QAPI_OK && 
-			qapi_UART_Power_On(uart[index].handle) == QAPI_OK){
-				while(qapi_UART_Receive (uart[index].handle, uart[index].recv_buf, RECV_BUF_SIZE, &uart[index].index) != QAPI_OK); // queue as per doc
-				uart[index].recvd_head = 0;
-				uart[index].recvd_tail = 0;
+		if(qapi_UART_Open(&uart_map[index].handle, uart_map[index].port_id, &uart_cfg) == QAPI_OK && 
+			qapi_UART_Power_On(uart_map[index].handle) == QAPI_OK){
+				while(qapi_UART_Receive (uart_map[index].handle, uart_map[index].recv_buf, RECV_BUF_SIZE, &uart[index].index) != QAPI_OK); // queue as per doc
+				uart_map[index].recvd_head = 0;
+				uart_map[index].recvd_tail = 0;
 				return 0;
 		}
 
@@ -84,13 +84,13 @@ int fin_uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint
 
 }
 
-int fin_uart_write(uint8_t serial, uint8_t *buf, size_t nbytes){
+int fin_uart_write(fin_uart_t uart, uint8_t *buf, size_t nbytes){
 
 	if(buf){
 
 		for(int i=0; i < UART_NO_MAX; i++){
-			if(uart[i].serial_num == serial){
-				return qapi_UART_Transmit(uart[i].handle, buf, nbytes, &uart[i].serial_num);
+			if(uart_map[i].serial_num == uart){
+				return qapi_UART_Transmit(uart_map[i].handle, buf, nbytes, &uart_map[i].serial_num);
 			}
 		}
 
@@ -99,27 +99,27 @@ int fin_uart_write(uint8_t serial, uint8_t *buf, size_t nbytes){
 	return 1;
 }
 
-int fin_uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
+int fin_uart_read(fin_uart_t uart, uint8_t *buf, size_t nbytes){
 
 	if(buf){
 
 		for(int i=0; i < UART_NO_MAX; i++){
-			if(uart[i].serial_num == serial){
-				uint32_t head = __atomic_load_n(&uart[i].recvd_head,__ATOMIC_RELAXED);
+			if(uart_map[i].serial_num == uart){
+				uint32_t head = __atomic_load_n(&uart_map[i].recvd_head,__ATOMIC_RELAXED);
 				uint32_t z=0;
 				while(nbytes){
-					if(uart[i].recvd_tail != head){
-						uint32_t tail = uart[i].recvd_tail;
-						buf[z++] = __atomic_load_n(&uart[i].recvd[tail],__ATOMIC_RELAXED);
-						uart[i].recvd_tail++;
-						if(uart[i].recvd_tail >= RECV_BUF_SIZE-1)
-							uart[i].recvd_tail = 0;
+					if(uart_map[i].recvd_tail != head){
+						uint32_t tail = uart_map[i].recvd_tail;
+						buf[z++] = __atomic_load_n(&uart_map[i].recvd[tail],__ATOMIC_RELAXED);
+						uart_map[i].recvd_tail++;
+						if(uart_map[i].recvd_tail >= RECV_BUF_SIZE-1)
+							uart_map[i].recvd_tail = 0;
 					}
 					nbytes--;
 				}
 
 				// queue again - crude way
-				while(qapi_UART_Receive (uart[i].handle, uart[i].recv_buf, RECV_BUF_SIZE, &uart[i].index) != QAPI_OK); // queue as per doc
+				while(qapi_UART_Receive (uart_map[i].handle, uart_map[i].recv_buf, RECV_BUF_SIZE, &uart_map[i].index) != QAPI_OK); // queue as per doc
 
 				return z;
 
@@ -131,11 +131,11 @@ int fin_uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
 	return 0;
 }
 
-int fin_uart_deconfig(uint32_t serial){
+int fin_uart_deconfig(fin_uart_t uart){
 	for(int i=0; i < UART_NO_MAX; i++){
-		if(uart[i].serial_num == serial){
-			qapi_UART_Power_Off(uart[i].handle);
-			return qapi_UART_Close(uart[i].handle);
+		if(uart_map[i].serial_num == uart){
+			qapi_UART_Power_Off(uart_map[i].handle);
+			return qapi_UART_Close(uart_map[i].handle);
 		}
 	}
 
@@ -143,20 +143,20 @@ int fin_uart_deconfig(uint32_t serial){
 }
 
 
-int fin_uart_power_down(uint32_t serial){
+int fin_uart_power_down(fin_uart_t uart){
 	for(int i=0; i < UART_NO_MAX; i++){
-		if(uart[i].serial_num == serial){
-			return qapi_UART_Power_Off(uart[i].handle);
+		if(uart_map[i].serial_num == uart){
+			return qapi_UART_Power_Off(uart_map[i].handle);
 		}
 	}
 
 	return 1;
 }
 
-int fin_uart_power_up(uint32_t serial){
+int fin_uart_power_up(fin_uart_t uart){
 	for(int i=0; i < UART_NO_MAX; i++){
-		if(uart[i].serial_num == serial){
-			return qapi_UART_Power_On(uart[i].handle);
+		if(uart_map[i].serial_num == uart){
+			return qapi_UART_Power_On(uart_map[i].handle);
 		}
 	}
 

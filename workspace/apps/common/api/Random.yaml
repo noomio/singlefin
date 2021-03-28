@@ -1,10 +1,10 @@
 name: Random
 
 proto: |
-  void hwrandombytes(uint8_t *buf, uint64_t size );
+  void fin_hwrandombytes(uint8_t *buf, uint64_t size );
 
 details: |
-  void hwrandombytes(uint8_t *buf, uint64_t size );
+  void fin_hwrandombytes(uint8_t *buf, uint64_t size );
     Arguments:
       {uint8_t*} buf
         Buffer to store random bytes
@@ -17,7 +17,7 @@ summary: |
 
 example: |
   uint8_t buf[255];
-  hwrandombytes(buf, sizeof(buf));
+  fin_hwrandombytes(buf, sizeof(buf));
 
 
 tags:

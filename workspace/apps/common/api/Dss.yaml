@@ -1,30 +1,30 @@
 name: Dss
 
 proto: |
-  dss_ctx_t *dss_new(const char *apn, const char *password, const char *username);
-  int dss_start(dss_ctx_t *ctx);
-  int dss_restart(dss_ctx_t *ctx);
-  int dss_stop(dss_ctx_t *ctx);
-  int dss_free(dss_ctx_t *ctx);
+  fin_dss_ctx_t *fin_dss_new(const char *apn, const char *password, const char *username);
+  int fin_dss_start(fin_dss_ctx_t *ctx);
+  int fin_dss_restart(fin_dss_ctx_t *ctx);
+  int fin_dss_stop(fin_dss_ctx_t *ctx);
+  int fin_dss_free(fin_dss_ctx_t *ctx);
 
 macros: |
-  dss_set_notify(ctx, tobenotified) 
-  dss_wait_conn_notify(N,T)
+  fin_dss_set_notify(ctx, tobenotified) 
+  fin_dss_wait_conn_notify(N,T)
 
 details: |
 
 
 callbacks: |
-  typedef const void (*dss_data_call_status_cb_t)(qapi_DSS_Net_Evt_t evt);
+  typedef const void (*fin_dss_data_call_status_cb_t)(qapi_DSS_Net_Evt_t evt);
 
 summary: |
   <p>Dss</p>
 
 
 example: |
-  dss_ctx_t *dss_ctx = dss_new("mdata.net.au",NULL,NULL);
-  dss_start(dss_ctx);
-  dss_wait_conn_notify(dss_ctx,10000);
+  fin_dss_ctx_t *dss_ctx = fin_dss_new("mdata.net.au",NULL,NULL);
+  fin_dss_start(dss_ctx);
+  fin_dss_wait_conn_notify(dss_ctx,10000);
 
 tags:
   - Dss

@@ -1,36 +1,36 @@
 name: Adc
 
 proto: |
-  int adc_config(adc_channel_t adc_num);
-  uint32_t adc_read_microvolts(adc_channel_t adc_num);
-  uint32_t adc_read_physical(adc_channel_t adc_num);
-  uint32_t adc_read_percent(adc_channel_t adc_num);
-  uint32_t adc_read_raw(adc_channel_t adc_num);
+  int fin_adc_config(fin_adc_channel_t adc_num);
+  uint32_t fin_adc_read_microvolts(fin_adc_channel_t adc_num);
+  uint32_t fin_adc_read_physical(fin_adc_channel_t adc_num);
+  uint32_t fin_adc_read_percent(fin_adc_channel_t adc_num);
+  uint32_t fin_adc_read_raw(fin_adc_channel_t adc_num);
 
 details: |
-  int adc_config(adc_channel_t adc_num);
+  int fin_adc_config(fin_adc_channel_t adc_num);
     Arguments:
-      {adc_channel_t} adc_num
+      {fin_adc_channel_t} adc_num
         Adc number
 
-  uint32_t adc_read_microvolts(adc_channel_t adc_num);
+  uint32_t fin_adc_read_microvolts(fin_adc_channel_t adc_num);
     Arguments:
-      {adc_channel_t} adc_num
+      {fin_adc_channel_t} adc_num
         Adc number
 
-  uint32_t adc_read_physical(adc_channel_t adc_num);
+  uint32_t fin_adc_read_physical(fin_adc_channel_t adc_num);
     Arguments:
-    {adc_channel_t} adc_num
+    {fin_adc_channel_t} adc_num
       Adc number
 
-  uint32_t adc_read_percent(adc_channel_t adc_num);
+  uint32_t fin_adc_read_percent(fin_adc_channel_t adc_num);
     Arguments:
-      {adc_channel_t} adc_num
+      {fin_adc_channel_t} adc_num
         Adc number
 
-  uint32_t adc_read_raw(adc_channel_t adc_num);
+  uint32_t fin_adc_read_raw(fin_adc_channel_t adc_num);
     Arguments:
-      {adc_channel_t} adc_num
+      {fin_adc_channel_t} adc_num
         Adc number
 
 defines: |
@@ -44,8 +44,8 @@ summary: |
 
 
 example: |
-  int res = adc_config(ADC0);
-  uint32_t adc0 = adc_read_microvolts(ADC0);
+  int res = fin_adc_config(ADC0);
+  uint32_t adc0 = fin_adc_read_microvolts(ADC0);
 
 tags:
   - Adc
