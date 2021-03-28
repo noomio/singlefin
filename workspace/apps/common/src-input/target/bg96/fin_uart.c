@@ -45,7 +45,7 @@ static void uart_tx_cb(uint32_t num_bytes1, void *cb_data){
 }
 
 
-int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl){
+int fin_uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl){
 
 	qapi_UART_Open_Config_t uart_cfg;
 	int index = -1;
@@ -84,7 +84,7 @@ int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t
 
 }
 
-int uart_write(uint8_t serial, uint8_t *buf, size_t nbytes){
+int fin_uart_write(uint8_t serial, uint8_t *buf, size_t nbytes){
 
 	if(buf){
 
@@ -99,7 +99,7 @@ int uart_write(uint8_t serial, uint8_t *buf, size_t nbytes){
 	return 1;
 }
 
-int uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
+int fin_uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
 
 	if(buf){
 
@@ -131,7 +131,7 @@ int uart_read(uint32_t serial, uint8_t *buf, size_t nbytes){
 	return 0;
 }
 
-int uart_deconfig(uint32_t serial){
+int fin_uart_deconfig(uint32_t serial){
 	for(int i=0; i < UART_NO_MAX; i++){
 		if(uart[i].serial_num == serial){
 			qapi_UART_Power_Off(uart[i].handle);
@@ -143,7 +143,7 @@ int uart_deconfig(uint32_t serial){
 }
 
 
-int uart_power_down(uint32_t serial){
+int fin_uart_power_down(uint32_t serial){
 	for(int i=0; i < UART_NO_MAX; i++){
 		if(uart[i].serial_num == serial){
 			return qapi_UART_Power_Off(uart[i].handle);
@@ -153,7 +153,7 @@ int uart_power_down(uint32_t serial){
 	return 1;
 }
 
-int uart_power_up(uint32_t serial){
+int fin_uart_power_up(uint32_t serial){
 	for(int i=0; i < UART_NO_MAX; i++){
 		if(uart[i].serial_num == serial){
 			return qapi_UART_Power_On(uart[i].handle);

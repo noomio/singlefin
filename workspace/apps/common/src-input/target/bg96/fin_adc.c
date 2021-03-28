@@ -20,7 +20,7 @@ struct adc_map adc[ADC_MAX_NO] = {
 
 
 
-int adc_config(adc_channel_t adc_num){
+int fin_adc_config(fin_adc_channel_t adc_num){
 	if(adc_num >= 0 && adc_num < ADC_MAX_NO){
 		if(qapi_ADC_Open(&adc[adc_num].handle, 0) == QAPI_OK){
 			return qapi_ADC_Get_Input_Properties(adc[adc_num].handle, 
@@ -34,7 +34,7 @@ int adc_config(adc_channel_t adc_num){
 	return 1;
 }
 
-uint32_t adc_read_microvolts(adc_channel_t adc_num){
+uint32_t fin_adc_read_microvolts(fin_adc_channel_t adc_num){
 	qapi_ADC_Read_Result_t res;
 
 	if(adc_num >= 0 && adc_num < ADC_MAX_NO){
@@ -47,7 +47,7 @@ uint32_t adc_read_microvolts(adc_channel_t adc_num){
 
 }
 
-uint32_t adc_read_physical(adc_channel_t adc_num){
+uint32_t fin_adc_read_physical(fin_adc_channel_t adc_num){
 	qapi_ADC_Read_Result_t res;
 
 	if(adc_num >= 0 && adc_num < ADC_MAX_NO){
@@ -59,7 +59,7 @@ uint32_t adc_read_physical(adc_channel_t adc_num){
 	return -1;
 }
 
-uint32_t adc_read_percent(adc_channel_t adc_num){
+uint32_t fin_adc_read_percent(fin_adc_channel_t adc_num){
 	qapi_ADC_Read_Result_t res;
 
 	if(adc_num >= 0 && adc_num < ADC_MAX_NO){
@@ -71,7 +71,7 @@ uint32_t adc_read_percent(adc_channel_t adc_num){
 	return -1;
 }
 
-uint32_t adc_read_raw(adc_channel_t adc_num){
+uint32_t fin_adc_read_raw(fin_adc_channel_t adc_num){
 	qapi_ADC_Read_Result_t res;
 
 	if(adc_num >= 0 && adc_num < ADC_MAX_NO){

@@ -13,7 +13,7 @@ typedef enum {
 	SPI1,
 	SPI2,
 	SPI_MAX_NO
-} spi_num_t;
+} fin_spi_num_t;
 
 typedef enum{
 	SPI_CS_DEASSERT,
@@ -73,24 +73,24 @@ typedef enum{
 
 
 
-int spi_power_down(spi_num_t spi_num);
-int spi_power_up(spi_num_t spi_num);
-int spi_config(spi_num_t spi_num);
-int spi_deconfig(spi_num_t spi_num);
-int spi_set_frequency(spi_num_t spi_num, uint32_t frequency);
-int spi_set_endianess(spi_num_t spi_num, spi_endian_t endian);
-int spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw);
-int spi_set_mode(spi_num_t spi_num, spi_mode_t mode);
-int spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay);
-int spi_set_loopback(spi_num_t spi_num, bool enable);
-int spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode);
-int spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity);
-int spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay);
-int spi_set_slaves_num(spi_num_t spi_num, uint8_t num);
-int spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
-int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
-void spi_config_dump(spi_num_t spi_num);
-const char *spi_get_name(spi_num_t spi_num);
+int fin_spi_power_down(fin_spi_num_t spi_num);
+int fin_spi_power_up(fin_spi_num_t spi_num);
+int fin_spi_config(fin_spi_num_t spi_num);
+int fin_spi_deconfig(fin_spi_num_t spi_num);
+int fin_spi_set_frequency(fin_spi_num_t spi_num, uint32_t frequency);
+int fin_spi_set_endianess(fin_spi_num_t spi_num, spi_endian_t endian);
+int fin_spi_set_bit_per_word(fin_spi_num_t spi_num, spi_bits_per_word_t bpw);
+int fin_spi_set_mode(fin_spi_num_t spi_num, spi_mode_t mode);
+int fin_spi_set_inter_word_delay(fin_spi_num_t spi_num, uint8_t delay);
+int fin_spi_set_loopback(fin_spi_num_t spi_num, bool enable);
+int fin_spi_set_chip_select_mode(fin_spi_num_t spi_num, spi_cs_mode_t mode);
+int fin_spi_set_chip_select_polarity(fin_spi_num_t spi_num, spi_cs_polarity_t polarity);
+int fin_spi_set_chip_select_delay(fin_spi_num_t spi_num, uint8_t delay);
+int fin_spi_set_slaves_num(fin_spi_num_t spi_num, uint8_t num);
+int fin_spi_send(fin_spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
+int fin_spi_send_receive(fin_spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
+void fin_spi_config_dump(fin_spi_num_t spi_num);
+const char *fin_spi_get_name(fin_spi_num_t spi_num);
 
 
 #endif  /* FIN_API_SPI_H_INCLUDED */

@@ -1,7 +1,7 @@
 #include "fin_internal.h"
 
 
-const char *resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len){
+const char *fin_resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len){
 
 	struct ip46addr ipaddr;
 	int ret;

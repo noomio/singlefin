@@ -379,7 +379,7 @@ def main():
         'fin_hwrandom.c',
         'fin_hwrandom.h',
         'fin_i2c.h',
-        'fin_list.h',
+        'list.h',
         'fin_malloc.c',
         'fin_net.c',
         'fin_net.h',

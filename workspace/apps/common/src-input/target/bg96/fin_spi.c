@@ -39,7 +39,7 @@ static const struct spi_list_entry spi_module_consts[] = {
 };
 
 
-void spi_cb_func(uint32 status, void *cb_para){
+static void spi_cb_func(uint32 status, void *cb_para){
 
 	int spi_num = *((int*)cb_para);
 	uint32_t expected;
@@ -74,7 +74,7 @@ void spi_cb_func(uint32 status, void *cb_para){
 }
 
 
-int spi_power_down(spi_num_t spi_num){
+int fin_spi_power_down(fin_spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		return qapi_SPIM_Power_Off(spi_map_tbl[spi_num].handle);
 	}
@@ -82,7 +82,7 @@ int spi_power_down(spi_num_t spi_num){
 	return 1;
 }
 
-int spi_power_up(spi_num_t spi_num){
+int fin_spi_power_up(fin_spi_num_t spi_num){
 
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		return qapi_SPIM_Power_On(spi_map_tbl[spi_num].handle);
@@ -91,7 +91,7 @@ int spi_power_up(spi_num_t spi_num){
 	return 1;
 }
 
-int spi_config(spi_num_t spi_num){
+int fin_spi_config(fin_spi_num_t spi_num){
 
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		if(qapi_SPIM_Open(spi_map_tbl[spi_num].instance, &spi_map_tbl[spi_num].handle) == QAPI_OK 
@@ -107,7 +107,7 @@ int spi_config(spi_num_t spi_num){
 
 }
 
-int spi_deconfig(spi_num_t spi_num){
+int fin_spi_deconfig(fin_spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		if(qapi_SPIM_Close(spi_map_tbl[spi_num].handle) == QAPI_OK){
 			if(qapi_SPIM_Power_Off(spi_map_tbl[spi_num].handle) == QAPI_OK){
@@ -120,7 +120,7 @@ int spi_deconfig(spi_num_t spi_num){
 	return 1;
 }
 
-int spi_set_frequency(spi_num_t spi_num, uint32_t frequency){
+int fin_spi_set_frequency(fin_spi_num_t spi_num, uint32_t frequency){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].frequency = frequency;
 		return 0;
@@ -129,7 +129,7 @@ int spi_set_frequency(spi_num_t spi_num, uint32_t frequency){
 	return 1;
 }
 
-int spi_set_endianess(spi_num_t spi_num, spi_endian_t endian){
+int fin_spi_set_endianess(fin_spi_num_t spi_num, spi_endian_t endian){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].endian = endian;
 		return 0;
@@ -138,7 +138,7 @@ int spi_set_endianess(spi_num_t spi_num, spi_endian_t endian){
 	return 1;
 }
 
-int spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw){
+int fin_spi_set_bit_per_word(fin_spi_num_t spi_num, spi_bits_per_word_t bpw){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].bpw = bpw;
 		return 0;
@@ -147,7 +147,7 @@ int spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw){
 	return 1;
 }
 
-int spi_set_mode(spi_num_t spi_num, spi_mode_t mode){
+int fin_spi_set_mode(fin_spi_num_t spi_num, spi_mode_t mode){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].mode = mode;
 		return 0;
@@ -156,7 +156,7 @@ int spi_set_mode(spi_num_t spi_num, spi_mode_t mode){
 	return 1;
 }
 
-int spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay){
+int fin_spi_set_inter_word_delay(fin_spi_num_t spi_num, uint8_t delay){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].inter_word_delay = delay;
 		return 0;
@@ -165,7 +165,7 @@ int spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay){
 	return 1;
 }
 
-int spi_set_loopback(spi_num_t spi_num, bool enable){
+int fin_spi_set_loopback(fin_spi_num_t spi_num, bool enable){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].loopback = enable;
 		return 0;
@@ -174,7 +174,7 @@ int spi_set_loopback(spi_num_t spi_num, bool enable){
 	return 1;
 }
 
-int spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode){
+int fin_spi_set_chip_select_mode(fin_spi_num_t spi_num, spi_cs_mode_t mode){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].cs_mode = mode;
 		return 0;
@@ -183,7 +183,7 @@ int spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode){
 	return 1;
 }
 
-int spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity){
+int fin_spi_set_chip_select_polarity(fin_spi_num_t spi_num, spi_cs_polarity_t polarity){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].cs_polarity = polarity;
 		return 0;
@@ -192,7 +192,7 @@ int spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity){
 	return 1;
 }
 
-int spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay){
+int fin_spi_set_chip_select_delay(fin_spi_num_t spi_num, uint8_t delay){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].cs_delay = delay;
 		return 0;
@@ -201,7 +201,7 @@ int spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay){
 	return 1;
 }
 
-int spi_set_slaves_num(spi_num_t spi_num, uint8_t num){
+int fin_spi_set_slaves_num(fin_spi_num_t spi_num, uint8_t num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 		spi_map_tbl[spi_num].slaves = num;
 		return 0;
@@ -210,11 +210,11 @@ int spi_set_slaves_num(spi_num_t spi_num, uint8_t num){
 	return 1;
 }
 
-int spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t len){
+int fin_spi_send(fin_spi_num_t spi_num, uint8_t *tx_buf, size_t len){
 	return spi_send_receive(spi_num, tx_buf, NULL, len);
 }
 
-int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t len){
+int fin_spi_send_receive(fin_spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t len){
 	if((spi_num >= 0 && spi_num < SPI_MAX_NO) && spi_map_tbl[spi_num].configured){
 		
 		qapi_SPIM_Config_t config;
@@ -251,7 +251,7 @@ int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t
 				__ATOMIC_SEQ_CST,
 				__ATOMIC_SEQ_CST) != 1);
 
-			if(qapi_SPIM_Full_Duplex(spi_map_tbl[spi_num].handle, &config, &desc, 1, spi_cb_func, &spi_map_tbl[spi_num].num, false) == QAPI_OK){
+			if(qapi_SPIM_Full_Duplex(spi_map_tbl[spi_num].handle, &config, &desc, 1, fin_spi_cb_func, &spi_map_tbl[spi_num].num, false) == QAPI_OK){
 				//wait for signal
 				do{
 					tx_thread_sleep(5);
@@ -287,7 +287,7 @@ int spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t
 	return -1;
 }
 
-void spi_config_dump(spi_num_t spi_num){
+void fin_spi_config_dump(fin_spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO){
 
 		printf("%s:\r\n"
@@ -317,7 +317,7 @@ void spi_config_dump(spi_num_t spi_num){
 	}
 }
 
-const char *spi_get_name(spi_num_t spi_num){
+const char *fin_spi_get_name(fin_spi_num_t spi_num){
 	if(spi_num >= 0 && spi_num < SPI_MAX_NO)
 		return spi_module_consts[spi_num].key;
 	else

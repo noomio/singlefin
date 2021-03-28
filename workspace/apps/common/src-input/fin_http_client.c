@@ -4,7 +4,7 @@ char http_client_mem[HTTP_CLIENT_BYTE_POOL_SIZE];
 
 static void http_client_cb(void* arg, int state, void* http_resp){
     
-    http_client_ctx_t *ctx = (http_client_ctx_t*)arg;
+    fin_http_client_ctx_t *ctx = (fin_http_client_ctx_t*)arg;
 
     qapi_Net_HTTPc_Response_t * resp = (qapi_Net_HTTPc_Response_t *)http_resp;
 
@@ -88,7 +88,7 @@ do{ \
 }while(0)
 
 
-static void *http_client_new_session(http_client_ctx_t *ctx, uint32_t t, uint32_t blen, uint32_t hlen){
+static void *http_client_new_session(fin_http_client_ctx_t *ctx, uint32_t t, uint32_t blen, uint32_t hlen){
 	qapi_HTTPc_CB_t cb;
 	int ret;
 	cb = (ctx->user_callback != NULL) ? ctx->user_callback : http_client_cb;
@@ -123,7 +123,7 @@ do{ \
 	} \
 } while (0)
 
-static int http_client_ssl_new(http_client_ctx_t *ctx){
+static int http_client_ssl_new(fin_http_client_ctx_t *ctx){
 
 
 	ctx->ssl.role = QAPI_NET_SSL_CLIENT_E;
@@ -150,9 +150,9 @@ static int http_client_ssl_new(http_client_ctx_t *ctx){
 }
 
 
-http_client_ctx_t *htpp_client_new(void){
+fin_http_client_ctx_t *fin_htpp_client_new(void){
 	http_client_start();
-	http_client_ctx_t *ctx = malloc(sizeof(http_client_ctx_t));
+	fin_http_client_ctx_t *ctx = malloc(sizeof(fin_http_client_ctx_t));
 	ctx->timeout = HTTP_CLIENT_TIMEOUT;
 	ctx->ssl.ctx = 0;
 	memset(&ctx->ssl, 0, sizeof(http_client_ssl_t));	
@@ -165,7 +165,7 @@ http_client_ctx_t *htpp_client_new(void){
 	return ctx;
 }
 
-int htpp_client_free(http_client_ctx_t *ctx){
+int fin_htpp_client_free(fin_http_client_ctx_t *ctx){
 	tx_byte_pool_delete(ctx->byte_pool);
 	txm_module_object_deallocate(&ctx->byte_pool);
 	tx_event_flags_delete(ctx->evt);
@@ -176,21 +176,21 @@ int htpp_client_free(http_client_ctx_t *ctx){
 }
 
 
-int htpp_client_set_header(http_client_ctx_t *ctx, const char *key, const char *value){
+int fin_htpp_client_set_header(fin_http_client_ctx_t *ctx, const char *key, const char *value){
 	if(ctx && ctx->handle)
 		return qapi_Net_HTTPc_Add_Header_Field(ctx->handle, key, value);
 	else
 		return 1;
 }
 
-int htpp_client_set_parameter(http_client_ctx_t *ctx, const char *key, const char *value){
+int fin_htpp_client_set_parameter(fin_http_client_ctx_t *ctx, const char *key, const char *value){
 	if(ctx && ctx->handle)
 		return qapi_Net_HTTPc_Set_Param(ctx->handle, key, value);
 	else
 		return 1;
 }
 
-int htpp_client_set_body(http_client_ctx_t *ctx, const char *body, uint32_t len){
+int fin_htpp_client_set_body(fin_http_client_ctx_t *ctx, const char *body, uint32_t len){
 	if(ctx && ctx->handle)
 		return qapi_Net_HTTPc_Set_Body(ctx->handle, body, len);
 	else
@@ -200,7 +200,7 @@ int htpp_client_set_body(http_client_ctx_t *ctx, const char *body, uint32_t len)
 
 
 
-int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const char *path){
+int fin_htpp_client_get(fin_http_client_ctx_t *ctx, const char *host, int port, const char *path){
 
 	int err = 1;
 	char url[128];

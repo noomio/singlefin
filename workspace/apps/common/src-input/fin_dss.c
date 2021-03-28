@@ -26,7 +26,7 @@
 char dss_mem[DSS_THREAD_BYTE_POOL_SIZE];
 
 
-dss_ctx_t *dss_ctx_store[DSS_CONCURRENT_NUM] = {0};
+fin_dss_ctx_t *dss_ctx_store[DSS_CONCURRENT_NUM] = {0};
 
 /*
 @func
@@ -48,7 +48,7 @@ static void dss_net_event_cb(qapi_DSS_Hndl_t hndl, void *user_data,	qapi_DSS_Net
 }
 
 
-void device_info_cb(qapi_Device_Info_Hndl_t device_info_hndl, const qapi_Device_Info_t *dev_info){
+static void device_info_cb(qapi_Device_Info_Hndl_t device_info_hndl, const qapi_Device_Info_t *dev_info){
 
 	TX_EVENT_FLAGS_GROUP *evt = NULL;
 	for(int i = 0; i < DSS_CONCURRENT_NUM; i++){
@@ -90,7 +90,7 @@ void device_info_cb(qapi_Device_Info_Hndl_t device_info_hndl, const qapi_Device_
 }
 
 
-int dss_show_addr_info(qapi_DSS_Addr_Info_t *info, size_t size){
+static int dss_show_addr_info(qapi_DSS_Addr_Info_t *info, size_t size){
 
 	TX_ERROR(("dss_show_addr_info: info != NULL\r\n"),(info != NULL), return -1);
 	TX_ASSERT("size != 0\r\n",(size != 0));
@@ -116,7 +116,7 @@ int dss_show_addr_info(qapi_DSS_Addr_Info_t *info, size_t size){
 
 }
 
-int dss_get_addr_info(qapi_DSS_Hndl_t handle, qapi_DSS_Addr_Info_t *info, size_t size){
+static int dss_get_addr_info(qapi_DSS_Hndl_t handle, qapi_DSS_Addr_Info_t *info, size_t size){
 
 	unsigned int len = 0;	
 	qapi_Status_t status;
@@ -136,7 +136,7 @@ int dss_get_addr_info(qapi_DSS_Hndl_t handle, qapi_DSS_Addr_Info_t *info, size_t
 }
 
 
-int dss_set_data_parameters(dss_ctx_t *ctx){
+static int dss_set_data_parameters(fin_dss_ctx_t *ctx){
     
     qapi_DSS_Call_Param_Value_t param_info;
 	qapi_Status_t status;
@@ -193,7 +193,7 @@ int dss_set_data_parameters(dss_ctx_t *ctx){
 
 
 
-static qapi_Status_t dss_net_ctrl_start(dss_ctx_t *ctx)
+static qapi_Status_t dss_net_ctrl_start(fin_dss_ctx_t *ctx)
 {
 	qapi_Status_t status;
 	uint32_t received_sigs = 0;
@@ -295,7 +295,7 @@ static void dss_thread(ULONG param){
 
 	uint32_t received_sigs = 0;
 	qapi_Status_t status;
-	dss_ctx_t *ctx = (dss_ctx_t*)param;
+	fin_dss_ctx_t *ctx = (fin_dss_ctx_t*)param;
 	qapi_DSS_Addr_Info_t network_info[6];
 	char addr[16];
 	char gw[16];
@@ -364,7 +364,7 @@ static void dss_thread(ULONG param){
 
 
 
-int dss_free(dss_ctx_t *ctx){
+int dss_free(fin_dss_ctx_t *ctx){
 
 	// free all notify events even if they are local.
 	return 0;
@@ -372,7 +372,7 @@ int dss_free(dss_ctx_t *ctx){
 
 static dss_notify_t dss_notify_local;
 
-int dss_start(dss_ctx_t *ctx){
+int dss_start(fin_dss_ctx_t *ctx){
 
 	TX_ERROR(("dss_start: ctx != NULL\r\n"),(ctx != NULL), return -1);
 
@@ -392,20 +392,20 @@ int dss_start(dss_ctx_t *ctx){
 
 }
 
-int dss_stop(dss_ctx_t *ctx){
+int dss_stop(fin_dss_ctx_t *ctx){
 	return 0;
 }
 
-int dss_restart(dss_ctx_t *ctx){
+int dss_restart(fin_dss_ctx_t *ctx){
 	return 0;
 }
 
-dss_ctx_t *dss_new(const char *apn,const char *password, const char *username){
+fin_dss_ctx_t *dss_new(const char *apn,const char *password, const char *username){
 
 	int ret;
 
-	dss_ctx_t *ctx = malloc(sizeof(dss_ctx_t));
-	memset(ctx,'\0',sizeof(dss_ctx_t));
+	fin_dss_ctx_t *ctx = malloc(sizeof(fin_dss_ctx_t));
+	memset(ctx,'\0',sizeof(fin_dss_ctx_t));
 
 	if(apn != NULL) strncpy(ctx->apn,apn,QAPI_DSS_CALL_INFO_APN_MAX_LEN-1);
 	if(password != NULL) strncpy(ctx->password,password,QAPI_DSS_CALL_INFO_PASSWORD_MAX_LEN-1);

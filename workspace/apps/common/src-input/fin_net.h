@@ -1,7 +1,7 @@
 #if !defined(FIN_API_NET_H_INCLUDED)
 #define FIN_API_NET_H_INCLUDED
 
-#define dump_net_interfaces() \
+#define fin_dump_net_interfaces() \
 do{ \
 	qapi_Net_Ifnameindex_t itf[10]; \
 	int itf_no = qapi_Net_Get_All_Ifnames (&itf); \
@@ -14,7 +14,7 @@ do{ \
 	} \
 }while(0); \
 
-#define dump_dns_server_list() \
+#define fin_dump_dns_server_list() \
 do { \
 	qapi_Net_DNS_Server_List_t svr_list; \
 	/* iface_index can be 0,1,2,or 3 */ \
@@ -29,11 +29,11 @@ do { \
 	} \
 } while(0)
 
-const char *resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len);
+const char *fin_resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len);
 
-#define resolve_host(domain, itf) \
+#define fin_resolve_host(domain, itf) \
 ({char itf##_ip_str[48]; \
-	resolve_host_itf(domain, #itf, itf##_ip_str, sizeof(itf##_ip_str)); \
+	fin_resolve_host_itf(domain, #itf, itf##_ip_str, sizeof(itf##_ip_str)); \
     itf##_ip_str;\
 })
 

@@ -20,9 +20,9 @@ const char *CLI_CMD_ECHO = "echo";
 
 const char *prompt = "\r\n>> ";
 
-static int cli_cmd_help(cli_t *ctx){
+static int cli_cmd_help(fin_cli_t *ctx){
 
-	cli_cmd_t *iter;
+	fin_cli_cmd_t *iter;
 
 	if(ctx){
 		iter = ctx->cmds;
@@ -287,49 +287,49 @@ usage:
 }
 
 
-void cli_free(cli_t *ctx){
+void fin_cli_free(fin_cli_t *ctx){
 	free(ctx->in);
 //TODO	free(cli->cmd);
 	free(ctx);
 }
 
-cli_t *cli_new(void){
+fin_cli_t *fin_cli_new(void){
 
 
-	cli_t *ctx = malloc(sizeof(cli_t));
+	fin_cli_t *ctx = malloc(sizeof(cli_t));
 	
 
-	cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
 	meminfo->name = (char*)CLI_CMD_MEMINFO;
 	meminfo->callback = cli_cmd_meminfo;
 	meminfo->next = NULL;
 
-	cli_cmd_t *ls = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *ls = malloc(sizeof(cli_cmd_t));
 	ls->name = (char*)CLI_CMD_LS;
 	ls->callback = cli_cmd_ls;
 	ls->next = NULL;
 
-	cli_cmd_t *cat = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *cat = malloc(sizeof(cli_cmd_t));
 	cat->name = (char*)CLI_CMD_CAT;
 	cat->callback = cli_cmd_cat;
 	cat->next = NULL;
 
-	cli_cmd_t *rm = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *rm = malloc(sizeof(cli_cmd_t));
 	rm->name = (char*)CLI_CMD_RM;
 	rm->callback = cli_cmd_rm;
 	rm->next = NULL;
 
-	cli_cmd_t *mkdir = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *mkdir = malloc(sizeof(cli_cmd_t));
 	mkdir->name = (char*)CLI_CMD_MKDIR;
 	mkdir->callback = cli_cmd_mkdir;
 	mkdir->next = NULL;
 
-	cli_cmd_t *touch = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *touch = malloc(sizeof(cli_cmd_t));
 	touch->name = (char*)CLI_CMD_TOUCH;
 	touch->callback = cli_cmd_touch;
 	touch->next = NULL;
 
-	cli_cmd_t *echo = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *echo = malloc(sizeof(cli_cmd_t));
 	echo->name = (char*)CLI_CMD_ECHO;
 	echo->callback = cli_cmd_echo;
 	echo->next = NULL;
@@ -351,9 +351,9 @@ cli_t *cli_new(void){
 	return ctx;
 }
 
-int cli_register(cli_t *ctx, const char *name, cli_callback_t func){
+int fin_cli_register(fin_cli_t *ctx, const char *name, fin_cli_callback_t func){
 	
-	cli_cmd_t *iter;
+	fin_cli_cmd_t *iter;
 
 	if(name && func && ctx){
 
@@ -364,7 +364,7 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func){
 			iter = iter->next;
 		}
 
-		cli_cmd_t *cmd = malloc(sizeof(cli_cmd_t));
+		fin_cli_cmd_t *cmd = malloc(sizeof(fin_cli_cmd_t));
 		cmd->name = (char*)name;
 		cmd->callback = func;
 		cmd->next = NULL;
@@ -379,7 +379,7 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func){
 
 
 
-void cli_input(cli_t *ctx, char c){
+void fin_cli_input(fin_cli_t *ctx, char c){
 
 	int args = 0;
 	char *argv[STDIO_CMD_ARGS_MAX];

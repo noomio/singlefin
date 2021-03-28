@@ -5,26 +5,26 @@
 #define STDIO_CMD_MAX 25
 #define STDIO_CMD_ARGS_MAX 6
 
-typedef int (*cli_callback_t)(int args, char *argv[]);
+typedef int (*fin_cli_callback_t)(int args, char *argv[]);
 
-typedef	struct cli_cmd{
+typedef	struct fin_cli_cmd{
 	char *name;
-	cli_callback_t callback;
-	struct cli_cmd *next;
-} cli_cmd_t;
+	fin_cli_callback_t callback;
+	struct fin_cli_cmd *next;
+} fin_cli_cmd_t;
 
-typedef struct cli{
+typedef struct fin_cli{
 	char *in;
 	int head;
 	int tail;
 	int count;
 	cli_cmd_t *cmds;
-} cli_t;
+} fin_cli_t;
 
 
-void cli_free(cli_t *ctx);
-cli_t *cli_new(void);
-void cli_input(cli_t *ctx, char c);
-int cli_register(cli_t *ctx, const char *name, cli_callback_t func);
+void fin_cli_free(fin_cli_t *ctx);
+fin_cli_t *fin_cli_new(void);
+void fin_cli_input(fin_cli_t *ctx, char c);
+int fin_cli_register(fin_cli_t *ctx, const char *name, fin_cli_callback_t func);
 
 #endif  /* FIN_API_CLI_H_INCLUDED */
