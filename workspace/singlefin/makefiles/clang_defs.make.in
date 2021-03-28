@@ -6,25 +6,29 @@
 #-DTX_USER_DEBUG_OPT=\"filename\"
 #To enable user debug options add a file user_debug_opt.h in your project to create your own debug flags.
 
-MALLOC = -Wl,--wrap,malloc \
+FIN_WRAP_MALLOC = -Wl,--wrap,malloc \
 		 -Wl,--wrap,free \
 		 -Wl,--wrap,realloc \
 		 -Wl,--wrap,calloc
 
-PRINTF = -Wl,--wrap,printf \
+FIN_WRAP_PRINTF = -Wl,--wrap,printf \
 		 -Wl,--wrap,puts \
 	#	 -Wl,--wrap,snprintf \
 	#	 -Wl,--wrap,sprintf \
 	#	 -Wl,--wrap,vsnprintf
 
-GETX = -Wl,--wrap,getchar \
+FIN_WRAP_GETX = -Wl,--wrap,getchar \
 	   -Wl,--wrap,gets	
 
-WRITE = -Wl,--wrap,write
-FWRITE = -Wl,--wrap,fwrite \
+FIN_WRAP_WRITE = -Wl,--wrap,write
+FIN_WRAP_FWRITE = -Wl,--wrap,fwrite \
 		 -Wl,--wrap,fflush
 
-STRING = -Wl,--wrap,strdup
+FIN_WRAP_STRDUP = -Wl,--wrap,strdup
 
-
-
+FIN_WRAPPERS = $(FIN_WRAP_MALLOC)
+FIN_WRAPPERS += $(FIN_WRAP_PRINTF)
+FIN_WRAPPERS += $(FIN_WRAP_GETX)
+FIN_WRAPPERS += $(FIN_WRAP_WRITE)
+FIN_WRAPPERS += $(FIN_WRAP_FWRITE)
+FIN_WRAPPERS += $(FIN_WRAP_STRDUP)

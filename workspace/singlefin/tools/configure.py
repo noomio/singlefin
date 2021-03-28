@@ -219,6 +219,7 @@ def main():
     parser.add_option('--git-branch', dest='git_branch', default=None, help='Force git branch name')
     parser.add_option('--fin-dist-meta', dest='fin_dist_meta', default=None, help='fin_dist_meta.json to read git commit etc info from')
     parser.add_option('--module', dest='module', default=None, help='Module to generate code for')
+    parser.add_option('--makefile', dest='makefile', default=None, help='Generate a makefile')
 
     # Options for combining sources.
     parser.add_option('--separate-sources', dest='separate_sources', action='store_true', default=False, help='Output separate sources instead of combined source (default is combined)')
@@ -337,7 +338,7 @@ def main():
     # Create output directory.  If the directory already exists, reuse it but
     # only when it's safe to do so, i.e. it contains only known output files.
     allow_outdir_reuse = True
-    outdir_whitelist = [ 'fin_config.h', 'singlefin.c', 'singlefin.h', 'fin_source_meta.json' ]
+    outdir_whitelist = [ 'fin_config.h', 'singlefin.c', 'singlefin.h', 'fin_source_meta.json', 'Makefile' ]
     if os.path.exists(outdir):
         if not allow_outdir_reuse:
             raise Exception('configure target directory %s already exists, please delete it first' % repr(outdir))
@@ -495,7 +496,7 @@ def main():
     if opts.separate_sources:
         # keep the line so line numbers match between the two variant headers
         copy_and_replace(os.path.join(tempdir, 'singlefin.h'), os.path.join(outdir, 'singlefin.h'), {
-            '#define DUK_SINGLE_FILE': '#undef FIN_SINGLE_FILE'
+            '#define FIN_SINGLE_FILE': '#undef FIN_SINGLE_FILE'
         })
     else:
         copy_file(os.path.join(tempdir, 'singlefin.h'), os.path.join(outdir, 'singlefin.h'))
@@ -622,6 +623,31 @@ def main():
 
     with open(os.path.join(outdir, 'fin_source_meta.json'), 'wb') as f:
         f.write(json.dumps(doc, indent=4))
+
+
+    def create_makefile(make_file,makedefs_file):
+        res = []
+        make_file = os.path.join('makefiles',make_file)
+        makedefs_file = os.path.join('makefiles',makedefs_file)
+
+        res.append('# Makefile Wrappers')
+        if os.path.exists(makedefs_file):
+            with open(makedefs_file, 'rb') as f:
+                for line in f:
+                    res.append(line)
+            res.append('\n')
+            res.append('# Makefile ')
+        if os.path.exists(make_file):
+            with open(make_file, 'rb') as f:
+                for line in f:
+                    res.append(line)
+
+        return ''.join(res) + ''
+    
+    if opts.makefile is not None:
+        logger.debug('Generating Makefile')
+        with open(os.path.join(outdir, 'Makefile'), 'wb') as f:
+            f.write(create_makefile('clang.make.in','clang_defs.make.in'))
 
     logger.debug('Configure finished successfully')
 
