@@ -84,7 +84,7 @@ uint32_t rx_buf_head;
 uint32_t rx_buf_tail;
 
 
-static void stdout_rx_cb(uint32_t num_bytes, void *cb_data){
+static void stdin_rx_cb(uint32_t num_bytes, void *cb_data){
 
 	int num = *(int*)cb_data;
 
@@ -135,7 +135,7 @@ static void init_debug(void){
 	uart_cfg.enable_Loopback 	= 0;
 	uart_cfg.num_Stop_Bits		= QAPI_UART_1_0_STOP_BITS_E;
 	uart_cfg.parity_Mode 		= QAPI_UART_NO_PARITY_E;
-	uart_cfg.rx_CB_ISR			= (qapi_UART_Callback_Fn_t)&stdout_rx_cb;
+	uart_cfg.rx_CB_ISR			= (qapi_UART_Callback_Fn_t)&stdin_rx_cb;
 	uart_cfg.tx_CB_ISR			= (qapi_UART_Callback_Fn_t)&stdout_tx_cb;
 
 	if(qapi_UART_Open(&handle, DEBUG_PORT, &uart_cfg) == QAPI_OK && 

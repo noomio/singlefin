@@ -6,7 +6,7 @@
  *  comments.  Other parts of the header are Duktape internal and related to
  *  e.g. platform/compiler/feature detection.
  *
- *  Git commit 4ffeeca22cf24bb173161d9cf05bb5d14f945e39 (4ffeeca-dirty).
+ *  Git commit 2ae4261ea0f7b7883f06aa13c2c0a4ba6ae53fe5 (2ae4261-dirty).
  *  Git branch single-header.
  *
  *  See Duktape AUTHORS.rst and LICENSE.txt for copyright and
@@ -38,8 +38,8 @@
  * which Duktape snapshot was used.  Not available in the ECMAScript
  * environment.
  */
-#define FIN_GIT_COMMIT                    "4ffeeca22cf24bb173161d9cf05bb5d14f945e39"
-#define FIN_GIT_DESCRIBE                  "4ffeeca-dirty"
+#define FIN_GIT_COMMIT                    "2ae4261ea0f7b7883f06aa13c2c0a4ba6ae53fe5"
+#define FIN_GIT_DESCRIBE                  "2ae4261-dirty"
 #define FIN_GIT_BRANCH                    "single-header"
 
 
