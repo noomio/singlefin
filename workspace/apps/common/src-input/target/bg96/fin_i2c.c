@@ -1,7 +1,6 @@
-#include "txm_module.h"
-#include "qapi_i2c_master.h"
-#include "i2c.h"
-#include "stdio.h"
+#include "fin_internal.h"
+
+
 
 typedef struct {
     const i2c_num_t num;

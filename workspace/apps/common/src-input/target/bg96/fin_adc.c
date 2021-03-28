@@ -4,9 +4,7 @@
 * @date   :  08/01/2021
 *
 */
-#include "qapi_adc.h"
-#include "adc.h"
-#include "stdio.h"
+#include "fin_internal.h"
 
 struct adc_map {
 	adc_channel_t adc_num;

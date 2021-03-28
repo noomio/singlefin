@@ -4,7 +4,7 @@
 * @date   :  07/01/2021
 *
 */
-#include "uart.h"
+#include "fin_internal.h"
 
 #define UART_NO_MAX 3
 #define RECV_BUF_SIZE	128

@@ -4,11 +4,7 @@
 * @date   :  4/1/2021
 *
 */
-#include <stdio.h> 
-#include <qapi_tlmm.h>
-#include <qapi_txm_base.h>
-#include <qapi_gpioint.h>
-#include "gpio.h"
+#include "fin_internal.h"
 
 typedef struct{
     uint32_t pin_num;   // module pin

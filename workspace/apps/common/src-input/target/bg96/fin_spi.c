@@ -4,12 +4,7 @@
 * @date   :  16/01/2021
 *
 */
-#include <stdio.h> 
-#include "txm_module.h"
-#include "qapi_fs_types.h"
-#include "qapi_fs.h"
-#include "qapi_spi_master.h"
-#include "spi.h"
+#include "fin_internal.h"
 
 
 typedef struct {

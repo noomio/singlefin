@@ -38,7 +38,6 @@
 #include <locale.h>
 #include <unistd.h>
 #include <dirent.h>
-//#include <sys/stat.h>
 #include <sys/time.h>
 #include <time.h>
 
@@ -76,9 +75,13 @@
 #include <qapi_uart.h>
 #include <qapi_status.h>
 #include <qurt_timetick.h>
+#include <qapi_adc.h>
+#include <qapi_gpioint.h>
+#include "qapi_i2c_master.h"
+#include "qapi_spi_master.h"
+#include <qapi_device_info.h>
 
 #include <qapi_quectel.h>
-#include <qapi_device_info.h>
 
 #define FIN_USE_OS_STRING "threadx"
 

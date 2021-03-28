@@ -1,4 +1,6 @@
 #include "fin_internal.h"
+
+/* Must be included here */
 #include <sys/stat.h>
 #include <dirent.h>
 
