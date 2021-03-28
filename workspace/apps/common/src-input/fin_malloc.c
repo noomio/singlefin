@@ -7,9 +7,7 @@
 	
  */
  
-#include "qapi_device_info.h"
-#include <malloc.h>
-#include "debug.h"
+#include "fin_internal.h"
 
 
 typedef struct malloc_size{

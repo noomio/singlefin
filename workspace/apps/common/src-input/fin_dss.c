@@ -4,21 +4,7 @@
  *  Created on: 1 Oct.,2019
  *      Author: Nikolas Karakotas
  */
-
-#include <locale.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
-
-
-#include "qapi_fs_types.h"
-#include "qapi_status.h"
-#include "qapi_dss.h"
-#include "qapi_netservices.h"
-#include "qapi_timer.h"
-#include "debug.h"
-#include "dss.h"
+#include "fin_internal.h"
 
 
  /* Mask include all DAM signals */

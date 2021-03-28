@@ -1,57 +1,10 @@
 
-#define DUK_NORETURN(decl)  decl __attribute__((noreturn))
+#define FIN_NORETURN(decl)  decl __attribute__((noreturn))
 
-#if defined(__clang__) && defined(__has_builtin)
-#if __has_builtin(__builtin_unreachable)
-#define DUK_UNREACHABLE()  do { __builtin_unreachable(); } while (0)
-#endif
-#endif
+#define FIN_USE_COMPILER_STRING "clang"
 
-#define DUK_USE_BRANCH_HINTS
-#define DUK_LIKELY(x)    __builtin_expect((x), 1)
-#define DUK_UNLIKELY(x)  __builtin_expect((x), 0)
-#if defined(__clang__) && defined(__has_builtin)
-#if __has_builtin(__builtin_unpredictable)
-#define DUK_UNPREDICTABLE(x)  __builtin_unpredictable((x))
-#endif
+#undef FIN_USE_VARIADIC_MACROS
+#if defined(FIN_F_C99) || defined(FIN_F_CPP11)
+#define FIN_USE_VARIADIC_MACROS
 #endif
 
-#if defined(DUK_F_C99) || defined(DUK_F_CPP11)
-#define DUK_NOINLINE        __attribute__((noinline))
-#define DUK_INLINE          inline
-#define DUK_ALWAYS_INLINE   inline __attribute__((always_inline))
-#endif
-
-
-#define DUK_USE_COMPILER_STRING "clang"
-
-#undef DUK_USE_VARIADIC_MACROS
-#if defined(DUK_F_C99) || defined(DUK_F_CPP11)
-#define DUK_USE_VARIADIC_MACROS
-#endif
-
-#define DUK_USE_UNION_INITIALIZERS
-
-#undef DUK_USE_FLEX_C99
-#undef DUK_USE_FLEX_ZEROSIZE
-#undef DUK_USE_FLEX_ONESIZE
-#if defined(DUK_F_C99)
-#define DUK_USE_FLEX_C99
-#else
-#define DUK_USE_FLEX_ZEROSIZE
-#endif
-
-#define DUK_USE_CLANG_PRAGMAS
-#define DUK_USE_PACK_CLANG_ATTR
-
-#if defined(__clang__) && defined(__has_builtin)
-#if __has_builtin(__builtin_bswap64)
-#define DUK_BSWAP64(x) ((duk_uint64_t) __builtin_bswap64((duk_uint64_t) (x)))
-#endif
-#if __has_builtin(__builtin_bswap32)
-#define DUK_BSWAP32(x) ((duk_uint32_t) __builtin_bswap32((duk_uint32_t) (x)))
-#endif
-#if __has_builtin(__builtin_bswap16)
-#define DUK_BSWAP16(x) ((duk_uint16_t) __builtin_bswap16((duk_uint16_t) (x)))
-#endif
-#endif

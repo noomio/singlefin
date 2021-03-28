@@ -1,0 +1,5 @@
+  -
+    name: Quectel BG96 
+    check: FIN_F_BG96
+    include: module_bg96.h.in
+

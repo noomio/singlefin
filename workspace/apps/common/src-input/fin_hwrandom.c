@@ -6,10 +6,7 @@
 */
 
 
-#include <stdio.h>
-#include <qapi.h>
-#include <txm_module.h>
-#include <qapi_quectel.h>
+#include "fin_internal.h"
 
 
 void hwrandombytes(uint8_t *buf, uint64_t size ){

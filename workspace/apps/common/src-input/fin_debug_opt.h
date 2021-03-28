@@ -2,7 +2,7 @@
 #define FIN_API_DEBUG_OPT_H_INCLUDED
 
 #ifdef TX_USER_DEBUG_OPT
-#include TX_USER_DEBUG_OPT
+//#include TX_USER_DEBUG_OPT add sneppet
 #else
 #ifndef TX_DBG_TYPES_ON
 #define TX_DBG_TYPES_ON               TX_DBG_OFF

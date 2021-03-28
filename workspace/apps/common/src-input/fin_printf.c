@@ -36,7 +36,7 @@
 #include <stddef.h>
 
 
-extern void _putchar(char character);
+//extern void _putchar(char character);
 
 
 // define this globally (e.g. gcc -DPRINTF_INCLUDE_CONFIG_H ...) to include the

@@ -1,8 +1,4 @@
-#include <qapi_fs.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "fin_internal.h"
 
 extern int printf(const char *format, ...);
 

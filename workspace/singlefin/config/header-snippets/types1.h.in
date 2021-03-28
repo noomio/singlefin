@@ -20,8 +20,8 @@
  *
  *  Note: avoid typecasts and computations in macro integer constants as they
  *  can then no longer be used in macro relational expressions (such as
- *  #if DUK_SIZE_MAX < 0xffffffffUL).  There is internal code which relies on
- *  being able to compare DUK_SIZE_MAX against a limit.
+ *  #if FIN_SIZE_MAX < 0xffffffffUL).  There is internal code which relies on
+ *  being able to compare FIN_SIZE_MAX against a limit.
  */
 
 /* XXX: add feature options to force basic types from outside? */
@@ -44,33 +44,33 @@
 /* Pointer size determination based on __WORDSIZE or architecture when
  * that's not available.
  */
-#if defined(DUK_F_X86) || defined(DUK_F_X32) || \
-    defined(DUK_F_M68K) || defined(DUK_F_PPC32) || \
-    defined(DUK_F_BCC) || \
+#if defined(FIN_F_X86) || defined(FIN_F_X32) || \
+    defined(FIN_F_M68K) || defined(FIN_F_PPC32) || \
+    defined(FIN_F_BCC) || \
     (defined(__WORDSIZE) && (__WORDSIZE == 32)) || \
-    ((defined(DUK_F_OLD_SOLARIS) || defined(DUK_F_AIX) || \
-      defined(DUK_F_HPUX)) && defined(_ILP32)) || \
-    defined(DUK_F_ARM32)
-#define DUK_F_32BIT_PTRS
-#elif defined(DUK_F_X64) || \
+    ((defined(FIN_F_OLD_SOLARIS) || defined(FIN_F_AIX) || \
+      defined(FIN_F_HPUX)) && defined(_ILP32)) || \
+    defined(FIN_F_ARM32)
+#define FIN_F_32BIT_PTRS
+#elif defined(FIN_F_X64) || \
       (defined(__WORDSIZE) && (__WORDSIZE == 64)) || \
-   ((defined(DUK_F_OLD_SOLARIS) || defined(DUK_F_AIX) || \
-     defined(DUK_F_HPUX)) && defined(_LP64)) || \
-    defined(DUK_F_ARM64)
-#define DUK_F_64BIT_PTRS
+   ((defined(FIN_F_OLD_SOLARIS) || defined(FIN_F_AIX) || \
+     defined(FIN_F_HPUX)) && defined(_LP64)) || \
+    defined(FIN_F_ARM64)
+#define FIN_F_64BIT_PTRS
 #else
 /* not sure, not needed with C99 anyway */
 #endif
 
 /* Intermediate define for 'have inttypes.h' */
-#undef DUK_F_HAVE_INTTYPES
+#undef FIN_F_HAVE_INTTYPES
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L) && \
-    !(defined(DUK_F_AMIGAOS) && defined(DUK_F_VBCC))
+    !(defined(FIN_F_AMIGAOS) && defined(FIN_F_VBCC))
 /* vbcc + AmigaOS has C99 but no inttypes.h */
-#define DUK_F_HAVE_INTTYPES
+#define FIN_F_HAVE_INTTYPES
 #elif defined(__cplusplus) && (__cplusplus >= 201103L)
 /* C++11 apparently ratified stdint.h */
-#define DUK_F_HAVE_INTTYPES
+#define FIN_F_HAVE_INTTYPES
 #endif
 
 /* Basic integer typedefs and limits, preferably from inttypes.h, otherwise

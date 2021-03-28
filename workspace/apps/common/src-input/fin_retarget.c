@@ -4,15 +4,7 @@
  *  Created on: 24 Nov.,2019
  *      Author: Nikolas Karakotas
  */
-
-#include <stdarg.h>
-#include <stdio.h>
-#include "qapi_uart.h"
-#include "qapi_txm_base.h"
-#include <locale.h>
-#include "cli.h"
-#include "gpio.h"
-#include "sleep.h"
+#include "fin_internal.h"
 
 #define DEBUG_PORT	QAPI_UART_PORT_002_E
 

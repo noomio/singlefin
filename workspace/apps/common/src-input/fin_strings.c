@@ -1,5 +1,4 @@
-#include "string.h"
-#include "malloc.h"
+#include "fin_internal.h"
 
 char *strdup(const char *s){
 	char *str = NULL;

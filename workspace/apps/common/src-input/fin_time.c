@@ -1,8 +1,4 @@
-#include <time.h>
-#include <string.h>
-#include <qapi_timer.h>
-#include <sys/time.h>
-#include <qurt_timetick.h>
+#include "fin_internal.h"
 
 struct tm *localtime (const time_t *t){
 	static struct tm tm;

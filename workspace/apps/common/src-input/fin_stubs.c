@@ -1,6 +1,4 @@
-#include "stdlib.h"
-#include "txm_module.h"
-#include "stdio.h"
+#include "fin_internal.h"
 
 _Noreturn void abort (void){
 	tx_thread_terminate(tx_thread_identify());

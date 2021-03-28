@@ -1,6 +1,4 @@
-#include <http_client.h>
-#include "net.h"
-#include "debug.h"
+#include "fin_internal.h"
 
 char http_client_mem[HTTP_CLIENT_BYTE_POOL_SIZE];
 

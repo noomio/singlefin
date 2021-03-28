@@ -4,19 +4,7 @@
  *  Created on: 30 Nov.,2020
  *      Author: Nikolas Karakotas
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-#include <malloc.h>
-#include <getopt.h>
-#include <ctype.h>
-#include <qapi_txm_base.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <qapi_fs_types.h>
-#include <sys/stat.h>
-#include "cli.h"
+#include "fin_internal.h"
 
 #undef PATH_MAX
 #define PATH_MAX 128

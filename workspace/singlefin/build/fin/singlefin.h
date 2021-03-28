@@ -6,8 +6,8 @@
  *  comments.  Other parts of the header are Duktape internal and related to
  *  e.g. platform/compiler/feature detection.
  *
- *  Git commit @GIT_COMMIT@ (@GIT_DESCRIBE@).
- *  Git branch @GIT_BRANCH@.
+ *  Git commit ba955f9a2ad807aa2e9ec58d4929b3abd53f2090 (ba955f9-dirty).
+ *  Git branch single-header.
  *
  *  See Duktape AUTHORS.rst and LICENSE.txt for copyright and
  *  licensing information.
@@ -18,7 +18,7 @@
 #if !defined(SINGLEFIN_H_INCLUDED)
 #define SINGLEFIN_H_INCLUDED
 
-@FIN_SINGLE_FILE@
+#define FIN_SINGLE_FILE
 
 
 /*
@@ -38,9 +38,9 @@
  * which Duktape snapshot was used.  Not available in the ECMAScript
  * environment.
  */
-#define FIN_GIT_COMMIT                    @GIT_COMMIT_CSTRING@
-#define FIN_GIT_DESCRIBE                  @GIT_DESCRIBE_CSTRING@
-#define FIN_GIT_BRANCH                    @GIT_BRANCH_CSTRING@
+#define FIN_GIT_COMMIT                    "ba955f9a2ad807aa2e9ec58d4929b3abd53f2090"
+#define FIN_GIT_DESCRIBE                  "ba955f9-dirty"
+#define FIN_GIT_BRANCH                    "single-header"
 
 
 

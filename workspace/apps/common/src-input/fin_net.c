@@ -1,4 +1,4 @@
-#include "net.h"
+#include "fin_internal.h"
 
 
 const char *resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len){
