@@ -1,4 +1,6 @@
 #include "fin_internal.h"
+#include <sys/stat.h>
+#include <dirent.h>
 
 extern int printf(const char *format, ...);
 

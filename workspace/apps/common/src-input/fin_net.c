@@ -20,7 +20,7 @@ const char *resolve_host_itf(const char *domain, const char *itf, char *buf, siz
 			return inet_ntop(AF_INET, &ipaddr.a, buf, buf_len);
 		}
 	}
-	else
-		return NULL;
+
+	return NULL;
 
 }

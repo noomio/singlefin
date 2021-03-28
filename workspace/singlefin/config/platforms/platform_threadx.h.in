@@ -11,7 +11,6 @@
 #include <qapi.h>
 #include <qapi_adc_types.h>
 #include <qapi_fs.h>
-#include <qapi_fs_types.h>
 #include <qapi_dss.h>
 #include <qapi_uart.h>
 #include <qapi_timer.h>

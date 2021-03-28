@@ -38,7 +38,7 @@
 #include <locale.h>
 #include <unistd.h>
 #include <dirent.h>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 #include <sys/time.h>
 #include <time.h>
 
@@ -58,7 +58,6 @@
 #include <qapi.h>
 #include <qapi_adc_types.h>
 #include <qapi_fs.h>
-#include <qapi_fs_types.h>
 #include <qapi_dss.h>
 #include <qapi_uart.h>
 #include <qapi_timer.h>

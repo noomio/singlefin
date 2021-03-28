@@ -382,7 +382,7 @@ def main():
         'fin_malloc.c',
         'fin_net.c',
         'fin_net.h',
-        'fin_printf.c',
+        'printf.c',
         'fin_retarget.c',
         'fin_sleep.h',
         'fin_spi.h',
@@ -560,6 +560,7 @@ def main():
         handpick = [
             'fin_malloc.c',
             'fin_retarget.c',
+            'fin_file.c'
         ]
 
         files = []
