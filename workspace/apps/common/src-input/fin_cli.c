@@ -296,40 +296,40 @@ void fin_cli_free(fin_cli_t *ctx){
 fin_cli_t *fin_cli_new(void){
 
 
-	fin_cli_t *ctx = malloc(sizeof(cli_t));
+	fin_cli_t *ctx = malloc(sizeof(fin_cli_t));
 	
 
-	fin_cli_cmd_t *meminfo = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *meminfo = malloc(sizeof(fin_cli_cmd_t));
 	meminfo->name = (char*)CLI_CMD_MEMINFO;
 	meminfo->callback = cli_cmd_meminfo;
 	meminfo->next = NULL;
 
-	fin_cli_cmd_t *ls = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *ls = malloc(sizeof(fin_cli_cmd_t));
 	ls->name = (char*)CLI_CMD_LS;
 	ls->callback = cli_cmd_ls;
 	ls->next = NULL;
 
-	fin_cli_cmd_t *cat = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *cat = malloc(sizeof(fin_cli_cmd_t));
 	cat->name = (char*)CLI_CMD_CAT;
 	cat->callback = cli_cmd_cat;
 	cat->next = NULL;
 
-	fin_cli_cmd_t *rm = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *rm = malloc(sizeof(fin_cli_cmd_t));
 	rm->name = (char*)CLI_CMD_RM;
 	rm->callback = cli_cmd_rm;
 	rm->next = NULL;
 
-	fin_cli_cmd_t *mkdir = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *mkdir = malloc(sizeof(fin_cli_cmd_t));
 	mkdir->name = (char*)CLI_CMD_MKDIR;
 	mkdir->callback = cli_cmd_mkdir;
 	mkdir->next = NULL;
 
-	fin_cli_cmd_t *touch = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *touch = malloc(sizeof(fin_cli_cmd_t));
 	touch->name = (char*)CLI_CMD_TOUCH;
 	touch->callback = cli_cmd_touch;
 	touch->next = NULL;
 
-	fin_cli_cmd_t *echo = malloc(sizeof(cli_cmd_t));
+	fin_cli_cmd_t *echo = malloc(sizeof(fin_cli_cmd_t));
 	echo->name = (char*)CLI_CMD_ECHO;
 	echo->callback = cli_cmd_echo;
 	echo->next = NULL;
@@ -435,7 +435,7 @@ void fin_cli_input(fin_cli_t *ctx, char c){
 			cli_cmd_help(ctx);
 		}else{
 
-			cli_cmd_t *cmd = ctx->cmds;
+			fin_cli_cmd_t *cmd = ctx->cmds;
 			optind = 1;
 			opterr = 0;
 

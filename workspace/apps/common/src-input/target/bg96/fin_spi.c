@@ -8,7 +8,7 @@
 
 
 typedef struct {
-    const spi_num_t 	num;
+    const fin_spi_num_t	num;
     const uint32_t 		instance;
     void*				handle;
     spi_cs_mode_t		cs_mode;
@@ -39,7 +39,7 @@ static const struct spi_list_entry spi_module_consts[] = {
 };
 
 
-static void spi_cb_func(uint32 status, void *cb_para){
+static void fin_spi_cb_func(uint32 status, void *cb_para){
 
 	int spi_num = *((int*)cb_para);
 	uint32_t expected;
@@ -211,7 +211,7 @@ int fin_spi_set_slaves_num(fin_spi_num_t spi_num, uint8_t num){
 }
 
 int fin_spi_send(fin_spi_num_t spi_num, uint8_t *tx_buf, size_t len){
-	return spi_send_receive(spi_num, tx_buf, NULL, len);
+	return fin_spi_send_receive(spi_num, tx_buf, NULL, len);
 }
 
 int fin_spi_send_receive(fin_spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t len){

@@ -7,7 +7,7 @@
 #include "fin_internal.h"
 
 struct adc_map {
-	adc_channel_t adc_num;
+	fin_adc_channel_t adc_num;
 	qapi_ADC_Handle_t handle;
 	qapi_Adc_Input_Properties_Type_t properties;
 	const char *channel_name;

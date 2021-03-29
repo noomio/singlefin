@@ -370,7 +370,7 @@ int dss_free(fin_dss_ctx_t *ctx){
 	return 0;
 }
 
-static dss_notify_t dss_notify_local;
+static fin_dss_notify_t dss_notify_local;
 
 int dss_start(fin_dss_ctx_t *ctx){
 

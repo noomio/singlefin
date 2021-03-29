@@ -3,7 +3,7 @@
 
 
 typedef struct {
-    const i2c_num_t num;
+    const fin_i2c_num_t num;
     const uint32_t instance;
     void *handle;
     uint32_t transferred1;

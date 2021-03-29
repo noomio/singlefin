@@ -31,6 +31,7 @@
 </div> <!-- site-top -->
 <div id="site-middle">
 <div id="site-middle-nav"><ul>
+<li><a href="#compile">Compile</a></li>
 <li><a href="#build">Build</a></li>
 <li><a href="#load">Load</a></li>
 <li><a href="#commandline">Command Line</a></li>
@@ -50,7 +51,7 @@
 <li><a href="#Stdio">Stdio</a></li>
 <li><a href="#Uart">Uart</a></li>
 </ul></div> <!-- site-middle-nav -->
-<div class="container content" id="site-middle-content"><h1 class="sectiontitle" id="doc.1">API <a class="sectionlink" href="#doc.1">§</a></h1><p>SingleFin Version: <span class="singlefin-version">XX.XX.XX</span> (2021-03-25)</p><p>Baseline TX3.0 (2021-03-25)</p><h2 class="sectiontitle" id="doc.1.1">Document scope <a class="sectionlink" href="#doc.1.1">§</a></h2><p></p><h2 class="sectiontitle" id="doc.1.2">What has been implemented <a class="sectionlink" href="#doc.1.2">§</a></h2><p></p><table class="table">
+<div class="container content" id="site-middle-content"><h1 class="sectiontitle" id="doc.1">API <a class="sectionlink" href="#doc.1">§</a></h1><p>SingleFin Version: <span class="singlefin-version">XX.XX.XX</span> (2021-03-29)</p><p>Baseline TX3.0 (2021-03-29)</p><h2 class="sectiontitle" id="doc.1.1">Document scope <a class="sectionlink" href="#doc.1.1">§</a></h2><p></p><h2 class="sectiontitle" id="doc.1.2">What has been implemented <a class="sectionlink" href="#doc.1.2">§</a></h2><p></p><table class="table">
 <thead>
 <tr>
 <th scope="col">Name</th>
@@ -109,7 +110,8 @@
 <td>Uart</td>
 <td>Yes</td>
 </tr>
-</table><h1 class="sectiontitle" id="build">Build <a class="sectionlink" href="#build">§</a></h1><p>Open the test hello world from our examples and from the command line type:</p><pre class="c-code"><span class="normal">make clean all</span>
+</table><h1 class="sectiontitle" id="compile">Compile <a class="sectionlink" href="#compile">§</a></h1><p>Add SingleFin C source and header to your build. The distributable contains an example Makefile using the llvm compiler for reference (clang). In the simplest case:</p><pre class="c-code"><span class="normal">clang</span><span class="symbol">.</span><span class="normal">exe </span><span class="symbol">-</span><span class="normal">o singlefin</span><span class="symbol">.</span><span class="normal">o </span><span class="symbol">-</span><span class="normal">c singlefin</span><span class="symbol">.</span><span class="normal">c</span>
+</pre><h1 class="sectiontitle" id="build">Build <a class="sectionlink" href="#build">§</a></h1><p>Open the test hello world from our examples and from the command line type:</p><pre class="c-code"><span class="normal">make clean all</span>
 </pre><p>The output directory is <span class="badge badge-dark">out</span> and the binary file is placed inside. Deploy to target by connecting to the USB port <span class="badge badge-dark">MODEM</span> and type:</p><pre class="c-code"><span class="normal">make load</span>
 </pre><h2 class="sectiontitle" id="build">Library <a class="sectionlink" href="#build">§</a></h2><p>A single include header makes easy to integrate in your app.</p><pre class="c-code"><span class="preproc">#include</span><span class="normal"> </span><span class="string">"singlefin.h"</span>
 
@@ -237,42 +239,42 @@
  <a class="sectionlink" href="#Adc">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Adc.1">Prototype <a class="sectionlink" href="#Adc.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): int adc_config(adc_channel_t adc_num);
-uint32_t adc_read_microvolts(adc_channel_t adc_num);
-uint32_t adc_read_physical(adc_channel_t adc_num);
-uint32_t adc_read_percent(adc_channel_t adc_num);
-uint32_t adc_read_raw(adc_channel_t adc_num);"><span class="type">int</span><span class="normal"> </span><span class="function">adc_config</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">uint32_t </span><span class="function">adc_read_microvolts</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">uint32_t </span><span class="function">adc_read_physical</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">uint32_t </span><span class="function">adc_read_percent</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">uint32_t </span><span class="function">adc_read_raw</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): int fin_adc_config(fin_adc_channel_t adc_num);
+uint32_t fin_adc_read_microvolts(fin_adc_channel_t adc_num);
+uint32_t fin_adc_read_physical(fin_adc_channel_t adc_num);
+uint32_t fin_adc_read_percent(fin_adc_channel_t adc_num);
+uint32_t fin_adc_read_raw(fin_adc_channel_t adc_num);"><span class="type">int</span><span class="normal"> </span><span class="function">fin_adc_config</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_microvolts</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_physical</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_percent</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_raw</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Adc.2">Function Details <a class="sectionlink" href="#Adc.2">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">adc_config</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">fin_adc_config</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
 <span class="normal">      Adc number</span>
 
-<span class="normal">uint32_t </span><span class="function">adc_read_microvolts</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_microvolts</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
 <span class="normal">      Adc number</span>
 
-<span class="normal">uint32_t </span><span class="function">adc_read_physical</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_physical</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal">adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal">fin_adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
 <span class="normal">    Adc number</span>
 
-<span class="normal">uint32_t </span><span class="function">adc_read_percent</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_percent</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
 <span class="normal">      Adc number</span>
 
-<span class="normal">uint32_t </span><span class="function">adc_read_raw</span><span class="symbol">(</span><span class="normal">adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t </span><span class="function">fin_adc_read_raw</span><span class="symbol">(</span><span class="normal">fin_adc_channel_t adc_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_adc_channel_t</span><span class="cbracket">}</span><span class="normal"> adc_num</span>
 <span class="normal">      Adc number</span>
 </pre>
 </div>
@@ -289,8 +291,8 @@ uint32_t adc_read_raw(adc_channel_t adc_num);"><span class="type">int</span><spa
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Adc.5">Example <a class="sectionlink" href="#Adc.5">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">adc_config</span><span class="symbol">(</span><span class="normal">ADC0</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">uint32_t adc0 </span><span class="symbol">=</span><span class="normal"> </span><span class="function">adc_read_microvolts</span><span class="symbol">(</span><span class="normal">ADC0</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_adc_config</span><span class="symbol">(</span><span class="normal">ADC0</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">uint32_t adc0 </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_adc_read_microvolts</span><span class="symbol">(</span><span class="normal">ADC0</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
@@ -301,45 +303,45 @@ uint32_t adc_read_raw(adc_channel_t adc_num);"><span class="type">int</span><spa
  <a class="sectionlink" href="#Cli">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Cli.1">Prototype <a class="sectionlink" href="#Cli.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): cli_t *cli_new(void);
-void cli_free(cli_t *ctx);
-void cli_input(cli_t *ctx, char c);
-int cli_register(cli_t *ctx, const char *name, cli_callback_t func);"><span class="normal">cli_t </span><span class="symbol">*</span><span class="function">cli_new</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">void</span><span class="normal"> </span><span class="function">cli_free</span><span class="symbol">(</span><span class="normal">cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">void</span><span class="normal"> </span><span class="function">cli_input</span><span class="symbol">(</span><span class="normal">cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> c</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">cli_register</span><span class="symbol">(</span><span class="normal">cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">name</span><span class="symbol">,</span><span class="normal"> cli_callback_t func</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_cli_t *fin_cli_new(void);
+void fin_cli_free(fin_cli_t *ctx);
+void fin_cli_input(fin_cli_t *ctx, char c);
+int fin_cli_register(fin_cli_t *ctx, const char *name, fin_cli_callback_t func);"><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="function">fin_cli_new</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">fin_cli_free</span><span class="symbol">(</span><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">fin_cli_input</span><span class="symbol">(</span><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> c</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_cli_register</span><span class="symbol">(</span><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">name</span><span class="symbol">,</span><span class="normal"> fin_cli_callback_t func</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Cli.2">Callbacks <a class="sectionlink" href="#Cli.2">§</a></h2>
-<pre class="c-code"><span class="keyword">typedef</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="symbol">(</span><span class="symbol">*</span><span class="normal">cli_callback_t</span><span class="symbol">)</span><span class="symbol">(</span><span class="type">int</span><span class="normal"> args</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[</span><span class="symbol">]</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="keyword">typedef</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="symbol">(</span><span class="symbol">*</span><span class="normal">fin_cli_callback_t</span><span class="symbol">)</span><span class="symbol">(</span><span class="type">int</span><span class="normal"> args</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[</span><span class="symbol">]</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Cli.3">Function Details <a class="sectionlink" href="#Cli.3">§</a></h2>
-<pre class="c-code"><span class="normal">cli_t </span><span class="symbol">*</span><span class="function">cli_new</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="function">fin_cli_new</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Return</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">cli_t</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> A </span><span class="keyword">new</span><span class="normal"> cli context</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_cli_t</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> A </span><span class="keyword">new</span><span class="normal"> cli context</span>
 
-<span class="type">void</span><span class="normal"> </span><span class="function">cli_free</span><span class="symbol">(</span><span class="normal">cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">cli_free</span><span class="symbol">(</span><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">cli_t</span><span class="cbracket">}</span><span class="normal"> ctx</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_cli_t</span><span class="cbracket">}</span><span class="normal"> ctx</span>
 <span class="normal">      Free a cli context </span>
 
-<span class="type">void</span><span class="normal"> </span><span class="function">cli_input</span><span class="symbol">(</span><span class="normal">cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> c</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">fin_cli_input</span><span class="symbol">(</span><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> c</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">cli_t</span><span class="cbracket">}</span><span class="normal"> ctx</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_cli_t</span><span class="cbracket">}</span><span class="normal"> ctx</span>
 <span class="normal">      Cli context</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="type">char</span><span class="cbracket">}</span><span class="normal"> c</span>
 <span class="normal">      Character to add and parse to the internal ctx</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">cli_register</span><span class="symbol">(</span><span class="normal">cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">name</span><span class="symbol">,</span><span class="normal"> cli_callback_t func</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_cli_register</span><span class="symbol">(</span><span class="normal">fin_cli_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">name</span><span class="symbol">,</span><span class="normal"> fin_cli_callback_t func</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">cli_t</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> ctx</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_cli_t</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> ctx</span>
 <span class="normal">      Cli context</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> name</span>
 <span class="normal">      Command line name to </span><span class="keyword">register</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">cli_callback_t</span><span class="cbracket">}</span><span class="normal"> func</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_cli_callback_t</span><span class="cbracket">}</span><span class="normal"> func</span>
 <span class="normal">      Callback function to call when the command line has been received</span>
 <span class="normal">  Return</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="type">int</span><span class="cbracket">}</span><span class="normal"> Zero on success otherwise error</span>
@@ -351,22 +353,25 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func);"><span clas
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Cli.5">Example <a class="sectionlink" href="#Cli.5">§</a></h2>
-<pre class="c-code"><span class="keyword">static</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">cli_cmd_onnx</span><span class="symbol">(</span><span class="type">int</span><span class="normal"> args</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[</span><span class="symbol">]</span><span class="symbol">)</span><span class="cbracket">{</span>
-<span class="normal">  </span><span class="comment">//</span><span class="comment"> your code</span>
+<pre class="c-code"><span class="comment">/*</span><span class="comment"> User Callback </span><span class="comment">*/</span>
+<span class="keyword">static</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">cli_cmd_onnx</span><span class="symbol">(</span><span class="type">int</span><span class="normal"> args</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[</span><span class="symbol">]</span><span class="symbol">)</span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="comment">/*</span><span class="comment"> User code </span><span class="comment">*/</span>
 <span class="cbracket">}</span>
 
 <span class="type">int</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="cbracket">{</span>
 
-<span class="normal">  cli_t </span><span class="symbol">*</span><span class="normal">cli </span><span class="symbol">=</span><span class="normal"> </span><span class="function">cli_new</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="function">cli_register</span><span class="symbol">(</span><span class="normal">cli</span><span class="symbol">,</span><span class="string">"onnx"</span><span class="symbol">,</span><span class="normal">cli_cmd_onnx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">  fin_cli_t </span><span class="symbol">*</span><span class="normal">fin_cli </span><span class="symbol">=</span><span class="normal"> </span><span class="function">cli_new</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="function">fin_cli_register</span><span class="symbol">(</span><span class="normal">cli</span><span class="symbol">,</span><span class="string">"onnx"</span><span class="symbol">,</span><span class="normal">cli_cmd_onnx</span><span class="symbol">)</span><span class="symbol">;</span>
 
 <span class="normal">  </span><span class="keyword">for</span><span class="symbol">(</span><span class="symbol">;</span><span class="symbol">;</span><span class="symbol">)</span><span class="cbracket">{</span>
 
 <span class="normal">    </span><span class="type">int</span><span class="normal"> c </span><span class="symbol">=</span><span class="normal"> </span><span class="function">getchar</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">    </span>
 <span class="normal">    </span><span class="keyword">if</span><span class="symbol">(</span><span class="normal">c </span><span class="symbol">!</span><span class="symbol">=</span><span class="normal"> EOF</span><span class="symbol">)</span><span class="cbracket">{</span>
+<span class="normal">      </span><span class="comment">/*</span><span class="comment"> Echo </span><span class="comment">*/</span>
 <span class="normal">      </span><span class="function">putchar</span><span class="symbol">(</span><span class="normal">c</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">      </span><span class="function">cli_input</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal">c</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">      </span><span class="comment">/*</span><span class="comment"> Push to Input </span><span class="comment">*/</span>
+<span class="normal">      </span><span class="function">fin_cli_input</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal">c</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">    </span><span class="cbracket">}</span>
 
 <span class="normal">  </span><span class="cbracket">}</span>
@@ -382,27 +387,27 @@ int cli_register(cli_t *ctx, const char *name, cli_callback_t func);"><span clas
  <a class="sectionlink" href="#Dss">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Dss.1">Prototype <a class="sectionlink" href="#Dss.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): dss_ctx_t *dss_new(const char *apn, const char *password, const char *username);
-int dss_start(dss_ctx_t *ctx);
-int dss_restart(dss_ctx_t *ctx);
-int dss_stop(dss_ctx_t *ctx);
-int dss_free(dss_ctx_t *ctx);"><span class="normal">dss_ctx_t </span><span class="symbol">*</span><span class="function">dss_new</span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">apn</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">password</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">username</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">dss_start</span><span class="symbol">(</span><span class="normal">dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">dss_restart</span><span class="symbol">(</span><span class="normal">dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">dss_stop</span><span class="symbol">(</span><span class="normal">dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">dss_free</span><span class="symbol">(</span><span class="normal">dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_dss_ctx_t *fin_dss_new(const char *apn, const char *password, const char *username);
+int fin_dss_start(fin_dss_ctx_t *ctx);
+int fin_dss_restart(fin_dss_ctx_t *ctx);
+int fin_dss_stop(fin_dss_ctx_t *ctx);
+int fin_dss_free(fin_dss_ctx_t *ctx);"><span class="normal">fin_dss_ctx_t </span><span class="symbol">*</span><span class="function">fin_dss_new</span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">apn</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">password</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">username</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_dss_start</span><span class="symbol">(</span><span class="normal">fin_dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_dss_restart</span><span class="symbol">(</span><span class="normal">fin_dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_dss_stop</span><span class="symbol">(</span><span class="normal">fin_dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_dss_free</span><span class="symbol">(</span><span class="normal">fin_dss_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Dss.2">Macros <a class="sectionlink" href="#Dss.2">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): dss_set_notify(ctx, tobenotified) 
-dss_wait_conn_notify(N,T)"><span class="function">dss_set_notify</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> tobenotified</span><span class="symbol">)</span><span class="normal"> </span>
-<span class="function">dss_wait_conn_notify</span><span class="symbol">(</span><span class="normal">N</span><span class="symbol">,</span><span class="normal">T</span><span class="symbol">)</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_dss_set_notify(ctx, tobenotified) 
+fin_dss_wait_conn_notify(N,T)"><span class="function">fin_dss_set_notify</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> tobenotified</span><span class="symbol">)</span><span class="normal"> </span>
+<span class="function">fin_dss_wait_conn_notify</span><span class="symbol">(</span><span class="normal">N</span><span class="symbol">,</span><span class="normal">T</span><span class="symbol">)</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Dss.3">Callbacks <a class="sectionlink" href="#Dss.3">§</a></h2>
-<pre class="c-code"><span class="keyword">typedef</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="symbol">(</span><span class="symbol">*</span><span class="normal">dss_data_call_status_cb_t</span><span class="symbol">)</span><span class="symbol">(</span><span class="normal">qapi_DSS_Net_Evt_t evt</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="keyword">typedef</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="symbol">(</span><span class="symbol">*</span><span class="normal">fin_dss_data_call_status_cb_t</span><span class="symbol">)</span><span class="symbol">(</span><span class="normal">qapi_DSS_Net_Evt_t evt</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
@@ -415,9 +420,9 @@ dss_wait_conn_notify(N,T)"><span class="function">dss_set_notify</span><span cla
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Dss.6">Example <a class="sectionlink" href="#Dss.6">§</a></h2>
-<pre class="c-code"><span class="normal">dss_ctx_t </span><span class="symbol">*</span><span class="normal">dss_ctx </span><span class="symbol">=</span><span class="normal"> </span><span class="function">dss_new</span><span class="symbol">(</span><span class="string">"mdata.net.au"</span><span class="symbol">,</span><span class="normal">NULL</span><span class="symbol">,</span><span class="normal">NULL</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">dss_start</span><span class="symbol">(</span><span class="normal">dss_ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">dss_wait_conn_notify</span><span class="symbol">(</span><span class="normal">dss_ctx</span><span class="symbol">,</span><span class="number">10000</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="normal">fin_dss_ctx_t </span><span class="symbol">*</span><span class="normal">dss_ctx </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_dss_new</span><span class="symbol">(</span><span class="string">"mdata.net.au"</span><span class="symbol">,</span><span class="normal">NULL</span><span class="symbol">,</span><span class="normal">NULL</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_dss_start</span><span class="symbol">(</span><span class="normal">dss_ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_dss_wait_conn_notify</span><span class="symbol">(</span><span class="normal">dss_ctx</span><span class="symbol">,</span><span class="number">10000</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
@@ -506,37 +511,37 @@ int access (const char *filename, int how);"><span class="normal">FILE </span><s
  <a class="sectionlink" href="#Gpio">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Gpio.1">Prototype <a class="sectionlink" href="#Gpio.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): int gpio_pin_on(uint32_t pin, uint32_t trigger, gpio_interrupt_cb_t interrupt_cb);
-int gpio_pin_trigger(uint32_t pin);
-int gpio_pin_disable_irq(uint32_t pin);
-int gpio_pin_enable_irq(uint32_t pin);
-int gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
-int gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
-int gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
-int gpio_pin_release(uint32_t pin);
-int gpio_pin_write(uint32_t pin, bool val);
-int gpio_pin_read(uint32_t pin);
-void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_on</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t trigger</span><span class="symbol">,</span><span class="normal"> gpio_interrupt_cb_t interrupt_cb</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_trigger</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_disable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_enable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_config</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">,</span><span class="normal"> uint32_t type</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_output</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_input</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_release</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_write</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> val</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_read</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">void</span><span class="normal"> </span><span class="function">gpio_config_dump</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): int fin_gpio_pin_on(uint32_t pin, uint32_t trigger, fin_gpio_interrupt_cb_t interrupt_cb);
+int fin_gpio_pin_trigger(uint32_t pin);
+int fin_gpio_pin_disable_irq(uint32_t pin);
+int fin_gpio_pin_enable_irq(uint32_t pin);
+int fin_gpio_pin_config(uint32_t pin, uint32_t pull, uint32_t drive, uint32_t type);
+int fin_gpio_pin_output(uint32_t pin, uint32_t pull, uint32_t drive);
+int fin_gpio_pin_input(uint32_t pin, uint32_t pull, uint32_t drive);
+int fin_gpio_pin_release(uint32_t pin);
+int fin_gpio_pin_write(uint32_t pin, bool val);
+int fin_gpio_pin_read(uint32_t pin);
+void fin_gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_on</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t trigger</span><span class="symbol">,</span><span class="normal"> fin_gpio_interrupt_cb_t interrupt_cb</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_trigger</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_disable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_enable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_config</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">,</span><span class="normal"> uint32_t type</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_output</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_input</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_release</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_write</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> val</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_read</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">fin_gpio_config_dump</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Gpio.2">Callbacks <a class="sectionlink" href="#Gpio.2">§</a></h2>
-<pre class="c-code"><span class="keyword">typedef</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="symbol">(</span><span class="symbol">*</span><span class="normal">gpio_interrupt_cb_t</span><span class="symbol">)</span><span class="symbol">(</span><span class="normal">uint32_t arg</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="keyword">typedef</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="symbol">(</span><span class="symbol">*</span><span class="normal">fin_gpio_interrupt_cb_t</span><span class="symbol">)</span><span class="symbol">(</span><span class="normal">uint32_t arg</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Gpio.3">Function Details <a class="sectionlink" href="#Gpio.3">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_on</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t trigger</span><span class="symbol">,</span><span class="normal"> gpio_interrupt_cb_t interrupt_cb</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_on</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t trigger</span><span class="symbol">,</span><span class="normal"> gpio_interrupt_cb_t interrupt_cb</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
@@ -545,22 +550,22 @@ void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">function</span><span class="cbracket">}</span>
 <span class="normal">      Function callback</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_trigger</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_trigger</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_disable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_disable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_enable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_enable_irq</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_config</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">,</span><span class="normal"> uint32_t type</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_config</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">,</span><span class="normal"> uint32_t type</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
@@ -571,7 +576,7 @@ void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> type</span>
 <span class="normal">     Input or Output</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_output</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_output</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
@@ -580,7 +585,7 @@ void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> drive</span>
 <span class="normal">      Pin current drive</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_input</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_input</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> uint32_t pull</span><span class="symbol">,</span><span class="normal"> uint32_t drive</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
@@ -589,24 +594,24 @@ void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> drive</span>
 <span class="normal">      Pin current drive</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_release</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_release</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_write</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> val</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_write</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> val</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Bool</span><span class="cbracket">}</span><span class="normal"> val</span>
 <span class="normal">      Value to write</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">gpio_pin_read</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_gpio_pin_read</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
 
-<span class="type">void</span><span class="normal"> </span><span class="function">gpio_config_dump</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">fin_gpio_config_dump</span><span class="symbol">(</span><span class="normal">uint32_t pin</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> pin</span>
 <span class="normal">      Module pin number</span>
@@ -649,8 +654,8 @@ void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Gpio.6">Example <a class="sectionlink" href="#Gpio.6">§</a></h2>
-<pre class="c-code"><span class="function">gpio_pin_config</span><span class="symbol">(</span><span class="number">18</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_PULL_UP_E</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_12MA_E</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_INPUT_E</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> val </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gpio_pin_read</span><span class="symbol">(</span><span class="number">18</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="function">fin_gpio_pin_config</span><span class="symbol">(</span><span class="number">18</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_PULL_UP_E</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_12MA_E</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_INPUT_E</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> val </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_gpio_pin_read</span><span class="symbol">(</span><span class="number">18</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
@@ -661,38 +666,38 @@ void gpio_config_dump(uint32_t pin);"><span class="type">int</span><span class="
  <a class="sectionlink" href="#Http">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Http.1">Prototype <a class="sectionlink" href="#Http.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): http_client_ctx_t *htpp_client_new(void);
-int htpp_client_free(http_client_ctx_t *ctx);
-int htpp_client_set_header(http_client_ctx_t *ctx, const char *key, const char *value);
-int htpp_client_set_parameter(http_client_ctx_t *ctx, const char *key, const char *value);
-int htpp_client_set_body(http_client_ctx_t *ctx, const char *body, uint32_t len);
-int htpp_client_get(http_client_ctx_t *ctx, const char *host, int port, const char *path);"><span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="function">htpp_client_new</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">htpp_client_free</span><span class="symbol">(</span><span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">htpp_client_set_header</span><span class="symbol">(</span><span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">key</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">value</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">htpp_client_set_parameter</span><span class="symbol">(</span><span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">key</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">value</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">htpp_client_set_body</span><span class="symbol">(</span><span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">body</span><span class="symbol">,</span><span class="normal"> uint32_t len</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">htpp_client_get</span><span class="symbol">(</span><span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">host</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> port</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_http_client_ctx_t *fin_htpp_client_new(void);
+int fin_htpp_client_free(fin_http_client_ctx_t *ctx);
+int fin_htpp_client_set_header(fin_http_client_ctx_t *ctx, const char *key, const char *value);
+int fin_htpp_client_set_parameter(fin_http_client_ctx_t *ctx, const char *key, const char *value);
+int fin_htpp_client_set_body(fin_http_client_ctx_t *ctx, const char *body, uint32_t len);
+int fin_htpp_client_get(fin_http_client_ctx_t *ctx, const char *host, int port, const char *path);"><span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="function">fin_htpp_client_new</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_htpp_client_free</span><span class="symbol">(</span><span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_htpp_client_set_header</span><span class="symbol">(</span><span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">key</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">value</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_htpp_client_set_parameter</span><span class="symbol">(</span><span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">key</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">value</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_htpp_client_set_body</span><span class="symbol">(</span><span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">body</span><span class="symbol">,</span><span class="normal"> uint32_t len</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_htpp_client_get</span><span class="symbol">(</span><span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">host</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> port</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Http.2">Macros <a class="sectionlink" href="#Http.2">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): htpp_client_set_user_callback(ctx,cb);)
-http_client_for_each(p,ctx);
-htpp_client_has_data(ctx);
-http_client_get_data(iter);
-http_client_get_data_length(iter);
-http_client_get_header(iter);
-http_client_get_header_length(iter);
-http_client_free_resource(iter,data);
-http_client_set_timeout(ctx, t);"><span class="function">htpp_client_set_user_callback</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal">cb</span><span class="symbol">)</span><span class="symbol">;</span><span class="symbol">)</span>
-<span class="function">http_client_for_each</span><span class="symbol">(</span><span class="normal">p</span><span class="symbol">,</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">htpp_client_has_data</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">http_client_get_data</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">http_client_get_data_length</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">http_client_get_header</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">http_client_get_header_length</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">http_client_free_resource</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal">data</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">http_client_set_timeout</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> t</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_htpp_client_set_user_callback(ctx,cb);)
+fin_http_client_for_each(p,ctx);
+fin_htpp_client_has_data(ctx);
+fin_http_client_get_data(iter);
+fin_http_client_get_data_length(iter);
+fin_http_client_get_header(iter);
+fin_http_client_get_header_length(iter);
+fin_http_client_free_resource(iter,data);
+fin_http_client_set_timeout(ctx, t);"><span class="function">fin_htpp_client_set_user_callback</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal">cb</span><span class="symbol">)</span><span class="symbol">;</span><span class="symbol">)</span>
+<span class="function">fin_http_client_for_each</span><span class="symbol">(</span><span class="normal">p</span><span class="symbol">,</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_htpp_client_has_data</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_http_client_get_data</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_http_client_get_data_length</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_http_client_get_header</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_http_client_get_header_length</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_http_client_free_resource</span><span class="symbol">(</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal">data</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_http_client_set_timeout</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> t</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
@@ -711,14 +716,14 @@ http_client_set_timeout(ctx, t);"><span class="function">htpp_client_set_user_ca
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Http.6">Example <a class="sectionlink" href="#Http.6">§</a></h2>
-<pre class="c-code"><span class="normal">Create a context</span>
-<span class="normal">http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx </span><span class="symbol">=</span><span class="normal"> </span><span class="function">htpp_client_new</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="comment">/*</span><span class="comment"> Create a context </span><span class="comment">*/</span>
+<span class="normal">fin_http_client_ctx_t </span><span class="symbol">*</span><span class="normal">ctx </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_htpp_client_new</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
 
 <span class="comment">/*</span><span class="comment"> Http </span><span class="comment">*/</span>
-<span class="function">htpp_client_get</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"http://www.google.com"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">80</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"/"</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_htpp_client_get</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"http://www.google.com"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">80</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"/"</span><span class="symbol">)</span><span class="symbol">;</span>
 
 <span class="comment">/*</span><span class="comment"> Https </span><span class="comment">*/</span>
-<span class="function">htpp_client_get</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"https://www.google.com"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">443</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"/"</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_htpp_client_get</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"https://www.google.com"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">443</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"/"</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
@@ -729,28 +734,28 @@ http_client_set_timeout(ctx, t);"><span class="function">htpp_client_set_user_ca
  <a class="sectionlink" href="#I2c">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="I2c.1">Prototype <a class="sectionlink" href="#I2c.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): int i2c_transfer(i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_data_size, uint8_t *rx_data, size_t rx_data_size, uint32_t delay_us);
-int i2c_start(i2c_num_t i2c_num);
-int i2c_stop(i2c_num_t i2c_num);
-int i2c_config(i2c_num_t i2c_num);
-int i2c_deconfig(i2c_num_t i2c_num);
-int i2c_set_frequency(i2c_num_t i2c_num, uint32_t frequency);
-int i2c_power_down(i2c_num_t i2c_num);
-int i2c_power_up(i2c_num_t i2c_num);"><span class="type">int</span><span class="normal"> </span><span class="function">i2c_transfer</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint16_t addr</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_data</span><span class="symbol">,</span><span class="normal"> size_t tx_data_size</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_data</span><span class="symbol">,</span><span class="normal"> size_t rx_data_size</span><span class="symbol">,</span><span class="normal"> uint32_t delay_us</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_start</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_stop</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_config</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_deconfig</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_set_frequency</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_power_down</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_power_up</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): int fin_i2c_transfer(fin_i2c_num_t i2c_num, uint16_t addr, uint8_t *tx_data, size_t tx_data_size, uint8_t *rx_data, size_t rx_data_size, uint32_t delay_us);
+int fin_i2c_start(fin_i2c_num_t i2c_num);
+int fin_i2c_stop(fin_i2c_num_t i2c_num);
+int fin_i2c_config(fin_i2c_num_t i2c_num);
+int fin_i2c_deconfig(fin_i2c_num_t i2c_num);
+int fin_i2c_set_frequency(fin_i2c_num_t i2c_num, uint32_t frequency);
+int fin_i2c_power_down(fin_i2c_num_t i2c_num);
+int fin_i2c_power_up(fin_i2c_num_t i2c_num);"><span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_transfer</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint16_t addr</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_data</span><span class="symbol">,</span><span class="normal"> size_t tx_data_size</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_data</span><span class="symbol">,</span><span class="normal"> size_t rx_data_size</span><span class="symbol">,</span><span class="normal"> uint32_t delay_us</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_start</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_stop</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_config</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_deconfig</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_set_frequency</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_power_down</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_power_up</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="I2c.2">Function Details <a class="sectionlink" href="#I2c.2">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">i2c_transfer</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint16_t addr</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_data</span><span class="symbol">,</span><span class="normal"> size_t tx_data_size</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_data</span><span class="symbol">,</span><span class="normal"> size_t rx_data_size</span><span class="symbol">,</span><span class="normal"> uint32_t delay_us</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_transfer</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint16_t addr</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_data</span><span class="symbol">,</span><span class="normal"> size_t tx_data_size</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_data</span><span class="symbol">,</span><span class="normal"> size_t rx_data_size</span><span class="symbol">,</span><span class="normal"> uint32_t delay_us</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">Arguments</span><span class="symbol">:</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal">fin_i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">    I2c number</span>
 <span class="normal">  </span><span class="cbracket">{</span><span class="normal">Uint16</span><span class="cbracket">}</span><span class="normal"> addr</span>
 <span class="normal">    I2c address</span>
@@ -765,41 +770,41 @@ int i2c_power_up(i2c_num_t i2c_num);"><span class="type">int</span><span class="
 <span class="normal">  </span><span class="cbracket">{</span><span class="normal">uint32_t</span><span class="cbracket">}</span><span class="normal"> delay_us</span>
 <span class="normal">    Delay in microseconds prior to starting transfer</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_start</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_start</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_stop</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_stop</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_config</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_config</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_deconfig</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_deconfig</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_set_frequency</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_set_frequency</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> frequency</span>
 <span class="normal">      I2c clock frequency in kHz</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_power_down</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_power_down</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">i2c_power_up</span><span class="symbol">(</span><span class="normal">i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_i2c_power_up</span><span class="symbol">(</span><span class="normal">fin_i2c_num_t i2c_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_i2c_num_t</span><span class="cbracket">}</span><span class="normal"> i2c_num</span>
 <span class="normal">      I2c number</span>
 </pre>
 </div>
@@ -818,8 +823,8 @@ int i2c_power_up(i2c_num_t i2c_num);"><span class="type">int</span><span class="
 <pre class="c-code"><span class="normal">uint8_t txdata</span><span class="symbol">[</span><span class="number">1</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="number">0x05</span><span class="cbracket">}</span><span class="symbol">;</span>
 <span class="normal">uint8_t rxdata</span><span class="symbol">[</span><span class="number">2</span><span class="symbol">]</span><span class="symbol">;</span>
 
-<span class="type">int</span><span class="normal"> res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">i2c_config</span><span class="symbol">(</span><span class="normal">I2C1</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">i2c_transfer</span><span class="symbol">(</span><span class="normal">I2C1</span><span class="symbol">,</span><span class="number">0x18</span><span class="symbol">,</span><span class="normal">txdata</span><span class="symbol">,</span><span class="keyword">sizeof</span><span class="symbol">(</span><span class="normal">txdata</span><span class="symbol">)</span><span class="symbol">,</span><span class="normal">rxdata</span><span class="symbol">,</span><span class="keyword">sizeof</span><span class="symbol">(</span><span class="normal">rxdata</span><span class="symbol">)</span><span class="symbol">,</span><span class="number">0</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_i2c_config</span><span class="symbol">(</span><span class="normal">I2C1</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_i2c_transfer</span><span class="symbol">(</span><span class="normal">I2C1</span><span class="symbol">,</span><span class="number">0x18</span><span class="symbol">,</span><span class="normal">txdata</span><span class="symbol">,</span><span class="keyword">sizeof</span><span class="symbol">(</span><span class="normal">txdata</span><span class="symbol">)</span><span class="symbol">,</span><span class="normal">rxdata</span><span class="symbol">,</span><span class="keyword">sizeof</span><span class="symbol">(</span><span class="normal">rxdata</span><span class="symbol">)</span><span class="symbol">,</span><span class="number">0</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
@@ -866,16 +871,16 @@ void *memalign(size_t align, size_t len);"><span class="type">void</span><span c
  <a class="sectionlink" href="#Net">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Net.1">Prototype <a class="sectionlink" href="#Net.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): const char *resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len);"><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="function">resolve_host_itf</span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">domain</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">itf</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t buf_len</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): const char *fin_resolve_host_itf(const char *domain, const char *itf, char *buf, size_t buf_len);"><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="function">fin_resolve_host_itf</span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">domain</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">itf</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t buf_len</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Net.2">Macros <a class="sectionlink" href="#Net.2">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): dump_net_interfaces();
-dump_dns_server_list();
-resolve_host(domain, itf);"><span class="function">dump_net_interfaces</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">dump_dns_server_list</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">resolve_host</span><span class="symbol">(</span><span class="normal">domain</span><span class="symbol">,</span><span class="normal"> itf</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_dump_net_interfaces();
+fin_dump_dns_server_list();
+fin_resolve_host(domain, itf);"><span class="function">fin_dump_net_interfaces</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_dump_dns_server_list</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_resolve_host</span><span class="symbol">(</span><span class="normal">domain</span><span class="symbol">,</span><span class="normal"> itf</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
@@ -884,7 +889,7 @@ resolve_host(domain, itf);"><span class="function">dump_net_interfaces</span><sp
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Net.4">Example <a class="sectionlink" href="#Net.4">§</a></h2>
-<pre class="c-code"><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">ip </span><span class="symbol">=</span><span class="normal"> </span><span class="function">resolve_host</span><span class="symbol">(</span><span class="string">"www.google.com"</span><span class="symbol">,</span><span class="normal">rmnet_data0</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">ip </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_resolve_host</span><span class="symbol">(</span><span class="string">"www.google.com"</span><span class="symbol">,</span><span class="normal">rmnet_data0</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="function">printf</span><span class="symbol">(</span><span class="string">"resolved ip: %s\r\n"</span><span class="symbol">,</span><span class="normal">ip</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
@@ -902,12 +907,12 @@ resolve_host(domain, itf);"><span class="function">dump_net_interfaces</span><sp
  <a class="sectionlink" href="#Random">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Random.1">Prototype <a class="sectionlink" href="#Random.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): void hwrandombytes(uint8_t *buf, uint64_t size );"><span class="type">void</span><span class="normal"> </span><span class="function">hwrandombytes</span><span class="symbol">(</span><span class="normal">uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> uint64_t size </span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): void fin_hwrandombytes(uint8_t *buf, uint64_t size );"><span class="type">void</span><span class="normal"> </span><span class="function">fin_hwrandombytes</span><span class="symbol">(</span><span class="normal">uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> uint64_t size </span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Random.2">Function Details <a class="sectionlink" href="#Random.2">§</a></h2>
-<pre class="c-code"><span class="type">void</span><span class="normal"> </span><span class="function">hwrandombytes</span><span class="symbol">(</span><span class="normal">uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> uint64_t size </span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">void</span><span class="normal"> </span><span class="function">fin_hwrandombytes</span><span class="symbol">(</span><span class="normal">uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> uint64_t size </span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">uint8_t</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> buf</span>
 <span class="normal">      Buffer to store random bytes</span>
@@ -924,7 +929,7 @@ resolve_host(domain, itf);"><span class="function">dump_net_interfaces</span><sp
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Random.4">Example <a class="sectionlink" href="#Random.4">§</a></h2>
 <pre class="c-code"><span class="normal">uint8_t buf</span><span class="symbol">[</span><span class="number">255</span><span class="symbol">]</span><span class="symbol">;</span>
-<span class="function">hwrandombytes</span><span class="symbol">(</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">sizeof</span><span class="symbol">(</span><span class="normal">buf</span><span class="symbol">)</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_hwrandombytes</span><span class="symbol">(</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">sizeof</span><span class="symbol">(</span><span class="normal">buf</span><span class="symbol">)</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
@@ -935,89 +940,89 @@ resolve_host(domain, itf);"><span class="function">dump_net_interfaces</span><sp
  <a class="sectionlink" href="#Spi">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Spi.1">Prototype <a class="sectionlink" href="#Spi.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): spi_power_down(spi_num_t spi_num);
-spi_power_up(spi_num_t spi_num);
-spi_config(spi_num_t spi_num);
-spi_deconfig(spi_num_t spi_num);
-spi_set_frequency(spi_num_t spi_num, uint32_t frequency);
-spi_set_endianess(spi_num_t spi_num, spi_endian_t endian);
-spi_set_bit_per_word(spi_num_t spi_num, spi_bits_per_word_t bpw);
-spi_set_mode(spi_num_t spi_num, spi_mode_t mode);
-spi_set_inter_word_delay(spi_num_t spi_num, uint8_t delay);
-spi_set_loopback(spi_num_t spi_num, bool enable);
-spi_set_chip_select_mode(spi_num_t spi_num, spi_cs_mode_t mode);
-spi_set_chip_select_polarity(spi_num_t spi_num, spi_cs_polarity_t polarity);
-spi_set_chip_select_delay(spi_num_t spi_num, uint8_t delay);
-spi_set_slaves_num(spi_num_t spi_num, uint8_t num);
-spi_send(spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
-spi_send_receive(spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
-spi_config_dump(spi_num_t spi_num);
-spi_get_name(spi_num_t spi_num);"><span class="function">spi_power_down</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_power_up</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_config</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_deconfig</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_frequency</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_endianess</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_endian_t endian</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_bit_per_word</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_bits_per_word_t bpw</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_mode</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_inter_word_delay</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_loopback</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> enable</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_chip_select_mode</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_chip_select_polarity</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_polarity_t polarity</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_chip_select_delay</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_set_slaves_num</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_send</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> size_t tx_len</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_send_receive</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_buf</span><span class="symbol">,</span><span class="normal"> size_t rx_len</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_config_dump</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_get_name</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): fin_spi_power_down(fin_spi_num_t spi_num);
+fin_spi_power_up(fin_spi_num_t spi_num);
+fin_spi_config(fin_spi_num_t spi_num);
+fin_spi_deconfig(fin_spi_num_t spi_num);
+fin_spi_set_frequency(fin_spi_num_t spi_num, uint32_t frequency);
+fin_spi_set_endianess(fin_spi_num_t spi_num, spi_endian_t endian);
+fin_spi_set_bit_per_word(fin_spi_num_t spi_num, spi_bits_per_word_t bpw);
+fin_spi_set_mode(fin_spi_num_t spi_num, spi_mode_t mode);
+fin_spi_set_inter_word_delay(fin_spi_num_t spi_num, uint8_t delay);
+fin_spi_set_loopback(fin_spi_num_t spi_num, bool enable);
+fin_spi_set_chip_select_mode(fin_spi_num_t spi_num, spi_cs_mode_t mode);
+fin_spi_set_chip_select_polarity(fin_spi_num_t spi_num, spi_cs_polarity_t polarity);
+fin_spi_set_chip_select_delay(fin_spi_num_t spi_num, uint8_t delay);
+fin_spi_set_slaves_num(fin_spi_num_t spi_num, uint8_t num);
+fin_spi_send(fin_spi_num_t spi_num, uint8_t *tx_buf, size_t tx_len);
+fin_spi_send_receive(fin_spi_num_t spi_num, uint8_t *tx_buf, uint8_t *rx_buf, size_t rx_len);
+fin_spi_config_dump(fin_spi_num_t spi_num);
+fin_spi_get_name(fin_spi_num_t spi_num);"><span class="function">fin_spi_power_down</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_power_up</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_config</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_deconfig</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_frequency</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_endianess</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_endian_t endian</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_bit_per_word</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_bits_per_word_t bpw</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_mode</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_inter_word_delay</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_loopback</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> enable</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_chip_select_mode</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_chip_select_polarity</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_polarity_t polarity</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_chip_select_delay</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_set_slaves_num</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_send</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> size_t tx_len</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_send_receive</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_buf</span><span class="symbol">,</span><span class="normal"> size_t rx_len</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_config_dump</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_get_name</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Spi.2">Function Details <a class="sectionlink" href="#Spi.2">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">spi_power_down</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_power_down</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">  </span>
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_power_up</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_power_up</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_config</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_config</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_deconfig</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_deconfig</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_frequency</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_frequency</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint32_t frequency</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> frequency</span>
 <span class="normal">      Spi clock frequency with a ninimum of </span><span class="number">1</span><span class="normal"> Mhz</span><span class="symbol">.</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_endianess</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_endian_t endian</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_endianess</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_endian_t endian</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_endian_t</span><span class="cbracket">}</span><span class="normal"> endian</span>
 <span class="normal">      Set endianess</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_bit_per_word</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_bits_per_word_t bpw</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_bit_per_word</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_bits_per_word_t bpw</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_bits_per_word_t</span><span class="cbracket">}</span><span class="normal"> bpw</span>
 <span class="normal">      Set bits per word</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_mode</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_mode</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">    Spi number</span>
 <span class="normal">  </span><span class="cbracket">{</span><span class="normal">spi_mode_t</span><span class="cbracket">}</span><span class="normal"> mode</span>
 <span class="normal">    Set mode to </span><span class="number">0</span><span class="symbol">,</span><span class="number">1</span><span class="symbol">,</span><span class="number">2</span><span class="normal"> or </span><span class="number">3</span><span class="symbol">.</span><span class="normal"> </span>
@@ -1026,60 +1031,60 @@ spi_get_name(spi_num_t spi_num);"><span class="function">spi_power_down</span><s
 <span class="normal">    </span><span class="number">2</span><span class="symbol">:</span><span class="normal"> CPOL </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span><span class="normal"> CPHA </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span>
 <span class="normal">    </span><span class="number">3</span><span class="symbol">:</span><span class="normal"> CPOL </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span><span class="normal"> CPHA </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_inter_word_delay</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_inter_word_delay</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="cbracket">}</span><span class="normal"> delay</span>
 <span class="normal">      Set the inter word delay</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_loopback</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> enable</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_loopback</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> </span><span class="type">bool</span><span class="normal"> enable</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Bool</span><span class="cbracket">}</span><span class="normal"> enable</span>
 <span class="normal">      Set loopack mode  </span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_chip_select_mode</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_chip_select_mode</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_mode_t mode</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_cs_mode_t</span><span class="cbracket">}</span><span class="normal"> mode</span>
 <span class="normal">      Set chip select mode to deassert or keep asserted</span><span class="symbol">.</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_chip_select_polarity</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_polarity_t polarity</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_chip_select_polarity</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> spi_cs_polarity_t polarity</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_cs_polarity_t</span><span class="cbracket">}</span><span class="normal"> polarity</span>
 <span class="normal">      Set chip select polarity to active low or active high</span><span class="symbol">.</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_chip_select_delay</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_chip_select_delay</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t delay</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="cbracket">}</span><span class="normal"> delay</span>
 <span class="normal">      Set chip select delay</span><span class="symbol">.</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_set_slaves_num</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_set_slaves_num</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="cbracket">}</span><span class="normal"> num</span>
 <span class="normal">      Set the number of daisy chained slaves with a range of </span><span class="number">0</span><span class="normal"> to </span><span class="number">7</span><span class="symbol">.</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_send</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> size_t tx_len</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_send</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> size_t tx_len</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> tx_buf</span>
 <span class="normal">      Transmit data buffer</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">size_t</span><span class="cbracket">}</span><span class="normal"> tx_len</span>
 <span class="normal">      Transmit data buffer length</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">spi_send_receive</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_buf</span><span class="symbol">,</span><span class="normal"> size_t rx_len</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_spi_send_receive</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">tx_buf</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">rx_buf</span><span class="symbol">,</span><span class="normal"> size_t rx_len</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> tx_buf</span>
 <span class="normal">      Transmit data buffer</span>
@@ -1088,14 +1093,14 @@ spi_get_name(spi_num_t spi_num);"><span class="function">spi_power_down</span><s
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">size_t</span><span class="cbracket">}</span><span class="normal"> rx_len</span>
 <span class="normal">      Receive data buffer length</span>
 
-<span class="type">void</span><span class="normal"> </span><span class="function">spi_config_dump</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">void</span><span class="normal"> </span><span class="function">fin_spi_config_dump</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 
-<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="function">spi_get_name</span><span class="symbol">(</span><span class="normal">spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="function">fin_spi_get_name</span><span class="symbol">(</span><span class="normal">fin_spi_num_t spi_num</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_spi_num_t</span><span class="cbracket">}</span><span class="normal"> spi_num</span>
 <span class="normal">      Spi number</span>
 </pre>
 </div>
@@ -1105,11 +1110,11 @@ spi_get_name(spi_num_t spi_num);"><span class="function">spi_power_down</span><s
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Spi.4">Example <a class="sectionlink" href="#Spi.4">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">spi_config</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">spi_config_dump</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">name </span><span class="symbol">=</span><span class="normal"> </span><span class="function">spi_get_name</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_spi_config</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_spi_config_dump</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">name </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_spi_get_name</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">)</span><span class="symbol">;</span>
 
-<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">spi_send_receive</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">,</span><span class="symbol">&amp;</span><span class="normal">addr</span><span class="symbol">,</span><span class="symbol">&amp;</span><span class="normal">version</span><span class="symbol">,</span><span class="number">1</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_spi_send_receive</span><span class="symbol">(</span><span class="normal">SPI1</span><span class="symbol">,</span><span class="symbol">&amp;</span><span class="normal">addr</span><span class="symbol">,</span><span class="symbol">&amp;</span><span class="normal">version</span><span class="symbol">,</span><span class="number">1</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
@@ -1157,25 +1162,25 @@ int getchar(void);"><span class="type">int</span><span class="normal"> </span><s
  <a class="sectionlink" href="#Uart">§</a></h1><div class="api-call">
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Uart.1">Prototype <a class="sectionlink" href="#Uart.1">§</a></h2>
-<pre class="c-code" title="C99/C++11 (32-bit): int uart_config(uint8_t serial, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
-uart_deconfig(uint8_t serial);
-uart_write(uint8_t serial, uint8_t *buf, size_t nbytes);
-uart_read(uint32_t serial, uint8_t *buf, size_t nbytes);
-uart_power_up(uint8_t serial);
-uart_power_down(uint8_t serial);"><span class="type">int</span><span class="normal"> </span><span class="function">uart_config</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">,</span><span class="normal"> uint32_t baud_rate</span><span class="symbol">,</span><span class="normal"> uint32_t stop_bits</span><span class="symbol">,</span><span class="normal"> uint32_t bits_per_char</span><span class="symbol">,</span><span class="normal"> uint32_t parity</span><span class="symbol">,</span><span class="normal"> uint32_t flow_ctrl</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">uart_deconfig</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">uart_write</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">uart_read</span><span class="symbol">(</span><span class="normal">uint32_t serial</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">uart_power_up</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">uart_power_down</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code" title="C99/C++11 (32-bit): int fin_uart_config(fin_uart_t uart, uint32_t baud_rate, uint32_t stop_bits, uint32_t bits_per_char, uint32_t parity, uint32_t flow_ctrl);
+int fin_uart_deconfig(fin_uart_t uart);
+int fin_uart_write(fin_uart_t uart, uint8_t *buf, size_t nbytes);
+int fin_uart_read(fin_uart_t uart, uint8_t *buf, size_t nbytes);
+int fin_uart_power_up(fin_uart_t uart);
+int fin_uart_power_down(fin_uart_t uart);"><span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_config</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">,</span><span class="normal"> uint32_t baud_rate</span><span class="symbol">,</span><span class="normal"> uint32_t stop_bits</span><span class="symbol">,</span><span class="normal"> uint32_t bits_per_char</span><span class="symbol">,</span><span class="normal"> uint32_t parity</span><span class="symbol">,</span><span class="normal"> uint32_t flow_ctrl</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_deconfig</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_write</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_read</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_power_up</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_power_down</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 <div class="api-part">
 <h2 class="api-proto sectiontitle" id="Uart.2">Function Details <a class="sectionlink" href="#Uart.2">§</a></h2>
-<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">uart_config</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">,</span><span class="normal"> uint32_t baud_rate</span><span class="symbol">,</span><span class="normal"> uint32_t stop_bits</span><span class="symbol">,</span><span class="normal"> uint32_t bits_per_char</span><span class="symbol">,</span><span class="normal"> uint32_t parity</span><span class="symbol">,</span><span class="normal"> uint32_t flow_ctrl</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_config</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">,</span><span class="normal"> uint32_t baud_rate</span><span class="symbol">,</span><span class="normal"> uint32_t stop_bits</span><span class="symbol">,</span><span class="normal"> uint32_t bits_per_char</span><span class="symbol">,</span><span class="normal"> uint32_t parity</span><span class="symbol">,</span><span class="normal"> uint32_t flow_ctrl</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="cbracket">}</span><span class="normal"> serial</span>
-<span class="normal">      Uart serial number</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_uart_t</span><span class="cbracket">}</span><span class="normal"> uart</span>
+<span class="normal">      Uart number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> baud_rate</span>
 <span class="normal">      Uart baud rate</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> stop_bits</span>
@@ -1187,37 +1192,37 @@ uart_power_down(uint8_t serial);"><span class="type">int</span><span class="norm
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> flow_ctrl</span>
 <span class="normal">      Uart flow control</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">uart_deconfig</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_deconfig</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="cbracket">}</span><span class="normal"> serial</span>
-<span class="normal">      Uart serial number</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_uart_t</span><span class="cbracket">}</span><span class="normal"> uart</span>
+<span class="normal">      Uart number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">uart_write</span><span class="symbol">(</span><span class="normal">uint8_t serial</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_write</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="cbracket">}</span><span class="normal"> serial</span>
+<span class="normal">    </span><span class="cbracket">{</span><span class="normal">fin_uart_t</span><span class="cbracket">}</span><span class="normal"> uart</span>
 <span class="normal">      Uart number</span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> buf</span>
 <span class="normal">      Transmit data buffer </span>
 <span class="normal">    </span><span class="cbracket">{</span><span class="normal">size_t</span><span class="cbracket">}</span><span class="normal"> nbytes</span>
 <span class="normal">      Transmit data buffer size</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">uart_read</span><span class="symbol">(</span><span class="normal">uint32_t serial</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_read</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">,</span><span class="normal"> uint8_t </span><span class="symbol">*</span><span class="normal">buf</span><span class="symbol">,</span><span class="normal"> size_t nbytes</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> serial</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal">fin_uart_t</span><span class="cbracket">}</span><span class="normal"> uart</span>
 <span class="normal">    Uart number</span>
 <span class="normal">  </span><span class="cbracket">{</span><span class="normal">Uint8</span><span class="symbol">*</span><span class="cbracket">}</span><span class="normal"> buf</span>
 <span class="normal">    Receive data buffer </span>
 <span class="normal">  </span><span class="cbracket">{</span><span class="normal">size_t</span><span class="cbracket">}</span><span class="normal"> nbytes</span>
 <span class="normal">    Receive data buffer size</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">uart_power_up</span><span class="symbol">(</span><span class="normal">uint32_t serial</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_power_up</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> serial</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal">fin_uart_t</span><span class="cbracket">}</span><span class="normal"> uart</span>
 <span class="normal">    Uart number</span>
 
-<span class="type">int</span><span class="normal"> </span><span class="function">uart_power_down</span><span class="symbol">(</span><span class="normal">uint32_t serial</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> </span><span class="function">fin_uart_power_down</span><span class="symbol">(</span><span class="normal">fin_uart_t uart</span><span class="symbol">)</span><span class="symbol">;</span>
 <span class="normal">  Arguments</span><span class="symbol">:</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal">Uint32</span><span class="cbracket">}</span><span class="normal"> serial</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal">fin_uart_t</span><span class="cbracket">}</span><span class="normal"> uart</span>
 <span class="normal">    Uart number  </span>
 </pre>
 </div>
@@ -1237,8 +1242,8 @@ uart_power_down(uint8_t serial);"><span class="type">int</span><span class="norm
 <pre class="c-code"><span class="comment">/*</span><span class="comment"> Uart 3</span><span class="comment">*/</span>
 <span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"Aloha!"</span><span class="symbol">;</span>
 
-<span class="function">uart_config</span><span class="symbol">(</span><span class="normal">UART3</span><span class="symbol">,</span><span class="number">115200</span><span class="symbol">,</span><span class="normal">QAPI_UART_1_0_STOP_BITS_E</span><span class="symbol">,</span><span class="normal">QAPI_UART_8_BITS_PER_CHAR_E</span><span class="symbol">,</span><span class="normal">QAPI_UART_NO_PARITY_E</span><span class="symbol">,</span><span class="normal">QAPI_FCTL_OFF_E</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="function">uart_write</span><span class="symbol">(</span><span class="normal">UART3</span><span class="symbol">,</span><span class="normal">str</span><span class="symbol">,</span><span class="function">strlen</span><span class="symbol">(</span><span class="normal">str</span><span class="symbol">)</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_uart_config</span><span class="symbol">(</span><span class="normal">UART3</span><span class="symbol">,</span><span class="number">115200</span><span class="symbol">,</span><span class="normal">QAPI_UART_1_0_STOP_BITS_E</span><span class="symbol">,</span><span class="normal">QAPI_UART_8_BITS_PER_CHAR_E</span><span class="symbol">,</span><span class="normal">QAPI_UART_NO_PARITY_E</span><span class="symbol">,</span><span class="normal">QAPI_FCTL_OFF_E</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="function">fin_uart_write</span><span class="symbol">(</span><span class="normal">UART3</span><span class="symbol">,</span><span class="normal">str</span><span class="symbol">,</span><span class="function">strlen</span><span class="symbol">(</span><span class="normal">str</span><span class="symbol">)</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 

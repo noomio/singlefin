@@ -27,15 +27,15 @@ extern int vsnprintf_(char* buffer, size_t count, const char* format, va_list va
 
 
 	// toggle pseudo STATUS pin
-	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_pin_write(64,false);
-	sleep(1);
-	gpio_pin_write(64,true);
+	fin_gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
+	fin_gpio_pin_write(64,false);
+	fin_sleep(1);
+	fin_gpio_pin_write(64,true);
 
 	// Now read fault 
-	gpio_pin_release(64);
-	gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
-	if(gpio_pin_read(64) == 0){
+	fin_gpio_pin_release(64);
+	fin_gpio_pin_config(64,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
+	if(fin_gpio_pin_read(64) == 0){
 		puts("[ PROGRAM FAULT ]\r\n");
 		exit(1);
 	}

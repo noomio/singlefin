@@ -17,7 +17,7 @@
 
 
 #include "fin_cli.h"
-#include "fin_list.h"
+#include "list.h"
 #include "fin_dss.h"
 #include "fin_debug.h"
 #include "fin_debug_opt.h"

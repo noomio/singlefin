@@ -883,6 +883,7 @@ def generateApiDoc(apidocdir, apitestdir):
 
     res = []
     navlinks = []
+    navlinks.append(['#compile', 'Compile'])
     navlinks.append(['#build', 'Build'])
     navlinks.append(['#load', 'Load'])
     navlinks.append(['#commandline', 'Command Line'])
@@ -910,6 +911,7 @@ def generateApiDoc(apidocdir, apitestdir):
 
     # FIXME: generate from the same list as nav links for these
     res += processRawDoc('../../apps/common/api/intro.html')
+    res += processRawDoc('../../apps/common/api/compile.html')
     res += processRawDoc('../../apps/common/api/build.html')
     res += processRawDoc('../../apps/common/api/load.html')
     res += processRawDoc('../../apps/common/api/commandline.html')

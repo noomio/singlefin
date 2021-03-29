@@ -30,12 +30,12 @@ static void uart_rx_cb(uint32_t num_bytes, void *cb_data){
 	int8_t index = *(int8_t*)cb_data;
 
 	for(int i=0; i < num_bytes; i++){
-		uint32_t head = __atomic_fetch_add(&uart[index].recvd_head,1,__ATOMIC_RELAXED);
+		uint32_t head = __atomic_fetch_add(&uart_map[index].recvd_head,1,__ATOMIC_RELAXED);
 		if(head+1 >= RECV_BUF_SIZE-1){
-			__atomic_store_n(&uart[index].recvd_head,0,__ATOMIC_RELAXED);
+			__atomic_store_n(&uart_map[index].recvd_head,0,__ATOMIC_RELAXED);
 			head = 0;
 		}
-		__atomic_store_n (&uart[index].recvd[head], uart[index].recv_buf[i], __ATOMIC_RELAXED);
+		__atomic_store_n (&uart_map[index].recvd[head], uart_map[index].recv_buf[i], __ATOMIC_RELAXED);
 	}
 
 }
@@ -72,7 +72,7 @@ int fin_uart_config(fin_uart_t uart, uint32_t baud_rate, uint32_t stop_bits, uin
 
 		if(qapi_UART_Open(&uart_map[index].handle, uart_map[index].port_id, &uart_cfg) == QAPI_OK && 
 			qapi_UART_Power_On(uart_map[index].handle) == QAPI_OK){
-				while(qapi_UART_Receive (uart_map[index].handle, uart_map[index].recv_buf, RECV_BUF_SIZE, &uart[index].index) != QAPI_OK); // queue as per doc
+				while(qapi_UART_Receive (uart_map[index].handle, uart_map[index].recv_buf, RECV_BUF_SIZE, &uart_map[index].index) != QAPI_OK); // queue as per doc
 				uart_map[index].recvd_head = 0;
 				uart_map[index].recvd_tail = 0;
 				return 0;

@@ -18,7 +18,7 @@ typedef struct fin_cli{
 	int head;
 	int tail;
 	int count;
-	cli_cmd_t *cmds;
+	fin_cli_cmd_t *cmds;
 } fin_cli_t;
 
 
