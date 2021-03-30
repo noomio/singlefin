@@ -2,9 +2,9 @@
 #
 #  Process Duktape option metadata and produce various useful outputs:
 #
-#    - duk_config.h with specific or autodetected platform, compiler, and
+#    - fin_config.h with specific or autodetected platform, compiler, and
 #      architecture, forced options, sanity checks, etc
-#    - option documentation for Duktape config options (DUK_USE_xxx)
+#    - option documentation for Duktape config options (FIN_USE_xxx)
 #
 #  Genconfig tries to build all outputs based on modular metadata, so that
 #  managing a large number of config options (which is hard to avoid given
@@ -12,7 +12,7 @@
 #
 #  Genconfig does *not* try to support all exotic platforms out there.
 #  Instead, the goal is to allow the metadata to be extended, or to provide
-#  a reasonable starting point for manual duk_config.h tweaking.
+#  a reasonable starting point for manual fin_config.h tweaking.
 #
 
 import logging
@@ -108,7 +108,7 @@ helper_snippets = None
 
 # Assume these provides come from outside.
 assumed_provides = {
-    'FIN_SINGLE_FILE': True,         # compiling Duktape from a single source file (duktape.c) version
+    'FIN_SINGLE_FILE': True,         # compiling Duktape from a single source file (fintape.c) version
     'FIN_COMPILING_SINGLEFIN': True,   # compiling Duktape (not user application)
     'FIN_CONFIG_H_INCLUDED': True,   # artifact, include guard
 }
@@ -154,7 +154,7 @@ def strip_comments_from_lines(lines):
     # but these are not a concrete issue for scanning preprocessor
     # #define references.
     #
-    # Comment contents are stripped of any DUK_ prefixed text to avoid
+    # Comment contents are stripped of any FIN_ prefixed text to avoid
     # incorrect requires/provides detection.  Other comment text is kept;
     # in particular a "/* redefine */" comment must remain intact here.
     # (The 'redefine' hack is not actively needed now.)
@@ -162,7 +162,7 @@ def strip_comments_from_lines(lines):
     # Avoid Python 2.6 vs. Python 2.7 argument differences.
 
     def censor(x):
-        return re.sub(re.compile('DUK_\w+', re.MULTILINE), 'xxx', x.group(0))
+        return re.sub(re.compile('FIN_\w+', re.MULTILINE), 'xxx', x.group(0))
 
     tmp = '\n'.join(lines)
     tmp = re.sub(re.compile('/\*.*?\*/', re.MULTILINE | re.DOTALL), censor, tmp)
@@ -171,7 +171,7 @@ def strip_comments_from_lines(lines):
 
 # Header snippet representation: lines, provides defines, requires defines.
 re_line_provides = re.compile(r'^#(?:define|undef)\s+(\w+).*$')
-re_line_requires = re.compile(r'(DUK_[A-Z0-9_]+)')  # uppercase only, don't match DUK_USE_xxx for example
+re_line_requires = re.compile(r'(FIN_[A-Z0-9_]+)')  # uppercase only, don't match FIN_USE_xxx for example
 class Snippet:
     lines = None     # lines of text and/or snippets
     provides = None  # map from define to 'True' for now
@@ -216,21 +216,21 @@ class Snippet:
                 m = re_line_provides.match(line)
                 if m is not None and '/* redefine */' not in line and \
                     len(m.group(1)) > 0 and m.group(1)[-1] != '_':
-                    # Don't allow e.g. DUK_USE_ which results from matching DUK_USE_xxx
+                    # Don't allow e.g. FIN_USE_ which results from matching FIN_USE_xxx
                     #logger.debug('PROVIDES: %r' % m.group(1))
                     self.provides[m.group(1)] = True
             if autoscan_requires:
                 matches = re.findall(re_line_requires, line)
                 for m in matches:
                     if len(m) > 0 and m[-1] == '_':
-                        # Don't allow e.g. DUK_USE_ which results from matching DUK_USE_xxx
+                        # Don't allow e.g. FIN_USE_ which results from matching FIN_USE_xxx
                         pass
-                    elif m[:7] == 'DUK_OPT':
-                        #logger.warning('Encountered DUK_OPT_xxx in a header snippet: %s' % repr(line))
-                        # DUK_OPT_xxx always come from outside
+                    elif m[:7] == 'FIN_OPT':
+                        #logger.warning('Encountered FIN_OPT_xxx in a header snippet: %s' % repr(line))
+                        # FIN_OPT_xxx always come from outside
                         pass
-                    elif m[:7] == 'DUK_USE':
-                        # DUK_USE_xxx are internal and they should not be 'requirements'
+                    elif m[:7] == 'FIN_USE':
+                        # FIN_USE_xxx are internal and they should not be 'requirements'
                         pass
                     elif self.provides.has_key(m):
                         # Snippet provides it's own require; omit
@@ -356,9 +356,9 @@ class FileBuilder:
 
 # Insert missing define dependencies into index 'idx_deps' repeatedly
 # until no unsatisfied dependencies exist.  This is used to pull in
-# the required DUK_F_xxx helper defines without pulling them all in.
+# the required FIN_F_xxx helper defines without pulling them all in.
 # The resolution mechanism also ensures dependencies are pulled in the
-# correct order, i.e. DUK_F_xxx helpers may depend on each other (as
+# correct order, i.e. FIN_F_xxx helpers may depend on each other (as
 # long as there are no circular dependencies).
 #
 # XXX: this can be simplified a lot
@@ -392,7 +392,7 @@ def fill_dependencies_for_snippets(snippets, idx_deps):
                 resolved.append(k)
 
                 # Find a header snippet which provides the missing define.
-                # Some DUK_F_xxx files provide multiple defines, so we don't
+                # Some FIN_F_xxx files provide multiple defines, so we don't
                 # necessarily know the snippet filename here.
 
                 sn_req = None
@@ -499,7 +499,7 @@ def scan_use_defs(dirname):
 
     for fn in os.listdir(dirname):
         root, ext = os.path.splitext(fn)
-        if not root.startswith('DUK_USE_') or ext != '.yaml':
+        if not root.startswith('FIN_USE_') or ext != '.yaml':
             continue
         with open(os.path.join(dirname, fn), 'rb') as f:
             doc = yaml.load(f)
@@ -530,7 +530,7 @@ def scan_opt_defs(dirname):
 
     for fn in os.listdir(dirname):
         root, ext = os.path.splitext(fn)
-        if not root.startswith('DUK_OPT_') or ext != '.yaml':
+        if not root.startswith('FIN_OPT_') or ext != '.yaml':
             continue
         with open(os.path.join(dirname, fn), 'rb') as f:
             doc = yaml.load(f)
@@ -571,12 +571,12 @@ def scan_tags_meta(filename):
     with open(filename, 'rb') as f:
         tags_meta = yaml.load(f)
 
-def scan_helper_snippets(dirname):  # DUK_F_xxx snippets
+def scan_helper_snippets(dirname):  # FIN_F_xxx snippets
     global helper_snippets
     helper_snippets = []
 
     for fn in os.listdir(dirname):
-        if (fn[0:6] != 'DUK_F_'):
+        if (fn[0:6] != 'FIN_F_'):
             continue
         logger.debug('Autoscanning snippet: %s' % fn)
         helper_snippets.append(Snippet.fromFile(os.path.join(dirname, fn)))
@@ -614,7 +614,7 @@ def validate_platform_file(filename):
         if req not in sn.provides:
             raise Exception('Platform %s is missing %s' % (filename, req))
 
-    # DUK_SETJMP, DUK_LONGJMP, DUK_JMPBUF_TYPE are optional, fill-in
+    # FIN_SETJMP, FIN_LONGJMP, FIN_JMPBUF_TYPE are optional, fill-in
     # provides if none defined.
 
 def validate_architecture_file(filename):
@@ -630,8 +630,8 @@ def validate_architecture_file(filename):
     # targets and may be software configurable.
 
     # XXX: require automatic detection to be signaled?
-    # e.g. define DUK_USE_ALIGN_BY -1
-    #      define DUK_USE_BYTE_ORDER -1
+    # e.g. define FIN_USE_ALIGN_BY -1
+    #      define FIN_USE_BYTE_ORDER -1
 
 def validate_compiler_file(filename):
     sn = Snippet.fromFile(filename)
@@ -723,7 +723,7 @@ def cstr_encode(x):
 #  Autogeneration of option documentation
 #
 
-# Shared helper to generate DUK_USE_xxx documentation.
+# Shared helper to generate FIN_USE_xxx documentation.
 # XXX: unfinished placeholder
 def generate_option_documentation(opts, opt_list=None, rst_title=None, include_default=False):
     ret = FileBuilder(use_cpp_warning=opts.use_cpp_warning)
@@ -782,7 +782,7 @@ def generate_config_option_documentation(opts):
     return generate_option_documentation(opts, opt_list=defs, rst_title='Duktape config options', include_default=True)
 
 #
-#  Helpers for duk_config.h generation
+#  Helpers for fin_config.h generation
 #
 
 def get_forced_options(opts):
@@ -842,11 +842,11 @@ def emit_default_from_config_meta(ret, doc, forced_opts, undef_done, active_opts
     else:
         raise Exception('unsupported value for option %s: %r' % (defname, defval))
 
-# Add a header snippet for detecting presence of DUK_OPT_xxx feature
+# Add a header snippet for detecting presence of FIN_OPT_xxx feature
 # options and warning/erroring if application defines them.  Useful for
 # Duktape 2.x migration.
 def add_legacy_feature_option_checks(opts, ret):
-    ret.chdr_block_heading('Checks for legacy feature options (DUK_OPT_xxx)')
+    ret.chdr_block_heading('Checks for legacy feature options (FIN_OPT_xxx)')
     ret.empty()
 
     defs = []
@@ -862,10 +862,10 @@ def add_legacy_feature_option_checks(opts, ret):
 
     ret.empty()
 
-# Add a header snippet for checking consistency of DUK_USE_xxx config
+# Add a header snippet for checking consistency of FIN_USE_xxx config
 # options, e.g. inconsistent options, invalid option values.
 def add_config_option_checks(opts, ret):
-    ret.chdr_block_heading('Checks for config option consistency (DUK_USE_xxx)')
+    ret.chdr_block_heading('Checks for config option consistency (FIN_USE_xxx)')
     ret.empty()
 
     defs = []
@@ -925,51 +925,51 @@ def add_conditional_includes_section(opts, ret):
     ret.snippet_relative('platform_conditionalincludes.h.in')
     ret.empty()
 
-# Development time helper: add DUK_ACTIVE which provides a runtime C string
-# indicating what DUK_USE_xxx config options are active at run time.  This
+# Development time helper: add FIN_ACTIVE which provides a runtime C string
+# indicating what FIN_USE_xxx config options are active at run time.  This
 # is useful in genconfig development so that one can e.g. diff the active
 # run time options of two headers.  This is intended just for genconfig
 # development and is not available in normal headers.
-def add_duk_active_defines_macro(ret):
-    ret.chdr_block_heading('DUK_ACTIVE_DEFINES macro (development only)')
+def add_fin_active_defines_macro(ret):
+    ret.chdr_block_heading('FIN_ACTIVE_DEFINES macro (development only)')
 
     idx = 0
     for doc in get_use_defs():
         defname = doc['define']
 
         ret.line('#if defined(%s)' % defname)
-        ret.line('#define DUK_ACTIVE_DEF%d " %s"' % (idx, defname))
+        ret.line('#define FIN_ACTIVE_DEF%d " %s"' % (idx, defname))
         ret.line('#else')
-        ret.line('#define DUK_ACTIVE_DEF%d ""' % idx)
+        ret.line('#define FIN_ACTIVE_DEF%d ""' % idx)
         ret.line('#endif')
 
         idx += 1
 
     tmp = []
     for i in xrange(idx):
-        tmp.append('DUK_ACTIVE_DEF%d' % i)
+        tmp.append('FIN_ACTIVE_DEF%d' % i)
 
-    ret.line('#define DUK_ACTIVE_DEFINES ("Active: ["' + ' '.join(tmp) + ' " ]")')
+    ret.line('#define FIN_ACTIVE_DEFINES ("Active: ["' + ' '.join(tmp) + ' " ]")')
 
 #
-#  duk_config.h generation
+#  fin_config.h generation
 #
 
-# Generate a duk_config.h where platform, architecture, and compiler are
+# Generate a fin_config.h where platform, architecture, and compiler are
 # all either autodetected or specified by user.
 #
 # Autodetection is based on a configured list of supported platforms,
 # architectures, and compilers.  For example, platforms.yaml defines the
-# supported platforms and provides a helper define (DUK_F_xxx) to use for
+# supported platforms and provides a helper define (FIN_F_xxx) to use for
 # detecting that platform, and names the header snippet to provide the
-# platform-specific definitions.  Necessary dependencies (DUK_F_xxx) are
+# platform-specific definitions.  Necessary dependencies (FIN_F_xxx) are
 # automatically pulled in.
 #
 # Automatic "fill ins" are used for mandatory platform, architecture, and
 # compiler defines which have a reasonable portable default.  This reduces
 # e.g. compiler-specific define count because there are a lot compiler
 # macros which have a good default.
-def generate_duk_config_header(opts, meta_dir):
+def generate_fin_config_header(opts, meta_dir):
     ret = FileBuilder(base_dir=os.path.join(meta_dir, 'header-snippets'), \
                       use_cpp_warning=opts.use_cpp_warning)
 
@@ -978,15 +978,15 @@ def generate_duk_config_header(opts, meta_dir):
     forced_opts = get_forced_options(opts)
     for doc in use_defs_list:
         if doc.get('warn_if_missing', False) and not forced_opts.has_key(doc['define']):
-            # Awkward handling for DUK_USE_CPP_EXCEPTIONS + DUK_USE_FATAL_HANDLER.
-            if doc['define'] == 'DUK_USE_FATAL_HANDLER' and forced_opts.has_key('DUK_USE_CPP_EXCEPTIONS'):
-                pass  # DUK_USE_FATAL_HANDLER not critical with DUK_USE_CPP_EXCEPTIONS
+            # Awkward handling for FIN_USE_CPP_EXCEPTIONS + FIN_USE_FATAL_HANDLER.
+            if doc['define'] == 'FIN_USE_FATAL_HANDLER' and forced_opts.has_key('FIN_USE_CPP_EXCEPTIONS'):
+                pass  # FIN_USE_FATAL_HANDLER not critical with FIN_USE_CPP_EXCEPTIONS
             else:
                 logger.warning('Recommended config option ' + doc['define'] + ' not provided')
 
     # Gather a map of "active options" for genbuiltins.py.  This is used to
     # implement proper optional built-ins, e.g. if a certain config option
-    # (like DUK_USE_ES6_PROXY) is disabled, the corresponding objects and
+    # (like FIN_USE_ES6_PROXY) is disabled, the corresponding objects and
     # properties are dropped entirely.  The mechanism is not perfect: it won't
     # detect fixup changes for example.
     active_opts = {}
@@ -1042,17 +1042,17 @@ def generate_duk_config_header(opts, meta_dir):
 
     # DLL build affects visibility attributes on Windows but unfortunately
     # cannot be detected automatically from preprocessor defines or such.
-    # DLL build status is hidden behind DUK_F_DLL_BUILD. and there are two
+    # DLL build status is hidden behind FIN_F_DLL_BUILD. and there are two
     ret.chdr_comment_line('DLL build detection')
     if opts.dll:
         ret.line('/* configured for DLL build */')
-        ret.line('#define DUK_F_DLL_BUILD')
+        ret.line('#define FIN_F_DLL_BUILD')
     else:
         ret.line('/* not configured for DLL build */')
-        ret.line('#undef DUK_F_DLL_BUILD')
+        ret.line('#undef FIN_F_DLL_BUILD')
     ret.empty()
 
-    idx_deps = len(ret.vals)  # position where to emit DUK_F_xxx dependencies
+    idx_deps = len(ret.vals)  # position where to emit FIN_F_xxx dependencies
 
     # Feature selection, system include, Date provider
     # Most #include statements are here
@@ -1085,12 +1085,12 @@ def generate_duk_config_header(opts, meta_dir):
         abs_fn = os.path.join(meta_dir, 'architectures', include)
         validate_architecture_file(abs_fn)
         sn = ret.snippet_absolute(abs_fn)
-        if not sn.provides.get('DUK_USE_BYTEORDER', False):
+        if not sn.provides.get('FIN_USE_BYTEORDER', False):
             byteorder_provided_by_all = False
-        if not sn.provides.get('DUK_USE_ALIGN_BY', False):
+        if not sn.provides.get('FIN_USE_ALIGN_BY', False):
             alignment_provided_by_all = False
-        if sn.provides.get('DUK_USE_PACKED_TVAL', False):
-            ret.line('#define DUK_F_PACKED_TVAL_PROVIDED')  # signal to fillin
+        if sn.provides.get('FIN_USE_PACKED_TVAL', False):
+            ret.line('#define FIN_F_PACKED_TVAL_PROVIDED')  # signal to fillin
         else:
             packedtval_provided_by_all = False
 
@@ -1127,16 +1127,16 @@ def generate_duk_config_header(opts, meta_dir):
 
     ret.empty()
 
-    # DUK_F_UCLIBC is special because __UCLIBC__ is provided by an #include
+    # FIN_F_UCLIBC is special because __UCLIBC__ is provided by an #include
     # file, so the check must happen after platform includes.  It'd be nice
-    # for this to be automatic (e.g. DUK_F_UCLIBC.h.in could indicate the
+    # for this to be automatic (e.g. FIN_F_UCLIBC.h.in could indicate the
     # dependency somehow).
 
-    #ret.snippet_absolute(os.path.join(meta_dir, 'helper-snippets', 'DUK_F_UCLIBC.h.in'))
+    #ret.snippet_absolute(os.path.join(meta_dir, 'helper-snippets', 'FIN_F_UCLIBC.h.in'))
     #ret.empty()
 
     # XXX: platform/compiler could provide types; if so, need some signaling
-    # defines like DUK_F_TYPEDEFS_DEFINED
+    # defines like FIN_F_TYPEDEFS_DEFINED
 
     # Number types
     if opts.c99_types_only:
@@ -1148,7 +1148,7 @@ def generate_duk_config_header(opts, meta_dir):
         ret.empty()
 
     # Platform, architecture, compiler fillins.  These are after all
-    # detection so that e.g. DUK_SPRINTF() can be provided by platform
+    # detection so that e.g. FIN_SPRINTF() can be provided by platform
     # or compiler before trying a fill-in.
 
     ret.chdr_block_heading('Fill-ins for platform, architecture, and compiler')
@@ -1222,18 +1222,18 @@ def generate_duk_config_header(opts, meta_dir):
 
     add_override_defines_section(opts, ret)
 
-    # Some headers are only included if final DUK_USE_xxx option settings
+    # Some headers are only included if final FIN_USE_xxx option settings
     # indicate they're needed, for example C++ <exception>.
     #add_conditional_includes_section(opts, ret)
 
     # Date provider snippet is after custom header and overrides, so that
-    # the user may define e.g. DUK_USE_DATE_NOW_GETTIMEOFDAY in their
+    # the user may define e.g. FIN_USE_DATE_NOW_GETTIMEOFDAY in their
     # custom header.
     #ret.snippet_relative('date_provider.h.in')
     #ret.empty()
 
 
-    ret.line('#endif  /* DUK_CONFIG_H_INCLUDED */')
+    ret.line('#endif  /* FIN_CONFIG_H_INCLUDED */')
     ret.empty()  # for trailing newline
     return remove_duplicate_newlines(ret.join()), active_opts
 
@@ -1241,7 +1241,7 @@ def generate_duk_config_header(opts, meta_dir):
 #  Misc
 #
 
-# Validate DUK_USE_xxx config options found in source code against known
+# Validate FIN_USE_xxx config options found in source code against known
 # config metadata.  Also warn about non-removed config options that are
 # not found in the source.
 def validate_config_options_in_source(fn):
@@ -1250,9 +1250,9 @@ def validate_config_options_in_source(fn):
 
     defs_used = {}
 
-    for opt in doc.get('used_duk_use_options'):
+    for opt in doc.get('used_fin_use_options'):
         defs_used[opt] = True
-        if opt == 'DUK_USE_xxx' or opt == 'DUK_USE_XXX':
+        if opt == 'FIN_USE_xxx' or opt == 'FIN_USE_XXX':
             continue  # allow common placeholders
         meta = use_defs.get(opt)
         if meta is None:
@@ -1326,25 +1326,25 @@ def add_genconfig_optparse_options(parser, direct=False):
     parser.add_option('--c99-types-only', dest='c99_types_only', action='store_true', default=False, help='assume C99 types, no legacy type detection')
     parser.add_option('--dll', dest='dll', action='store_true', default=False, help='dll build of Duktape, affects symbol visibility macros especially on Windows')
     parser.add_option('--support-feature-options', dest='support_feature_options', action='store_true', default=False, help=optparse.SUPPRESS_HELP)
-    parser.add_option('--emit-legacy-feature-check', dest='emit_legacy_feature_check', action='store_true', default=False, help='emit preprocessor checks to reject legacy feature options (DUK_OPT_xxx)')
-    parser.add_option('--emit-config-sanity-check', dest='emit_config_sanity_check', action='store_true', default=False, help='emit preprocessor checks for config option consistency (DUK_USE_xxx)')
+    parser.add_option('--emit-legacy-feature-check', dest='emit_legacy_feature_check', action='store_true', default=False, help='emit preprocessor checks to reject legacy feature options (FIN_OPT_xxx)')
+    parser.add_option('--emit-config-sanity-check', dest='emit_config_sanity_check', action='store_true', default=False, help='emit preprocessor checks for config option consistency (FIN_USE_xxx)')
     parser.add_option('--omit-removed-config-options', dest='omit_removed_config_options', action='store_true', default=False, help='omit removed config options from generated headers')
     parser.add_option('--omit-deprecated-config-options', dest='omit_deprecated_config_options', action='store_true', default=False, help='omit deprecated config options from generated headers')
     parser.add_option('--omit-unused-config-options', dest='omit_unused_config_options', action='store_true', default=False, help='omit unused config options from generated headers')
-    parser.add_option('--add-active-defines-macro', dest='add_active_defines_macro', action='store_true', default=False, help='add DUK_ACTIVE_DEFINES macro, for development only')
-    parser.add_option('--define', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_define, default=force_options_yaml, help='force #define option using a C compiler like syntax, e.g. "--define DUK_USE_DEEP_C_STACK" or "--define DUK_USE_TRACEBACK_DEPTH=10"')
-    parser.add_option('-D', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_define, default=force_options_yaml, help='synonym for --define, e.g. "-DDUK_USE_DEEP_C_STACK" or "-DDUK_USE_TRACEBACK_DEPTH=10"')
-    parser.add_option('--undefine', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_undefine, default=force_options_yaml, help='force #undef option using a C compiler like syntax, e.g. "--undefine DUK_USE_DEEP_C_STACK"')
-    parser.add_option('-U', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_undefine, default=force_options_yaml, help='synonym for --undefine, e.g. "-UDUK_USE_DEEP_C_STACK"')
-    parser.add_option('--option-yaml', type='string', metavar='YAML', dest='force_options_yaml', action='callback', callback=add_force_option_yaml, default=force_options_yaml, help='force option(s) using inline YAML (e.g. --option-yaml "DUK_USE_DEEP_C_STACK: true")')
+    parser.add_option('--add-active-defines-macro', dest='add_active_defines_macro', action='store_true', default=False, help='add FIN_ACTIVE_DEFINES macro, for development only')
+    parser.add_option('--define', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_define, default=force_options_yaml, help='force #define option using a C compiler like syntax, e.g. "--define FIN_USE_DEEP_C_STACK" or "--define FIN_USE_TRACEBACK_DEPTH=10"')
+    parser.add_option('-D', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_define, default=force_options_yaml, help='synonym for --define, e.g. "-DFIN_USE_DEEP_C_STACK" or "-DFIN_USE_TRACEBACK_DEPTH=10"')
+    parser.add_option('--undefine', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_undefine, default=force_options_yaml, help='force #undef option using a C compiler like syntax, e.g. "--undefine FIN_USE_DEEP_C_STACK"')
+    parser.add_option('-U', type='string', metavar='OPTION', dest='force_options_yaml', action='callback', callback=add_force_option_undefine, default=force_options_yaml, help='synonym for --undefine, e.g. "-UFIN_USE_DEEP_C_STACK"')
+    parser.add_option('--option-yaml', type='string', metavar='YAML', dest='force_options_yaml', action='callback', callback=add_force_option_yaml, default=force_options_yaml, help='force option(s) using inline YAML (e.g. --option-yaml "FIN_USE_DEEP_C_STACK: true")')
     parser.add_option('--option-file', type='string', metavar='FILENAME', dest='force_options_yaml', action='callback', callback=add_force_option_file, default=force_options_yaml, help='YAML file(s) providing config option overrides')
     parser.add_option('--fixup-file', type='string', metavar='FILENAME', dest='fixup_header_lines', action='callback', callback=add_fixup_header_file, default=fixup_header_lines, help='C header snippet file(s) to be appended to generated header, useful for manual option fixups')
-    parser.add_option('--fixup-line', type='string', metavar='LINE', dest='fixup_header_lines', action='callback', callback=add_fixup_header_line, default=fixup_header_lines, help='C header fixup line to be appended to generated header (e.g. --fixup-line "#define DUK_USE_FASTINT")')
+    parser.add_option('--fixup-line', type='string', metavar='LINE', dest='fixup_header_lines', action='callback', callback=add_fixup_header_line, default=fixup_header_lines, help='C header fixup line to be appended to generated header (e.g. --fixup-line "#define FIN_USE_FASTINT")')
     parser.add_option('--sanity-warning', dest='sanity_strict', action='store_false', default=True, help='emit a warning instead of #error for option sanity check issues')
     parser.add_option('--use-cpp-warning', dest='use_cpp_warning', action='store_true', default=False, help='emit a (non-portable) #warning when appropriate')
 
     if direct:
-        parser.add_option('--used-stridx-metadata', dest='used_stridx_metadata', default=None, help='metadata for used stridx, bidx, DUK_USE_xxx')
+        parser.add_option('--used-stridx-metadata', dest='used_stridx_metadata', default=None, help='metadata for used stridx, bidx, FIN_USE_xxx')
         parser.add_option('--git-commit', dest='git_commit', default=None, help='git commit hash to be included in header comments')
         parser.add_option('--git-describe', dest='git_describe', default=None, help='git describe string to be included in header comments')
         parser.add_option('--git-branch', dest='git_branch', default=None, help='git branch string to be included in header comments')
@@ -1353,13 +1353,13 @@ def add_genconfig_optparse_options(parser, direct=False):
 
 def parse_options():
     commands = [
-        'duk-config-header',
+        'fin-config-header',
         'config-documentation'
     ]
 
     parser = optparse.OptionParser(
         usage='Usage: %prog [options] COMMAND',
-        description='Generate a duk_config.h or config option documentation based on config metadata.',
+        description='Generate a fin_config.h or config option documentation based on config metadata.',
         epilog='COMMAND can be one of: ' + ', '.join(commands) + '.'
     )
 
@@ -1376,7 +1376,7 @@ def genconfig(opts, args):
         logger.setLevel(logging.DEBUG)
 
     if opts.support_feature_options:
-        raise Exception('--support-feature-options and support for DUK_OPT_xxx feature options are obsolete, use DUK_USE_xxx config options instead')
+        raise Exception('--support-feature-options and support for FIN_OPT_xxx feature options are obsolete, use FIN_USE_xxx config options instead')
 
     meta_dir = opts.config_metadata
     if opts.config_metadata is None:
@@ -1393,7 +1393,7 @@ def genconfig(opts, args):
     #scan_opt_defs(os.path.join(meta_dir, 'feature-options'))
     scan_use_tags()
     scan_tags_meta(os.path.join(meta_dir, 'tags.yaml'))
-    logger.debug('%s, scanned%d DUK_USE_XXX, %d helper snippets' % \
+    logger.debug('%s, scanned%d FIN_USE_XXX, %d helper snippets' % \
         (metadata_src_text, len(use_defs.keys()), len(helper_snippets)))
     logger.debug('Tags: %r' % use_tags_list)
 
@@ -1404,8 +1404,8 @@ def genconfig(opts, args):
         raise Exception('missing command')
     cmd = args[0]
 
-    if cmd == 'duk-config-header':
-        # Generate a duk_config.h header with platform, compiler, and
+    if cmd == 'fin-config-header':
+        # Generate a fin_config.h header with platform, compiler, and
         # architecture either autodetected (default) or specified by
         # user.
         desc = [
@@ -1416,16 +1416,16 @@ def genconfig(opts, args):
         if opts.dll:
             desc.append('dll mode')
         logger.info('Creating fin_config.h: ' + ', '.join(desc))
-        result, active_opts = generate_duk_config_header(opts, meta_dir)
+        result, active_opts = generate_fin_config_header(opts, meta_dir)
         with open(opts.output, 'wb') as f:
             f.write(result)
-        logger.debug('Wrote duk_config.h to ' + str(opts.output))
+        logger.debug('Wrote fin_config.h to ' + str(opts.output))
         if opts.output_active_options is not None:
             with open(opts.output_active_options, 'wb') as f:
                 f.write(json.dumps(active_opts, indent=4))
             logger.debug('Wrote active options JSON metadata to ' + str(opts.output_active_options))
     elif cmd == 'feature-documentation':
-        raise Exception('The feature-documentation command has been removed along with DUK_OPT_xxx feature option support')
+        raise Exception('The feature-documentation command has been removed along with FIN_OPT_xxx feature option support')
     elif cmd == 'config-documentation':
         logger.info('Creating config option documentation')
         result = generate_config_option_documentation(opts)

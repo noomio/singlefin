@@ -1,5 +1,5 @@
 {
-    "comment": "Metadata for prepared Duktape sources and configuration", 
+    "comment": "Metadata for prepared SingleFin sources and configuration", 
     "type": "fin_source_meta", 
     "fin_version_string": "1.0.0", 
     "line_map": [
@@ -165,7 +165,7 @@
         }
     ], 
     "git_branch": "single-header", 
-    "git_commit": "b34ddd590dc4da86b0e510beeb2723ee58b9534e", 
-    "git_describe": "b34ddd5-dirty", 
+    "git_commit": "9f16f470c29e1fc14630eeab89abea279bd28a13", 
+    "git_describe": "9f16f47-dirty", 
     "fin_version": 10000
 }

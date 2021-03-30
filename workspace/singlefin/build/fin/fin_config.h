@@ -22,7 +22,7 @@
 
 /* DLL build detection */
 /* not configured for DLL build */
-#undef DUK_F_DLL_BUILD
+#undef FIN_F_DLL_BUILD
 
 #include <stddef.h>
 #include <stdint.h>
@@ -118,4 +118,4 @@
 
 /* __OVERRIDE_DEFINES__ */
 
-#endif  /* DUK_CONFIG_H_INCLUDED */
+#endif  /* FIN_CONFIG_H_INCLUDED */

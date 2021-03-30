@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 #
-#  Prepare a duk_config.h and combined/separate sources for compilation,
+#  Prepare a fin_config.h and combined/separate sources for compilation,
 #  given user supplied config options, built-in metadata, Unicode tables, etc.
 #
 #  This is intended to be the main tool application build scripts would use
@@ -145,9 +145,9 @@ def create_targz(dstfile, filelist):
 def cstring(x):
     return '"' + x + '"'  # good enough for now
 
-# DUK_VERSION is grepped from duktape.h.in: it is needed for the
+# FIN_VERSION is grepped from singlefin.h.in: it is needed for the
 # public API and we want to avoid defining it in two places.
-def get_duk_version(apiheader_filename):
+def get_fin_version(apiheader_filename):
     r = re.compile(r'^#define\s+FIN_VERSION\s+(.*?)L?\s*$')
     with open(apiheader_filename, 'rb') as f:
         for line in f:
@@ -167,9 +167,8 @@ def get_duk_version(apiheader_filename):
 def main():
     parser = optparse.OptionParser(
         usage='Usage: %prog [options]',
-        description='Prepare Duktape source files and a duk_config.h configuration header for compilation. ' + \
-                    'Source files can be combined (amalgamated) or kept separate. ' + \
-                    'See http://wiki.duktape.org/Configuring.html for examples.'
+        description='Prepare SingleFin source files and a fin_config.h configuration header for compilation. ' + \
+                    'Source files can be combined (amalgamated) or kept separate. '
     )
 
     # Forced options from multiple sources are gathered into a shared list
@@ -290,7 +289,7 @@ def main():
             fin_dist_meta = json.loads(f.read())
 
     fin_version, fin_major, fin_minor, fin_patch, fin_version_formatted = \
-        get_duk_version(os.path.join(srcdir, 'singlefin.h.in'))
+        get_fin_version(os.path.join(srcdir, 'singlefin.h.in'))
 
     git_commit = None
     git_branch = None
@@ -327,7 +326,7 @@ def main():
     git_branch_cstring = cstring(git_branch)
 
 
-    logger.info('Configuring Duktape version %s, commit %s, describe %s, branch %s' % \
+    logger.info('Configuring SingleFin version %s, commit %s, describe %s, branch %s' % \
                 (fin_version_formatted, git_commit, git_describe, git_branch))
     logger.info('  - source input directory: ' + opts.source_directory)
     #logger.info('  - license file: ' + opts.license_file)
@@ -409,7 +408,7 @@ def main():
     #copy_and_cquote(authors_file, os.path.join(tempdir, 'AUTHORS.rst.tmp'))
 
 
-    # Create a duk_config.h.
+    # Create a fin_config.h.
     # XXX: might be easier to invoke genconfig directly, but there are a few
     # options which currently conflict (output file, git commit info, etc).
     def forward_genconfig_options():
@@ -466,16 +465,16 @@ def main():
     ]
     cmd += forward_genconfig_options()
     cmd += [
-        'duk-config-header'
+        'fin-config-header'
     ] + forward_loglevel
     logger.debug(repr(cmd))
     exec_print_stdout(cmd)
 
     copy_file(os.path.join(tempdir, 'fin_config.h.tmp'), os.path.join(outdir, 'fin_config.h'))
 
-    # Build duktape.h from parts, with some git-related replacements.
-    # The only difference between single and separate file duktape.h
-    # is the internal DUK_SINGLE_FILE define.
+    # Build singlefin.h from parts, with some git-related replacements.
+    # The only difference between single and separate file singlefin.h
+    # is the internal FIN_SINGLE_FILE define.
     #
     # Newline after 'i \':
     # http://stackoverflow.com/questions/25631989/sed-insert-line-command-osx
@@ -502,35 +501,35 @@ def main():
         copy_file(os.path.join(tempdir, 'singlefin.h'), os.path.join(outdir, 'singlefin.h'))
 
     
-    # Create a combined source file, duktape.c, into a separate combined source
-    # directory.  This allows user to just include "duktape.c", "duktape.h", and
-    # "duk_config.h" into a project and maximizes inlining and size optimization
+    # Create a combined source file, singlefin.c, into a separate combined source
+    # directory.  This allows user to just include "singlefin.c", "singlefin.h", and
+    # "fin_config.h" into a project and maximizes inlining and size optimization
     # opportunities even with older compilers.  Because some projects include
     # these files into their repository, the result should be deterministic and
     # diffable.  Also, it must retain __FILE__/__LINE__ behavior through
     # preprocessor directives.  Whitespace and comments can be stripped as long
     # as the other requirements are met.  For some users it's preferable *not*
     # to use #line directives in the combined source, so a separate variant is
-    # created for that, see: https://github.com/svaarala/duktape/pull/363.
+    # created for that, see: https://github.com/svaarala/singlefin/pull/363.
 
     def create_source_prologue(license_file, authors_file):
         res = []
 
-        # Because duktape.c/duktape.h/duk_config.h are often distributed or
+        # Because singlefin.c/singlefin.h/fin_config.h are often distributed or
         # included in project sources as is, add a license reminder and
-        # Duktape version information to the duktape.c header (duktape.h
+        # SingleFin version information to the singlefin.c header (singlefin.h
         # already contains them).
 
         fin_major = fin_version / 10000
         fin_minor = fin_version / 100 % 100
         fin_patch = fin_version % 100
         res.append('/*')
-        res.append(' *  Single source autogenerated distributable for Duktape %d.%d.%d.' % (fin_major, fin_minor, fin_patch))
+        res.append(' *  Single source autogenerated distributable for SingleFin %d.%d.%d.' % (fin_major, fin_minor, fin_patch))
         res.append(' *')
         res.append(' *  Git commit %s (%s).' % (git_commit, git_describe))
         res.append(' *  Git branch %s.' % git_branch)
         res.append(' *')
-        res.append(' *  See Duktape AUTHORS.rst and LICENSE.txt for copyright and')
+        res.append(' *  See SingleFin AUTHORS.rst and LICENSE.txt for copyright and')
         res.append(' *  licensing information.')
         res.append(' */')
         res.append('')
@@ -608,7 +607,7 @@ def main():
 
     doc = {
         'type': 'fin_source_meta',
-        'comment': 'Metadata for prepared Duktape sources and configuration',
+        'comment': 'Metadata for prepared SingleFin sources and configuration',
         'git_commit': git_commit,
         'git_branch': git_branch,
         'git_describe': git_describe,
