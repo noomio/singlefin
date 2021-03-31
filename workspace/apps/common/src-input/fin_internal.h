@@ -26,18 +26,17 @@
 #include "singlefin.h"
 
 
-#include "fin_cli.h"
-#include "list.h"
-#include "fin_dss.h"
+
+
 #include "fin_debug.h"
 #include "fin_debug_opt.h"
-#include "fin_http_client.h"
-#include "fin_net.h"
-#include "fin_sleep.h"
+#include "fin_cli.h"
+#include "fin_dss.h"
 #include "fin_gpio.h"
-#include "fin_adc.h"
+#include "fin_http_client.h"
 #include "fin_i2c.h"
 #include "fin_spi.h"
+#include "fin_adc.h"
 #include "fin_uart.h"
 
 

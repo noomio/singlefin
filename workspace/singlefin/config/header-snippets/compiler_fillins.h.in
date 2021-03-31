@@ -1,0 +1,26 @@
+#if !defined(FIN_EXTERNAL_DECL)
+#define FIN_EXTERNAL_DECL  extern
+#endif
+#if !defined(FIN_EXTERNAL)
+#define FIN_EXTERNAL       /*empty*/
+#endif
+#if !defined(FIN_INTERNAL_DECL)
+#if defined(FIN_SINGLE_FILE)
+#define FIN_INTERNAL_DECL  static
+#else
+#define FIN_INTERNAL_DECL  extern
+#endif
+#endif
+#if !defined(FIN_INTERNAL)
+#if defined(FIN_SINGLE_FILE)
+#define FIN_INTERNAL       static
+#else
+#define FIN_INTERNAL       /*empty*/
+#endif
+#endif
+#if !defined(FIN_LOCAL_DECL)
+#define FIN_LOCAL_DECL     static
+#endif
+#if !defined(FIN_LOCAL)
+#define FIN_LOCAL          static
+#endif

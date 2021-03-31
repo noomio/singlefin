@@ -97,14 +97,13 @@ TARGET_NAME = singlefin
 BUILDDIR = out
 MODULE = bg96
 
-USER_OPTS = -DFIN_F_THREADX 
-
+USER_OPTS = 
 
 INCDIR = -Ifin
 LIBS_PATH = 
 LIBS = 
 
-SRCS = main.c fin/singlefin.c
+SRCS =  main.c fin/singlefin.c
 
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 

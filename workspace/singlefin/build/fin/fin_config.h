@@ -45,17 +45,12 @@
  *  Platform: THREADX
  */
 
-#if defined(FIN_F_THREADX) && defined(FIN_COMPILING_SINGLEFIN)
-
-#define DUK_USE_DATE_NOW_GETTIMEOFDAY
-#define DUK_USE_DATE_TZO_GMTIME_R
-#define DUK_USE_DATE_PRS_STRPTIME
-#define DUK_USE_DATE_FMT_STRFTIME
 
 #include <txm_module.h>
 #include <qapi_txm_base.h>
 #include <qapi.h>
 #include <qapi_adc_types.h>
+#include <qapi_fs_types.h>
 #include <qapi_fs.h>
 #include <qapi_dss.h>
 #include <qapi_uart.h>
@@ -74,18 +69,23 @@
 #include <qapi_timer.h>
 #include <qapi_uart.h>
 #include <qapi_status.h>
-#include <qurt_timetick.h>
-#include <qapi_adc.h>
-#include <qapi_gpioint.h>
+#include <qapi_device_info.h>
+
+#if defined(FIN_COMPILING_SINGLEFIN) 
+
 #include "qapi_i2c_master.h"
 #include "qapi_spi_master.h"
 #include <qapi_device_info.h>
+#include <qapi_adc.h>
+#include <qapi_gpioint.h>
+#include <qurt_timetick.h>
 
-#include <qapi_quectel.h>
 
 #define FIN_USE_OS_STRING "threadx"
 
-#endif /* FIN_F_THREADX */
+#include <qapi_quectel.h>
+
+#endif /* FIN_COMPILING_SINGLEFIN */
 
 /*
  *  Architecture: arm32
@@ -93,9 +93,11 @@
 
 #define FIN_USE_ARCH_STRING "arm32"
 
+
 /*
  *  Compiler: clang
  */
+
 
 #define FIN_NORETURN(decl)  decl __attribute__((noreturn))
 
@@ -106,9 +108,37 @@
 #define FIN_USE_VARIADIC_MACROS
 #endif
 
+
 /*
  *  Fill-ins for platform, architecture, and compiler
  */
+
+#if !defined(FIN_EXTERNAL_DECL)
+#define FIN_EXTERNAL_DECL  extern
+#endif
+#if !defined(FIN_EXTERNAL)
+#define FIN_EXTERNAL       /*empty*/
+#endif
+#if !defined(FIN_INTERNAL_DECL)
+#if defined(FIN_SINGLE_FILE)
+#define FIN_INTERNAL_DECL  static
+#else
+#define FIN_INTERNAL_DECL  extern
+#endif
+#endif
+#if !defined(FIN_INTERNAL)
+#if defined(FIN_SINGLE_FILE)
+#define FIN_INTERNAL       static
+#else
+#define FIN_INTERNAL       /*empty*/
+#endif
+#endif
+#if !defined(FIN_LOCAL_DECL)
+#define FIN_LOCAL_DECL     static
+#endif
+#if !defined(FIN_LOCAL)
+#define FIN_LOCAL          static
+#endif
 
 /*
  *  You may add overriding #define/#undef directives below for

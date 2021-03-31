@@ -36,52 +36,7 @@ typedef struct http_entry_list {
 	uint32_t code;
 } http_client_entry_t;
 
-typedef struct http_client_ssl {
-	qapi_Net_SSL_Obj_Hdl_t ctx; 
-	qapi_Net_SSL_Con_Hdl_t con; 
-	qapi_Net_SSL_Config_t config; 
-	qapi_Net_SSL_Role_t role;
-} http_client_ssl_t;
-
-typedef struct http_client_certificates{
-	qapi_Net_SSL_Cert_Info_t cert_info;
-	qapi_NET_SSL_CA_Info_t calist_info[QAPI_NET_SSL_MAX_CA_LIST];
-} http_client_certificates_t;
-
-typedef struct http_client_ctx{
-	qapi_Net_HTTPc_handle_t handle;
-	TX_BYTE_POOL *byte_pool;
-	qapi_Net_HTTPc_Config_t *httpc_cfg;
-	struct linger so_linger;
-	TX_EVENT_FLAGS_GROUP *evt;
-	struct list_head list;
-	qapi_HTTPc_CB_t user_callback;
-	uint32_t timeout;
-	http_client_ssl_t ssl;
-	bool use_https;
-} fin_http_client_ctx_t;
-
-#define fin_htpp_client_set_user_callback(ctx,cb) do{ ctx->user_callback = cb } while(0)
-#define fin_http_client_for_each(p,ctx) list_for_each(p,&ctx->list)
-#define fin_htpp_client_has_data(ctx) list_first_entry_or_null(&ctx->list, http_client_entry_t,head)
-#define fin_http_client_get_data(iter) list_entry(iter,http_client_entry_t, head )->data
-#define fin_http_client_get_data_length(iter) (uint32_t)list_entry(iter,http_client_entry_t, head )->data_len
-#define fin_http_client_get_header(iter) list_entry(iter,http_client_entry_t, head )->header
-#define fin_http_client_get_header_length(iter) (uint32_t)list_entry(iter,http_client_entry_t, head )->header_len
-#define fin_http_client_free_resource(iter,data)	\
-do{ \
-	list_del(iter); \
-	free(data); \
-}while (0)
-
-#define fin_http_client_set_timeout(ctx, t) do{ if(ctx){ ctx->timeout = t; } } while(0)
 
 
-fin_http_client_ctx_t *fin_htpp_client_new(void);
-int fin_htpp_client_free(fin_http_client_ctx_t *ctx);
-int fin_htpp_client_set_header(fin_http_client_ctx_t *ctx, const char *key, const char *value);
-int fin_htpp_client_set_parameter(fin_http_client_ctx_t *ctx, const char *key, const char *value);
-int fin_htpp_client_set_body(fin_http_client_ctx_t *ctx, const char *body, uint32_t len);
-int fin_htpp_client_get(fin_http_client_ctx_t *ctx, const char *host, int port, const char *path);
 
 #endif  /* FIN_API_HTTP_H_INCLUDED */
