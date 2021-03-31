@@ -1,4 +1,14 @@
 /*
+ *  Top-level include file to be used for all (internal) source files.
+ *
+ *  Source files should not include individual header files, as they
+ *  have not been designed to be individually included.
+ */
+
+#if !defined(FIN_INTERNAL_H_INCLUDED)
+#define FIN_INTERNAL_H_INCLUDED
+
+/*
  *  The 'singlefin.h' header provides the public API, but also handles all
  *  compiler and platform specific feature detection, SingleFin feature
  *  resolution, inclusion of system headers, etc.  These have been merged
@@ -29,3 +39,6 @@
 #include "fin_i2c.h"
 #include "fin_spi.h"
 #include "fin_uart.h"
+
+
+#endif  /* FIN_INTERNAL_H_INCLUDED */

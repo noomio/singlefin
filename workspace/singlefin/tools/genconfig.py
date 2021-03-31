@@ -1,14 +1,14 @@
 #!/usr/bin/env python2
 #
-#  Process Duktape option metadata and produce various useful outputs:
+#  Process SingleFin option metadata and produce various useful outputs:
 #
 #    - fin_config.h with specific or autodetected platform, compiler, and
 #      architecture, forced options, sanity checks, etc
-#    - option documentation for Duktape config options (FIN_USE_xxx)
+#    - option documentation for SingleFin config options (FIN_USE_xxx)
 #
 #  Genconfig tries to build all outputs based on modular metadata, so that
 #  managing a large number of config options (which is hard to avoid given
-#  the wide range of targets Duktape supports) remains maintainable.
+#  the wide range of targets SingleFin supports) remains maintainable.
 #
 #  Genconfig does *not* try to support all exotic platforms out there.
 #  Instead, the goal is to allow the metadata to be extended, or to provide
@@ -108,8 +108,8 @@ helper_snippets = None
 
 # Assume these provides come from outside.
 assumed_provides = {
-    'FIN_SINGLE_FILE': True,         # compiling Duktape from a single source file (fintape.c) version
-    'FIN_COMPILING_SINGLEFIN': True,   # compiling Duktape (not user application)
+    'FIN_SINGLE_FILE': True,         # compiling SingleFin from a single source file (fintape.c) version
+    'FIN_COMPILING_SINGLEFIN': True,   # compiling SingleFin (not user application)
     'FIN_CONFIG_H_INCLUDED': True,   # artifact, include guard
 }
 
@@ -210,7 +210,7 @@ class Snippet:
             # Also, some snippets may #undef/#define another define but
             # they don't "provide" the define as such.  Such redefinitions
             # are marked "/* redefine */" in the snippets.  They're best
-            # avoided (and not currently needed in Duktape 1.4.0).
+            # avoided (and not currently needed in SingleFin 1.4.0).
 
             if autoscan_provides:
                 m = re_line_provides.match(line)
@@ -779,7 +779,7 @@ def generate_option_documentation(opts, opt_list=None, rst_title=None, include_d
 
 def generate_config_option_documentation(opts):
     defs = get_use_defs()
-    return generate_option_documentation(opts, opt_list=defs, rst_title='Duktape config options', include_default=True)
+    return generate_option_documentation(opts, opt_list=defs, rst_title='SingleFin config options', include_default=True)
 
 #
 #  Helpers for fin_config.h generation
@@ -844,7 +844,7 @@ def emit_default_from_config_meta(ret, doc, forced_opts, undef_done, active_opts
 
 # Add a header snippet for detecting presence of FIN_OPT_xxx feature
 # options and warning/erroring if application defines them.  Useful for
-# Duktape 2.x migration.
+# SingleFin 2.x migration.
 def add_legacy_feature_option_checks(opts, ret):
     ret.chdr_block_heading('Checks for legacy feature options (FIN_OPT_xxx)')
     ret.empty()
@@ -1324,7 +1324,7 @@ def add_genconfig_optparse_options(parser, direct=False):
     parser.add_option('--compiler', dest='compiler', default='clang', help='compiler (default is clang)')
     parser.add_option('--architecture', dest='architecture', default='arm32', help='architecture (default is arm32)')
     parser.add_option('--c99-types-only', dest='c99_types_only', action='store_true', default=False, help='assume C99 types, no legacy type detection')
-    parser.add_option('--dll', dest='dll', action='store_true', default=False, help='dll build of Duktape, affects symbol visibility macros especially on Windows')
+    parser.add_option('--dll', dest='dll', action='store_true', default=False, help='dll build of SingleFin, affects symbol visibility macros especially on Windows')
     parser.add_option('--support-feature-options', dest='support_feature_options', action='store_true', default=False, help=optparse.SUPPRESS_HELP)
     parser.add_option('--emit-legacy-feature-check', dest='emit_legacy_feature_check', action='store_true', default=False, help='emit preprocessor checks to reject legacy feature options (FIN_OPT_xxx)')
     parser.add_option('--emit-config-sanity-check', dest='emit_config_sanity_check', action='store_true', default=False, help='emit preprocessor checks for config option consistency (FIN_USE_xxx)')

@@ -15,157 +15,162 @@
         }, 
         {
             "original_line": 1, 
-            "combined_line": 42, 
+            "combined_line": 52, 
             "original_file": "fin_cli.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 73, 
+            "combined_line": 83, 
             "original_file": "list.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 920, 
+            "combined_line": 930, 
             "original_file": "fin_dss.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 973, 
+            "combined_line": 983, 
             "original_file": "fin_debug.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1024, 
+            "combined_line": 1034, 
             "original_file": "fin_debug_opt.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1052, 
+            "combined_line": 1062, 
             "original_file": "fin_http_client.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1140, 
+            "combined_line": 1150, 
             "original_file": "fin_net.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1181, 
+            "combined_line": 1191, 
             "original_file": "fin_sleep.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1188, 
+            "combined_line": 1198, 
             "original_file": "fin_gpio.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1213, 
+            "combined_line": 1223, 
             "original_file": "fin_adc.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1231, 
+            "combined_line": 1241, 
             "original_file": "fin_i2c.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1261, 
+            "combined_line": 1271, 
             "original_file": "fin_spi.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1359, 
+            "combined_line": 1369, 
             "original_file": "fin_uart.h"
         }, 
         {
+            "original_line": 42, 
+            "combined_line": 1386, 
+            "original_file": "fin_internal.h"
+        }, 
+        {
             "original_line": 11, 
-            "combined_line": 1376, 
+            "combined_line": 1389, 
             "original_file": "fin_malloc.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1578, 
+            "combined_line": 1591, 
             "original_file": "fin_retarget.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 1958, 
+            "combined_line": 1971, 
             "original_file": "fin_file.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2248, 
+            "combined_line": 2261, 
             "original_file": "fin_adc.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2332, 
+            "combined_line": 2345, 
             "original_file": "fin_cli.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2803, 
+            "combined_line": 2816, 
             "original_file": "fin_dss.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3271, 
+            "combined_line": 3284, 
             "original_file": "fin_gpio.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3667, 
+            "combined_line": 3680, 
             "original_file": "fin_http_client.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3937, 
+            "combined_line": 3950, 
             "original_file": "fin_hwrandom.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3954, 
+            "combined_line": 3967, 
             "original_file": "fin_i2c.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 4200, 
+            "combined_line": 4213, 
             "original_file": "fin_net.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 4225, 
+            "combined_line": 4238, 
             "original_file": "fin_spi.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 4551, 
+            "combined_line": 4564, 
             "original_file": "fin_strings.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 4562, 
+            "combined_line": 4575, 
             "original_file": "fin_stubs.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 4585, 
+            "combined_line": 4598, 
             "original_file": "fin_time.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 4612, 
+            "combined_line": 4625, 
             "original_file": "fin_uart.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 4780, 
+            "combined_line": 4793, 
             "original_file": "printf.c"
         }
     ], 
     "git_branch": "single-header", 
-    "git_commit": "9f16f470c29e1fc14630eeab89abea279bd28a13", 
-    "git_describe": "9f16f47-dirty", 
+    "git_commit": "429ad41966f7ba337cd5112722cf7bf0b70f38de", 
+    "git_describe": "429ad41-dirty", 
     "fin_version": 10000
 }
