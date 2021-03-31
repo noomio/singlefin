@@ -51,7 +51,7 @@
 <li><a href="#Stdio">Stdio</a></li>
 <li><a href="#Uart">Uart</a></li>
 </ul></div> <!-- site-middle-nav -->
-<div class="container content" id="site-middle-content"><h1 class="sectiontitle" id="doc.1">API <a class="sectionlink" href="#doc.1">§</a></h1><p>SingleFin Version: <span class="singlefin-version">XX.XX.XX</span> (2021-03-29)</p><p>Baseline TX3.0 (2021-03-29)</p><h2 class="sectiontitle" id="doc.1.1">Document scope <a class="sectionlink" href="#doc.1.1">§</a></h2><p></p><h2 class="sectiontitle" id="doc.1.2">What has been implemented <a class="sectionlink" href="#doc.1.2">§</a></h2><p></p><table class="table">
+<div class="container content" id="site-middle-content"><h1 class="sectiontitle" id="doc.1">API <a class="sectionlink" href="#doc.1">§</a></h1><p>SingleFin Version: <span class="singlefin-version">XX.XX.XX</span> (2021-03-31)</p><p>Baseline TX3.0 (2021-03-31)</p><h2 class="sectiontitle" id="doc.1.1">Document scope <a class="sectionlink" href="#doc.1.1">§</a></h2><p></p><h2 class="sectiontitle" id="doc.1.2">What has been implemented <a class="sectionlink" href="#doc.1.2">§</a></h2><p></p><table class="table">
 <thead>
 <tr>
 <th scope="col">Name</th>
@@ -110,8 +110,9 @@
 <td>Uart</td>
 <td>Yes</td>
 </tr>
-</table><h1 class="sectiontitle" id="compile">Compile <a class="sectionlink" href="#compile">§</a></h1><p>Add SingleFin C source and header to your build. The distributable contains an example Makefile using the llvm compiler for reference (clang). In the simplest case:</p><pre class="c-code"><span class="normal">clang</span><span class="symbol">.</span><span class="normal">exe </span><span class="symbol">-</span><span class="normal">o singlefin</span><span class="symbol">.</span><span class="normal">o </span><span class="symbol">-</span><span class="normal">c singlefin</span><span class="symbol">.</span><span class="normal">c</span>
-</pre><h1 class="sectiontitle" id="build">Build <a class="sectionlink" href="#build">§</a></h1><p>Open the test hello world from our examples and from the command line type:</p><pre class="c-code"><span class="normal">make clean all</span>
+</table><h1 class="sectiontitle" id="compile">Compile <a class="sectionlink" href="#compile">§</a></h1><p>Add SingleFin C source and header to your build. The distributable contains an example Makefile using the llvm compiler for reference (clang). In the simplest case:</p><pre class="c-code">
+<span class="normal">clang</span><span class="symbol">.</span><span class="normal">exe </span><span class="symbol">-</span><span class="normal">o singlefin</span><span class="symbol">.</span><span class="normal">o </span><span class="symbol">-</span><span class="normal">c singlefin</span><span class="symbol">.</span><span class="normal">c</span>
+</pre><h1 class="sectiontitle" id="build">Build <a class="sectionlink" href="#build">§</a></h1><p>Open the folder <span class="badge badge-dark">build</span> and from the command line type:</p><pre class="c-code"><span class="normal">make clean all</span>
 </pre><p>The output directory is <span class="badge badge-dark">out</span> and the binary file is placed inside. Deploy to target by connecting to the USB port <span class="badge badge-dark">MODEM</span> and type:</p><pre class="c-code"><span class="normal">make load</span>
 </pre><h2 class="sectiontitle" id="build">Library <a class="sectionlink" href="#build">§</a></h2><p>A single include header makes easy to integrate in your app.</p><pre class="c-code"><span class="preproc">#include</span><span class="normal"> </span><span class="string">"singlefin.h"</span>
 
