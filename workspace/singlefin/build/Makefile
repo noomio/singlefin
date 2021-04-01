@@ -41,7 +41,7 @@ ifeq ($(OS),Windows_NT)
 	TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
 	LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
 	LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
-	PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
+	PYTHON_PATH = "C:\Users\nikol\Anaconda2\python.exe"
 	LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
 	CXX = "$(LLVM)/bin/clang++.exe"
 	CXX_FLAGS = -target armv7m-none-musleabi \

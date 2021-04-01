@@ -6,7 +6,7 @@
 # Maximum GP size: 8
 # Link type: Static
 # ABI Page Size: 0x4
-# CommandLine : C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\bin\ld.qcld.exe -X --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /lib/ld-musl-arm.so.1 -o out/singlefin.elf -L../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\azure_sdk.lib -mno-unaligned-access -entry=0x43000000 ./ldscripts/txm_module_preamble_llvm.o --wrap malloc --wrap free --wrap realloc --wrap calloc --wrap printf --wrap puts --wrap getchar --wrap gets --wrap write --wrap fwrite --wrap fflush --wrap strdup out/main.o out/fin/singlefin.o -T ./ldscripts/sections.ld -Map=out/singlefin.map -gc-sections -gc-sections ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\azure_sdk_port.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\diag_dam_lib.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\qapi_psm_lib.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\timer_dam_lib.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib -LC:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib -LC:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\lib --start-group -lunwind -lc++ -lc++abi --end-group -LC:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal --start-group -lc -lclang_rt.builtins-armv7m --end-group -lm -lc 
+# CommandLine : C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\bin\ld.qcld.exe -X --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /lib/ld-musl-arm.so.1 -o out/singlefin.elf -L../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\azure_sdk.lib -mno-unaligned-access -entry=0x43000000 ./ldscripts/txm_module_preamble_llvm.o --wrap malloc --wrap free --wrap realloc --wrap calloc --wrap printf --wrap puts --wrap getchar --wrap gets --wrap write --wrap fwrite --wrap fflush --wrap strdup out/main.o out/fin/singlefin.o -T ./ldscripts/sections.ld -Map=out/singlefin.map -gc-sections -gc-sections ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\azure_sdk_port.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\diag_dam_lib.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\qapi_psm_lib.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\timer_dam_lib.lib ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib -LC:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib -LC:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\lib --start-group -lunwind -lc++ -lc++abi --end-group -LC:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal --start-group -lc -lclang_rt.builtins-armv7m --end-group -lm -lc 
 Archive member included because of file (symbol)
 ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\timer_dam_lib.lib(qapi_timer_user.o)
 		out/main.o (qapi_Timer_Sleep)
@@ -28,134 +28,134 @@ Archive member included because of file (symbol)
 		out/fin/singlefin.o (_txm_module_system_call7)
 ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_system_call8.o)
 		out/fin/singlefin.o (_txm_module_system_call8)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)
 		out/fin/singlefin.o (setlocale)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
 		out/fin/singlefin.o (getopt)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (mbtowc)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (flockfile)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (fputs)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o) (ftrylockfile)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (funlockfile)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (putc)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (mbtowc)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (flockfile)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (fputs)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o) (ftrylockfile)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (funlockfile)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (putc)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o)
 		out/fin/singlefin.o (snprintf)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)
 		out/fin/singlefin.o (stderr)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)
 		out/fin/singlefin.o (stdin)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)
 		out/fin/singlefin.o (stdout)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)
 		out/fin/singlefin.o (memcpy)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)
 		out/fin/singlefin.o (memset)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)
 		out/fin/singlefin.o (strchr)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__strchrnul)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__strchrnul)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)
 		out/fin/singlefin.o (strcmp)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o)
 		out/fin/singlefin.o (strcpy)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)
 		out/fin/singlefin.o (strlen)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)
 		out/fin/singlefin.o (strncpy)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o)
 		out/fin/singlefin.o (strstr)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)
 		out/fin/singlefin.o (strtok)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__lock)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o) (__wait)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o) (__errno_location)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__libc)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (__lctrans_cur)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__get_locale)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__munmap)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o) (__fsmu8)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o) (__overflow)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o) (__towrite)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o) (__lockfile)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) (__stdio_close)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o) (__stdio_read)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) (__stdio_seek)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) (__stdio_write)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o) (__stdout_write)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o) (vsnprintf)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__fwritex)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (vsnprintf_full)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) (__aeabi_memclr4)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o) (__aeabi_memcpy8)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) (memchr)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcmp.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) (memcmp)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o) (__stpcpy)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o) (__stpncpy)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o) (strcspn)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o) (strspn)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__map_file)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (getenv)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (strerror)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o) (__syscall_ret)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__mo_lookup)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__c_dot_utf8)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o) (__mmap)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (wctomb)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o) (__stdio_exit_needed)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o) (__ofl_lock)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o) (strncmp)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o) (__environ)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o) (wcrtomb)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__lock)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o) (__wait)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o) (__errno_location)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__libc)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) (__lctrans_cur)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) (__get_locale)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__munmap)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o) (__fsmu8)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o) (__overflow)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o) (__towrite)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o) (__lockfile)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) (__stdio_close)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o) (__stdio_read)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) (__stdio_seek)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) (__stdio_write)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o) (__stdout_write)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o) (vsnprintf)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (__fwritex)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (vsnprintf_full)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) (__aeabi_memclr4)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o) (__aeabi_memcpy8)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) (memchr)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcmp.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) (memcmp)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o) (__stpcpy)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o) (__stpncpy)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o) (strcspn)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o) (strspn)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__map_file)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (getenv)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (strerror)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o) (__syscall_ret)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__mo_lookup)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) (__c_dot_utf8)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o) (__mmap)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) (wctomb)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o) (__stdio_exit_needed)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o) (__ofl_lock)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o) (strncmp)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o) (__environ)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o) (wcrtomb)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)
 		out/fin/singlefin.o (__aeabi_uldivmod)
-C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)
-		C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj) (__udivmoddi4)
+C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)
+		C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj) (__udivmoddi4)
 
 Allocating common symbols
 Common symbol	size	file
@@ -188,10 +188,10 @@ timer_user_handle	0x4	../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/
 _txm_module_entry_info	0x4	../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)
 _txm_module_instance_ptr	0x4	../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)
 _txm_module_kernel_call_dispatcher	0x4	../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)
-__libc	0x40	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)
-__optpos	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
-optarg	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
-optopt	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
+__libc	0x40	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)
+__optpos	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
+optarg	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
+optopt	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)
 
 Linker Script and memory map
 LOAD ./ldscripts/txm_module_preamble_llvm.o[]
@@ -210,70 +210,70 @@ LOAD ../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib
 START GROUP
 END GROUP
 START GROUP
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcmp.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj) []
-LOAD C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcmp.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj) []
+LOAD C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj) []
 END GROUP
 
 Linker scripts used (including INCLUDE command)
@@ -786,56 +786,56 @@ KEEP (*(.text .text.* ))
 	0x430077b8		$a.0
 	0x430077b8		_txm_module_system_call8
 	0x43007800		$d.1
-.text.setlocale	0x43007804	0xe8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.setlocale	0x43007804	0xe8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43007804		$t
 	0x43007805		setlocale
 	0x430078dc		$d
-.text.setlocale_one_unlocked	0x430078ec	0x34	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.setlocale_one_unlocked	0x430078ec	0x34	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430078ec		$t
 	0x430078ed		setlocale_one_unlocked
 	0x43007918		$d
-.text.__getopt_msg	0x43007920	0x64	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__getopt_msg	0x43007920	0x64	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43007920		$t
 	0x43007921		__getopt_msg
 	0x43007980		$d
-.text.getopt	0x43007984	0x174	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.getopt	0x43007984	0x174	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43007984		$t
 	0x43007985		getopt
 	0x43007985		__posix_getopt
 	0x43007ae0		$d
-.text.mbtowc	0x43007af8	0xcc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.mbtowc	0x43007af8	0xcc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mbtowc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43007af8		$t
 	0x43007af9		mbtowc
 	0x43007bc0		$d
-.text.flockfile	0x43007bc4	0x28	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.flockfile	0x43007bc4	0x28	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(flockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007bc4		$t
 	0x43007bc5		flockfile
-.text.fputs	0x43007bec	0x26	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.fputs	0x43007bec	0x26	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fputs.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007bec		$t
 	0x43007bed		fputs
 	0x43007bed		fputs_unlocked
-.text.__do_orphaned_stdio_locks	0x43007c12	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__do_orphaned_stdio_locks	0x43007c12	0x1e	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007c12		$t
 	0x43007c13		__do_orphaned_stdio_locks
-.text.__unlist_locked_file	0x43007c30	0x26	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__unlist_locked_file	0x43007c30	0x26	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007c30		$t
 	0x43007c31		__unlist_locked_file
 PADDING_ALIGNMENT	0x43007c56	0x2	0x0
-.text.ftrylockfile	0x43007c58	0x80	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.ftrylockfile	0x43007c58	0x80	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ftrylockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43007c58		$t
 	0x43007c59		ftrylockfile
 	0x43007cd4		$d
-.text.funlockfile	0x43007cd8	0x24	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.funlockfile	0x43007cd8	0x24	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(funlockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007cd8		$t
 	0x43007cd9		funlockfile
-.text.putc	0x43007cfc	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.putc	0x43007cfc	0x68	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(putc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007cfc		$t
 	0x43007cfd		putc
 	0x43007cfd		_IO_putc
-.text.snprintf	0x43007d64	0x16	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.snprintf	0x43007d64	0x16	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(snprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007d64		$t
 	0x43007d65		snprintf
-.text	0x43007d7a	0x2ee	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text	0x43007d7a	0x2ee	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcpy_le.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43007d7a		$t
 	0x43007d7b		memcpy
 	0x43007dba		src_aligned
@@ -849,121 +849,121 @@ PADDING_ALIGNMENT	0x43007c56	0x2	0x0
 	0x43007ff8		less_than_thirtytwo
 	0x43008022		partial_word_tail
 	0x4300803e		copy_last_3_and_return
-.text	0x43008068	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text	0x43008068	0x68	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memset_nofp_armv7.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43008068		$t
 	0x43008069		memset
-.text.strchr	0x430080d0	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strchr	0x430080d0	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430080d0		$t
 	0x430080d1		strchr
-.text.__strchrnul	0x430080e4	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__strchrnul	0x430080e4	0x5c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strchrnul.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430080e4		$t
 	0x430080e5		__strchrnul
 	0x430080e5		strchrnul
-.text.strcmp	0x43008140	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strcmp	0x43008140	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008140		$t
 	0x43008141		strcmp
-.text.strcpy	0x43008154	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strcpy	0x43008154	0xc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008154		$t
 	0x43008155		strcpy
-.text.strlen	0x43008160	0x34	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strlen	0x43008160	0x34	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strlen.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008160		$t
 	0x43008161		strlen
-.text.strncpy	0x43008194	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strncpy	0x43008194	0xc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008194		$t
 	0x43008195		strncpy
-.text.strstr	0x430081a0	0x2d0	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strstr	0x430081a0	0x2d0	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strstr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430081a0		$t
 	0x430081a1		strstr
-.text.strtok	0x43008470	0x50	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.strtok	0x43008470	0x50	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43008470		$t
 	0x43008471		strtok
 	0x430084bc		$d
-.text.__lock	0x430084c0	0x38	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__lock	0x430084c0	0x38	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430084c0		$t
 	0x430084c1		__lock
 	0x430084f4		$d
-.text.__unlock	0x430084f8	0x32	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__unlock	0x430084f8	0x32	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430084f8		$t
 	0x430084f9		__unlock
-.text.__syscall3	0x4300852a	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__syscall3	0x4300852a	0xa	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lock.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300852a		$t
 	0x4300852b		__syscall3
-.text.__wait	0x43008534	0x64	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__wait	0x43008534	0x64	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008534		$t
 	0x43008535		__wait
-.text.__syscall4	0x43008598	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__syscall4	0x43008598	0xa	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008598		$t
 	0x43008599		__syscall4
-.text.a_fetch_add	0x430085a2	0x18	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.a_fetch_add	0x430085a2	0x18	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__wait.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430085a2		$t
 	0x430085a3		a_fetch_add
-.text.__errno_location	0x430085ba	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__errno_location	0x430085ba	0x8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__errno_location.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430085ba		$t
 	0x430085bb		__errno_location
-.text.dummy	0x430085c2	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.dummy	0x430085c2	0x2	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430085c2		$t
 	0x430085c3		dummy
-.text.__lctrans	0x430085c4	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__lctrans	0x430085c4	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430085c4		$t
 	0x430085c5		__lctrans
-.text.__lctrans_cur	0x430085c8	0xe	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__lctrans_cur	0x430085c8	0xe	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lctrans.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430085c8		$t
 	0x430085c9		__lctrans_cur
-.text.__lctrans_impl	0x430085d6	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__lctrans_impl	0x430085d6	0x1e	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430085d6		$t
 	0x430085d7		__lctrans_impl
-.text.__get_locale	0x430085f4	0x1e8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__get_locale	0x430085f4	0x1e8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430085f4		$t
 	0x430085f5		__get_locale
 	0x430087b8		$d
-.text.dummy	0x430087dc	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.dummy	0x430087dc	0x2	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430087dc		$t
 	0x430087dd		dummy
 	0x430087dd		__vm_wait
-.text.__munmap	0x430087de	0x1a	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__munmap	0x430087de	0x1a	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(munmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430087de		$t
 	0x430087df		__munmap
 	0x430087df		munmap
-.text.__overflow	0x430087f8	0x54	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__overflow	0x430087f8	0x54	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__overflow.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430087f8		$t
 	0x430087f9		__overflow
-.text.__towrite	0x4300884c	0x38	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__towrite	0x4300884c	0x38	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300884c		$t
 	0x4300884d		__towrite
-.text.__towrite_needs_stdio_exit	0x43008884	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__towrite_needs_stdio_exit	0x43008884	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__towrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008884		$t
 	0x43008885		__towrite_needs_stdio_exit
-.text.__lockfile	0x43008888	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__lockfile	0x43008888	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008888		$t
 	0x43008889		__lockfile
-.text.__unlockfile	0x4300888c	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__unlockfile	0x4300888c	0x2	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__lockfile.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300888c		$t
 	0x4300888d		__unlockfile
-.text.dummy	0x4300888e	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.dummy	0x4300888e	0x2	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300888e		$t
 	0x4300888f		dummy
 	0x4300888f		__aio_close
-.text.__stdio_close	0x43008890	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__stdio_close	0x43008890	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_close.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008890		$t
 	0x43008891		__stdio_close
-.text.__stdio_read	0x430088a4	0xc0	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__stdio_read	0x430088a4	0xc0	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_read.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430088a4		$t
 	0x430088a5		__stdio_read
-.text.__stdio_seek	0x43008964	0x72	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__stdio_seek	0x43008964	0x72	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_seek.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008964		$t
 	0x43008965		__stdio_seek
-.text.__stdio_write	0x430089d6	0xfe	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__stdio_write	0x430089d6	0xfe	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430089d6		$t
 	0x430089d7		__stdio_write
-.text.__stdout_write	0x43008ad4	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__stdout_write	0x43008ad4	0x5c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43008ad4		$t
 	0x43008ad5		__stdout_write
 	0x43008b20		$d
-.text.vfprintf	0x43008b30	0xd6	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.vfprintf	0x43008b30	0xd6	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43008b30		$t
 	0x43008b31		vfprintf
 PADDING_ALIGNMENT	0x43008c06	0x2	0x0
-.text.printf_core	0x43008c08	0x6a8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.printf_core	0x43008c08	0x6a8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43008c08		$t
 	0x43008c09		printf_core
 	0x43008eb8		$d
@@ -971,135 +971,135 @@ PADDING_ALIGNMENT	0x43008c06	0x2	0x0
 	0x43009128		$d
 	0x4300914e		$t
 	0x4300928c		$d
-.text.vsnprintf	0x430092b0	0x1a4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.vsnprintf	0x430092b0	0x1a4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430092b0		$t
 	0x430092b1		vsnprintf
 	0x43009450		$d
-.text.fmt_u32	0x43009454	0x22	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.fmt_u32	0x43009454	0x22	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009454		$t
 	0x43009455		fmt_u32
-.text.out	0x43009476	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.out	0x43009476	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009476		$t
 	0x43009477		out
-.text.getint	0x4300948a	0x1e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.getint	0x4300948a	0x1e	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300948a		$t
 	0x4300948b		getint
-.text.pop_arg	0x430094a8	0x80	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.pop_arg	0x430094a8	0x80	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430094a8		$t
 	0x430094a9		pop_arg
 	0x430094b6		$d
 	0x430094c0		$t
-.text.pad	0x43009528	0x4e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.pad	0x43009528	0x4e	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009528		$t
 	0x43009529		pad
-.text.__fwritex	0x43009576	0x76	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__fwritex	0x43009576	0x76	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009576		$t
 	0x43009577		__fwritex
-.text.fwrite	0x430095ec	0x58	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.fwrite	0x430095ec	0x58	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(fwrite.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430095ec		$t
 	0x430095ed		fwrite
 	0x430095ed		fwrite_unlocked
-.text.vsnprintf_full	0x43009644	0x74	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.vsnprintf_full	0x43009644	0x74	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009644		$t
 	0x43009645		vsnprintf_full
 	0x430096b0		$d
-.text.sn_write	0x430096b8	0x22	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.sn_write	0x430096b8	0x22	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430096b8		$t
 	0x430096b9		sn_write
-.text.__aeabi_memclr	0x430096da	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__aeabi_memclr	0x430096da	0x8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memclr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430096da		$t
 	0x430096db		__aeabi_memclr
 	0x430096db		__aeabi_memclr4
 	0x430096db		__aeabi_memclr8
-.text.__aeabi_memcpy	0x430096e2	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__aeabi_memcpy	0x430096e2	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__aeabi_memcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430096e2		$t
 	0x430096e3		__aeabi_memcpy
 	0x430096e3		__aeabi_memcpy4
 	0x430096e3		__aeabi_memcpy8
-.text.memchr	0x430096e6	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.memchr	0x430096e6	0x5c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memchr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430096e6		$t
 	0x430096e7		memchr
-.text.memcmp	0x43009742	0x1c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.memcmp	0x43009742	0x1c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(memcmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009742		$t
 	0x43009743		memcmp
-.text.__stpcpy	0x4300975e	0x3e	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__stpcpy	0x4300975e	0x3e	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpcpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300975e		$t
 	0x4300975f		__stpcpy
 	0x4300975f		stpcpy
-.text.__stpncpy	0x4300979c	0x68	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__stpncpy	0x4300979c	0x68	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stpncpy.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300979c		$t
 	0x4300979d		__stpncpy
 	0x4300979d		stpncpy
-.text.strcspn	0x43009804	0x6a	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strcspn	0x43009804	0x6a	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strcspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009804		$t
 	0x43009805		strcspn
-.text.strspn	0x4300986e	0x74	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strspn	0x4300986e	0x74	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strspn.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x4300986e		$t
 	0x4300986f		strspn
 PADDING_ALIGNMENT	0x430098e2	0x2	0x0
-.text.__map_file	0x430098e4	0x58	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__map_file	0x430098e4	0x58	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__map_file.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430098e4		$t
 	0x430098e5		__map_file
 	0x43009938		$d
-.text.getenv	0x4300993c	0x5c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.getenv	0x4300993c	0x5c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getenv.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x4300993c		$t
 	0x4300993d		getenv
 	0x43009994		$d
-.text.__strerror_l	0x43009998	0x3c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__strerror_l	0x43009998	0x3c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009998		$t
 	0x43009999		__strerror_l
 	0x43009999		strerror_l
 	0x430099cc		$d
-.text.strerror	0x430099d4	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strerror	0x430099d4	0xc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x430099d4		$t
 	0x430099d5		strerror
-.text.__syscall_ret	0x430099e0	0x20	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__syscall_ret	0x430099e0	0x20	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(syscall_ret.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x430099e0		$t
 	0x430099e1		__syscall_ret
 	0x430099fc		$d
-.text.__mo_lookup	0x43009a00	0xd8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__mo_lookup	0x43009a00	0xd8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__mo_lookup.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009a00		$t
 	0x43009a01		__mo_lookup
 	0x43009ad4		$d
-.text.dummy	0x43009ad8	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.dummy	0x43009ad8	0x2	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009ad8		$t
 	0x43009ad9		dummy
 PADDING_ALIGNMENT	0x43009ada	0x2	0x0
-.text.__mmap	0x43009adc	0x60	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__mmap	0x43009adc	0x60	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(mmap.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009adc		$t
 	0x43009add		__mmap
 	0x43009add		mmap
 	0x43009add		mmap64
 	0x43009b38		$d
-.text.wctomb	0x43009b3c	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.wctomb	0x43009b3c	0xc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wctomb.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009b3c		$t
 	0x43009b3d		wctomb
-.text.__stdio_exit	0x43009b48	0x30	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__stdio_exit	0x43009b48	0x30	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009b48		$t
 	0x43009b49		__stdio_exit
 	0x43009b49		__stdio_exit_needed
 	0x43009b70		$d
-.text.close_file	0x43009b78	0x3c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.close_file	0x43009b78	0x3c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009b78		$t
 	0x43009b79		close_file
-.text.__ofl_lock	0x43009bb4	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text.__ofl_lock	0x43009bb4	0x8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009bb4		$t
 	0x43009bb5		__ofl_lock
 	0x43009bb8		$d
-.text.__ofl_unlock	0x43009bbc	0x2	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__ofl_unlock	0x43009bbc	0x2	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009bbc		$t
 	0x43009bbd		__ofl_unlock
-.text.strncmp	0x43009bbe	0x28	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.strncmp	0x43009bbe	0x28	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strncmp.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009bbe		$t
 	0x43009bbf		strncmp
-.text.wcrtomb	0x43009be6	0xb0	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.wcrtomb	0x43009be6	0xb0	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(wcrtomb.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009be6		$t
 	0x43009be7		wcrtomb
 PADDING_ALIGNMENT	0x43009c96	0x2	0x0
-.text	0x43009c98	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
+.text	0x43009c98	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(aeabi_uldivmod.S.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,4
 	0x43009c98		$t.0
 	0x43009c99		__aeabi_uldivmod
-.text.__udivmoddi4	0x43009cac	0x1d4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
+.text.__udivmoddi4	0x43009cac	0x1d4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\lib\clang\4.0.3\lib\baremetal/libclang_rt.builtins-armv7m.a(udivmoddi4.c.obj)	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,2
 	0x43009cac		$t.0
 	0x43009cad		__udivmoddi4
 *(Init )
@@ -1361,46 +1361,46 @@ PADDING_ALIGNMENT	0x4300a7c8	0x8	0x0
 .rodata.str1.1	0x4300ab8d	0x12	../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\timer_dam_lib.lib(qapi_timer_user.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
 	0x4300ab8d		.L.str
 PADDING_ALIGNMENT	0x4300ab9f	0x1	0x0
-.rodata.cst16	0x4300aba0	0x10	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
+.rodata.cst16	0x4300aba0	0x10	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,4
 	0x4300aba0		$d
-.rodata.str1.1	0x4300abb0	0x18	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300abc8	0x20	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.stderr	0x4300abe8	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC,4
+.rodata.str1.1	0x4300abb0	0x18	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300abc8	0x20	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.stderr	0x4300abe8	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC,4
 	0x4300abe8		$d
 	0x4300abe8		stderr
-.rodata.stdout	0x4300abec	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC,4
+.rodata.stdout	0x4300abec	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC,4
 	0x4300abec		$d
 	0x4300abec		stdout
-.rodata.str1.1	0x4300abf0	0x7	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300abf7	0x5	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300abfc	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300ac04	0x6	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300ac0a	0xd	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.envvars	0x4300ac17	0x48	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC,1
+.rodata.str1.1	0x4300abf0	0x7	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300abf7	0x5	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300abfc	0x8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300ac04	0x6	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300ac0a	0xd	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.envvars	0x4300ac17	0x48	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC,1
 	0x4300ac17		envvars
 PADDING_ALIGNMENT	0x4300ac5f	0x1	0x0
-.rodata.__fsmu8	0x4300ac60	0xcc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)	#SHT_PROGBITS,SHF_ALLOC,4
+.rodata.__fsmu8	0x4300ac60	0xcc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(internal.o)	#SHT_PROGBITS,SHF_ALLOC,4
 	0x4300ac60		$d
 	0x4300ac60		__fsmu8
-.rodata.str1.1	0x4300ad2c	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.str1.1	0x4300ad30	0xa	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
-.rodata.states	0x4300ad3a	0x1d0	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC,1
+.rodata.str1.1	0x4300ad2c	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300ad30	0xa	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.states	0x4300ad3a	0x1d0	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC,1
 	0x4300ad3a		states
-.rodata.cst16	0x4300af0a	0x10	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,1
+.rodata.cst16	0x4300af0a	0x10	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE,1
 	0x4300af0a		xdigits
 PADDING_ALIGNMENT	0x4300af1a	0x2	0x0
-.rodata.str1.4	0x4300af1c	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,4
+.rodata.str1.4	0x4300af1c	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vfprintf.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,4
 	0x4300af1c		$d
-.rodata..Lvsnprintf_full.f	0x4300af30	0x90	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC,8
+.rodata..Lvsnprintf_full.f	0x4300af30	0x90	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(vsnprintf.o)	#SHT_PROGBITS,SHF_ALLOC,8
 	0x4300af30		$d
-.rodata.str1.1	0x4300afc0	0x58	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+.rodata.str1.1	0x4300afc0	0x58	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
 	0x4300afc0		errid
-.rodata.errmsg	0x4300b018	0x70c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC,1
+.rodata.errmsg	0x4300b018	0x70c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strerror.o)	#SHT_PROGBITS,SHF_ALLOC,1
 	0x4300b018		errmsg
-.rodata.empty_mo	0x4300b724	0x14	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
+.rodata.empty_mo	0x4300b724	0x14	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
 	0x4300b724		empty_mo
 	0x4300b724		$d
-.rodata.__c_dot_utf8	0x4300b738	0x1c	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
+.rodata.__c_dot_utf8	0x4300b738	0x1c	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(c_locale.o)	#SHT_PROGBITS,SHF_ALLOC,4
 	0x4300b738		$d
 	0x4300b738		__c_dot_utf8
 	Image$$ER_RO$$Limit(0x4300b754) = .( 0x4300b754 );
@@ -1423,71 +1423,71 @@ KEEP (*(.data .data.* ))
 	0x4300bb74		CLI_CMD_TOUCH
 	0x4300bb78		CLI_CMD_ECHO
 	0x4300bb7c		prompt
-.data..L_MergedGlobals	0x4300bb80	0x70	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,16
+.data..L_MergedGlobals	0x4300bb80	0x70	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,16
 	0x4300bb80		$d
 	0x4300bb80		setlocale.lock
 	0x4300bb88		buf
-.data..L_MergedGlobals	0x4300bbf0	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data..L_MergedGlobals	0x4300bbf0	0xc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300bbf0		$d
 	0x4300bbf0		optind
 	0x4300bbf4		opterr
 	0x4300bbf8		optreset
 	0x4300bbf8		__optreset
 PADDING_ALIGNMENT	0x4300bbfc	0x4	0x0
-.data.f	0x4300bc00	0x90	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+.data.f	0x4300bc00	0x90	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
 	0x4300bc00		f
 	0x4300bc00		$d
-.data.__stderr_used	0x4300bc90	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.__stderr_used	0x4300bc90	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300bc90		$d
 	0x4300bc90		__stderr_used
-.data.buf	0x4300bc94	0x8	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
+.data.buf	0x4300bc94	0x8	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stderr.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
 	0x4300bc94		buf
 	0x4300bc94		$d
 PADDING_ALIGNMENT	0x4300bc9c	0x4	0x0
-.data.f	0x4300bca0	0x90	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+.data.f	0x4300bca0	0x90	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
 	0x4300bca0		f
 	0x4300bca0		$d
-.data.__stdin_used	0x4300bd30	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.__stdin_used	0x4300bd30	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300bd30		$d
 	0x4300bd30		__stdin_used
-.data.buf	0x4300bd34	0x408	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
+.data.buf	0x4300bd34	0x408	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdin.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
 	0x4300bd34		buf
 	0x4300bd34		$d
 PADDING_ALIGNMENT	0x4300c13c	0x4	0x0
-.data.f	0x4300c140	0x90	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+.data.f	0x4300c140	0x90	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
 	0x4300c140		f
 	0x4300c140		$d
-.data.__stdout_used	0x4300c1d0	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.__stdout_used	0x4300c1d0	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c1d0		$d
 	0x4300c1d0		__stdout_used
-.data.buf	0x4300c1d4	0x408	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
+.data.buf	0x4300c1d4	0x408	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(stdout.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
 	0x4300c1d4		buf
 	0x4300c1d4		$d
-.data.strtok.p	0x4300c5dc	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.strtok.p	0x4300c5dc	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(strtok.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5dc		strtok.p
 	0x4300c5dc		$d
-.data.__progname	0x4300c5e0	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.__progname	0x4300c5e0	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5e0		$d
 	0x4300c5e0		__progname
 	0x4300c5e0		program_invocation_short_name
-.data.__progname_full	0x4300c5e4	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.__progname_full	0x4300c5e4	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5e4		$d
 	0x4300c5e4		__progname_full
 	0x4300c5e4		program_invocation_name
-.data..L_MergedGlobals	0x4300c5e8	0xc	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data..L_MergedGlobals	0x4300c5e8	0xc	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(locale_map.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5e8		$d
 	0x4300c5e8		__get_locale.loc_head
 	0x4300c5ec		__get_locale.lock
-.data.init_stdout_for_semihost.inited	0x4300c5f4	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.init_stdout_for_semihost.inited	0x4300c5f4	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdout_write.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5f4		init_stdout_for_semihost.inited
 	0x4300c5f4		$d
-.data.dummy_file	0x4300c5f8	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.dummy_file	0x4300c5f8	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__stdio_exit.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5f8		dummy_file
 	0x4300c5f8		$d
-.data.ofl_head	0x4300c5fc	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.ofl_head	0x4300c5fc	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(ofl.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c5fc		ofl_head
 	0x4300c5fc		$d
-.data.__environ	0x4300c600	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+.data.__environ	0x4300c600	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(__environ.o)	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
 	0x4300c600		$d
 	0x4300c600		__environ
 	0x4300c600		___environ
@@ -1556,13 +1556,13 @@ PADDING_ALIGNMENT	0x43025496	0x2	0x0
 	0x43026e54		_txm_module_instance_ptr
 	0x43026e58	0x4	../../../Quectel_BG96_QuecOpen_SDK_Package_V3.0.1-AUS/SDK/libs/llvm\txm_lib.lib(txm_module_thread_shell_entry.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
 	0x43026e58		_txm_module_kernel_call_dispatcher
-	0x43026e5c	0x40	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43026e5c	0x40	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(libc.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
 	0x43026e5c		__libc
-	0x43026e9c	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43026e9c	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
 	0x43026e9c		__optpos
-	0x43026ea0	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43026ea0	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
 	0x43026ea0		optarg
-	0x43026ea4	0x4	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
+	0x43026ea4	0x4	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(getopt.o)	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
 	0x43026ea4		optopt
 .bss	0x43026ea8	0x19c	out/fin/singlefin.o	#SHT_NOBITS,SHF_ALLOC|SHF_WRITE,8
 	0x43026ea8		byte_malloc_mem_pool
@@ -2532,7 +2532,7 @@ Image$$ER_ZI$$ZI$$Length(0x1aa40) = Image$$ER_ZI$$Limit( 0x43027048 ) - Image$$E
 .ARM.attributes	0x155eb	0x10 # Offset: 0x155eb
 
 .comment	0x155fb	0x65 # Offset: 0x155fb
-.comment	0x155fb	0x1	C:\Users\nikol\projects\quectel\development\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+.comment	0x155fb	0x1	C:\Users\nikol\projects\noomio\projects\SingleFin\Software\threadx\tools\LLVM\4.0.3\armv7m-none-eabi\libc\lib/libc.a(setlocale.o)	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 .comment	0x15638	0x28	Linker Version	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
 
 .note.GNU-stack	0x15660	0x0 # Offset: 0x15660

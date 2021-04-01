@@ -155,7 +155,7 @@
         }
     ], 
     "git_branch": "single-header", 
-    "git_commit": "b06ae17a88d4b8f22b0bf8bdd713428969f4dbdc", 
-    "git_describe": "b06ae17-dirty", 
+    "git_commit": "b3e3fe699f1680f9b7fa46eb2e687a58753f110a", 
+    "git_describe": "b3e3fe6", 
     "fin_version": 10000
 }
