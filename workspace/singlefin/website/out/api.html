@@ -51,7 +51,7 @@
 <li><a href="#Stdio">Stdio</a></li>
 <li><a href="#Uart">Uart</a></li>
 </ul></div> <!-- site-middle-nav -->
-<div class="container content" id="site-middle-content"><h1 class="sectiontitle" id="doc.1">API <a class="sectionlink" href="#doc.1">§</a></h1><p>SingleFin Version: <span class="singlefin-version">XX.XX.XX</span> (2021-03-31)</p><p>Baseline TX3.0 (2021-03-31)</p><h2 class="sectiontitle" id="doc.1.1">Document scope <a class="sectionlink" href="#doc.1.1">§</a></h2><p></p><h2 class="sectiontitle" id="doc.1.2">What has been implemented <a class="sectionlink" href="#doc.1.2">§</a></h2><p></p><table class="table">
+<div class="container content" id="site-middle-content"><h1 class="sectiontitle" id="doc.1">API <a class="sectionlink" href="#doc.1">§</a></h1><p>SingleFin Version: <span class="singlefin-version">XX.XX.XX</span> (2021-04-01)</p><p>Baseline TX3.0 (2021-04-01)</p><h2 class="sectiontitle" id="doc.1.1">Document scope <a class="sectionlink" href="#doc.1.1">§</a></h2><p></p><h2 class="sectiontitle" id="doc.1.2">What has been implemented <a class="sectionlink" href="#doc.1.2">§</a></h2><p></p><table class="table">
 <thead>
 <tr>
 <th scope="col">Name</th>
@@ -646,6 +646,8 @@ void fin_gpio_config_dump(uint32_t pin);"><span class="type">int</span><span cla
 <span class="normal">Drive12mA</span>
 <span class="normal">Drive14mA</span>
 <span class="normal">Drive16mA</span>
+<span class="normal">Input</span>
+<span class="normal">Output</span>
 </pre>
 </div>
 <div class="api-part">
@@ -655,8 +657,8 @@ void fin_gpio_config_dump(uint32_t pin);"><span class="type">int</span><span cla
 </div>
 <div class="api-part">
 <h2 class="api-example sectiontitle" id="Gpio.6">Example <a class="sectionlink" href="#Gpio.6">§</a></h2>
-<pre class="c-code"><span class="function">fin_gpio_pin_config</span><span class="symbol">(</span><span class="number">18</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_PULL_UP_E</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_12MA_E</span><span class="symbol">,</span><span class="normal">QAPI_GPIO_INPUT_E</span><span class="symbol">)</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> val </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_gpio_pin_read</span><span class="symbol">(</span><span class="number">18</span><span class="symbol">)</span><span class="symbol">;</span>
+<pre class="c-code"><span class="function">fin_gpio_pin_config</span><span class="symbol">(</span><span class="normal">PIN18</span><span class="symbol">,</span><span class="normal">PullUp</span><span class="symbol">,</span><span class="normal">Drive12mA</span><span class="symbol">,</span><span class="normal">Input</span><span class="symbol">)</span><span class="symbol">;</span>
+<span class="type">int</span><span class="normal"> val </span><span class="symbol">=</span><span class="normal"> </span><span class="function">fin_gpio_pin_read</span><span class="symbol">(</span><span class="normal">PIN18</span><span class="symbol">)</span><span class="symbol">;</span>
 </pre>
 </div>
 
