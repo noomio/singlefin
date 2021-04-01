@@ -40,122 +40,122 @@
         }, 
         {
             "original_line": 1, 
-            "combined_line": 171, 
+            "combined_line": 172, 
             "original_file": "fin_http_client.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 214, 
+            "combined_line": 215, 
             "original_file": "fin_i2c.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 228, 
+            "combined_line": 229, 
             "original_file": "fin_spi.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 245, 
+            "combined_line": 246, 
             "original_file": "fin_adc.h"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 253, 
+            "combined_line": 254, 
             "original_file": "fin_uart.h"
         }, 
         {
             "original_line": 41, 
-            "combined_line": 259, 
+            "combined_line": 260, 
             "original_file": "fin_internal.h"
         }, 
         {
             "original_line": 11, 
-            "combined_line": 262, 
+            "combined_line": 263, 
             "original_file": "fin_malloc.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 464, 
+            "combined_line": 465, 
             "original_file": "fin_retarget.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 844, 
+            "combined_line": 845, 
             "original_file": "fin_file.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1134, 
+            "combined_line": 1135, 
             "original_file": "fin_adc.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1218, 
+            "combined_line": 1219, 
             "original_file": "fin_cli.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1689, 
+            "combined_line": 1690, 
             "original_file": "fin_dss.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2157, 
+            "combined_line": 2158, 
             "original_file": "fin_gpio.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 2553, 
+            "combined_line": 2554, 
             "original_file": "fin_http_client.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2823, 
+            "combined_line": 2824, 
             "original_file": "fin_hwrandom.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 2840, 
+            "combined_line": 2841, 
             "original_file": "fin_i2c.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3086, 
+            "combined_line": 3087, 
             "original_file": "fin_net.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3111, 
+            "combined_line": 3112, 
             "original_file": "fin_spi.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3437, 
+            "combined_line": 3438, 
             "original_file": "fin_strings.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3448, 
+            "combined_line": 3449, 
             "original_file": "fin_stubs.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3471, 
+            "combined_line": 3472, 
             "original_file": "fin_time.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3498, 
+            "combined_line": 3499, 
             "original_file": "fin_uart.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3666, 
+            "combined_line": 3667, 
             "original_file": "printf.c"
         }
     ], 
     "git_branch": "single-header", 
-    "git_commit": "f0cf5a17c48462c0d780a65248d6ba04be2fc068", 
-    "git_describe": "f0cf5a1-dirty", 
+    "git_commit": "b06ae17a88d4b8f22b0bf8bdd713428969f4dbdc", 
+    "git_describe": "b06ae17-dirty", 
     "fin_version": 10000
 }

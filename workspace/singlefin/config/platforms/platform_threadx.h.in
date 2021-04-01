@@ -33,9 +33,12 @@
 #include <qapi_gpioint.h>
 #include <qurt_timetick.h>
 
+#endif
 
 #define FIN_USE_OS_STRING "threadx"
 
 #include <qapi_quectel.h>
 
-#endif /* FIN_COMPILING_SINGLEFIN */
+#if defined(FIN_MODULE_BG96) 
+#snippet "module_bg96.h.in"
+#endif

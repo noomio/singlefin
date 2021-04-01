@@ -6,7 +6,7 @@
  *  comments.  Other parts of the header are Duktape internal and related to
  *  e.g. platform/compiler/feature detection.
  *
- *  Git commit f0cf5a17c48462c0d780a65248d6ba04be2fc068 (f0cf5a1-dirty).
+ *  Git commit b06ae17a88d4b8f22b0bf8bdd713428969f4dbdc (b06ae17-dirty).
  *  Git branch single-header.
  *
  *  See Duktape AUTHORS.rst and LICENSE.txt for copyright and
@@ -19,6 +19,8 @@
 #define SINGLEFIN_H_INCLUDED
 
 #define FIN_SINGLE_FILE
+
+#define FIN_MODULE_BG96
 
 
 /*
@@ -38,8 +40,8 @@
  * which Duktape snapshot was used.  Not available in the ECMAScript
  * environment.
  */
-#define FIN_GIT_COMMIT                    "f0cf5a17c48462c0d780a65248d6ba04be2fc068"
-#define FIN_GIT_DESCRIBE                  "f0cf5a1-dirty"
+#define FIN_GIT_COMMIT                    "b06ae17a88d4b8f22b0bf8bdd713428969f4dbdc"
+#define FIN_GIT_DESCRIBE                  "b06ae17-dirty"
 #define FIN_GIT_BRANCH                    "single-header"
 
 
@@ -51,6 +53,7 @@
  * snippets can react to it.
  */
 #include "fin_config.h"
+
 
 /*
  *  Avoid C++ name mangling

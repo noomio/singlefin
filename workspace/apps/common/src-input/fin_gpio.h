@@ -8,4 +8,5 @@ struct gpio_list_entry {
 
 
 
+
 #endif  /* FIN_API_GPIO_H_INCLUDED */

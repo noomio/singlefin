@@ -20,6 +20,8 @@
 
 @FIN_SINGLE_FILE@
 
+@FIN_MODULE_XXXX@
+
 
 /*
  *  Version and Git commit identification
@@ -51,6 +53,7 @@
  * snippets can react to it.
  */
 #include "fin_config.h"
+
 
 /*
  *  Avoid C++ name mangling
