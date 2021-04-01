@@ -1,3 +1,0 @@
-@echo Full build...
-@call mknt.bat
-@call mkg.bat

@@ -1,3 +1,0 @@
-LIBRARY K95CRYPT
-EXPORTS
-  crypt_dll_init

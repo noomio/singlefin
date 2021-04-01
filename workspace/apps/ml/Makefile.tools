@@ -1,5 +1,0 @@
-# Tool invocations
-
-load:
-	@echo 'Loading to target...' 
-	PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& '$(CLI_TOOL)'" -BinPath "${CURDIR}/$(BUILDDIR)" -BinFile "$(TARGET_NAME).bin" -ResetTarget $$True

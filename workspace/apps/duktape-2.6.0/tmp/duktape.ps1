@@ -1,1 +1,0 @@
-Start-Process -FilePath "C:\Users\nikol\Anaconda2\python.exe" -NoNewWindow -ArgumentList "../tools/configure.py", "--rom-support", "--output-directory ./src/duk","--platform Linux","--compiler clang","--architecture arm32","--source-directory ../src-input","--option-file","./low_memory.yaml","--option-file ./opts.yaml" -Wait 
