@@ -636,13 +636,17 @@ def main():
             with open(makedefs_file, 'rb') as f:
                 for line in f:
                     res.append(line)
-            res.append('\n')
-            res.append('# Makefile ')
+
+        res.append('\n')
+        res.append('# Makefile ')
+
         if os.path.exists(make_file):
             with open(make_file, 'rb') as f:
                 for line in f:
                     res.append(line)
-
+        
+        res.append('\n')
+        res.append('\n')
         if os.path.exists(load_file):
             with open(load_file, 'rb') as f:
                 for line in f:

@@ -155,7 +155,7 @@
         }
     ], 
     "git_branch": "master", 
-    "git_commit": "5383ac0502017f5e91d9d8e2809ff9f00c95507a", 
-    "git_describe": "5383ac0-dirty", 
+    "git_commit": "03ef94d43a300ac77443e37fea2591d8cc316442", 
+    "git_describe": "03ef94d-dirty", 
     "fin_version": 10000
 }

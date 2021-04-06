@@ -155,7 +155,9 @@ clean:
 
 $(TARGET_NAME).bin:
 	@echo 'Building target: $@'
-	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@# Tool invocations
+	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@
+
+# Tool invocations
 
 load:
 	@echo 'Loading to target...' 
