@@ -41,6 +41,14 @@ int main (void){
 }
 ```
 
+## Configure
+
+To configure the platform you need to run the configure.py script. For now only BG96 platform is supported.
+
+## Prerequisites
+
+Python27
+
 ## Documentation
 
 You can view the online documention here: [SingleFin API](http://noomio.com.au/singlefin/)
