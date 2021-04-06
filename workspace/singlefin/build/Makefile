@@ -41,7 +41,7 @@ ifeq ($(OS),Windows_NT)
 	TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
 	LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
 	LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
-	PYTHON_PATH = "C:\Users\nikol\Anaconda2\python.exe"
+	PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
 	LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
 	CXX = "$(LLVM)/bin/clang++.exe"
 	CXX_FLAGS = -target armv7m-none-musleabi \
@@ -97,13 +97,14 @@ TARGET_NAME = singlefin
 BUILDDIR = out
 MODULE = bg96
 
-USER_OPTS = 
+USER_OPTS = -DFIN_F_THREADX 
+
 
 INCDIR = -Ifin
 LIBS_PATH = 
 LIBS = 
 
-SRCS =  main.c fin/singlefin.c
+SRCS = main.c fin/singlefin.c
 
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 
@@ -154,4 +155,8 @@ clean:
 
 $(TARGET_NAME).bin:
 	@echo 'Building target: $@'
-	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@
+	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@# Tool invocations
+
+load:
+	@echo 'Loading to target...' 
+	PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& '$(CLI_TOOL)'" -BinPath "${CURDIR}/$(BUILDDIR)" -BinFile "$(TARGET_NAME).bin" -ResetTarget $$True

@@ -625,10 +625,11 @@ def main():
         f.write(json.dumps(doc, indent=4))
 
 
-    def create_makefile(make_file,makedefs_file):
+    def create_makefile(make_file,makedefs_file,load_file = None):
         res = []
         make_file = os.path.join('makefiles',make_file)
         makedefs_file = os.path.join('makefiles',makedefs_file)
+        load_file = os.path.join('makefiles',load_file)
 
         res.append('# Makefile Wrappers')
         if os.path.exists(makedefs_file):
@@ -642,12 +643,17 @@ def main():
                 for line in f:
                     res.append(line)
 
+        if os.path.exists(load_file):
+            with open(load_file, 'rb') as f:
+                for line in f:
+                    res.append(line)
+
         return ''.join(res) + ''
     
     if opts.makefile is not None:
         logger.debug('Generating Makefile')
         with open(os.path.join(outdir, 'Makefile'), 'wb') as f:
-            f.write(create_makefile('clang.make.in','clang_defs.make.in'))
+            f.write(create_makefile('clang.make.in','clang_defs.make.in', 'load.make.in'))
 
     logger.debug('Configure finished successfully')
 
