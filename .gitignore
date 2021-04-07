@@ -1,8 +1,7 @@
 *.o
 **/ldscripts/*_pp.S
 **/ldscripts/*.o
-**/bin/*
-**/*.o
+**/out/*.o
 **/out/*
-**/*.o.d
-**/.deps/*
+**/out/*.o.d
+**/out/.deps/*
