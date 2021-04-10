@@ -142,8 +142,8 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *fp){
 	uint32_t read_bytes = 0;
 
 	if(ptr && fp){	
-		if( qapi_FS_Read (*fd, ptr, nmemb, &read_bytes) == QAPI_OK){			
-			return read_bytes;
+		if( qapi_FS_Read (*fd, ptr, size * nmemb, &read_bytes) == QAPI_OK){			
+			return read_bytes / size;  // return number of records read
 		}else{
 			return 0;		
 		}
@@ -155,16 +155,14 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *fp){
 
 size_t __wrap_fwrite(const void *ptr, size_t size, size_t nmemb, FILE *fp){
 	int *fd = (int*)fp;
-	uint32_t written_bytes = -1;
+	uint32_t written_bytes = 0;
 	if(ptr && fp){
-		qapi_FS_Write (*fd, ptr,nmemb,&written_bytes);
+		qapi_FS_Write (*fd, ptr, size * nmemb, &written_bytes);
 	}
 
-	return written_bytes;
+	return written_bytes / size;  // return number of records written
 
 }
-
-
 
 DIR *opendir(const char *name){
  	qapi_FS_Iter_Handle_t dir_handle = malloc(sizeof(qapi_FS_Iter_Handle_t));
