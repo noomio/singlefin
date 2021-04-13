@@ -43,7 +43,7 @@ int main (void){
 
 ## Generate Source Files
 
-To configure and generate the source files you need to run the configure.py script.
+To configure and generate the source files you need to run the configure.py script. There is also a helper script configure.ps1 to call with PowerShell.
 
 ```
 cd singlefin
@@ -58,7 +58,7 @@ python tools/configure.py
 	--output-directory build/fin 
 ```
 
-### Modems Supported:
+### Supported Modems:
 - BG96
 
 ## Prerequisites
