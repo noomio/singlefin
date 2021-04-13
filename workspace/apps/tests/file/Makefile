@@ -104,7 +104,7 @@ INCDIR = -Ifin
 LIBS_PATH = 
 LIBS = 
 
-SRCS = fin/singlefin.c main.c
+SRCS = main.c fin/singlefin.c
 
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 

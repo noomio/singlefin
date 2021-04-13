@@ -155,7 +155,7 @@
         }
     ], 
     "git_branch": "t-open-close-dir", 
-    "git_commit": "37d7dea7def987faccc3506feae4ea513d657a72", 
-    "git_describe": "37d7dea-dirty", 
+    "git_commit": "5a52e742e4a2c6bf05b6203a13a2fe420b2d484d", 
+    "git_describe": "5a52e74-dirty", 
     "fin_version": 10000
 }

@@ -38,6 +38,7 @@
 #include <locale.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <libgen.h>
 #include <sys/time.h>
 #include <time.h>
 

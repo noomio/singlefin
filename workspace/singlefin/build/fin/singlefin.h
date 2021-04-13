@@ -1,15 +1,15 @@
 /*
- *  Duktape public API for Duktape @DUK_VERSION_FORMATTED@.
+ *  SingleFin public API for SingleFin 1.0.0.
  *
  *  See the API reference for documentation on call semantics.  The exposed,
  *  supported API is between the "BEGIN PUBLIC API" and "END PUBLIC API"
- *  comments.  Other parts of the header are Duktape internal and related to
+ *  comments.  Other parts of the header are SingleFin internal and related to
  *  e.g. platform/compiler/feature detection.
  *
- *  Git commit 37d7dea7def987faccc3506feae4ea513d657a72 (37d7dea-dirty).
+ *  Git commit 5a52e742e4a2c6bf05b6203a13a2fe420b2d484d (5a52e74-dirty).
  *  Git branch t-open-close-dir.
  *
- *  See Duktape AUTHORS.rst and LICENSE.txt for copyright and
+ *  See SingleFin AUTHORS.rst and LICENSE.txt for copyright and
  *  licensing information.
  */
 
@@ -27,21 +27,21 @@
  *  Version and Git commit identification
  */
 
-/* Duktape version, (major * 10000) + (minor * 100) + patch.  Allows C code
- * to #if (DUK_VERSION >= NNN) against Duktape API version.  The same value
- * is also available to ECMAScript code in Duktape.version.  Unofficial
+/* SingleFin version, (major * 10000) + (minor * 100) + patch.  Allows C code
+ * to #if (FIN_VERSION >= NNN) against SingleFin API version.  The same value
+ * is also available to ECMAScript code in SingleFin.version.  Unofficial
  * development snapshots have 99 for patch level (e.g. 0.10.99 would be a
  * development version after 0.10.0 but before the next official release).
  */
 #define FIN_VERSION                       10000L
 
-/* Git commit, describe, and branch for Duktape build.  Useful for
+/* Git commit, describe, and branch for SingleFin build.  Useful for
  * non-official snapshot builds so that application code can easily log
- * which Duktape snapshot was used.  Not available in the ECMAScript
+ * which SingleFin snapshot was used.  Not available in the ECMAScript
  * environment.
  */
-#define FIN_GIT_COMMIT                    "37d7dea7def987faccc3506feae4ea513d657a72"
-#define FIN_GIT_DESCRIBE                  "37d7dea-dirty"
+#define FIN_GIT_COMMIT                    "5a52e742e4a2c6bf05b6203a13a2fe420b2d484d"
+#define FIN_GIT_DESCRIBE                  "5a52e74-dirty"
 #define FIN_GIT_BRANCH                    "t-open-close-dir"
 
 
