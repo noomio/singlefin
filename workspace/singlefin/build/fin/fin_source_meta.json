@@ -85,77 +85,77 @@
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1133, 
+            "combined_line": 1128, 
             "original_file": "fin_adc.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1217, 
+            "combined_line": 1212, 
             "original_file": "fin_cli.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 1688, 
+            "combined_line": 1683, 
             "original_file": "fin_dss.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2156, 
+            "combined_line": 2151, 
             "original_file": "fin_gpio.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 2552, 
+            "combined_line": 2547, 
             "original_file": "fin_http_client.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 2822, 
+            "combined_line": 2817, 
             "original_file": "fin_hwrandom.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 2839, 
+            "combined_line": 2834, 
             "original_file": "fin_i2c.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3085, 
+            "combined_line": 3080, 
             "original_file": "fin_net.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3110, 
+            "combined_line": 3105, 
             "original_file": "fin_spi.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3436, 
+            "combined_line": 3431, 
             "original_file": "fin_strings.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3447, 
+            "combined_line": 3442, 
             "original_file": "fin_stubs.c"
         }, 
         {
             "original_line": 2, 
-            "combined_line": 3470, 
+            "combined_line": 3465, 
             "original_file": "fin_time.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3497, 
+            "combined_line": 3492, 
             "original_file": "fin_uart.c"
         }, 
         {
             "original_line": 1, 
-            "combined_line": 3665, 
+            "combined_line": 3660, 
             "original_file": "printf.c"
         }
     ], 
     "git_branch": "t-open-close-dir", 
-    "git_commit": "b9cbff3b8809eeb5008b5e20281407110b97e6b6", 
-    "git_describe": "b9cbff3", 
+    "git_commit": "37d7dea7def987faccc3506feae4ea513d657a72", 
+    "git_describe": "37d7dea-dirty", 
     "fin_version": 10000
 }

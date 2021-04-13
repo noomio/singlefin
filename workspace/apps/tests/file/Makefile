@@ -97,14 +97,14 @@ TARGET_NAME = file-tests
 BUILDDIR = out
 MODULE = bg96
 
-USER_OPTS = -DFIN_F_THREADX 
+USER_OPTS = -DFIN_F_THREADX -DMALLOC_FREE_INLINE
 
 
 INCDIR = -Ifin
 LIBS_PATH = 
 LIBS = 
 
-SRCS = main.c fin/singlefin.c
+SRCS = fin/singlefin.c main.c
 
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 

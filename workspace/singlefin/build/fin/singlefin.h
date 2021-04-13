@@ -6,7 +6,7 @@
  *  comments.  Other parts of the header are Duktape internal and related to
  *  e.g. platform/compiler/feature detection.
  *
- *  Git commit b9cbff3b8809eeb5008b5e20281407110b97e6b6 (b9cbff3).
+ *  Git commit 37d7dea7def987faccc3506feae4ea513d657a72 (37d7dea-dirty).
  *  Git branch t-open-close-dir.
  *
  *  See Duktape AUTHORS.rst and LICENSE.txt for copyright and
@@ -40,8 +40,8 @@
  * which Duktape snapshot was used.  Not available in the ECMAScript
  * environment.
  */
-#define FIN_GIT_COMMIT                    "b9cbff3b8809eeb5008b5e20281407110b97e6b6"
-#define FIN_GIT_DESCRIBE                  "b9cbff3"
+#define FIN_GIT_COMMIT                    "37d7dea7def987faccc3506feae4ea513d657a72"
+#define FIN_GIT_DESCRIBE                  "37d7dea-dirty"
 #define FIN_GIT_BRANCH                    "t-open-close-dir"
 
 
