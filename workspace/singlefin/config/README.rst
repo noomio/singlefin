@@ -1,13 +1,13 @@
 =================
-Duktape genconfig
+SingleFin genconfig
 =================
 
-``genconfig`` is a helper script for coming up with a ``duk_config.h`` for
-compiling Duktape for your platform.
+``genconfig`` is a helper script for coming up with a ``fin_config.h`` for
+compiling SingleFin for your platform.
 
 To support this:
 
-* It helps to create a ``duk_config.h`` for your platform/compiler
+* It helps to create a ``fin_config.h`` for your platform/compiler
   combination.  You can give a base configuration and then force certain
   values manually based on a YAML configuration file.
 
