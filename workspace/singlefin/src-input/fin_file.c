@@ -165,14 +165,12 @@ size_t __wrap_fwrite(const void *ptr, size_t size, size_t nmemb, FILE *fp){
 }
 
 DIR *opendir(const char *name){
- 	qapi_FS_Iter_Handle_t dir_handle = malloc(sizeof(qapi_FS_Iter_Handle_t));
+ 	qapi_FS_Iter_Handle_t dir_handle = NULL; 
 
-	if(qapi_FS_Iter_Open ( name, &dir_handle ) == QAPI_OK){
-		return (DIR*)dir_handle;
-	}else{
- 		return NULL;
-	}
- }
+	qapi_FS_Iter_Open ( name, &dir_handle );
+	
+	return (DIR*)dir_handle;
+}
 
  struct dirent *readdir(DIR *dirp){
  	static struct dirent d;
@@ -196,12 +194,9 @@ DIR *opendir(const char *name){
  }
 
 int closedir(DIR *dirp){
-	qapi_FS_Iter_Handle_t dir_handle;
-
 	if(dirp){
-		dir_handle = (qapi_FS_Iter_Handle_t)dirp;
+		qapi_FS_Iter_Handle_t dir_handle = (qapi_FS_Iter_Handle_t)dirp;
 		if(qapi_FS_Iter_Close (dir_handle) == QAPI_OK){
-			free(&dir_handle);
 			return 0;
 		}
 		else{

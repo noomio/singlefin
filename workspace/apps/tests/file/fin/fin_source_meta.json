@@ -154,8 +154,8 @@
             "original_file": "printf.c"
         }
     ], 
-    "git_branch": "master", 
-    "git_commit": "72dcd4ae3013ebf9b107040de5cd41177eca2eef", 
-    "git_describe": "72dcd4a-dirty", 
+    "git_branch": "t-open-close-dir", 
+    "git_commit": "b9cbff3b8809eeb5008b5e20281407110b97e6b6", 
+    "git_describe": "b9cbff3", 
     "fin_version": 10000
 }
