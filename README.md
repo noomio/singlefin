@@ -50,7 +50,12 @@ cd singlefin
 ```
 
 ```
-python27 tools/configure.py --source-directory src-input --platform threadx --architecture arm32 --module bg96 --output-directory build/fin 
+python tools/configure.py 
+	--source-directory src-input 
+	--platform threadx 
+	--architecture arm32 
+	--module bg96 
+	--output-directory build/fin 
 ```
 
 ### Modems Supported:
