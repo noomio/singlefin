@@ -1,4 +1,2 @@
-& "C:\Users\nikol\Anaconda2\shell\condabin\conda-hook.ps1"
-
-Start-Process -FilePath "C:\Users\nikol\Anaconda2\python.exe" -NoNewWindow -ArgumentList "tools/configure.py",
+Start-Process -FilePath "py.exe" -NoNewWindow -ArgumentList "-2", "tools/configure.py",
 "--source-directory","src-input", "--platform", "threadx", "--architecture", "arm32", "--module","bg96", "--output-directory","build/fin", "--makefile", "--verbose" -Wait 
