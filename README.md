@@ -41,9 +41,20 @@ int main (void){
 }
 ```
 
-## Configure
+## Generate Source Files
 
-To configure the platform you need to run the configure.py script. For now only BG96 platform is supported.
+To configure and generate the source files you need to run the configure.py script.
+
+```
+cd singlefin
+```
+
+```
+python27 tools/configure.py --source-directory src-input --platform threadx --architecture arm32 --module bg96 --output-directory build/fin 
+```
+
+### Modems Supported:
+- BG96
 
 ## Prerequisites
 
