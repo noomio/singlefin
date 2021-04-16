@@ -11,7 +11,7 @@ clang.exe -o singlefin.o -c singlefin.c
 
 ## Build
 
-Open the folder build and from the command line type:
+Open the folder in **apps/tests/file** and from the command line type:
 
 ```
 make clean all
