@@ -9,7 +9,7 @@ Add SingleFin C source and header to your build. The distributable contains an e
 clang.exe -o singlefin.o -c singlefin.c
 ```
 
-> Look at Generate Source Files on how to generate the source files.
+> On how to generate the source files look at **Generate Source Files** below.
 
 ## Build
 
