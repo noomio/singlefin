@@ -9,6 +9,8 @@ Add SingleFin C source and header to your build. The distributable contains an e
 clang.exe -o singlefin.o -c singlefin.c
 ```
 
+> Look at Generate Source Files on how to generate the source files.
+
 ## Build
 
 Open the folder in **apps/tests/file** and from the command line type:
@@ -25,7 +27,7 @@ make load
 
 ## Library
 
-A single include header makes easy to integrate in your app.
+A single include header makes it easy to integrate in your app.
 
 ```
 #include "singlefin.h"
