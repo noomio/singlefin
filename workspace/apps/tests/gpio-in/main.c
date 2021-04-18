@@ -1,20 +1,22 @@
-#include <stdio.h>
-#include <qapi_timer.h>
-#include "gpio.h"
+#include "singlefin.h"
 
 int main(int argc, char * argv[])
 {
 
-	puts("gpio_in\r\n");
+	puts("gpio-in-test\r\n");
 	
-	gpio_pin_config(18,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
-	gpio_pin_config(19,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
-	gpio_pin_config(26,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_INPUT_E);
+	fin_gpio_pin_config(PIN18,PullUp,Drive12mA,Input);
+	fin_gpio_pin_config(PIN19,PullUp,Drive12mA,Input);
+	fin_gpio_pin_config(PIN26,PullUp,Drive12mA,Input);
 
 	for(;;){
 
-		printf("18=%u,19=%u,26=%d\r\n",gpio_pin_read(18),gpio_pin_read(19),gpio_pin_read(26));
-		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
+		printf("PIN18=%u,PIN19=%u,PIN26=%d\r\n",
+			fin_gpio_pin_read(PIN18),
+			fin_gpio_pin_read(PIN19),
+			fin_gpio_pin_read(PIN26));
+
+		fin_sleep(1000);
 
 	}
 

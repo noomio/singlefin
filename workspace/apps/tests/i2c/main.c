@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <qapi_timer.h>
-#include "i2c.h"
+#include "singlefin.h"
 #include "math.h"
 
 int main(int argc, char * argv[])
@@ -9,14 +7,14 @@ int main(int argc, char * argv[])
 	uint8_t txdata[1] = {0x05};
 	uint8_t rxdata[2];
 
-	puts("i2c\r\n");
+	puts("i2c-test\r\n");
 
-	int res = i2c_config(I2C1);
+	int res = fin_i2c_config(I2C1);
 	printf("i2c config:%d\r\n",res);	
 
 	for(;;){
 
-		res = i2c_transfer(I2C1,0x18,txdata,sizeof(txdata),rxdata,sizeof(rxdata),0);
+		res = fin_i2c_transfer(I2C1,0x18,txdata,sizeof(txdata),rxdata,sizeof(rxdata),0);
 		printf("i2c: res=%d\r\n",res);
 		if(res == 0){
 			rxdata[0] = rxdata[0] & 0x1F;
@@ -25,7 +23,7 @@ int main(int argc, char * argv[])
     		printf("%f Celcius\r\n",temperature);
 		}
 		
-		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
+		fin_sleep(1000);
 
 	}
 

@@ -3,7 +3,7 @@
 
 int main(int argc, char * argv[]){
 
-	printf("file-tests\r\n");
+	printf("file-test\r\n");
 
 	struct stat st;
 	struct dirent * d;

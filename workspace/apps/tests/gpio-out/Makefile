@@ -1,6 +1,38 @@
+# Makefile Wrappers#Compiler defines
 
-include ../../common/Makefile.defs
+#-DTX_MALLOC_MEM_SIZE=32
+#Use this to increase the heap size when compiling the malloc.o. Currently set to 32K
 
+#-DTX_USER_DEBUG_OPT=\"filename\"
+#To enable user debug options add a file user_debug_opt.h in your project to create your own debug flags.
+
+FIN_WRAP_MALLOC = -Wl,--wrap,malloc \
+		 -Wl,--wrap,free \
+		 -Wl,--wrap,realloc \
+		 -Wl,--wrap,calloc
+
+FIN_WRAP_PRINTF = -Wl,--wrap,printf \
+		 -Wl,--wrap,puts \
+	#	 -Wl,--wrap,snprintf \
+	#	 -Wl,--wrap,sprintf \
+	#	 -Wl,--wrap,vsnprintf
+
+FIN_WRAP_GETX = -Wl,--wrap,getchar \
+	   -Wl,--wrap,gets	
+
+FIN_WRAP_WRITE = -Wl,--wrap,write
+FIN_WRAP_FWRITE = -Wl,--wrap,fwrite \
+		 -Wl,--wrap,fflush
+
+FIN_WRAP_STRDUP = -Wl,--wrap,strdup
+
+FIN_WRAPPERS = $(FIN_WRAP_MALLOC)
+FIN_WRAPPERS += $(FIN_WRAP_PRINTF)
+FIN_WRAPPERS += $(FIN_WRAP_GETX)
+FIN_WRAPPERS += $(FIN_WRAP_WRITE)
+FIN_WRAPPERS += $(FIN_WRAP_FWRITE)
+FIN_WRAPPERS += $(FIN_WRAP_STRDUP)
+# Makefile 
 RM := rm.exe -rf
 
 ifeq ($(OS),Windows_NT)
@@ -9,7 +41,7 @@ ifeq ($(OS),Windows_NT)
 	TOOLCHAIN_PATH_STANDARDS = $(TOOL_PATH_ROOT)/LLVM/4.0.3/armv7m-none-eabi/libc/include
 	LLVMLIB = $(TOOL_PATH_ROOT)/LLVM/4.0.3/lib/clang/4.0.3/lib
 	LLVMLINK_PATH = $(TOOL_PATH_ROOT)/LLVM/4.0.3/tools/bin
-	PYTHON_PATH = $(TOOL_PATH_ROOT)/Python27/python.exe
+	PYTHON_PATH = py -2
 	LLVM = $(TOOL_PATH_ROOT)/LLVM/4.0.3
 	CXX = "$(LLVM)/bin/clang++.exe"
 	CXX_FLAGS = -target armv7m-none-musleabi \
@@ -61,32 +93,19 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
 				-I"$(LLVMLIB)"
 
 
-TARGET_NAME = gpio_out
+TARGET_NAME = gpio-out-test
 BUILDDIR = out
 MODULE = bg96
 
-USER_OPTS = 
-
-COMMON_DIR = ../../common/
-COMMON_INC = $(COMMON_DIR)/inc
-#COMMON_INC += -I$(COMMON_DIR)/inc/target/$(MODULE)
-
-COMMON_SRC = common/src/retarget.c \
-common/src/malloc.c \
-common/src/stubs.c \
-common/src/printf.c \
-common/src/file.c \
-common/src/cli.c \
-common/src/time.c \
-common/src/strings.c \
-common/src/target/$(MODULE)/gpio.c \
+USER_OPTS = -DFIN_F_THREADX -DMALLOC_FREE_INLINE
 
 
+INCDIR = -I../fin
+LIBS_PATH = 
 LIBS = 
 
-SRCS = main.c 
+SRCS = main.c ../fin/singlefin.c
 
-OBJS += $(COMMON_SRC:%.c=$(BUILDDIR)/%.o)
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 
 
@@ -109,28 +128,22 @@ $(BUILDDIR)/$(TARGET_NAME).elf: $(OBJS)
 	@echo 'Invoking: Cross LLVM C++ Linker'
 	$(CXX) -d -o $@ $(CXX_FLAGS) -Wl,-entry=$(DAM_RO_BASE) \
 	$(DAM_LD_PATH)/txm_module_preamble_llvm.o \
-	$(GETX) $(PRINTF) $(MALLOC) $(WRITE) $(FWRITE) \
+	$(FIN_WRAPPERS) \
 	$(OBJS) \
 	-Wl,-T $(DAM_LD_PATH)/sections.ld \
 	-Wl,-Map=$(patsubst '%.elf','%.map','$@'),-gc-sections \
 	-Wl,-gc-sections \
-	-L $(LIBS) \
+	-L $(LIBS_PATH) \
+	$(LIBS) \
 	$(DAM_LIB_PATH)/*.lib
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-# common
-$(BUILDDIR)/%.o:../../%.c
-	@$(MKDIR) -p $(dir $@)
-	@echo 'Building target: $@'
-	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
-	@echo 'Finished building target: $@'
-	@echo ' '
 
 $(BUILDDIR)/%.o:%.c
 	@$(MKDIR) -p $(dir $@)
 	@echo 'Building target: $@'
-	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) -I$(COMMON_INC) $(DAM_INCPATHS) $^ 
+	$(CC) -o $@ -c $(USER_OPTS) $(DAM_COPTIONS) $(DAM_CFLAGS) -I. $(INCDIR) $(DAM_INCPATHS) $^ 
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -144,7 +157,8 @@ $(TARGET_NAME).bin:
 	@echo 'Building target: $@'
 	$(PYTHON_PATH) $(LLVMLINK_PATH)/llvm-elf-to-hex.py --bin $(BUILDDIR)/$(patsubst '%.bin','%.elf','$@') --output $(BUILDDIR)/$@
 
+# Tool invocations
 
-export CLI_TOOL TARGET_NAME BUILDDIR
-
-include ../../../tools/Makefile.tools
+load:
+	@echo 'Loading to target...' 
+	PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& '$(CLI_TOOL)'" -BinPath "${CURDIR}/$(BUILDDIR)" -BinFile "$(TARGET_NAME).bin" -ResetTarget $$True
