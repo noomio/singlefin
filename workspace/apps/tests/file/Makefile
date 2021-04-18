@@ -93,7 +93,7 @@ DAM_INCPATHS ?= -I"$(DAM_INC_BASE)" \
 				-I"$(LLVMLIB)"
 
 
-TARGET_NAME = file-tests
+TARGET_NAME = file-test
 BUILDDIR = out
 MODULE = bg96
 
@@ -104,7 +104,7 @@ INCDIR = -I../fin
 LIBS_PATH = 
 LIBS = 
 
-SRCS = main.c fin/singlefin.c
+SRCS = main.c ../fin/singlefin.c
 
 OBJS += $(SRCS:%.c=$(BUILDDIR)/%.o)
 
