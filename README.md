@@ -1,6 +1,32 @@
 # singlefin
 SingleFin Platform for IoT Enablement
 
+## Generate Source Files
+
+To configure and generate the source files you need to run the configure.py script. There is also a helper script configure.ps1 to call with PowerShell.
+
+```
+cd singlefin
+```
+
+```
+python tools/configure.py 
+	--source-directory src-input 
+	--platform threadx 
+	--architecture arm32 
+	--module bg96 
+	--output-directory build/fin 
+```
+
+### Supported Modems:
+- BG96
+
+There is a generated one available in **workspace/apps/tests/fin** but may not be the latest api.
+
+## Prerequisites
+
+Python27 make
+
 ## Compile
 
 Add SingleFin C source and header to your build. The distributable contains an example Makefile using the llvm compiler for reference (clang). In the simplest case:
@@ -9,7 +35,6 @@ Add SingleFin C source and header to your build. The distributable contains an e
 clang.exe -o singlefin.o -c singlefin.c
 ```
 
-> On how to generate the source files look at **Generate Source Files** below.
 
 ## Build
 
@@ -42,30 +67,6 @@ int main (void){
 
 }
 ```
-
-## Generate Source Files
-
-To configure and generate the source files you need to run the configure.py script. There is also a helper script configure.ps1 to call with PowerShell.
-
-```
-cd singlefin
-```
-
-```
-python tools/configure.py 
-	--source-directory src-input 
-	--platform threadx 
-	--architecture arm32 
-	--module bg96 
-	--output-directory build/fin 
-```
-
-### Supported Modems:
-- BG96
-
-## Prerequisites
-
-Python27
 
 ## Documentation
 
