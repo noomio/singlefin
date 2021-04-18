@@ -4,7 +4,7 @@
 int main(int argc, char * argv[]){
 
 
-	puts("adc\r\n");
+	puts("adc-test\r\n");
 	
 	int res0 = fin_adc_config(ADC0);
 	int res1 = fin_adc_config(ADC1);

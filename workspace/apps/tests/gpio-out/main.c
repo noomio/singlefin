@@ -1,27 +1,25 @@
-#include <stdio.h>
-#include <qapi_timer.h>
-#include "gpio.h"
+#include "singlefin.h"
 
 int main(int argc, char * argv[])
 {
 
-	puts("gpio_out\r\n");
+	puts("gpio-out-test\r\n");
 	
-	gpio_pin_config(18,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_pin_config(19,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_pin_config(26,QAPI_GPIO_PULL_UP_E,QAPI_GPIO_12MA_E,QAPI_GPIO_OUTPUT_E);
-	gpio_config_dump(19);
+	fin_gpio_pin_config(PIN18,PullUp,Drive12mA,Output);
+	fin_gpio_pin_config(PIN19,PullUp,Drive12mA,Output);
+	fin_gpio_pin_config(PIN26,PullUp,Drive12mA,Output);
+	fin_gpio_config_dump(PIN19);
 
 	for(;;){
 
-		gpio_pin_write(18,true);
-		gpio_pin_write(19,true);
-		gpio_pin_write(26,true);
-		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
-		gpio_pin_write(18,false);
-		gpio_pin_write(19,false);
-		gpio_pin_write(26,false);
-		qapi_Timer_Sleep(1, QAPI_TIMER_UNIT_SEC, true);
+		fin_gpio_pin_write(PIN18,true);
+		fin_gpio_pin_write(PIN19,true);
+		fin_gpio_pin_write(PIN26,true);
+		fin_sleep(1000);
+		fin_gpio_pin_write(PIN18,false);
+		fin_gpio_pin_write(PIN19,false);
+		fin_gpio_pin_write(PIN26,false);
+		fin_sleep(1000);
 
 	}
 

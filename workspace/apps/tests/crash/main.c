@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include "qapi_uart.h"
+#include "singlefin.h"
 
 int main(int argc, char * argv[])
 {
 
+	puts("crash-test\r\n");
+	
 	qapi_UART_Open_Config_t uart_cfg;
 	
 	for(;;){
